@@ -1,0 +1,218 @@
+{
+  "id": "debuter",
+  "titre": "Comment débuter",
+  "version": "test-2",
+  "_note": "Les {{cle}} renvoient à donnees/chiffres.json.",
+  "lecons": [
+    {
+      "titre": "Précaution et horizon",
+      "cours": [
+        {
+          "titre": "Débuter, ça commence avant d'investir",
+          "texte": "Avant de choisir un placement, l'AMF décrit plusieurs questions : de quoi ai-je besoin, pour quand, et quel risque suis-je prêt à prendre ? Ce parcours les passe en revue, sans dire quoi faire : chaque situation est différente.",
+          "sources": [
+            "amf_investir_etapes"
+          ]
+        },
+        {
+          "titre": "L'épargne de précaution",
+          "texte": "L'AMF décrit une réserve pour les imprévus, de 2 à 6 mois de revenus selon la situation, placée sur des supports disponibles et sûrs comme les livrets réglementés.",
+          "sources": [
+            "precaution_mois"
+          ]
+        },
+        {
+          "titre": "L'horizon",
+          "texte": "Vos projets déterminent votre horizon de placement : court, moyen ou long terme. Pour le court terme, l'AMF décrit des placements disponibles et sans risque de perte de valeur.",
+          "sources": [
+            "amf_investir_etapes"
+          ]
+        }
+      ],
+      "exercices": [
+        {
+          "id": "ex01",
+          "niveau": 1,
+          "notion": "Épargne de précaution",
+          "format": "choix",
+          "question": "À quoi sert surtout une épargne de précaution ?",
+          "options": [
+            "À faire fructifier son argent au maximum",
+            "À faire face aux imprévus avec de l'argent disponible",
+            "À payer moins d'impôts"
+          ],
+          "reponse": 1,
+          "retour_juste": "Exact ! C'est un coussin pour les coups durs, pas une course au rendement.",
+          "retour_faux": "Son rôle : être disponible tout de suite en cas d'imprévu. Le rendement passe au second plan.",
+          "en_savoir_plus": "L'AMF décrit l'épargne de précaution comme une réserve pour faire face aux imprévus ou à une dépense exceptionnelle, placée sur des supports disponibles et sûrs, comme les livrets réglementés.",
+          "sources": [
+            "precaution_mois"
+          ]
+        },
+        {
+          "id": "ex02",
+          "niveau": 2,
+          "notion": "Épargne de précaution",
+          "format": "fourchette",
+          "question": "Selon l'AMF, une épargne de précaution représente souvent…",
+          "options": [
+            "Quelques jours de revenus",
+            "2 à 6 mois de revenus",
+            "2 à 3 ans de revenus",
+            "Rien : tout investir"
+          ],
+          "reponse": 1,
+          "retour_juste": "Bien vu ! L'AMF évoque 2 à 6 mois de revenus, selon la situation.",
+          "retour_faux": "L'AMF évoque 2 à 6 mois de revenus, selon la situation (salarié, indépendant, retraité…) et la taille du foyer.",
+          "en_savoir_plus": "C'est un ordre de grandeur décrit par l'AMF, pas une règle universelle : le bon niveau dépend de chaque situation.",
+          "sources": [
+            "precaution_mois"
+          ]
+        },
+        {
+          "id": "ex03",
+          "niveau": 3,
+          "notion": "Horizon",
+          "format": "classement",
+          "question": "Classe ces projets, du plus court au plus long horizon.",
+          "elements": [
+            "Partir en vacances l'été prochain",
+            "Changer de voiture dans 5 ans",
+            "Compléter ses revenus à la retraite, dans 30 ans"
+          ],
+          "ordre_correct": [
+            0,
+            1,
+            2
+          ],
+          "retour_juste": "Parfait ! L'horizon, c'est simplement le moment où l'argent sera utile.",
+          "retour_faux": "Ordre : vacances (court terme), voiture (moyen terme), retraite (long terme).",
+          "en_savoir_plus": "L'AMF le formule ainsi : vos projets déterminent votre horizon de placement, le niveau de risque accepté et la disponibilité de votre épargne.",
+          "sources": [
+            "amf_investir_etapes"
+          ]
+        },
+        {
+          "id": "ex04",
+          "niveau": 4,
+          "notion": "Horizon",
+          "format": "choix",
+          "question": "Projet dans 2 ans, argent placé en actions. Quel risque ?",
+          "options": [
+            "Aucun, deux ans c'est long en Bourse",
+            "Une baisse au mauvais moment, sans temps pour remonter",
+            "L'argent est bloqué 5 ans"
+          ],
+          "reponse": 1,
+          "retour_juste": "Exact ! Sur un horizon court, une baisse peut tomber pile au moment du besoin.",
+          "retour_faux": "Deux ans, c'est court en Bourse : une baisse peut survenir juste avant d'avoir besoin de l'argent.",
+          "en_savoir_plus": "L'AMF décrit les placements disponibles et sans risque de perte de valeur (comme les livrets) pour le court terme. Sur les actions françaises entre 1950 et 2020, 1 % des années ont fait pire que {{actions_fr_1an_p1}} % après inflation.",
+          "sources": [
+            "amf_investir_etapes",
+            "actions_fr"
+          ]
+        }
+      ]
+    },
+    {
+      "titre": "Risque, diversification, frais",
+      "cours": [
+        {
+          "titre": "Le risque",
+          "texte": "Pour l'AMF, le risque accepté, c'est la somme qu'on serait prêt à perdre. Le document d'informations clés (DIC) note le risque d'un produit de 1 à 7 et indique la durée de détention recommandée.",
+          "sources": [
+            "amf_investir_etapes",
+            "dic_echelle"
+          ]
+        },
+        {
+          "titre": "Diversifier et regarder les frais",
+          "texte": "Répartir ses placements réduit le risque lié à un seul actif, sans supprimer celui du marché. Les frais, eux, se répètent chaque année et pèsent sur la durée.",
+          "sources": [
+            "amf_investir_etapes",
+            "etf_frais"
+          ]
+        }
+      ],
+      "exercices": [
+        {
+          "id": "ex05",
+          "niveau": 5,
+          "notion": "Profil de risque",
+          "format": "choix",
+          "question": "Selon l'AMF, le risque qu'on accepte, c'est d'abord…",
+          "options": [
+            "Le rendement qu'on espère",
+            "La somme qu'on serait prêt à perdre",
+            "Le nombre de placements détenus"
+          ],
+          "reponse": 1,
+          "retour_juste": "Exact ! Avant de rêver au gain, l'AMF invite à regarder la perte possible.",
+          "retour_faux": "L'AMF définit le risque accepté comme la somme qu'on serait éventuellement prêt à perdre.",
+          "en_savoir_plus": "Le même guide rappelle qu'un produit financier ne peut pas offrir un potentiel de rendement élevé sans un niveau de risque important.",
+          "sources": [
+            "amf_investir_etapes"
+          ]
+        },
+        {
+          "id": "ex06",
+          "niveau": 6,
+          "notion": "Profil de risque",
+          "format": "fourchette",
+          "question": "Sur un document d'informations clés, le risque est noté sur quelle échelle ?",
+          "options": [
+            "De 1 à 3",
+            "De 1 à 5",
+            "De 1 à 7",
+            "De 1 à 10"
+          ],
+          "reponse": 2,
+          "retour_juste": "Bravo ! De 1 (risque le plus faible) à 7 (le plus élevé).",
+          "retour_faux": "C'est une échelle de 1 à 7, du risque le plus faible au plus élevé.",
+          "en_savoir_plus": "Le document d'informations clés (DIC) remis avant d'investir affiche cet indicateur et la durée de détention recommandée, selon l'AMF.",
+          "sources": [
+            "dic_echelle"
+          ]
+        },
+        {
+          "id": "ex07",
+          "niveau": 7,
+          "notion": "Diversification",
+          "format": "choix",
+          "question": "Cinq actions de cinq banques différentes : c'est bien diversifié ?",
+          "options": [
+            "Oui, cinq entreprises c'est diversifié",
+            "Pas vraiment : un même choc peut toutes les toucher",
+            "Oui, si elles sont françaises"
+          ],
+          "reponse": 1,
+          "retour_juste": "Bien vu ! Même secteur, mêmes risques : la diversification demande des actifs qui réagissent différemment.",
+          "retour_faux": "Cinq banques restent exposées aux mêmes événements. Diversifier, c'est répartir entre des actifs qui ne réagissent pas de la même façon.",
+          "en_savoir_plus": "L'AMF invite à se demander si l'on a pensé à diversifier ses placements afin de répartir le risque. Une diversification réduit le risque lié à une entreprise, pas celui de tout un marché.",
+          "sources": [
+            "amf_investir_etapes"
+          ]
+        },
+        {
+          "id": "ex08",
+          "niveau": 8,
+          "notion": "Les frais",
+          "format": "choix",
+          "question": "Où trouver le niveau de risque et les frais d'un fonds avant d'investir ?",
+          "options": [
+            "Dans son document d'informations clés",
+            "Dans ses publicités",
+            "Dans les avis en ligne"
+          ],
+          "reponse": 0,
+          "retour_juste": "Exact ! Le document d'informations clés est fait pour ça, au format standardisé.",
+          "retour_faux": "Réponse : le document d'informations clés (DIC). Les publicités et les avis ne sont pas des documents réglementaires.",
+          "en_savoir_plus": "Selon l'AMF, le DIC présente sous un format standardisé l'indicateur de risque de 1 à 7, la durée de détention recommandée et les coûts. Il doit être remis avant toute souscription d'un produit concerné.",
+          "sources": [
+            "dic_echelle"
+          ]
+        }
+      ]
+    }
+  ]
+}

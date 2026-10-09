@@ -1,0 +1,226 @@
+{
+  "id": "histoire-finance",
+  "titre": "Histoire de la finance",
+  "version": "test-2",
+  "_note": "Les {{cle}} renvoient à donnees/chiffres.json.",
+  "lecons": [
+    {
+      "titre": "De la pièce à la banque centrale",
+      "cours": [
+        {
+          "titre": "La finance, c'est quoi ?",
+          "texte": "La finance, c'est tout ce qui fait circuler l'argent : la monnaie, le crédit, les banques. Son histoire est d'abord celle de la confiance : dans une pièce, un billet, une banque. Ce parcours va d'avant la monnaie jusqu'à l'euro.",
+          "sources": []
+        },
+        {
+          "titre": "Avant la monnaie",
+          "texte": "Le récit classique raconte le troc, puis les coquillages et les métaux. La Banque de France souligne pourtant que ce récit est fortement contesté : des formes de dette ont pu jouer un grand rôle avant la monnaie.",
+          "sources": [
+            "troc_debat",
+            "eco_troc"
+          ]
+        },
+        {
+          "titre": "Pièces et billets",
+          "texte": "Les premières pièces apparaissent en Lydie, sous le roi Crésus, au VIe siècle avant J.-C. En France, le « franc à cheval » naît en 1360 pour payer la rançon de Jean le Bon. Le billet de banque, lui, se répand en Europe au XVIIIe siècle.",
+          "sources": [
+            "bdf_monnaie",
+            "billet_18e"
+          ]
+        },
+        {
+          "titre": "Les banques centrales",
+          "texte": "La Banque d'Angleterre est créée en 1694, la Banque de France en 1800, la Réserve fédérale américaine en 1913 et la Banque centrale européenne en 1998. Leur mission principale : la stabilité des prix.",
+          "sources": [
+            "bdf_banques_centrales"
+          ]
+        }
+      ],
+      "exercices": [
+        {
+          "id": "ex01",
+          "niveau": 1,
+          "notion": "Avant la monnaie",
+          "format": "choix",
+          "question": "Avant la monnaie, tout le monde pratiquait-il le troc ?",
+          "options": [
+            "Oui, c'est prouvé partout",
+            "Les spécialistes en débattent : la dette a pu jouer un grand rôle",
+            "Non, la monnaie a toujours existé"
+          ],
+          "reponse": 1,
+          "retour_juste": "Exact ! Le récit du troc est classique, mais contesté.",
+          "retour_faux": "C'est débattu : la Banque de France rappelle que le troc comme étape avant la monnaie est fortement contesté.",
+          "en_savoir_plus": "Deux sources officielles ne disent pas la même chose : economie.gouv.fr raconte le récit classique (troc, puis coquillages et métaux), tandis que la Banque de France souligne que ce récit est contesté et que des formes de dette ont pu précéder la monnaie.",
+          "sources": [
+            "troc_debat",
+            "eco_troc"
+          ]
+        },
+        {
+          "id": "ex02",
+          "niveau": 2,
+          "notion": "La monnaie",
+          "format": "choix",
+          "question": "Où sont apparues les premières pièces de monnaie frappées ?",
+          "options": [
+            "En Lydie, dans l'actuelle Turquie",
+            "À Rome",
+            "En Chine, au Moyen Âge"
+          ],
+          "reponse": 0,
+          "retour_juste": "Exact ! Au VIe siècle avant J.-C., sous le roi Crésus.",
+          "retour_faux": "C'était en Lydie, à l'ouest de l'actuelle Turquie, au VIe siècle avant J.-C.",
+          "en_savoir_plus": "La Banque de France situe les premières pièces en or sous le règne de Crésus, roi de Lydie, au VIe siècle avant J.-C. Economie.gouv.fr raconte aussi que la monnaie fit la fortune de ce royaume.",
+          "sources": [
+            "bdf_monnaie",
+            "eco_troc"
+          ]
+        },
+        {
+          "id": "ex03",
+          "niveau": 3,
+          "notion": "La monnaie",
+          "format": "choix",
+          "question": "Le « franc à cheval » de 1360 a été créé pour…",
+          "options": [
+            "Payer la rançon du roi Jean le Bon",
+            "Financer une Bourse",
+            "Remplacer l'euro"
+          ],
+          "reponse": 0,
+          "retour_juste": "Exact ! Jean le Bon, prisonnier des Anglais, devait payer sa rançon.",
+          "retour_faux": "Il servait à payer la rançon de Jean le Bon, prisonnier des Anglais.",
+          "en_savoir_plus": "Selon la Banque de France, en 1360, Jean le Bon crée cette nouvelle monnaie d'or pour payer sa rançon ; elle devient la seule à circuler dans tout le royaume.",
+          "sources": [
+            "bdf_monnaie"
+          ]
+        },
+        {
+          "id": "ex04",
+          "niveau": 4,
+          "notion": "Banques centrales",
+          "format": "classement",
+          "question": "Classe ces banques centrales, de la plus ancienne à la plus récente.",
+          "elements": [
+            "Banque d'Angleterre",
+            "Banque de France",
+            "Réserve fédérale américaine",
+            "Banque centrale européenne"
+          ],
+          "ordre_correct": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "retour_juste": "Parfait ! 1694, 1800, 1913, 1998.",
+          "retour_faux": "Ordre : Banque d'Angleterre (1694), Banque de France (1800), Réserve fédérale (1913), BCE (1998).",
+          "en_savoir_plus": "Dates de la Banque de France. Une curiosité : la date de la première banque centrale suédoise diffère selon deux documents de la Banque de France (1668 ou 1688), c'est pourquoi elle n'apparaît pas ici.",
+          "sources": [
+            "bdf_banques_centrales"
+          ]
+        }
+      ]
+    },
+    {
+      "titre": "Crises et monnaie d'aujourd'hui",
+      "cours": [
+        {
+          "titre": "La monnaie aujourd'hui",
+          "texte": "Plus de 90 % de la monnaie de la zone euro n'existe que sous forme d'écritures sur des comptes. Elle naît quand les banques accordent des crédits. Les crises bancaires (1720, 2008…) ont conduit à des protections comme la garantie des dépôts jusqu'à 100 000 €.",
+          "sources": [
+            "monnaie_scripturale_part",
+            "bdf_crises"
+          ]
+        }
+      ],
+      "exercices": [
+        {
+          "id": "ex05",
+          "niveau": 5,
+          "notion": "Crises",
+          "format": "choix",
+          "question": "1720 : pourquoi la banque de John Law fait-elle faillite ?",
+          "options": [
+            "Ses clients retirent massivement leurs fonds",
+            "Un incendie détruit ses coffres",
+            "L'euro la remplace"
+          ],
+          "reponse": 0,
+          "retour_juste": "Exact ! Une ruée sur les dépôts qu'elle ne peut pas rembourser.",
+          "retour_faux": "Ses clients ont voulu récupérer leur argent en même temps, et elle n'a pas pu les rembourser.",
+          "en_savoir_plus": "La Banque de France présente cette faillite de 1720 comme l'un des échecs qui ont précédé sa propre création en 1800. Ces paniques bancaires ont ensuite inspiré des protections, comme la garantie des dépôts.",
+          "sources": [
+            "bdf_crises"
+          ]
+        },
+        {
+          "id": "ex06",
+          "niveau": 6,
+          "notion": "Monnaie aujourd'hui",
+          "format": "fourchette",
+          "question": "Dans la zone euro, quelle part de la monnaie n'existe que sur des comptes ?",
+          "options": [
+            "Environ 10 %",
+            "Environ 50 %",
+            "Plus de 90 %",
+            "100 %"
+          ],
+          "reponse": 2,
+          "retour_juste": "Bravo ! Plus de 90 % de la monnaie est « scripturale » : de simples écritures.",
+          "retour_faux": "Réponse : plus de 90 %. Pièces et billets ne sont qu'une petite partie de la monnaie.",
+          "en_savoir_plus": "Selon la Banque de France, la monnaie scripturale représentait {{monnaie_scripturale_part}} % de la monnaie en circulation en zone euro en 2020. Elle est créée par les banques quand elles accordent des crédits : « les crédits font les dépôts ».",
+          "sources": [
+            "monnaie_scripturale_part",
+            "bdf_monnaie"
+          ]
+        },
+        {
+          "id": "ex07",
+          "niveau": 7,
+          "notion": "Monnaie aujourd'hui",
+          "format": "classement",
+          "question": "Remets ces étapes de l'euro dans l'ordre.",
+          "elements": [
+            "Création de la Banque centrale européenne",
+            "L'euro arrive sur les comptes",
+            "Les billets et pièces en euros arrivent"
+          ],
+          "ordre_correct": [
+            0,
+            1,
+            2
+          ],
+          "retour_juste": "Parfait ! 1998, 1999, 2002.",
+          "retour_faux": "Ordre : BCE en 1998, euro sur les comptes en 1999, pièces et billets en 2002.",
+          "en_savoir_plus": "Dates de la Banque de France : passage à l'euro scriptural en 1999, à l'euro fiduciaire (pièces et billets) en 2002. Le billet de banque lui-même était apparu en Europe au XVIIIe siècle.",
+          "sources": [
+            "bdf_monnaie",
+            "bdf_banques_centrales",
+            "billet_18e"
+          ]
+        },
+        {
+          "id": "ex08",
+          "niveau": 8,
+          "notion": "Crises",
+          "format": "choix",
+          "question": "Après une faillite bancaire en France, jusqu'où les dépôts sont-ils garantis ?",
+          "options": [
+            "Pas du tout",
+            "100 000 € par déposant",
+            "Sans aucune limite"
+          ],
+          "reponse": 1,
+          "retour_juste": "Exact ! 100 000 € par déposant, une protection née des leçons des crises.",
+          "retour_faux": "La garantie des dépôts couvre 100 000 € par déposant.",
+          "en_savoir_plus": "La Banque de France rappelle ce montant et la chronologie des crises : 1720 (Law), 1931 (Kreditanstalt), 2008 (subprimes et faillite de Lehman Brothers). Cette garantie concerne les dépôts bancaires, pas la valeur des placements en Bourse.",
+          "sources": [
+            "bdf_crises"
+          ]
+        }
+      ]
+    }
+  ]
+}

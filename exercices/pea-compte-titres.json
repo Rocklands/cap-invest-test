@@ -1,0 +1,222 @@
+{
+  "id": "pea-compte-titres",
+  "titre": "PEA ou compte-titres ?",
+  "version": "test-2",
+  "_note": "Les {{cle}} renvoient à donnees/chiffres.json.",
+  "lecons": [
+    {
+      "titre": "L'enveloppe PEA",
+      "cours": [
+        {
+          "titre": "Pourquoi parler d'enveloppes ?",
+          "texte": "Pour détenir des actions ou des fonds, on passe par un compte spécial : une enveloppe. En France, les deux plus courantes pour la Bourse sont le PEA et le compte-titres. Elles diffèrent par leurs plafonds, leurs règles de retrait et leur fiscalité.",
+          "sources": []
+        },
+        {
+          "titre": "Une enveloppe, pas un placement",
+          "texte": "Le PEA et le compte-titres sont des enveloppes : des comptes avec leurs propres règles. Le rendement et le risque dépendent de ce qu'on y place. Investir en actions n'offre aucune garantie de capital.",
+          "sources": [
+            "amf_pea_garantie"
+          ]
+        },
+        {
+          "titre": "Le PEA",
+          "texte": "Réservé aux majeurs fiscalement domiciliés en France, un seul par personne. Versements plafonnés à {{pea_plafond}} € (les gains ne comptent pas). Il accueille des actions européennes et des fonds investis à au moins 75 % en actions. Un retrait avant 5 ans clôture en principe le plan.",
+          "sources": [
+            "pea_plafond",
+            "pea_regles"
+          ]
+        }
+      ],
+      "exercices": [
+        {
+          "id": "ex01",
+          "niveau": 1,
+          "notion": "L'enveloppe",
+          "format": "choix",
+          "question": "PEA, compte-titres : ce sont des placements ou des enveloppes ?",
+          "options": [
+            "Des placements au rendement fixé d'avance",
+            "Des enveloppes : le rendement dépend de ce qu'on met dedans",
+            "Des actions d'une entreprise précise"
+          ],
+          "reponse": 1,
+          "retour_juste": "Exact ! Le PEA, c'est la boîte ; les actions ou les fonds, c'est ce qu'on met dedans.",
+          "retour_faux": "Ce sont des enveloppes : des comptes avec leurs propres règles. Le rendement et le risque viennent de ce qu'on y place.",
+          "en_savoir_plus": "L'AMF décrit le PEA comme un dispositif pour se constituer un portefeuille en actions, avec un régime fiscal particulier. Le compte-titres est l'autre enveloppe pour détenir des titres. Dans les deux cas, investir en actions n'offre aucune garantie de capital.",
+          "sources": [
+            "amf_pea_garantie"
+          ]
+        },
+        {
+          "id": "ex02",
+          "niveau": 2,
+          "notion": "Le PEA",
+          "format": "choix",
+          "question": "Le plafond de {{pea_plafond}} € du PEA porte sur quoi ?",
+          "options": [
+            "La valeur totale du compte",
+            "Les sommes versées, pas les gains",
+            "Les gains réalisés chaque année"
+          ],
+          "reponse": 1,
+          "retour_juste": "Bien vu ! Seuls les versements comptent : les gains peuvent faire dépasser ce montant.",
+          "retour_faux": "Le plafond vise les versements. Si les placements prennent de la valeur, le compte peut dépasser {{pea_plafond}} €.",
+          "en_savoir_plus": "Selon service-public.gouv.fr, le plafond de versements du PEA classique est de {{pea_plafond}} € et son calcul ne tient pas compte des gains. Le compte-titres ordinaire, lui, n'a pas de plafond de versement.",
+          "sources": [
+            "pea_plafond",
+            "amf_pea_garantie"
+          ]
+        },
+        {
+          "id": "ex03",
+          "niveau": 3,
+          "notion": "Le PEA",
+          "format": "choix",
+          "question": "Combien de PEA classiques une même personne peut-elle détenir ?",
+          "options": [
+            "Un seul",
+            "Un par banque",
+            "Autant qu'elle veut"
+          ],
+          "reponse": 0,
+          "retour_juste": "Exact : un seul PEA classique par personne, et jamais en compte joint.",
+          "retour_faux": "Un seul PEA classique par personne. Le compte-titres, lui, peut se multiplier.",
+          "en_savoir_plus": "Service-public.gouv.fr précise : une personne ne peut détenir qu'un PEA classique à la fois, il ne peut pas être ouvert en compte joint, et il est réservé aux majeurs fiscalement domiciliés en France. Un PEA-PME-ETI peut s'y ajouter.",
+          "sources": [
+            "pea_regles"
+          ]
+        },
+        {
+          "id": "ex05",
+          "niveau": 5,
+          "notion": "Les retraits",
+          "format": "choix",
+          "question": "PEA ouvert il y a 3 ans. Que se passe-t-il en cas de retrait ?",
+          "options": [
+            "Impossible : l'argent est bloqué 5 ans",
+            "En principe, le plan est clôturé",
+            "Rien de particulier"
+          ],
+          "reponse": 1,
+          "retour_juste": "Exact ! L'argent n'est pas bloqué, mais un retrait avant 5 ans ferme en principe le plan.",
+          "retour_faux": "L'argent reste disponible, mais un retrait avant 5 ans entraîne en principe la clôture du plan. Il existe quelques exceptions (licenciement, invalidité, création d'entreprise…).",
+          "en_savoir_plus": "Après 5 ans, un retrait partiel ne clôture plus le plan et de nouveaux versements restent possibles. Avant 5 ans, les gains retirés sont soumis au prélèvement forfaitaire de {{pfu_taux}} % (sauf option pour le barème).",
+          "sources": [
+            "pea_regles",
+            "pfu_taux"
+          ]
+        }
+      ]
+    },
+    {
+      "titre": "Compte-titres et fiscalité",
+      "cours": [
+        {
+          "titre": "Le compte-titres",
+          "texte": "Pas de plafond de versement, pas de restriction sur les titres, argent disponible à tout moment. On peut en détenir plusieurs.",
+          "sources": [
+            "amf_pea_garantie"
+          ]
+        },
+        {
+          "titre": "La fiscalité en 2026",
+          "texte": "Compte-titres : prélèvement forfaitaire de {{pfu_taux}} % sur les gains ({{pfu_ir}} % d'impôt + {{ps_taux}} % de prélèvements sociaux). PEA après 5 ans : pas d'impôt sur le revenu, mais {{ps_taux}} % de prélèvements sociaux. Ces règles changent souvent.",
+          "sources": [
+            "pfu_taux",
+            "ps_taux"
+          ]
+        }
+      ],
+      "exercices": [
+        {
+          "id": "ex04",
+          "niveau": 4,
+          "notion": "Les plafonds",
+          "format": "classement",
+          "question": "Classe ces enveloppes, du plafond de versement le plus bas au plus haut.",
+          "elements": [
+            "PEA d'un jeune rattaché à ses parents",
+            "PEA classique",
+            "PEA-PME-ETI",
+            "Compte-titres ordinaire"
+          ],
+          "ordre_correct": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "retour_juste": "Parfait ! {{pea_jeune_plafond}} €, {{pea_plafond}} €, {{pea_pme_plafond}} €… et pas de plafond pour le compte-titres.",
+          "retour_faux": "Ordre : PEA jeune ({{pea_jeune_plafond}} €), PEA ({{pea_plafond}} €), PEA-PME-ETI ({{pea_pme_plafond}} €), puis le compte-titres, sans plafond.",
+          "en_savoir_plus": "Plafonds 2026 selon service-public.gouv.fr. Le cumul PEA classique + PEA-PME-ETI ne peut pas dépasser {{pea_pme_plafond}} €. Le PEA d'un majeur rattaché au foyer de ses parents devient un PEA classique quand le rattachement cesse.",
+          "sources": [
+            "pea_jeune_plafond",
+            "pea_plafond",
+            "pea_pme_plafond"
+          ]
+        },
+        {
+          "id": "ex06",
+          "niveau": 6,
+          "notion": "La fiscalité",
+          "format": "fourchette",
+          "question": "Retrait des gains d'un PEA après 5 ans : quel prélèvement total ?",
+          "options": [
+            "0 %",
+            "{{pfu_ir}} %",
+            "{{ps_taux}} %",
+            "{{pfu_taux}} %"
+          ],
+          "reponse": 2,
+          "retour_juste": "Bravo ! Pas d'impôt sur le revenu, mais les prélèvements sociaux restent dus.",
+          "retour_faux": "Réponse : {{ps_taux}} %. Après 5 ans, l'impôt sur le revenu disparaît, pas les prélèvements sociaux.",
+          "en_savoir_plus": "Depuis le 1er janvier 2026, les prélèvements sociaux sont de {{ps_taux}} % (ils étaient de 17,2 % avant). Les fiches de départ indiquaient l'ancien taux : les règles fiscales changent souvent, d'où l'intérêt de vérifier sur impots.gouv.fr.",
+          "sources": [
+            "ps_taux"
+          ]
+        },
+        {
+          "id": "ex07",
+          "niveau": 7,
+          "notion": "La fiscalité",
+          "format": "choix",
+          "question": "Moins-value sur un compte-titres : à quoi peut-elle servir ?",
+          "options": [
+            "À rien, elle est perdue fiscalement",
+            "À réduire l'impôt sur des plus-values, jusqu'à 10 ans",
+            "À obtenir un remboursement de l'État"
+          ],
+          "reponse": 1,
+          "retour_juste": "Exact ! Elle s'impute sur des plus-values de même nature, l'année même ou les {{mv_report_ans}} suivantes.",
+          "retour_faux": "Une moins-value n'est pas inutile fiscalement : elle se déduit des plus-values de même nature, pendant {{mv_report_ans}} ans.",
+          "en_savoir_plus": "Sur un compte-titres, les plus-values sont soumises par défaut au prélèvement forfaitaire unique de {{pfu_taux}} % en 2026 ({{pfu_ir}} % d'impôt + {{ps_taux}} % de prélèvements sociaux). Une perte reste une perte : l'imputation réduit seulement l'impôt sur d'autres gains.",
+          "sources": [
+            "mv_report_ans",
+            "pfu_taux"
+          ]
+        },
+        {
+          "id": "ex08",
+          "niveau": 8,
+          "notion": "Transfert et frais",
+          "format": "arnaque",
+          "question": "Trois affirmations sur le PEA. Laquelle est un piège ?",
+          "options": [
+            "Un PEA peut être transféré sans perdre ses avantages fiscaux.",
+            "« Notre PEA garantit ton capital et 10 % par an ! »",
+            "Les frais de transfert d'un PEA sont plafonnés."
+          ],
+          "reponse": 1,
+          "retour_juste": "Piège déjoué ! Une enveloppe ne garantit rien : le risque vient des actions qu'elle contient.",
+          "retour_faux": "Le piège : « capital garanti et 10 % par an ». Selon l'AMF, investir en actions n'offre aucune garantie de capital.",
+          "en_savoir_plus": "L'AMF indique qu'un PEA peut être transféré vers un autre établissement sans perte des avantages fiscaux, avec des frais plafonnés à {{pea_transfert_max}} €. Une promesse de rendement élevé et garanti est en revanche un signal d'alerte classique.",
+          "sources": [
+            "pea_transfert_max",
+            "amf_pea_garantie"
+          ]
+        }
+      ]
+    }
+  ]
+}

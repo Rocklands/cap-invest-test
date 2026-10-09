@@ -1,0 +1,244 @@
+{
+  "id": "familles-actifs",
+  "titre": "Les familles d'actifs",
+  "version": "test-2",
+  "_note": "Les {{cle}} renvoient à donnees/chiffres.json.",
+  "lecons": [
+    {
+      "titre": "Actions et obligations",
+      "cours": [
+        {
+          "titre": "C'est quoi, un actif ?",
+          "texte": "Un actif, c'est quelque chose qu'on possède et qui a une valeur : de l'argent sur un livret, une action, une obligation, un logement, de l'or… On regroupe les actifs en familles selon leur fonctionnement, leur risque et la facilité à les revendre. L'AMF les classe de « garanti » à « risqué ».",
+          "sources": [
+            "amf_classement_risque"
+          ]
+        },
+        {
+          "titre": "Les actions",
+          "texte": "Une action est une part du capital d'une entreprise. L'actionnaire peut recevoir des dividendes, une part des bénéfices. Son prix peut varier brusquement, à la hausse comme à la baisse.",
+          "sources": [
+            "amf_actions"
+          ]
+        },
+        {
+          "titre": "Coté ou non coté",
+          "texte": "Une action cotée s'échange en Bourse, avec un prix connu chaque jour. Une action non cotée ne s'y échange pas : la revendre peut prendre du temps et sa valeur est estimée. Dans un fonds de capital-investissement (non coté), les parts peuvent être bloquées jusqu'à {{amf_non_cote}} ans.",
+          "sources": [
+            "amf_non_cote"
+          ]
+        },
+        {
+          "titre": "Les obligations",
+          "texte": "Acheter une obligation, c'est prêter à un État, une collectivité ou une entreprise, contre un intérêt appelé coupon. La mise est rendue à l'échéance, sauf faillite. Si les taux montent, une obligation à taux fixe perd de la valeur avant l'échéance.",
+          "sources": [
+            "amf_obligations"
+          ]
+        }
+      ],
+      "exercices": [
+        {
+          "id": "ex01",
+          "niveau": 1,
+          "notion": "Les actions",
+          "format": "choix",
+          "question": "Acheter une action, c'est devenir quoi ?",
+          "options": [
+            "Prêteur de l'entreprise",
+            "Propriétaire d'une petite part de l'entreprise",
+            "Client prioritaire de l'entreprise"
+          ],
+          "reponse": 1,
+          "retour_juste": "Exact ! Une action, c'est un morceau du capital.",
+          "retour_faux": "Une action fait de toi un copropriétaire de l'entreprise. Prêter, c'est le rôle de l'obligation.",
+          "en_savoir_plus": "Selon l'AMF, l'actionnaire peut participer à la vie de l'entreprise et percevoir des dividendes, une quote-part des bénéfices. En contrepartie, le cours peut varier brusquement.",
+          "sources": [
+            "amf_actions"
+          ]
+        },
+        {
+          "id": "ex03",
+          "niveau": 3,
+          "notion": "Coté ou non coté",
+          "format": "arnaque",
+          "question": "Trois phrases sur les actions non cotées. Laquelle est trompeuse ?",
+          "options": [
+            "Une société non cotée n'a pas de cours de Bourse chaque jour.",
+            "« Non coté = pas de variations, donc pas de risque ! »",
+            "Revendre des titres non cotés peut prendre du temps."
+          ],
+          "reponse": 1,
+          "retour_juste": "Bien vu ! Pas de prix affiché ne veut pas dire pas de risque.",
+          "retour_faux": "La phrase trompeuse : « pas de risque ». Une valeur qu'on ne voit pas bouger peut quand même baisser.",
+          "en_savoir_plus": "Selon l'AMF, le capital-investissement consiste à prendre une participation dans une société non cotée. Ces titres sont peu liquides et leur valeur est estimée, pas fixée par un marché.",
+          "sources": [
+            "amf_non_cote"
+          ]
+        },
+        {
+          "id": "ex04",
+          "niveau": 4,
+          "notion": "Coté ou non coté",
+          "format": "fourchette",
+          "question": "Fonds de non-coté : les parts peuvent être bloquées jusqu'à combien ?",
+          "options": [
+            "1 mois",
+            "1 an",
+            "{{amf_non_cote}} ans",
+            "50 ans"
+          ],
+          "reponse": 2,
+          "retour_juste": "Bravo ! Jusqu'à {{amf_non_cote}} ans, sauf circonstances exceptionnelles.",
+          "retour_faux": "Réponse : jusqu'à {{amf_non_cote}} ans. Le rachat est impossible pendant la durée de vie du fonds.",
+          "en_savoir_plus": "L'AMF précise que les exceptions (décès, invalidité…) sont prévues dans le règlement du fonds. Une action cotée, elle, peut en principe se vendre pendant les heures de Bourse, au prix du moment.",
+          "sources": [
+            "amf_non_cote"
+          ]
+        },
+        {
+          "id": "ex02",
+          "niveau": 2,
+          "notion": "Les obligations",
+          "format": "choix",
+          "question": "Acheter une obligation, c'est…",
+          "options": [
+            "Prêter de l'argent à un État ou une entreprise",
+            "Acheter une part d'entreprise",
+            "Ouvrir un livret garanti"
+          ],
+          "reponse": 0,
+          "retour_juste": "Exact ! Tu prêtes, et tu reçois un intérêt appelé coupon.",
+          "retour_faux": "Une obligation est un prêt : à un État, une collectivité ou une entreprise.",
+          "en_savoir_plus": "L'AMF précise qu'on récupère sa mise à l'échéance, sauf en cas de faillite de l'émetteur. Le risque dépend donc de la solidité de l'emprunteur.",
+          "sources": [
+            "amf_obligations"
+          ]
+        },
+        {
+          "id": "ex06",
+          "niveau": 6,
+          "notion": "Les obligations",
+          "format": "choix",
+          "question": "Les taux montent. Ton obligation à taux fixe déjà achetée…",
+          "options": [
+            "Prend de la valeur",
+            "Perd de la valeur si on la revend avant l'échéance",
+            "Ne change jamais de valeur"
+          ],
+          "reponse": 1,
+          "retour_juste": "Exact ! Les nouvelles obligations rapportent plus, donc les anciennes valent moins.",
+          "retour_faux": "Elle perd de la valeur : les nouvelles obligations offrent de meilleurs coupons.",
+          "en_savoir_plus": "L'AMF l'explique ainsi : quand les taux montent, la valeur des obligations à taux fixe déjà émises baisse, et inversement. Garder l'obligation jusqu'à l'échéance évite cette perte, sauf faillite de l'émetteur.",
+          "sources": [
+            "amf_obligations"
+          ]
+        }
+      ]
+    },
+    {
+      "titre": "Les autres familles",
+      "cours": [
+        {
+          "titre": "Livrets, monétaire, immobilier, crypto",
+          "texte": "Selon l'AMF : les livrets sont garantis ; les supports monétaires sont modérément risqués ; l'immobilier « papier » (SCPI…), les obligations et les actions sont risqués. Les crypto-actifs sont très volatils et ne sont pas couverts par la garantie des dépôts.",
+          "sources": [
+            "amf_classement_risque",
+            "amf_bitcoin_baisse"
+          ]
+        },
+        {
+          "titre": "Et les objets de collection ?",
+          "texte": "Art, vin, voitures de collection, cartes à collectionner : pour l'AMF, ces placements atypiques sont « loin de constituer des valeurs refuges ». En février 2026, une carte Pokémon (Pikachu Illustrator) s'est vendue {{bercy_cartes}} millions de dollars. Mais selon Bercy, la très grande majorité des cartes n'a que peu de valeur, et au-delà de 5 000 € la revente d'un objet de collection est taxée.",
+          "sources": [
+            "amf_atypiques",
+            "bercy_cartes"
+          ]
+        }
+      ],
+      "exercices": [
+        {
+          "id": "ex05",
+          "niveau": 5,
+          "notion": "Classer le risque",
+          "format": "classement",
+          "question": "Selon l'AMF, classe ces supports, du moins risqué au plus risqué.",
+          "retour_juste": "Parfait ! Garanti, modérément risqué, puis risqué.",
+          "retour_faux": "Ordre AMF : livret (garanti), support monétaire (modérément risqué), actions (risqué).",
+          "en_savoir_plus": "Dans son outil « Mon zoom épargne », l'AMF classe aussi l'immobilier « papier » (SCPI, OPCI, SCI) et les obligations parmi les supports risqués, adaptés au long terme.",
+          "sources": [
+            "amf_classement_risque"
+          ],
+          "elements": [
+            "Livret d'épargne",
+            "Support monétaire",
+            "Actions"
+          ],
+          "ordre_correct": [
+            0,
+            1,
+            2
+          ]
+        },
+        {
+          "id": "ex07",
+          "niveau": 7,
+          "notion": "L'immobilier papier",
+          "format": "choix",
+          "question": "Parts de SCPI (immobilier « papier ») : on les revend quand on veut ?",
+          "options": [
+            "Oui, en un clic",
+            "Pas forcément : cela peut prendre des semaines, voire des mois",
+            "Oui, et le prix est garanti"
+          ],
+          "reponse": 1,
+          "retour_juste": "Exact ! Il faut trouver un acheteur, et le capital n'est pas garanti.",
+          "retour_faux": "Pas forcément : selon l'AMF, la revente peut prendre des semaines, voire des mois.",
+          "en_savoir_plus": "L'AMF rappelle que le capital investi en SCPI n'est pas garanti : la valeur suit le marché de l'immobilier et les loyers peuvent baisser.",
+          "sources": [
+            "amf_scpi"
+          ]
+        },
+        {
+          "id": "ex08",
+          "niveau": 8,
+          "notion": "Les crypto-actifs",
+          "format": "fourchette",
+          "question": "Bitcoin, de novembre 2021 à décembre 2022 : quelle variation ?",
+          "options": [
+            "+73 %",
+            "−7 %",
+            "−30 %",
+            "−73 %"
+          ],
+          "reponse": 3,
+          "retour_juste": "Bravo ! −73 % en un peu plus d'un an.",
+          "retour_faux": "Réponse : −73 %. Le cours est passé de 56 301 € à 15 421 €.",
+          "en_savoir_plus": "L'AMF cite cet exemple pour montrer la volatilité extrême : le cours a ensuite atteint un record de 106 275 € en octobre 2025. Les crypto-actifs ne sont pas couverts par le fonds de garantie des dépôts.",
+          "sources": [
+            "amf_bitcoin_baisse"
+          ]
+        },
+        {
+          "id": "ex09",
+          "niveau": 9,
+          "notion": "Objets de collection",
+          "format": "choix",
+          "question": "Une carte à collectionner s'est vendue {{bercy_cartes}} M$. Et la plupart des cartes ?",
+          "options": [
+            "Elles valent aussi des fortunes",
+            "La très grande majorité vaut peu",
+            "Leur prix est garanti par l'éditeur"
+          ],
+          "reponse": 1,
+          "retour_juste": "Exact ! Un record ne fait pas un marché.",
+          "retour_faux": "Selon Bercy, la très grande majorité des cartes n'a que peu de valeur. Les records ne sont pas représentatifs.",
+          "en_savoir_plus": "La carte Pikachu Illustrator vendue {{bercy_cartes}} millions de dollars en février 2026 est une exception. Au-delà de 5 000 €, la revente d'un objet de collection est soumise à une taxe forfaitaire de 6 % du prix de vente (avec une option possible pour l'imposition de la plus-value). L'AMF classe ces placements parmi les placements atypiques, généralement risqués.",
+          "sources": [
+            "bercy_cartes",
+            "amf_atypiques"
+          ]
+        }
+      ]
+    }
+  ]
+}

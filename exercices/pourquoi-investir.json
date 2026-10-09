@@ -1,0 +1,268 @@
+{
+  "module": "Pourquoi investir",
+  "version": "test-2",
+  "_note": "Les {{cle}} renvoient à donnees/chiffres.json. {{cle|abs}} affiche la valeur sans signe. Les taux écrits en clair sont des hypothèses de calcul fictives, pas des faits.",
+  "id": "pourquoi-investir",
+  "lecons": [
+    {
+      "titre": "L'argent qui dort",
+      "cours": [
+        {
+          "titre": "Investir, c'est quoi ?",
+          "texte": "Épargner, c'est mettre de l'argent de côté. Investir, c'est placer cette épargne dans un actif (une entreprise, un prêt, de l'immobilier…) dans l'espoir qu'il rapporte, en acceptant qu'il puisse perdre de la valeur. Ce parcours explique pourquoi certains le font : inflation, intérêts composés et temps.",
+          "sources": [
+            "amf_rendement_risque"
+          ]
+        },
+        {
+          "titre": "L'inflation",
+          "texte": "Pour l'Insee, l'inflation est une perte du pouvoir d'achat de la monnaie : les prix montent de façon générale et durable. Sur un an, les prix ont augmenté de {{inflation_1an}} % en septembre 2026 (estimation provisoire). Un billet garde le même montant, mais il achète moins.",
+          "sources": [
+            "definition_inflation",
+            "inflation_1an"
+          ]
+        },
+        {
+          "titre": "Les intérêts composés",
+          "texte": "Quand les gains sont réinvestis, ils rapportent à leur tour : c'est l'effet boule de neige. L'AMF le chiffre ainsi : à 5 % par an, un capital est multiplié par 4,3 en 30 ans. Ce taux est une hypothèse de calcul, pas une promesse.",
+          "sources": [
+            "amf_5pct_30ans"
+          ]
+        }
+      ],
+      "exercices": [
+        {
+          "id": "ex01",
+          "niveau": 1,
+          "notion": "L'inflation grignote l'argent qui dort",
+          "format": "choix",
+          "question": "Les prix montent. Que devient le billet de 20 € oublié dans un tiroir ?",
+          "options": [
+            "Il permet d'acheter moins de choses",
+            "Rien ne change : 20 €, c'est 20 €",
+            "Il prend de la valeur en vieillissant"
+          ],
+          "reponse": 0,
+          "retour_juste": "Exact ! Le billet affiche toujours 20 €, mais le panier qu'il paie rétrécit.",
+          "retour_faux": "Le chiffre ne bouge pas, mais les prix, si. Ce piège a un nom : l'illusion monétaire.",
+          "en_savoir_plus": "L'Insee définit l'inflation comme une perte du pouvoir d'achat de la monnaie, visible par une hausse générale et durable des prix. Un montant identique sur le papier peut donc acheter de moins en moins de choses.",
+          "sources": [
+            "definition_inflation"
+          ]
+        },
+        {
+          "id": "ex02",
+          "niveau": 2,
+          "notion": "Pas de rendement élevé sans risque",
+          "format": "arnaque",
+          "question": "Trois annonces passent sur ton fil. Laquelle sent l'arnaque ?",
+          "options": [
+            "Rendement espéré plus élevé, avec un risque de perte en capital.",
+            "12 % par an garantis, zéro risque, places limitées !",
+            "Rendement modeste, capital garanti, argent disponible à tout moment."
+          ],
+          "reponse": 1,
+          "retour_juste": "Flair aiguisé ! Un gros rendement sans aucun risque, c'est le drapeau rouge n° 1.",
+          "retour_faux": "L'annonce piège, c'est « 12 % garantis, zéro risque ». Rendement élevé et risque nul ne vont jamais ensemble.",
+          "en_savoir_plus": "L'AMF le rappelle dans ses conseils contre les arnaques : il n'y a pas de rendement élevé sans risque élevé. Une offre qui promet les deux à la fois, surtout avec « places limitées », coche plusieurs signaux d'alerte.",
+          "sources": [
+            "amf_rendement_risque"
+          ]
+        },
+        {
+          "id": "ex05",
+          "niveau": 5,
+          "notion": "Les intérêts composés",
+          "format": "fourchette",
+          "question": "1 000 € placés à 5 % par an. Combien après 30 ans ?",
+          "options": [
+            "Moins de 2 000 €",
+            "Entre 2 000 et 3 000 €",
+            "Entre 3 000 et 5 000 €",
+            "Plus de 5 000 €"
+          ],
+          "reponse": 2,
+          "retour_juste": "Bravo ! Environ 4 320 € : l'effet boule de neige des intérêts composés.",
+          "retour_faux": "Réponse : environ 4 320 €, pas 2 500 €. Les intérêts produisent eux-mêmes des intérêts, et ça accélère avec le temps.",
+          "en_savoir_plus": "Calcul : 1 000 × 1,05^30 ≈ 4 322 €. L'AMF fait le même constat : à 5 % par an, un capital est multiplié par 4,3 en 30 ans. Un rendement de 5 % constant est une hypothèse de calcul : aucun rendement réel n'est garanti.",
+          "sources": [
+            "amf_5pct_30ans"
+          ]
+        },
+        {
+          "id": "ex04",
+          "niveau": 4,
+          "notion": "Les intérêts composés",
+          "format": "classement",
+          "question": "Qui finit avec le plus d'argent ? Classe du plus gros au plus petit.",
+          "elements": [
+            "1 000 € placés 20 ans à 5 %",
+            "2 000 € placés 10 ans à 2 %",
+            "1 500 € placés 20 ans à 2 %",
+            "1 000 € placés 10 ans à 5 %"
+          ],
+          "ordre_correct": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "retour_juste": "Classement parfait ! La durée et le taux pèsent souvent plus lourd que la mise de départ.",
+          "retour_faux": "En tête : 1 000 € sur 20 ans à 5 % (2 653 €), devant 2 000 € sur 10 ans à 2 % (2 438 €). La mise de départ ne fait pas tout.",
+          "en_savoir_plus": "Calculs : 1 000 × 1,05^20 ≈ 2 653 € ; 2 000 × 1,02^10 ≈ 2 438 € ; 1 500 × 1,02^20 ≈ 2 229 € ; 1 000 × 1,05^10 ≈ 1 629 €. Taux fictifs et constants, avant frais, impôts et inflation. Dans la réalité, les rendements varient et peuvent être négatifs.",
+          "sources": [
+            "calculs"
+          ]
+        },
+        {
+          "id": "ex03",
+          "niveau": 3,
+          "notion": "L'inflation grignote l'argent qui dort",
+          "format": "choix",
+          "question": "Livret réglementé à {{livret_taux}} %, prix +{{inflation_1an}} % sur un an. Ton pouvoir d'achat ?",
+          "options": [
+            "Il monte de {{livret_taux}} % : les intérêts sont garantis",
+            "Il ne bouge pas : le capital est garanti",
+            "Il baisse d'environ {{pouvoir_achat_livret|abs}} %"
+          ],
+          "reponse": 2,
+          "retour_juste": "Bien joué ! Les intérêts sont bien là, mais les prix courent plus vite qu'eux.",
+          "retour_faux": "Le solde affiché monte, mais les prix montent davantage. Bilan : environ {{pouvoir_achat_livret|abs}} % de pouvoir d'achat en moins.",
+          "en_savoir_plus": "Chiffres officiels : le livret réglementé le plus répandu rapporte {{livret_taux}} % par an (service-public.gouv.fr) et l'Insee estime la hausse des prix sur un an à {{inflation_1an}} % en septembre 2026 (estimation provisoire). Calcul : 1,017 / 1,030 ≈ 0,987, soit environ −1,3 %. Ces deux taux changent avec le temps, la situation peut donc s'inverser.",
+          "sources": [
+            "livret_taux",
+            "inflation_1an"
+          ]
+        }
+      ]
+    },
+    {
+      "titre": "Risque et temps",
+      "cours": [
+        {
+          "titre": "Rendement et risque",
+          "texte": "L'AMF le rappelle : il n'y a pas de rendement élevé sans risque élevé. Sur les actions françaises entre 1950 et 2020, une année a pu aller d'une chute pire que {{actions_fr_1an_p1}} % à une hausse de plus de +{{actions_fr_1an_p99}} %, après inflation.",
+          "sources": [
+            "amf_rendement_risque",
+            "actions_fr"
+          ]
+        },
+        {
+          "titre": "Le temps",
+          "texte": "Sur ces mêmes données, plus la durée de détention était longue, moins les pires résultats étaient sévères. Mais l'AMF note que 20 ans n'ont pas suffi à effacer totalement le risque. C'est une observation du passé, pas une garantie.",
+          "sources": [
+            "actions_fr"
+          ]
+        }
+      ],
+      "exercices": [
+        {
+          "id": "ex06",
+          "niveau": 6,
+          "notion": "Investir, c'est accepter de pouvoir perdre",
+          "format": "choix",
+          "question": "Ton placement affiche −20 %. Tu n'as rien vendu. Ça signifie quoi ?",
+          "options": [
+            "Une perte définitive : l'argent est parti",
+            "Une perte sur le papier, qui peut se réduire ou se creuser",
+            "Rien du tout : tant qu'on ne vend pas, on ne risque rien"
+          ],
+          "reponse": 1,
+          "retour_juste": "Exact : c'est une moins-value latente. Elle n'est figée ni dans un sens ni dans l'autre.",
+          "retour_faux": "Sans vente, la perte reste « latente » : elle peut encore évoluer. Se réduire… ou s'aggraver, rien n'est garanti.",
+          "en_savoir_plus": "Un gain ou une perte devient définitif au moment de la vente : c'est d'ailleurs la vente qui déclenche l'imposition d'une plus-value. Ne pas vendre ne protège pas pour autant : la valeur peut continuer à baisser, et rien n'assure qu'elle remontera.",
+          "sources": [
+            "vente_realise_plus_value"
+          ]
+        },
+        {
+          "id": "ex07",
+          "niveau": 7,
+          "notion": "Les actions rapportent plus en moyenne, mais bougent plus",
+          "format": "fourchette",
+          "question": "Actions françaises depuis 1950 : jusqu'où a chuté une très mauvaise année ?",
+          "options": [
+            "Jusqu'à −10 %",
+            "Autour de −20 %",
+            "Autour de −40 %",
+            "Autour de −80 %"
+          ],
+          "reponse": 2,
+          "retour_juste": "Oui, autour de {{actions_fr_1an_p1}} % après inflation pour les pires années. Ça bouge fort, dans les deux sens.",
+          "retour_faux": "Plutôt autour de {{actions_fr_1an_p1}} % après inflation pour les pires années. Les meilleures ont dépassé +{{actions_fr_1an_p99}} % : ça secoue dans les deux sens.",
+          "en_savoir_plus": "Étude AMF (2021, calculs Harvest), actions françaises 1950-2020, dividendes réinvestis, après inflation : sur un an, 1 % des résultats étaient pires que {{actions_fr_1an_p1}} %, le résultat médian était de +{{actions_fr_1an_mediane}} % et 1 % dépassaient +{{actions_fr_1an_p99}} %. Sur 168 placements de 20 ans lancés à partir de 1988, {{actions_vs_livret_20ans}} ont fait moins bien que le livret réglementé le plus répandu. C'est le passé d'un seul marché, pas une promesse.",
+          "sources": [
+            "actions_fr",
+            "actions_vs_livret_20ans"
+          ]
+        },
+        {
+          "id": "ex08",
+          "niveau": 8,
+          "notion": "Pas de rendement élevé sans risque",
+          "format": "arnaque",
+          "question": "Trois messages d'un « conseiller ». Lequel est le plus louche ?",
+          "options": [
+            "Ce placement peut baisser. Voici la documentation écrite et les frais.",
+            "Prenez le temps de réfléchir avant de vous engager.",
+            "Notre méthode anticipe chaque baisse : décidez avant ce soir !"
+          ],
+          "reponse": 2,
+          "retour_juste": "Démasqué ! Prédire chaque baisse est impossible, et l'urgence est un grand classique des escrocs.",
+          "retour_faux": "Le message louche : « notre méthode anticipe chaque baisse, décidez avant ce soir ». Promesse impossible et pression : double drapeau rouge.",
+          "en_savoir_plus": "Dans ses conseils contre les arnaques, l'AMF invite à ne pas céder aux pressions de qui pousse à investir immédiatement, et à exiger une documentation écrite. Personne ne sait prévoir à coup sûr les hausses et les baisses des marchés.",
+          "sources": [
+            "amf_rendement_risque"
+          ]
+        },
+        {
+          "id": "ex09",
+          "niveau": 9,
+          "notion": "Investir, c'est accepter de pouvoir perdre",
+          "format": "fourchette",
+          "question": "10 000 € tombent à 7 000 €. Quelle hausse pour revenir à 10 000 € ?",
+          "options": [
+            "Entre +25 et +30 %",
+            "Entre +40 et +45 %",
+            "Entre +55 et +60 %",
+            "Environ +100 %"
+          ],
+          "reponse": 1,
+          "retour_juste": "Pile ! Une baisse de 30 % demande environ +43 % pour être effacée.",
+          "retour_faux": "Réponse : environ +43 %, pas +30 %. La remontée part d'une base plus petite (7 000 €), donc le pourcentage nécessaire est plus grand.",
+          "en_savoir_plus": "Calcul : 10 000 / 7 000 ≈ 1,429, soit +42,9 %. Plus la baisse est forte, plus la hausse nécessaire grimpe : après −50 %, c'est +100 %. Et rien ne garantit que cette remontée arrive.",
+          "sources": [
+            "calculs"
+          ]
+        },
+        {
+          "id": "ex10",
+          "niveau": 10,
+          "notion": "Le temps réduit, sans l'effacer, le risque observé",
+          "format": "classement",
+          "question": "Actions françaises, 1950-2020 : classe ces durées, de la plus risquée à la moins risquée.",
+          "elements": [
+            "Garder 1 an",
+            "Garder 5 ans",
+            "Garder 10 ans",
+            "Garder 20 ans",
+            "Garder 30 ans"
+          ],
+          "ordre_correct": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "retour_juste": "Bien vu ! Plus la durée est longue, plus les pires cas observés ont été doux, sans garantie pour l'avenir.",
+          "retour_faux": "Ordre observé : 1 an, 5, 10, 20 puis 30 ans. Les pires cas s'adoucissent avec la durée, mais à 20 ans des pertes existaient encore.",
+          "en_savoir_plus": "Étude AMF (2021, calculs Harvest), actions françaises 1950-2020, après inflation : 1 % des placements ont fait pire que {{actions_fr_1an_p1}} % par an sur 1 an, {{actions_fr_5ans_p1}} % sur 5 ans, {{actions_fr_10ans_p1}} % sur 10 ans et {{actions_fr_20ans_p1}} % sur 20 ans ; sur 30 ans, 99 % ont fait mieux que +{{actions_fr_30ans_p1}} % par an. Observation du passé sur un seul marché : elle ne garantit rien pour la suite.",
+          "sources": [
+            "actions_fr"
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,77 @@
+{
+  "_note": "Carte des parcours. statut : « pret » (jouable) ou « bientot » (affiché verrouillé). Le fichier d'exercices est exercices/<id>.json.",
+  "parcours": [
+    {
+      "id": "pourquoi-investir",
+      "titre": "Pourquoi investir ?",
+      "accroche": "Inflation, intérêts composés, risque : les bases.",
+      "icone": "graine",
+      "couleur": "#14808A",
+      "statut": "pret",
+      "section": "1. Les bases"
+    },
+    {
+      "id": "familles-actifs",
+      "titre": "Les familles d'actifs",
+      "accroche": "Actions cotées ou non, obligations, immobilier, crypto : qui est qui ?",
+      "icone": "pieces",
+      "couleur": "#0F766E",
+      "statut": "pret",
+      "section": "1. Les bases"
+    },
+    {
+      "id": "debuter",
+      "titre": "Comment débuter",
+      "accroche": "Les questions à se poser avant le premier euro.",
+      "icone": "drapeau",
+      "couleur": "#1E2440",
+      "statut": "pret",
+      "section": "2. Avant de se lancer"
+    },
+    {
+      "id": "arnaques",
+      "titre": "Repérer les arnaques",
+      "accroche": "Promesses trop belles, faux conseillers : les signaux d'alerte.",
+      "icone": "loupe",
+      "couleur": "#C2410C",
+      "statut": "pret",
+      "section": "2. Avant de se lancer"
+    },
+    {
+      "id": "pea-compte-titres",
+      "titre": "PEA ou compte-titres ?",
+      "accroche": "Deux enveloppes, deux jeux de règles.",
+      "icone": "enveloppe",
+      "couleur": "#7A5CC4",
+      "statut": "pret",
+      "section": "3. Passer à la pratique"
+    },
+    {
+      "id": "etf",
+      "titre": "Les ETF",
+      "accroche": "Un panier d'actions en un seul titre : comment ça marche ?",
+      "icone": "panier",
+      "couleur": "#2F6FD6",
+      "statut": "pret",
+      "section": "3. Passer à la pratique"
+    },
+    {
+      "id": "histoire-finance",
+      "titre": "Histoire de la finance",
+      "accroche": "Du troc à l'euro numérique, en passant par les krachs.",
+      "icone": "colonne",
+      "couleur": "#F4B42A",
+      "statut": "pret",
+      "section": "4. Culture financière"
+    },
+    {
+      "id": "histoire-investissement",
+      "titre": "Histoire de l'investissement",
+      "accroche": "Premières Bourses, premières bulles, premiers fonds.",
+      "icone": "sablier",
+      "couleur": "#FF6A4D",
+      "statut": "pret",
+      "section": "4. Culture financière"
+    }
+  ]
+}

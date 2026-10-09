@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cap Invest — Tableau de bord</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" type="image/png" href="../icones/icone-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,800&family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{ --papier:#FBF5EA; --carte:#fff; --encre:#1E2440; --douce:#5B6080; --canard:#14808A; --canard-clair:#D8F0EE; --corail:#FF6A4D; --rose:#FFE4DC; --moutarde:#F4B42A; --trait:#E7DCCB; }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--papier);color:var(--encre);font:15px/1.45 "Atkinson Hyperlegible",system-ui,sans-serif}
+  main{max-width:1080px;margin:0 auto;padding:20px 16px 40px}
+  h1,h2{font-family:Fraunces,Georgia,serif;font-weight:800;margin:0}
+  h1{font-size:28px} h2{font-size:20px;margin:28px 0 10px}
+  .entete{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+  .entete .espace{flex:1}
+  .sous{color:var(--douce);font-size:13px}
+  button,input{font:inherit}
+  .bouton{padding:9px 14px;border:2px solid var(--encre);border-radius:10px;background:var(--encre);color:var(--papier);font-weight:700;cursor:pointer}
+  .bouton.clair{background:var(--carte);color:var(--encre)}
+  .carte{background:var(--carte);border:2px solid var(--encre);border-radius:14px;box-shadow:0 3px 0 var(--encre);padding:14px}
+  .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-top:16px}
+  .kpi b{display:block;font-family:Fraunces,serif;font-size:32px;line-height:1.1;font-variant-numeric:tabular-nums}
+  .kpi span{color:var(--douce);font-size:13px}
+  .barres .ligne{display:grid;grid-template-columns:170px 1fr 60px;gap:10px;align-items:center;margin:6px 0}
+  .barres .piste{height:18px;background:var(--papier);border:1.5px solid var(--trait);border-radius:999px;overflow:hidden}
+  .barres .piste i{display:block;height:100%;background:var(--canard);border-radius:999px}
+  .barres .val{text-align:right;font-variant-numeric:tabular-nums;font-weight:700}
+  .defile{overflow-x:auto}
+  table{border-collapse:collapse;width:100%;min-width:640px;font-variant-numeric:tabular-nums}
+  th,td{padding:7px 8px;border-bottom:1px solid var(--trait);text-align:right;white-space:nowrap}
+  th:first-child,td:first-child,th:nth-child(2),td:nth-child(2){text-align:left}
+  th{font-size:12px;text-transform:uppercase;letter-spacing:.04em;color:var(--douce);cursor:default}
+  td.alerte{background:var(--rose);font-weight:700}
+  td.bien{background:var(--canard-clair)}
+  .legende{font-size:13px;color:var(--douce);margin-top:8px}
+  .deux{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  @media (max-width:720px){ .deux{grid-template-columns:1fr} .barres .ligne{grid-template-columns:110px 1fr 46px} }
+  .connexion{max-width:420px;margin:12vh auto}
+  .connexion input{width:100%;padding:12px;border:2px solid var(--encre);border-radius:10px;margin:10px 0}
+  .erreur{color:#B33A22;font-weight:700}
+  .vide{color:var(--douce);font-style:italic}
+</style>
+</head>
+<body>
+<main id="app"></main>
+<script src="../app/config.js"></script>
+<script>
+(() => {
+  const CFG = window.CONFIG, app = document.getElementById("app");
+  const NOMS = { "pourquoi-investir":"Pourquoi investir ?", "histoire-finance":"Histoire de la finance", "histoire-investissement":"Histoire de l'investissement", "pea-compte-titres":"PEA ou compte-titres ?", "etf":"Les ETF", "debuter":"Comment débuter", "arnaques":"Repérer les arnaques", "familles-actifs":"Les familles d'actifs", "revision":"Révision des erreurs" };
+  const nom = id => NOMS[id] || id || "—";
+  const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+  const nb = v => v === null || v === undefined ? "—" : Number(v).toLocaleString("fr-FR");
+  const duree = s => s === null || s === undefined ? "—" : s < 60 ? `${Math.round(s)} s` : `${Math.floor(s/60)} min ${String(Math.round(s%60)).padStart(2,"0")}`;
+  const lireCle = () => { try { return sessionStorage.getItem("cle_tdb") || localStorage.getItem("cle_tdb"); } catch(e){ return null; } };
+
+  function connexion(msg){
+    app.innerHTML = `<div class="connexion carte">
+      <h1>Tableau de bord</h1>
+      <p class="sous">Cap Invest — version de test. Statistiques anonymes et agrégées.</p>
+      <form id="f"><label for="cle"><b>Clé d'accès</b></label>
+        <input id="cle" type="password" autocomplete="current-password" required>
+        <label><input type="checkbox" id="souvenir" style="width:auto;margin:0 6px 0 0"> Se souvenir sur cet appareil</label>
+        <p><button class="bouton">Ouvrir</button></p>
+        ${msg ? `<p class="erreur">${esc(msg)}</p>` : ""}
+      </form></div>`;
+    app.querySelector("#f").onsubmit = e => {
+      e.preventDefault();
+      const c = app.querySelector("#cle").value.trim();
+      try { sessionStorage.setItem("cle_tdb", c); if (app.querySelector("#souvenir").checked) localStorage.setItem("cle_tdb", c); } catch(err){}
+      charge(c);
+    };
+  }
+
+  async function charge(cle){
+    app.innerHTML = `<p class="sous">Chargement…</p>`;
+    try {
+      const r = await fetch(CFG.SUPABASE_URL.replace(/\/$/,"") + "/rest/v1/rpc/tableau_de_bord", {
+        method:"POST", headers:{ "apikey":CFG.SUPABASE_KEY, "Content-Type":"application/json" }, body: JSON.stringify({ cle })
+      });
+      if (!r.ok){ try { sessionStorage.removeItem("cle_tdb"); localStorage.removeItem("cle_tdb"); } catch(e){} return connexion("Clé refusée."); }
+      affiche(await r.json());
+    } catch(e){ connexion("Connexion impossible. Réessaie."); }
+  }
+
+  function barres(lignes, max){
+    max = max || Math.max(1, ...lignes.map(l => l[1] || 0));
+    return `<div class="barres">${lignes.map(([lib, v, suffixe]) =>
+      `<div class="ligne"><span>${esc(lib)}</span><span class="piste"><i style="width:${Math.round((v||0)/max*100)}%"></i></span><span class="val">${nb(v)}${suffixe||""}</span></div>`).join("")}</div>`;
+  }
+
+  function affiche(d){
+    const r = d.resume || {}, en = d.entonnoir || {}, dv = d.duree_visite || {};
+    const date = new Date(d.genere_le).toLocaleString("fr-FR", { dateStyle:"medium", timeStyle:"short" });
+    const vide = !r.visites;
+    const pers = d.personnages || {};
+    app.innerHTML = `
+      <div class="entete"><h1>Tableau de bord</h1><span class="espace"></span>
+        <span class="sous">Mis à jour : ${date}</span>
+        <button class="bouton clair" id="maj">Actualiser</button>
+        <button class="bouton clair" id="quitter">Se déconnecter</button></div>
+      ${vide ? `<p class="vide" style="margin-top:16px">Aucune visite enregistrée pour l'instant. Les chiffres apparaîtront dès les premiers tests.</p>` : ""}
+      <div class="kpis">
+        <div class="carte kpi"><b>${nb(r.visiteurs)}</b><span>visiteurs uniques</span></div>
+        <div class="carte kpi"><b>${nb(r.visites)}</b><span>visites</span></div>
+        <div class="carte kpi"><b>${nb(r.joueurs)}</b><span>joueurs (au moins 1 réponse)</span></div>
+        <div class="carte kpi"><b>${nb(r.visiteurs_revenus)}</b><span>visiteurs revenus un autre jour</span></div>
+        <div class="carte kpi"><b>${duree(dv.mediane_s)}</b><span>temps actif médian par visite (moyenne ${duree(dv.moyenne_s)})</span></div>
+        <div class="carte kpi"><b>${nb(r.mobiles)}</b><span>visiteurs sur mobile</span></div>
+        <div class="carte kpi"><b>${nb(r.installes)}</b><span>avec l'appli installée</span></div>
+      </div>
+
+      <div class="deux">
+        <section><h2>Entonnoir des visites</h2><div class="carte">${barres([
+          ["Visite", en.visites], ["Code saisi", en.code_ok], ["Personnage choisi", en.perso], ["Carte des parcours", en.carte],
+          ["Parcours commencé", en.parcours], ["Au moins 1 réponse", en.exercice], ["Parcours terminé", en.fin]
+        ], en.visites)}<p class="legende">Nombre de visites ayant atteint chaque étape. Le code n'est demandé qu'une fois par appareil.</p></div></section>
+        <section><h2>Visites par jour</h2><div class="carte">${(d.par_jour||[]).length ? barres((d.par_jour||[]).map(j => [new Date(j.jour).toLocaleDateString("fr-FR",{weekday:"short",day:"numeric",month:"short"}), j.visites])) : `<p class="vide">Pas encore de données.</p>`}</div></section>
+      </div>
+
+      <h2>Parcours</h2>
+      <div class="carte defile"><table>
+        <thead><tr><th>Parcours</th><th></th><th>Commencés</th><th>Terminés (2 leçons)</th><th>Taux de fin</th><th>% bonnes réponses</th><th>Cours lus</th><th>Cours passés</th><th>Lecture du cours</th><th>Suite : oui</th><th>Peut-être</th><th>Non</th></tr></thead>
+        <tbody>${(d.parcours||[]).map(p => {
+          const fin = p.demarres ? Math.round(p.termines / p.demarres * 100) : null;
+          return `<tr><td>${esc(nom(p.parcours))}</td><td></td><td>${nb(p.demarres)}</td><td>${nb(p.termines)}</td><td class="${fin!==null && fin<50?"alerte":""}">${fin===null?"—":fin+" %"}</td><td>${p.pct_justes===null?"—":p.pct_justes+" %"}</td><td>${nb(p.cours_lus)}</td><td>${nb(p.cours_passes)}</td><td>${duree(p.cours_s)}</td><td class="bien">${nb(p.suite_oui)}</td><td>${nb(p.suite_peut_etre)}</td><td>${nb(p.suite_non)}</td></tr>`;
+        }).join("") || `<tr><td colspan="12" class="vide">Pas encore de données.</td></tr>`}</tbody></table></div>
+
+      <h2>Exercices</h2>
+      <div class="carte defile"><table>
+        <thead><tr><th>Parcours</th><th>Écran</th><th>Répondus</th><th>Abandons</th><th>% justes</th><th>Temps de réponse</th><th>Lecture explication</th><th>« En savoir plus »</th></tr></thead>
+        <tbody>${(d.exercices||[]).map(x => {
+          const ab = x.repondus + x.abandons ? x.abandons / (x.repondus + x.abandons) : 0;
+          return `<tr><td>${esc(nom(x.parcours))}</td><td>${esc(x.ecran)}</td><td>${nb(x.repondus)}</td><td class="${ab>=.2?"alerte":""}">${nb(x.abandons)}</td>
+            <td class="${x.pct_justes!==null && x.pct_justes<40?"alerte":x.pct_justes>=90?"bien":""}">${x.pct_justes===null?"—":x.pct_justes+" %"}</td>
+            <td>${duree(x.reponse_s)}</td><td>${duree(x.explication_s)}</td><td>${nb(x.en_savoir_plus)}</td></tr>`;
+        }).join("") || `<tr><td colspan="8" class="vide">Pas encore de données.</td></tr>`}</tbody></table>
+        <p class="legende">En rose : moins de 40 % de bonnes réponses (question peut-être trop dure ou ambiguë) ou au moins 20 % d'abandons. En vert : 90 % ou plus de bonnes réponses (peut-être trop facile).</p></div>
+
+      <h2>Joueurs par pseudo</h2>
+      <div class="carte defile"><table>
+        <thead><tr><th>Pseudo</th><th></th><th>Visites</th><th>Réponses</th><th>% justes</th><th>Parcours terminés</th><th>Temps actif</th><th>Dernière activité</th></tr></thead>
+        <tbody>${(d.pseudos||[]).map(u => `<tr><td>${esc(u.pseudo)}</td><td></td><td>${nb(u.visites)}</td><td>${nb(u.reponses)}</td><td>${u.pct_justes===null?"—":u.pct_justes+" %"}</td><td>${nb(u.parcours_termines)}</td><td>${u.minutes===null?"—":nb(u.minutes)+" min"}</td><td>${new Date(u.derniere).toLocaleString("fr-FR",{dateStyle:"short",timeStyle:"short"})}</td></tr>`).join("") || `<tr><td colspan="8" class="vide">Aucun pseudo renseigné pour l'instant.</td></tr>`}</tbody></table>
+        <p class="legende">Le pseudo est facultatif : les joueurs sans pseudo n'apparaissent que dans les totaux.</p></div>
+
+      <h2>Personnages choisis</h2>
+      <div class="carte">${Object.keys(pers).length ? barres(["cupide","sceptique","touriste","stratege"].map(k => [{cupide:"Cupide",sceptique:"Sceptique",touriste:"Touriste",stratege:"Stratège"}[k], pers[k]||0])) : `<p class="vide">Pas encore de données.</p>`}</div>
+
+      <p class="legende" style="margin-top:24px">Données anonymes : aucun nom, e-mail ni adresse IP n'est stocké dans les tables. Export détaillé possible depuis Supabase (tables <code>reponses</code> et <code>evenements</code>).</p>`;
+    app.querySelector("#maj").onclick = () => charge(lireCle());
+    app.querySelector("#quitter").onclick = () => { try { sessionStorage.removeItem("cle_tdb"); localStorage.removeItem("cle_tdb"); } catch(e){} connexion(); };
+  }
+
+  const c = lireCle(); c ? charge(c) : connexion();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,749 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Cap Invest — Version de test</title>
+<meta name="description" content="Des parcours courts et ludiques pour comprendre l'investissement et la finance personnelle. Contenu éducatif, sans compte.">
+<meta name="theme-color" content="#FBF5EA">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Cap Invest">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link rel="manifest" href="../manifest.webmanifest">
+<link rel="icon" type="image/png" href="../icones/icone-192.png">
+<link rel="apple-touch-icon" href="../icones/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --papier:#FBF5EA; --carte:#FFFFFF; --encre:#1E2440; --encre-douce:#5B6080;
+    --corail:#FF6A4D; --moutarde:#F4B42A; --canard:#14808A; --canard-clair:#D8F0EE;
+    --rose-clair:#FFE4DC; --trait:#E7DCCB; --ombre:0 3px 0 var(--encre);
+    --rayon:18px;
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html,body{margin:0;background:var(--papier);color:var(--encre)}
+  body{font:17px/1.45 "Atkinson Hyperlegible",system-ui,sans-serif;min-height:100dvh;display:flex;flex-direction:column;padding-top:env(safe-area-inset-top)}
+  h1,h2,.titre{font-family:Fraunces,Georgia,serif;font-weight:800;letter-spacing:-.01em;margin:0}
+  button{font:inherit;color:inherit;cursor:pointer}
+  .page{width:100%;max-width:480px;margin:0 auto;padding:12px 16px 16px;flex:1;display:flex;flex-direction:column}
+
+  /* En-tête */
+  header{display:flex;align-items:center;gap:10px;min-height:40px}
+  .test{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;background:var(--moutarde);color:var(--encre);padding:4px 9px;border-radius:999px;border:2px solid var(--encre);white-space:nowrap}
+  .retour-carte{border:2px solid var(--encre);background:var(--carte);border-radius:12px;width:38px;height:38px;display:grid;place-items:center;font-size:20px;line-height:1;flex:none}
+  .progression{flex:1;height:14px;border:2px solid var(--encre);border-radius:999px;background:var(--carte);overflow:hidden}
+  .progression i{display:block;height:100%;width:0;background:repeating-linear-gradient(45deg,var(--canard) 0 10px,#1A929D 10px 20px);transition:width .4s ease}
+  .points{font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap}
+  .serie{font-size:13px;font-weight:700;color:var(--corail);min-height:20px;text-align:right}
+  .espace{flex:1}
+
+  /* Cartes et boutons */
+  .carte{background:var(--carte);border:2px solid var(--encre);border-radius:var(--rayon);box-shadow:var(--ombre);padding:16px}
+  .bouton{display:block;width:100%;padding:15px 18px;border:2px solid var(--encre);border-radius:14px;background:var(--encre);color:var(--papier);font-weight:700;font-size:18px;box-shadow:0 3px 0 #000;transition:transform .08s}
+  .bouton:active{transform:translateY(2px);box-shadow:0 1px 0 #000}
+  .bouton:disabled{opacity:.35;cursor:not-allowed}
+  .bouton.clair{background:var(--carte);color:var(--encre);box-shadow:var(--ombre)}
+  .option{display:block;width:100%;text-align:left;padding:14px 16px;margin:0 0 10px;border:2px solid var(--encre);border-radius:14px;background:var(--carte);box-shadow:var(--ombre);font-size:17px;transition:transform .08s,background .2s}
+  .option:active{transform:translateY(2px);box-shadow:0 1px 0 var(--encre)}
+  .option.juste{background:var(--canard-clair);border-color:var(--canard)}
+  .option.faux{background:var(--rose-clair);border-color:var(--corail)}
+  .option[disabled]{cursor:default}
+  .option .num{display:inline-grid;place-items:center;width:26px;height:26px;margin-right:10px;border-radius:50%;background:var(--moutarde);border:2px solid var(--encre);font-weight:700;font-size:14px;vertical-align:middle}
+  .option .num:empty{background:var(--papier)}
+  .grille{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .grille .option{margin:0;text-align:center;min-height:76px;display:grid;place-items:center;font-weight:700}
+
+  /* Accueil */
+  .accueil h1{font-size:34px;line-height:1.05;margin:18px 0 6px}
+  .accueil p.chapo{color:var(--encre-douce);margin:0 0 18px}
+  .persos{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .perso{text-align:left;padding:14px 12px;border:2px solid var(--encre);border-radius:var(--rayon);background:var(--carte);box-shadow:var(--ombre);display:flex;flex-direction:column;gap:6px;min-height:170px}
+  .perso[aria-pressed="true"]{background:var(--moutarde)}
+  .perso svg{width:54px;height:54px}
+  .perso b{font-family:Fraunces,serif;font-size:20px}
+  .perso span{font-size:14px;color:var(--encre-douce);line-height:1.3}
+  .perso[aria-pressed="true"] span{color:var(--encre)}
+  .note{font-size:13px;color:var(--encre-douce);margin:12px 0}
+  .pseudo{display:block;margin:4px 0 12px;box-shadow:none}
+  .pseudo span{color:var(--encre-douce);font-size:14px}
+  .pseudo input{display:block;width:100%;margin:8px 0 6px;padding:12px;font:inherit;border:2px solid var(--encre);border-radius:12px;background:var(--papier);color:var(--encre)}
+  .pseudo small{display:block;font-size:12px;color:var(--encre-douce)}
+
+  .tableau-perso{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:4px 0 10px}
+  .stat-jour{padding:10px 12px;box-shadow:none}
+  .stat-jour b{display:block;font-family:Fraunces,serif;font-size:22px}
+  .stat-jour span{font-size:13px;color:var(--encre-douce)}
+  .stat-jour.atteint{background:var(--canard-clair);border-color:var(--canard)}
+  .badges-ligne{padding:10px 12px;margin-bottom:12px;box-shadow:none}
+  .badges-titre{display:flex;justify-content:space-between;font-size:14px;margin-bottom:8px}
+  .badges-liste{display:flex;gap:8px;flex-wrap:wrap}
+  .mini-badge .pastille{border:2px solid var(--encre);border-radius:50%;display:grid;place-items:center}
+  .mini-badge.verrou{filter:grayscale(1);opacity:.3}
+  .revision{display:flex;align-items:center;gap:10px;width:100%;text-align:left;margin-bottom:14px;background:var(--rose-clair);border-color:var(--corail)}
+  .revision .rv-texte{display:flex;flex-direction:column}
+  .revision b{font-family:Fraunces,serif;font-size:18px}
+  .revision .rv-texte span{font-size:14px;color:var(--encre-douce)}
+  .revision .etat{margin-left:auto}
+  .objectif{display:flex;flex-direction:column;gap:2px;margin:6px 0 4px;background:var(--canard-clair);border-color:var(--canard);box-shadow:none}
+  .objectif.discret{background:var(--carte);border-color:var(--trait)}
+  .objectif span{font-size:14px;color:var(--encre-douce)}
+  .badge-gagne{display:grid;place-items:center;margin:16px 0 4px;animation:tourne .8s ease}
+  .badge-gagne .pastille{border:4px solid var(--encre);border-radius:50%;display:grid;place-items:center;box-shadow:0 4px 0 var(--encre)}
+  /* Carte des parcours */
+  .salut{display:flex;align-items:center;gap:12px;margin:14px 0 4px}
+  .salut svg{width:46px;height:46px;flex:none}
+  .salut h1{font-size:26px;line-height:1.1}
+  .total{color:var(--encre-douce);font-size:14px;margin:0 0 14px}
+  .chemin{position:relative;display:flex;flex-direction:column;gap:14px;padding-left:4px}
+  .chemin::before{content:"";position:absolute;left:35px;top:30px;bottom:30px;border-left:4px dotted var(--trait)}
+  .section-carte{font-size:15px;text-transform:uppercase;letter-spacing:.06em;color:var(--encre-douce);margin:10px 0 -4px 6px;position:relative;background:var(--papier);align-self:flex-start;padding-right:8px}
+  .etape{position:relative;display:flex;align-items:center;gap:14px;text-align:left;width:100%;padding:12px 14px 12px 10px;border:2px solid var(--encre);border-radius:var(--rayon);background:var(--carte);box-shadow:var(--ombre)}
+  .etape:active{transform:translateY(2px);box-shadow:0 1px 0 var(--encre)}
+  .etape .pastille{flex:none;width:54px;height:54px;border-radius:50%;border:2.5px solid var(--encre);display:grid;place-items:center;position:relative}
+  .etape .pastille svg{width:30px;height:30px}
+  .etape b{font-family:Fraunces,serif;font-size:19px;line-height:1.15;display:block}
+  .etape small{display:block;font-size:14px;color:var(--encre-douce);line-height:1.3;margin-top:2px}
+  .etape .etat{margin-left:auto;flex:none;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;padding:3px 8px;border-radius:999px;border:1.5px solid var(--encre)}
+  .etape.bientot{background:#F3EDE2;box-shadow:none;border-style:dashed}
+  .etape.bientot .pastille{filter:grayscale(1);opacity:.55}
+  .etape.bientot .etat{background:var(--papier);color:var(--encre-douce);border-color:var(--encre-douce)}
+  .etape .etat.fait{background:var(--canard-clair);color:var(--canard);border-color:var(--canard)}
+  .etape .etat.neuf{background:var(--moutarde)}
+  .bulle{margin-top:6px;font-size:13px;font-weight:700;color:var(--canard)}
+  .installer{margin-top:18px;font-size:14px;background:var(--canard-clair);border-color:var(--canard)}
+  .installer b{font-family:Fraunces,serif;font-size:17px}
+  .installer p{margin:4px 0 10px}
+  .installer .bouton{font-size:16px;padding:11px}
+
+  /* Exercice */
+  .etiquette{display:inline-block;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:3px 9px;border-radius:999px;background:var(--canard-clair);color:var(--canard);border:1.5px solid var(--canard);margin:14px 0 8px}
+  .etiquette.arnaque{background:var(--rose-clair);color:#B33A22;border-color:var(--corail)}
+  .question{font-size:25px;line-height:1.18;margin:0 0 18px}
+  .zone{flex:1}
+  .ligne-boutons{display:flex;gap:10px}
+  .ligne-boutons .bouton{flex:1}
+
+  /* Retour */
+  .retour{margin-top:14px;animation:monte .3s ease}
+  .retour.juste{background:var(--canard-clair);border-color:var(--canard)}
+  .retour.faux{background:#FFF1EC;border-color:var(--corail)}
+  .retour h2{font-size:22px;margin-bottom:6px}
+  .retour .gain{font-weight:700;color:var(--canard)}
+  .retour p{margin:6px 0}
+  details{margin:10px 0 14px;border-top:1.5px dashed var(--trait);padding-top:10px}
+  summary{font-weight:700;cursor:pointer;list-style:none}
+  summary::-webkit-details-marker{display:none}
+  summary::before{content:"+ ";color:var(--corail)}
+  details[open] summary::before{content:"− "}
+  details p{font-size:15px}
+  details a{color:var(--canard);font-size:14px;word-break:break-word}
+  .secoue{animation:secoue .35s}
+  @keyframes monte{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+  @keyframes secoue{25%{transform:translateX(-6px)}50%{transform:translateX(5px)}75%{transform:translateX(-3px)}}
+
+  /* Confettis */
+  .confettis{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:10}
+  .confettis i{position:absolute;top:38%;left:50%;width:10px;height:14px;border:2px solid var(--encre);border-radius:3px;animation:vole .9s cubic-bezier(.2,.7,.3,1) forwards}
+  @keyframes vole{to{transform:translate(var(--x),var(--y)) rotate(var(--r));opacity:0}}
+
+  /* Cours */
+  .cours-carte{margin-top:14px;padding:22px 18px;min-height:260px;display:flex;flex-direction:column;animation:monte .3s ease}
+  .cours-carte .num-cours{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--canard)}
+  .cours-carte h2{font-size:26px;line-height:1.15;margin:6px 0 12px}
+  .cours-carte p{font-size:18px;line-height:1.5;margin:0 0 12px}
+  .cours-carte .src{margin-top:auto;font-size:13px}
+  .cours-carte .src a{color:var(--canard)}
+  .points-cours{display:flex;gap:6px;justify-content:center;margin:14px 0}
+  .points-cours i{width:9px;height:9px;border-radius:50%;background:var(--trait);border:1.5px solid var(--encre)}
+  .points-cours i.on{background:var(--moutarde)}
+  .passer{display:block;margin:12px auto 0;border:0;background:none;color:var(--encre-douce);text-decoration:underline;font-size:15px}
+
+  /* Fin */
+  .fin{text-align:center}
+  .fin .score{font-family:Fraunces,serif;font-weight:800;font-size:64px;line-height:1;margin:16px 0 0}
+  .badge{width:150px;height:150px;margin:18px auto 6px;animation:tourne .8s ease}
+  @keyframes tourne{from{transform:scale(.4) rotate(-30deg);opacity:0}to{transform:none;opacity:1}}
+  .fin h2{font-size:26px}
+  .suite{margin-top:22px}
+  .suite .ligne-boutons{flex-wrap:wrap}
+  .suite .bouton{flex:1 1 30%;font-size:16px;padding:13px 8px}
+  .merci{font-family:Fraunces,serif;font-size:22px;margin-top:18px}
+
+  .toast{position:fixed;left:50%;bottom:calc(90px + env(safe-area-inset-bottom));transform:translateX(-50%);background:var(--encre);color:var(--papier);padding:10px 16px;border-radius:12px;font-size:15px;font-weight:700;z-index:20;max-width:calc(100% - 32px);text-align:center;animation:monte .25s ease}
+
+  footer{max-width:480px;margin:0 auto;padding:10px 16px calc(14px + env(safe-area-inset-bottom));font-size:12px;line-height:1.4;color:var(--encre-douce);text-align:center;border-top:1.5px solid var(--trait)}
+  .cache{display:none !important}
+  @media (prefers-reduced-motion:reduce){*{animation:none !important;transition:none !important}}
+</style>
+</head>
+<body>
+<div class="page" id="app"><p>Chargement…</p></div>
+<div class="confettis" id="confettis" aria-hidden="true"></div>
+<footer>
+  <strong>Version de test.</strong> Contenu éducatif. Ceci n'est pas un conseil en investissement. Investir comporte un risque de perte en capital.
+</footer>
+
+<script src="config.js"></script>
+<script>
+(() => {
+  const CFG = window.CONFIG || {};
+  const app = document.getElementById("app");
+  const BASE = "../"; // dossiers exercices/ et donnees/
+
+  /* ---------- Personnages (décoratifs) ---------- */
+  const PERSOS = [
+    { id:"cupide", nom:"Cupide", phrase:"« Je veux tout, tout de suite. Et si possible avec les intérêts. »",
+      svg:'<circle cx="27" cy="27" r="24" fill="#F4B42A" stroke="#1E2440" stroke-width="3"/><path d="M15 22c2-3 6-3 8 0M31 22c2-3 6-3 8 0" stroke="#1E2440" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M17 32c4 7 16 7 20 0" stroke="#1E2440" stroke-width="3" fill="#fff" stroke-linejoin="round"/><text x="27" y="15" font-size="11" font-weight="700" text-anchor="middle" fill="#1E2440">€</text>' },
+    { id:"sceptique", nom:"Sceptique", phrase:"« Je crois aux chiffres. Après les avoir recomptés deux fois. »",
+      svg:'<circle cx="27" cy="27" r="24" fill="#D8F0EE" stroke="#1E2440" stroke-width="3"/><path d="M14 19l9 2M40 17l-9 4" stroke="#1E2440" stroke-width="3" stroke-linecap="round"/><circle cx="19" cy="25" r="2.5" fill="#1E2440"/><circle cx="35" cy="25" r="5" fill="none" stroke="#1E2440" stroke-width="2.5"/><circle cx="35" cy="25" r="2" fill="#1E2440"/><path d="M19 37h16" stroke="#1E2440" stroke-width="3" stroke-linecap="round"/>' },
+    { id:"touriste", nom:"Touriste", phrase:"« Je passais juste par là. Il y a un buffet ? »",
+      svg:'<circle cx="27" cy="29" r="22" fill="#FFE4DC" stroke="#1E2440" stroke-width="3"/><path d="M8 17h38l-6-9H14z" fill="#FF6A4D" stroke="#1E2440" stroke-width="3" stroke-linejoin="round"/><circle cx="20" cy="28" r="2.5" fill="#1E2440"/><circle cx="34" cy="28" r="2.5" fill="#1E2440"/><ellipse cx="27" cy="38" rx="5" ry="4" fill="#1E2440"/>' },
+    { id:"stratege", nom:"Stratège", phrase:"« J'ai un plan. Il a même un plan B, C et D. »",
+      svg:'<circle cx="27" cy="27" r="24" fill="#1E2440" stroke="#1E2440" stroke-width="3"/><rect x="12" y="20" width="12" height="7" rx="2" fill="#FBF5EA"/><rect x="30" y="20" width="12" height="7" rx="2" fill="#FBF5EA"/><path d="M24 23h6" stroke="#FBF5EA" stroke-width="2.5"/><path d="M19 37c5 3 11 3 16-1" stroke="#F4B42A" stroke-width="3" fill="none" stroke-linecap="round"/>' }
+  ];
+
+  /* ---------- Pictogrammes des parcours ---------- */
+  const ICONES = {
+    graine:'<path d="M15 27V14" stroke="#1E2440" stroke-width="2.5" stroke-linecap="round"/><path d="M15 16c0-6-5-9-10-9 0 6 4 9 10 9zM15 14c0-5 4-8 9-8 0 5-4 8-9 8z" fill="#fff" stroke="#1E2440" stroke-width="2.2" stroke-linejoin="round"/>',
+    colonne:'<path d="M4 10l11-6 11 6z" fill="#fff" stroke="#1E2440" stroke-width="2.2" stroke-linejoin="round"/><path d="M8 12v11M15 12v11M22 12v11" stroke="#1E2440" stroke-width="2.5" stroke-linecap="round"/><path d="M4 26h22" stroke="#1E2440" stroke-width="2.5" stroke-linecap="round"/>',
+    sablier:'<path d="M8 4h14M8 26h14M10 4c0 7 10 7 10 11s-10 4-10 11M20 4c0 7-10 7-10 11s10 4 10 11" fill="none" stroke="#1E2440" stroke-width="2.3" stroke-linecap="round"/><path d="M12 23h6l-3-3z" fill="#1E2440"/>',
+    enveloppe:'<rect x="4" y="8" width="22" height="15" rx="2.5" fill="#fff" stroke="#1E2440" stroke-width="2.3"/><path d="M5 9l10 8 10-8" fill="none" stroke="#1E2440" stroke-width="2.3" stroke-linejoin="round"/>',
+    panier:'<path d="M4 12h22l-3 12H7z" fill="#fff" stroke="#1E2440" stroke-width="2.3" stroke-linejoin="round"/><path d="M9 12l4-7M21 12l-4-7" stroke="#1E2440" stroke-width="2.3" stroke-linecap="round"/><path d="M11 16v5M15 16v5M19 16v5" stroke="#1E2440" stroke-width="2" stroke-linecap="round"/>',
+    loupe:'<circle cx="13" cy="13" r="8" fill="#fff" stroke="#1E2440" stroke-width="2.5"/><path d="M19 19l7 7" stroke="#1E2440" stroke-width="3" stroke-linecap="round"/><path d="M13 9v5M13 16.5v.5" stroke="#FF6A4D" stroke-width="2.5" stroke-linecap="round"/>',
+    pieces:'<ellipse cx="11" cy="21" rx="7" ry="3" fill="#fff" stroke="#1E2440" stroke-width="2.2"/><path d="M4 21v-4c0 1.7 3.1 3 7 3s7-1.3 7-3v4" fill="#fff" stroke="#1E2440" stroke-width="2.2"/><ellipse cx="11" cy="17" rx="7" ry="3" fill="#F4B42A" stroke="#1E2440" stroke-width="2.2"/><circle cx="21" cy="11" r="6" fill="#fff" stroke="#1E2440" stroke-width="2.2"/><path d="M21 8v6" stroke="#1E2440" stroke-width="2"/>',
+    drapeau:'<path d="M8 27V4" stroke="#1E2440" stroke-width="2.5" stroke-linecap="round"/><path d="M8 5h15l-4 5 4 5H8z" fill="#fff" stroke="#1E2440" stroke-width="2.3" stroke-linejoin="round"/>'
+  };
+
+  const BADGES = [
+    { min:.9, nom:"Boussole d'or", texte:"Tu as gardé le cap sur presque tout.", couleur:"#F4B42A" },
+    { min:.7, nom:"Flair de lynx", texte:"Les pièges ont eu du mal à t'attraper.", couleur:"#14808A" },
+    { min:.4, nom:"Œil averti", texte:"Les bases sont posées, la curiosité aussi.", couleur:"#FF6A4D" },
+    { min:0,  nom:"Explorateur·rice", texte:"Chaque erreur est une explication de gagnée.", couleur:"#5B6080" }
+  ];
+  const ETIQUETTES = { choix:"Choix multiple", fourchette:"Estimation", classement:"Classement", arnaque:"Cherche l'arnaque" };
+
+  /* ---------- Mémoire locale (confort uniquement, rien d'envoyé) ---------- */
+  const memoire = {
+    lire(){ try { return JSON.parse(localStorage.getItem("capinvest") || "{}"); } catch(e){ return {}; } },
+    ecrire(v){ try { localStorage.setItem("capinvest", JSON.stringify(v)); } catch(e){} }
+  };
+  const M = Object.assign({ perso:null, parcours:{} }, memoire.lire());
+  const sauve = () => memoire.ecrire(M);
+
+  /* ---------- État de la partie ---------- */
+  const etat = { session: nouvelId(), parcours:null, EX:[], i:0, points:0, serie:0, justes:0, debut:0, repondu:true, finRepondue:true };
+  let CH = {}, PARCOURS = [];
+
+  function nouvelId(){
+    if (crypto.randomUUID) return crypto.randomUUID();
+    return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, c => { const r = Math.random()*16|0; return (c==="x"?r:(r&3|8)).toString(16); });
+  }
+
+  /* ---------- Identifiant de visiteur anonyme (aléatoire, renouvelé après 13 mois) ---------- */
+  const VISITEUR = (() => {
+    const treizeMois = 395 * 864e5;
+    try {
+      const v = JSON.parse(localStorage.getItem("capinvest_v") || "null");
+      if (v && v.id && Date.now() - v.cree < treizeMois) return { id: v.id, nouveau: false };
+      const n = { id: nouvelId(), cree: Date.now() };
+      localStorage.setItem("capinvest_v", JSON.stringify(n));
+      return { id: n.id, nouveau: true };
+    } catch(e) { return { id: nouvelId(), nouveau: true }; }
+  })();
+
+  /* ---------- Enregistrement anonyme ---------- */
+  function envoie(table, row, finale){
+    if (!CFG.SUPABASE_URL || !CFG.SUPABASE_KEY){ console.info("[non envoyé : " + table + "]", row); return; }
+    try{
+      fetch(CFG.SUPABASE_URL.replace(/\/$/,"") + "/rest/v1/" + table, {
+        method:"POST", keepalive:!!finale,
+        headers:{ "apikey":CFG.SUPABASE_KEY, "Content-Type":"application/json", "Prefer":"return=minimal" },
+        body: JSON.stringify(row)
+      }).catch(()=>{});
+    }catch(e){}
+  }
+  function enregistre(ligne, finale){
+    envoie("reponses", Object.assign({ session: etat.session, visiteur: VISITEUR.id, version: CFG.VERSION || "test", personnage: M.perso, pseudo: M.pseudo || null, parcours: etat.parcours && etat.parcours.id }, ligne), finale);
+  }
+  // Événements d'usage : visite, temps actif, étapes, lecture des explications
+  function evt(type, extra, finale){
+    envoie("evenements", Object.assign({ visiteur: VISITEUR.id, session: etat.session, version: CFG.VERSION || "test", type, pseudo: M.pseudo || null,
+      parcours: etat.parcours ? etat.parcours.id : null, personnage: M.perso || null }, extra || {}), finale);
+  }
+  // Temps actif : mesuré seulement quand l'appli est à l'écran
+  let actifDepuis = document.visibilityState === "visible" ? Date.now() : null;
+  function finSegment(finale){
+    if (actifDepuis === null) return;
+    const d = Date.now() - actifDepuis; actifDepuis = null;
+    if (d >= 1000) evt("temps_actif", { parcours:null, duree_ms: Math.min(d, 86399999) }, finale);
+  }
+  document.addEventListener("visibilitychange", () => {
+    if (document.visibilityState === "hidden") finSegment(true); else if (actifDepuis === null) actifDepuis = Date.now();
+  });
+  window.addEventListener("pagehide", () => finSegment(true));
+  // Filet de sécurité : toute interaction relance la mesure si elle était en pause
+  ["pointerdown","keydown"].forEach(t => document.addEventListener(t, () => { if (actifDepuis === null) actifDepuis = Date.now(); }, { passive:true }));
+  // Abandon : la page se ferme ou on revient à la carte sans avoir répondu
+  function abandonEnCours(finale){
+    if (!etat.parcours) return;
+    if (!etat.repondu && etat.i < etat.EX.length){
+      enregistre({ ecran: ecranDe(etat.EX[etat.i]), statut:"abandonne", juste:null, temps_ms: Date.now()-etat.debut }, finale);
+      etat.repondu = true;
+    } else if (!etat.finRepondue && etat.i >= etat.EX.length){
+      enregistre({ ecran:"fin", statut:"abandonne", juste:null, temps_ms: Date.now()-etat.debut, score: etat.points }, finale);
+      etat.finRepondue = true;
+    }
+  }
+  window.addEventListener("pagehide", () => abandonEnCours(true));
+
+  /* ---------- Chiffres : remplace {{cle}} et {{cle|abs}} ---------- */
+  function nombre(v){ return Math.abs(v).toLocaleString("fr-FR",{maximumFractionDigits:1}); }
+  function remplit(txt){
+    return String(txt).replace(/\{\{(\w+)(\|abs)?\}\}/g, (m, cle, abs) => {
+      const d = CH[cle] || (CH.calculs && CH.calculs[cle]);
+      if (!d || typeof d.valeur !== "number"){ console.warn("Chiffre manquant :", cle); return "?"; }
+      return (d.valeur < 0 && !abs ? "−" : "") + nombre(d.valeur);
+    }).replace(/(\d) (?=\d{3}\b)/g, "$1 ").replace(/ (€|%|\?|!|:|;)/g, " $1"); // espaces insécables
+  }
+  function sourcesDe(ex){
+    const liens = new Map();
+    (ex.sources||[]).forEach(k => { const d = CH[k]; const src = d && (d.source || (d.ref && CH[d.ref] && CH[d.ref].source)); if (src) liens.set(src, d.site || (CH[d.ref]||{}).site); });
+    return [...liens].map(([url,site]) => `<a href="${url}" target="_blank" rel="noopener">Source : ${site || url}</a>`).join("<br>");
+  }
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+  const persoActuel = () => PERSOS.find(p => p.id === M.perso) || PERSOS[0];
+
+  function toast(txt){
+    const t = document.createElement("div"); t.className = "toast"; t.textContent = txt;
+    document.body.appendChild(t); setTimeout(() => t.remove(), 2200);
+  }
+
+  /* ---------- Écran d'accueil : choix du personnage ---------- */
+  function accueil(){
+    etat.parcours = null;
+    app.innerHTML = `
+      <header><span class="test">Version de test</span></header>
+      <section class="accueil">
+        <h1>Cap Invest</h1>
+        <p class="chapo">Des parcours courts pour comprendre l'investissement, en jouant. Choisis ton personnage pour la route.</p>
+        <div class="persos" role="group" aria-label="Choix du personnage">
+          ${PERSOS.map(p => `<button class="perso" aria-pressed="${p.id===M.perso}" data-id="${p.id}"><svg viewBox="0 0 54 54" aria-hidden="true">${p.svg}</svg><b>${p.nom}</b><span>${p.phrase}</span></button>`).join("")}
+        </div>
+        <p class="note">Ton personnage ne change rien au contenu : c'est juste pour le style.</p>
+        <label class="carte pseudo" for="pseudo"><b>Ton pseudo</b> <span>(facultatif)</span>
+          <input id="pseudo" maxlength="24" autocomplete="nickname" placeholder="Ex. : Léa, Max_92…" value="${esc(M.pseudo||"")}">
+          <small>Visible seulement par l'organisateur du test, pour savoir qui a joué. Évite ton nom de famille.</small>
+        </label>
+        <p class="note">Pas de compte. Pour améliorer l'appli, des statistiques d'usage sont mesurées : un identifiant aléatoire (renouvelé après 13 mois) et, si tu le donnes, ton pseudo. Ni e-mail, ni adresse.</p>
+        <button class="bouton" id="go" ${M.perso ? "" : "disabled"}>C'est parti</button>
+      </section>`;
+    const go = app.querySelector("#go");
+    app.querySelectorAll(".perso").forEach(b => b.onclick = () => {
+      app.querySelectorAll(".perso").forEach(x => x.setAttribute("aria-pressed","false"));
+      b.setAttribute("aria-pressed","true"); M.perso = b.dataset.id; sauve(); go.disabled = false; evt("perso");
+    });
+    go.onclick = () => {
+      const v = app.querySelector("#pseudo").value.replace(/[<>"]/g, "").trim().slice(0, 24);
+      M.pseudo = v || null; sauve(); carte();
+    };
+  }
+
+  /* ---------- Carte des parcours ---------- */
+  function carte(){
+    abandonEnCours(false);
+    etat.parcours = null;
+    evt("carte");
+    const p = persoActuel();
+    const total = PARCOURS.reduce((s,x) => s + pointsParcours(x.id), 0), serie = serieJours(), badges = PARCOURS.filter(x => (M.parcours[x.id]||{}).fini).length;
+    app.innerHTML = `
+      <header><span class="test">Version de test</span><span class="espace"></span><span class="points">${total} pts</span></header>
+      <div class="salut"><svg viewBox="0 0 54 54" aria-hidden="true">${p.svg}</svg><div><h1>Choisis ton parcours</h1></div></div>
+      <p class="total">${M.pseudo ? esc(M.pseudo) + " · " : ""}${p.nom} en route. <button class="lien" id="perso" style="border:0;background:none;padding:0;color:var(--canard);font-weight:700;text-decoration:underline">Personnage et pseudo</button></p>
+      <div class="tableau-perso">
+        <div class="carte stat-jour"><b>🔥 ${serie}</b><span>jour${serie>1?"s":""} d'affilée</span></div>
+        <div class="carte stat-jour ${objectifFait()?"atteint":""}"><b>${objectifFait() ? "🎯 ✓" : "🎯 0/1"}</b><span>${objectifFait() ? "objectif du jour atteint" : "objectif : 1 leçon aujourd'hui"}</span></div>
+      </div>
+      <div class="carte badges-ligne">
+        <div class="badges-titre"><b>Mes badges</b><span>${badges}/${PARCOURS.length}</span></div>
+        <div class="badges-liste">${PARCOURS.map(x => `<span class="mini-badge ${(M.parcours[x.id]||{}).fini?"":"verrou"}" title="${esc(x.titre)}">${badgeParcours(x, 40)}</span>`).join("")}</div>
+      </div>
+      ${M.erreurs.length ? `<button class="carte revision" id="revision"><span class="rv-texte"><b>Révision</b><span>${M.erreurs.length} question${M.erreurs.length>1?"s":""} ratée${M.erreurs.length>1?"s":""} à revoir${M.erreurs.length>5?" · 5 par session":""}</span></span><span class="etat neuf">Go</span></button>` : ""}
+      <nav class="chemin" aria-label="Parcours">
+        ${PARCOURS.map((x, n) => {
+          const titreSection = x.section && (n === 0 || PARCOURS[n-1].section !== x.section) ? `<h2 class="section-carte">${esc(x.section)}</h2>` : "";
+          const m = M.parcours[x.id], pret = x.statut === "pret";
+          const lf = leconsFaites(x.id);
+          const pastille = !pret ? `<span class="etat">Bientôt</span>` : m && m.fini ? `<span class="etat fait">✓ ${pointsParcours(x.id)} pts</span>` : lf ? `<span class="etat neuf">Leçon ${lf+1}</span>` : `<span class="etat neuf">Go</span>`;
+          return titreSection + `<button class="etape ${pret?"":"bientot"}" data-id="${x.id}">
+            <span class="pastille" style="background:${x.couleur}"><svg viewBox="0 0 30 30" aria-hidden="true">${ICONES[x.icone]||""}</svg></span>
+            <span><b>${esc(x.titre)}</b><small>${esc(x.accroche)}</small></span>${pastille}</button>`;
+        }).join("")}
+      </nav>
+      ${encartInstallation()}`;
+    app.querySelector("#perso").onclick = accueil;
+    const rv = app.querySelector("#revision"); if (rv) rv.onclick = lanceRevision;
+    app.querySelectorAll(".etape").forEach(b => b.onclick = () => {
+      const x = PARCOURS.find(y => y.id === b.dataset.id);
+      if (x.statut === "pret") return lanceParcours(x);
+      // Mesure l'intérêt pour les parcours à venir
+      etat.parcours = x; enregistre({ ecran:"interet", statut:"repondu", juste:null, temps_ms:0 }); etat.parcours = null;
+      toast("Ce parcours arrive bientôt. Ton intérêt est noté !");
+    });
+    brancheInstallation();
+    window.scrollTo(0,0);
+  }
+
+  /* ---------- Installation sur l'écran d'accueil ---------- */
+  let invite = null;
+  window.addEventListener("beforeinstallprompt", e => { e.preventDefault(); invite = e; const b = document.getElementById("installer"); if (b) b.classList.remove("cache"); });
+  const installee = () => matchMedia("(display-mode: standalone)").matches || navigator.standalone;
+  function encartInstallation(){
+    if (installee()) return "";
+    const ios = /iphone|ipad|ipod/i.test(navigator.userAgent);
+    return `<div class="carte installer">
+      <b>Comme une vraie appli</b>
+      <p>${ios ? "Dans Safari, touche le bouton Partager (carré avec une flèche), puis « Sur l'écran d'accueil »." : "Ajoute Cap Invest à ton écran d'accueil pour l'ouvrir en un geste."}</p>
+      ${ios ? "" : `<button class="bouton clair ${invite ? "" : "cache"}" id="installer">Installer</button><p class="${invite ? "cache" : ""}" style="margin:0">Sinon : menu du navigateur ⋮ puis « Ajouter à l'écran d'accueil ».</p>`}
+    </div>`;
+  }
+  function brancheInstallation(){
+    const b = document.getElementById("installer");
+    if (b) b.onclick = async () => { if (!invite) return; invite.prompt(); const c = await invite.userChoice; if (c && c.outcome === "accepted") evt("installation"); invite = null; b.classList.add("cache"); };
+  }
+
+  /* ---------- Progression locale : leçons, série de jours, badges, erreurs ---------- */
+  const auj = () => { const d = new Date(); return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0"); };
+  const veille = s => { const d = new Date(s+"T12:00:00"); d.setDate(d.getDate()-1); return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0"); };
+  M.jours = M.jours || []; M.erreurs = M.erreurs || [];
+  // Ancien format (parcours d'un seul tenant) : considéré comme terminé
+  Object.values(M.parcours).forEach(m => { if (m.fini && !m.lecons) m.lecons = { 0:{ meilleur:m.meilleur||0 }, 1:{ meilleur:0 } }; });
+  function serieJours(){
+    const j = new Set(M.jours); let d = auj(), n = 0;
+    if (!j.has(d)) d = veille(d);
+    while (j.has(d)) { n++; d = veille(d); }
+    return n;
+  }
+  const objectifFait = () => M.jours.includes(auj());
+  const leconsFaites = id => Object.keys((M.parcours[id]||{}).lecons || {}).length;
+  const pointsParcours = id => Object.values((M.parcours[id]||{}).lecons || {}).reduce((s,l) => s + (l.meilleur||0), 0);
+  const ecranDe = ex => ex._p ? ex._p + "-" + ex.id : ex.id;
+
+  /* ---------- Parcours et leçons ---------- */
+  function lanceParcours(x){
+    fetch(BASE + "exercices/" + x.id + ".json").then(r => r.json()).then(d => {
+      const lecons = d.lecons || [{ titre: d.titre, cours: d.cours || [], exercices: d.exercices }];
+      const faites = (M.parcours[x.id]||{}).lecons || {};
+      let k = lecons.findIndex((_,n) => !faites[n]); if (k < 0) k = 0;
+      demarreLecon(x, lecons, k);
+    }).catch(() => toast("Impossible de charger ce parcours."));
+  }
+  function demarreLecon(x, lecons, k){
+    Object.assign(etat, { mode:"parcours", parcours:x, lecons, lecon:k, EX:lecons[k].exercices, i:0, points:0, serie:0, justes:0, repondu:true, finRepondue:true });
+    evt("parcours_debut", { ecran: "l" + (k+1) });
+    const c = lecons[k].cours || [];
+    c.length ? cours(c, 0, Date.now()) : exercice();
+  }
+  const libelleLecon = () => etat.mode === "revision" ? "Révision" : (etat.lecons && etat.lecons.length > 1 ? `Leçon ${etat.lecon+1}/${etat.lecons.length}` : "");
+
+  /* ---------- Révision des erreurs ---------- */
+  async function lanceRevision(){
+    const lot = M.erreurs.slice(0, 5), fichiers = {};
+    try {
+      for (const e of lot) if (!fichiers[e.p]) fichiers[e.p] = await fetch(BASE + "exercices/" + e.p + ".json").then(r => r.json());
+    } catch(err){ return toast("Impossible de charger la révision."); }
+    const EX = lot.map(e => {
+      const d = fichiers[e.p], tous = d.lecons ? d.lecons.flatMap(l => l.exercices) : d.exercices;
+      const ex = tous.find(z => z.id === e.id); return ex ? Object.assign({}, ex, { _p: e.p }) : null;
+    }).filter(Boolean);
+    if (!EX.length){ M.erreurs = []; sauve(); return carte(); }
+    Object.assign(etat, { mode:"revision", parcours:{ id:"revision", titre:"Révision" }, lecons:null, lecon:0, EX, i:0, points:0, serie:0, justes:0, repondu:true, finRepondue:true });
+    evt("parcours_debut", { ecran:"revision" });
+    exercice();
+  }
+
+  /* ---------- Cours (cartes à lire avant le quiz) ---------- */
+  function sourcesCles(cles){
+    return sourcesDe({ sources: cles });
+  }
+  function cours(cartes, k, debut){
+    const c = cartes[k], dernier = k === cartes.length - 1, intro = k === 0 && etat.lecon === 0;
+    const total = etat.lecon === 0 ? cartes.length - 1 : cartes.length, rang = etat.lecon === 0 ? k : k + 1;
+    app.innerHTML = `
+      <header>
+        <button class="retour-carte" id="quitter" aria-label="Retour aux parcours">×</button>
+        <span class="espace"></span><span class="test">${esc(libelleLecon())} · ${esc(etat.lecons[etat.lecon].titre)}</span>
+      </header>
+      <article class="carte cours-carte">
+        <span class="num-cours">${intro ? "Introduction" : `Carte ${rang} sur ${total}`}</span>
+        <h2>${esc(remplit(c.titre))}</h2>
+        <p>${esc(remplit(c.texte))}</p>
+        <div class="src">${sourcesCles(c.sources||[])}</div>
+      </article>
+      <div class="points-cours" aria-hidden="true">${cartes.map((_,j) => `<i class="${j<=k?"on":""}"></i>`).join("")}</div>
+      <div class="ligne-boutons">
+        ${k > 0 ? `<button class="bouton clair" id="prec">Retour</button>` : ""}
+        <button class="bouton" id="suiv">${dernier ? "Place au quiz !" : "Suivant"}</button>
+      </div>
+      ${dernier ? "" : `<button class="passer" id="passer">Passer le cours</button>`}`;
+    const finCours = lu => { evt("cours", { ecran: lu ? "cours" : "cours_passe", duree_ms: Math.min(Date.now() - debut, 86399999) }); exercice(); };
+    app.querySelector("#quitter").onclick = carte;
+    app.querySelector("#suiv").onclick = () => dernier ? finCours(true) : cours(cartes, k+1, debut);
+    const pr = app.querySelector("#prec"); if (pr) pr.onclick = () => cours(cartes, k-1, debut);
+    const pa = app.querySelector("#passer"); if (pa) pa.onclick = () => finCours(false);
+    window.scrollTo(0,0);
+  }
+
+  function entete(){
+    const n = etat.EX.length, p = Math.round(etat.i / n * 100);
+    return `<header>
+      <button class="retour-carte" id="quitter" aria-label="Retour aux parcours">×</button>
+      <div class="progression" role="progressbar" aria-valuemin="0" aria-valuemax="${n}" aria-valuenow="${etat.i}" aria-label="Exercice ${etat.i+1} sur ${n}"><i style="width:${p}%"></i></div>
+      <span class="points" aria-label="Points">${etat.points} pts</span>
+    </header>
+    <div class="serie">${etat.serie >= 2 ? `Série de ${etat.serie} 🔥` : ""}</div>`;
+  }
+
+  function exercice(){
+    const ex = etat.EX[etat.i], n = etat.EX.length;
+    etat.repondu = false; etat.debut = Date.now();
+    app.innerHTML = entete() + `
+      <span class="etiquette ${ex.format==="arnaque"?"arnaque":""}">${esc(libelleLecon() ? libelleLecon() + " · " : "")}${ETIQUETTES[ex.format]||""} · ${etat.i+1}/${n}</span>
+      <h1 class="question">${esc(remplit(ex.question))}</h1>
+      <div class="zone" id="zone"></div>
+      <div id="retour"></div>`;
+    app.querySelector("#quitter").onclick = carte;
+    requestAnimationFrame(() => requestAnimationFrame(() => { const b = app.querySelector(".progression i"); if (b) b.style.width = Math.round((etat.i+1)/n*100)+"%"; }));
+    const zone = app.querySelector("#zone");
+    if (ex.format === "classement") classement(ex, zone); else choix(ex, zone);
+    window.scrollTo(0,0);
+  }
+
+  function choix(ex, zone){
+    const grille = ex.format === "fourchette";
+    zone.innerHTML = `<div class="${grille?"grille":""}">` + ex.options.map((o,k) => `<button class="option" data-k="${k}">${esc(remplit(o))}</button>`).join("") + `</div>`;
+    zone.querySelectorAll(".option").forEach(b => b.onclick = () => {
+      const k = +b.dataset.k, ok = k === ex.reponse;
+      zone.querySelectorAll(".option").forEach(x => { x.disabled = true; if (+x.dataset.k === ex.reponse) x.classList.add("juste"); });
+      if (!ok) b.classList.add("faux","secoue");
+      resultat(ex, ok);
+    });
+  }
+
+  function classement(ex, zone){
+    let ordre = ex.elements.map((_,k)=>k);
+    do { ordre.sort(() => Math.random() - .5); } while (ordre.every((v,k)=> v === ex.ordre_correct[k]));
+    const choisi = [];
+    zone.innerHTML = `<p class="note" style="margin-top:0">Touche les éléments dans l'ordre. Touche à nouveau pour retirer.</p>
+      ${ordre.map(k => `<button class="option" data-k="${k}"><span class="num"></span>${esc(remplit(ex.elements[k]))}</button>`).join("")}
+      <div class="ligne-boutons"><button class="bouton clair" id="raz">Recommencer</button><button class="bouton" id="ok" disabled>Valider</button></div>`;
+    const maj = () => {
+      zone.querySelectorAll(".option").forEach(b => { const p = choisi.indexOf(+b.dataset.k); b.querySelector(".num").textContent = p >= 0 ? p+1 : ""; });
+      zone.querySelector("#ok").disabled = choisi.length !== ex.elements.length;
+    };
+    zone.querySelectorAll(".option").forEach(b => b.onclick = () => {
+      const k = +b.dataset.k, p = choisi.indexOf(k);
+      if (p >= 0) choisi.splice(p,1); else choisi.push(k);
+      maj();
+    });
+    zone.querySelector("#raz").onclick = () => { choisi.length = 0; maj(); };
+    zone.querySelector("#ok").onclick = () => {
+      const ok = choisi.every((v,k) => v === ex.ordre_correct[k]);
+      zone.querySelectorAll(".option").forEach(b => {
+        b.disabled = true; const k = +b.dataset.k, bonRang = ex.ordre_correct.indexOf(k);
+        b.querySelector(".num").textContent = bonRang + 1;
+        b.classList.add(choisi.indexOf(k) === bonRang ? "juste" : "faux");
+      });
+      ex.ordre_correct.forEach(k => zone.insertBefore(zone.querySelector(`.option[data-k="${k}"]`), zone.querySelector(".ligne-boutons")));
+      zone.querySelector(".ligne-boutons").classList.add("cache");
+      resultat(ex, ok);
+    };
+  }
+
+  /* ---------- Résultat, points, série ---------- */
+  function resultat(ex, ok){
+    if (etat.repondu) return;
+    etat.repondu = true;
+    enregistre({ ecran: ecranDe(ex), statut:"repondu", juste: ok, temps_ms: Date.now() - etat.debut });
+    // Mémorise les erreurs pour la révision ; une bonne réponse en révision les retire
+    const p = ex._p || etat.parcours.id, cle = e => e.p === p && e.id === ex.id;
+    if (!ok && !M.erreurs.some(cle)) M.erreurs.push({ p, id: ex.id });
+    if (ok && etat.mode === "revision") M.erreurs = M.erreurs.filter(e => !cle(e));
+    sauve();
+    let gain = 0, bonus = 0;
+    if (ok){
+      etat.justes++; etat.serie++;
+      gain = 10; bonus = etat.serie >= 2 ? 5 * Math.min(etat.serie - 1, 3) : 0;
+      etat.points += gain + bonus;
+      confettis();
+    } else etat.serie = 0;
+
+    const pts = app.querySelector(".points"); if (pts) pts.textContent = etat.points + " pts";
+    const se = app.querySelector(".serie"); if (se) se.textContent = etat.serie >= 2 ? `Série de ${etat.serie} 🔥` : "";
+
+    const dernier = etat.i === etat.EX.length - 1;
+    const r = app.querySelector("#retour");
+    r.innerHTML = `
+      <div class="carte retour ${ok?"juste":"faux"}" role="status">
+        <h2>${ok ? "Bien joué !" : "Pas tout à fait…"}</h2>
+        ${ok ? `<p class="gain">+${gain} pts${bonus ? ` · bonus de série +${bonus}` : ""}</p>` : `<p class="note" style="margin:0">Cette question reviendra dans ta révision.</p>`}
+        <p>${esc(remplit(ok ? ex.retour_juste : ex.retour_faux))}</p>
+        <details><summary>En savoir plus</summary><p>${esc(remplit(ex.en_savoir_plus))}</p><p>${sourcesDe(ex)}</p></details>
+        <button class="bouton" id="suite">${dernier ? "Voir mon résultat" : "Continuer"}</button>
+      </div>`;
+    r.scrollIntoView({ behavior:"smooth", block:"nearest" });
+    const lu = Date.now();
+    r.querySelector("details").addEventListener("toggle", e => { if (e.target.open && !e.target.dataset.vu){ e.target.dataset.vu = 1; evt("en_savoir_plus", { ecran: ecranDe(ex) }); } });
+    r.querySelector("#suite").onclick = () => { evt("explication", { ecran: ecranDe(ex), duree_ms: Math.min(Date.now() - lu, 86399999) }); etat.i++; etat.i < etat.EX.length ? exercice() : fin(); };
+  }
+
+  function confettis(){
+    if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const c = document.getElementById("confettis"), couleurs = ["#F4B42A","#FF6A4D","#14808A","#FBF5EA"];
+    c.innerHTML = Array.from({length:22}, (_,k) => {
+      const a = Math.random()*Math.PI*2, d = 120 + Math.random()*140;
+      return `<i style="background:${couleurs[k%4]};--x:${Math.cos(a)*d}px;--y:${Math.sin(a)*d - 60}px;--r:${Math.random()*540-270}deg"></i>`;
+    }).join("");
+    setTimeout(() => c.innerHTML = "", 1000);
+  }
+
+  /* ---------- Fin de leçon, de parcours ou de révision ---------- */
+  function badgeParcours(x, taille){
+    return `<span class="pastille" style="background:${x.couleur};width:${taille}px;height:${taille}px"><svg viewBox="0 0 30 30" aria-hidden="true" style="width:${taille*.56}px;height:${taille*.56}px">${ICONES[x.icone]||""}</svg></span>`;
+  }
+  function blocObjectif(nouveau){
+    const n = serieJours();
+    return nouveau
+      ? `<div class="carte objectif"><b>🎯 Objectif du jour atteint&nbsp;!</b><span>Série : ${n} jour${n>1?"s":""} d'affilée 🔥</span></div>`
+      : `<div class="carte objectif discret"><span>Série : ${n} jour${n>1?"s":""} 🔥 · objectif du jour déjà atteint</span></div>`;
+  }
+  function fin(){
+    etat.debut = Date.now();
+    const n = etat.EX.length;
+    const nouveauJour = !objectifFait();
+    if (etat.mode !== "revision" && nouveauJour){ M.jours.push(auj()); M.jours = M.jours.slice(-120); }
+
+    if (etat.mode === "revision"){
+      enregistre({ ecran:"fin_revision", statut:"repondu", juste:null, temps_ms:0, score: etat.points });
+      sauve();
+      app.innerHTML = `
+        <header><span class="test">Version de test</span></header>
+        <section class="fin">
+          <p class="note" style="margin:10px 0 0">Révision</p>
+          <p class="score">${etat.justes}/${n}</p>
+          <p>${etat.justes === n ? "Toutes tes erreurs sont corrigées. Bravo !" : "Les questions encore ratées reviendront à la prochaine révision."}</p>
+          <p class="note">${M.erreurs.length ? `Il reste ${M.erreurs.length} question${M.erreurs.length>1?"s":""} à revoir.` : "Plus aucune question à revoir."}</p>
+          <button class="bouton" id="carte" style="margin-top:14px">Retour aux parcours</button>
+        </section>`;
+      if (etat.justes === n) confettis();
+      app.querySelector("#carte").onclick = carte;
+      return window.scrollTo(0,0);
+    }
+
+    const id = etat.parcours.id, m = M.parcours[id] = M.parcours[id] || {};
+    m.lecons = m.lecons || {};
+    m.lecons[etat.lecon] = { meilleur: Math.max((m.lecons[etat.lecon]||{}).meilleur || 0, etat.points) };
+    const total = etat.lecons.length, toutes = leconsFaites(id) >= total, derniere = etat.lecon === total - 1;
+    const dejaFini = !!m.fini; if (toutes) m.fini = true;
+    m.meilleur = pointsParcours(id);
+    sauve();
+
+    if (!derniere){
+      enregistre({ ecran:"fin_lecon", statut:"repondu", juste:null, temps_ms:0, score: etat.points });
+      app.innerHTML = `
+        <header><span class="test">Version de test</span></header>
+        <section class="fin">
+          <p class="note" style="margin:10px 0 0">${esc(etat.parcours.titre)} · ${esc(libelleLecon())}</p>
+          <h2 style="margin-top:10px">Leçon terminée&nbsp;!</h2>
+          <p class="score">${etat.points}</p>
+          <p style="margin:2px 0 12px">points · ${etat.justes}/${n} bonnes réponses</p>
+          ${blocObjectif(nouveauJour)}
+          <p class="note">Les points servent juste à jouer : ils n'ont aucune valeur en argent.</p>
+          <button class="bouton" id="suivante" style="margin-top:8px">Leçon suivante : ${esc(etat.lecons[etat.lecon+1].titre)}</button>
+          <button class="bouton clair" id="carte" style="margin-top:12px">Retour aux parcours</button>
+        </section>`;
+      confettis();
+      app.querySelector("#suivante").onclick = () => demarreLecon(etat.parcours, etat.lecons, etat.lecon + 1);
+      app.querySelector("#carte").onclick = carte;
+      return window.scrollTo(0,0);
+    }
+
+    etat.finRepondue = false;
+    const nouveauBadge = toutes && !dejaFini;
+    app.innerHTML = `
+      <header><span class="test">Version de test</span></header>
+      <section class="fin">
+        <p class="note" style="margin:10px 0 0">${esc(etat.parcours.titre)} · ${esc(libelleLecon())}</p>
+        <p class="score">${etat.points}</p>
+        <p style="margin:2px 0 0">points · ${etat.justes}/${n} bonnes réponses</p>
+        <div class="badge-gagne">${badgeParcours(etat.parcours, 120)}</div>
+        <h2>${toutes ? (nouveauBadge ? "Nouveau badge&nbsp;!" : "Badge déjà obtenu") : "Dernière leçon terminée"}</h2>
+        <p>${toutes ? `Badge « ${esc(etat.parcours.titre)} » ajouté à ta collection.` : "Termine aussi la leçon précédente pour obtenir le badge."}</p>
+        ${blocObjectif(nouveauJour)}
+        <p class="note">Les points servent juste à jouer : ils n'ont aucune valeur en argent.</p>
+        <div class="suite carte">
+          <p class="titre" style="font-size:22px;margin-bottom:12px">Envie de la suite&nbsp;?</p>
+          <div class="ligne-boutons" id="suite">
+            <button class="bouton" data-r="oui">Oui&nbsp;!</button>
+            <button class="bouton clair" data-r="peut-etre">Peut-être</button>
+            <button class="bouton clair" data-r="non">Non merci</button>
+          </div>
+          <p class="merci cache" id="merci">Merci, c'est noté&nbsp;!</p>
+        </div>
+        <button class="bouton clair" id="carte" style="margin-top:14px">Retour aux parcours</button>
+      </section>`;
+    confettis();
+    app.querySelectorAll("#suite button").forEach(bt => bt.onclick = () => {
+      if (etat.finRepondue) return;
+      etat.finRepondue = true;
+      enregistre({ ecran:"fin", statut:"repondu", juste:null, temps_ms: Date.now()-etat.debut, reponse: bt.dataset.r, score: etat.points });
+      app.querySelector("#suite").classList.add("cache");
+      app.querySelector("#merci").classList.remove("cache");
+    });
+    app.querySelector("#carte").onclick = carte;
+    window.scrollTo(0,0);
+  }
+
+  /* ---------- Code d'accès (barrière légère pour la version de test) ---------- */
+  async function empreinte(txt){
+    const b = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(txt));
+    return [...new Uint8Array(b)].map(x => x.toString(16).padStart(2,"0")).join("");
+  }
+  function codeAcces(suite){
+    if (!CFG.CODE_ACCES_SHA256 || M.acces === CFG.CODE_ACCES_SHA256) return suite();
+    app.innerHTML = `
+      <header><span class="test">Version de test</span></header>
+      <section class="accueil">
+        <h1>Cap Invest</h1>
+        <p class="chapo">Version de test réservée. Entre le code qu'on t'a donné.</p>
+        <p class="note">Pas de compte. Des statistiques d'usage anonymes sont mesurées pour améliorer l'appli.</p>
+        <form id="f" class="carte">
+          <label for="code" style="font-weight:700">Code d'accès</label>
+          <input id="code" autocomplete="off" autocapitalize="characters" spellcheck="false" style="display:block;width:100%;margin:8px 0 12px;padding:14px;font:inherit;font-size:20px;letter-spacing:.08em;border:2px solid var(--encre);border-radius:12px;background:var(--papier);color:var(--encre)">
+          <button class="bouton">Entrer</button>
+          <p id="err" class="note cache" style="color:#B33A22;font-weight:700;margin-bottom:0">Ce n'est pas le bon code.</p>
+        </form>
+      </section>`;
+    const f = app.querySelector("#f");
+    f.onsubmit = async e => {
+      e.preventDefault();
+      const h = await empreinte(f.code.value.trim().toUpperCase());
+      if (h === CFG.CODE_ACCES_SHA256){ M.acces = h; sauve(); evt("code_ok"); suite(); }
+      else { app.querySelector("#err").classList.remove("cache"); f.classList.add("secoue"); setTimeout(() => f.classList.remove("secoue"), 400); }
+    };
+    app.querySelector("#code").focus();
+  }
+
+  /* ---------- Démarrage ---------- */
+  evt("visite", { nouveau: VISITEUR.nouveau, appareil: matchMedia("(pointer: coarse)").matches ? "mobile" : "ordinateur", installe: !!installee() });
+  if ("serviceWorker" in navigator && location.protocol === "https:") navigator.serviceWorker.register("../sw.js", { scope:"../" }).catch(()=>{});
+  Promise.all([
+    fetch(BASE + "exercices/parcours.json").then(r => r.json()),
+    fetch(BASE + "donnees/chiffres.json").then(r => r.json())
+  ]).then(([p, c]) => { PARCOURS = p.parcours; CH = c; codeAcces(() => M.perso ? carte() : accueil()); })
+    .catch(e => { app.innerHTML = "<p>Impossible de charger l'application. Vérifie ta connexion.</p>"; console.error(e); });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,218 @@
+{
+  "id": "histoire-investissement",
+  "titre": "Histoire de l'investissement",
+  "version": "test-2",
+  "_note": "Les {{cle}} renvoient à donnees/chiffres.json.",
+  "lecons": [
+    {
+      "titre": "Les premières Bourses",
+      "cours": [
+        {
+          "titre": "Investir, depuis quand ?",
+          "texte": "Bien avant les applications, marchands et banquiers échangeaient déjà des créances et des titres. Ce parcours raconte la naissance des Bourses, des indices et de la régulation, puis l'arrivée des particuliers sur les marchés.",
+          "sources": []
+        },
+        {
+          "titre": "Les premières Bourses",
+          "texte": "Le mot « bourse » vient de Bruges, au XIVe siècle, où les banquiers échangeaient devant la maison des Ter Beurse. En France, la première Bourse ouvre à Lyon en 1540 ; un édit institue la Bourse de Paris en 1724.",
+          "sources": [
+            "eco_bourse_histoire"
+          ]
+        },
+        {
+          "titre": "Bulles et krachs",
+          "texte": "Les excès finissent souvent mal : faillite de la banque de Law en 1720, de l'Union générale en 1882 après des pertes sur des valeurs boursières surévaluées, crise des subprimes en 2008.",
+          "sources": [
+            "bdf_crises"
+          ]
+        }
+      ],
+      "exercices": [
+        {
+          "id": "ex01",
+          "niveau": 1,
+          "notion": "Les premières Bourses",
+          "format": "choix",
+          "question": "D'où vient le mot « bourse » ?",
+          "options": [
+            "D'une famille de Bruges, les Ter Beurse",
+            "Du latin « bursa », un sac d'or romain",
+            "D'un roi de France"
+          ],
+          "reponse": 0,
+          "retour_juste": "Exact ! Les échanges se faisaient devant la maison des Ter Beurse, au XIVe siècle.",
+          "retour_faux": "Il vient de Bruges : au XIVe siècle, les banquiers échangeaient devant la maison des Ter Beurse.",
+          "en_savoir_plus": "Selon economie.gouv.fr, Bruges était alors un grand centre du commerce de l'argent, et le nom de la famille Ter Beurse a fini par désigner le lieu des échanges.",
+          "sources": [
+            "eco_bourse_histoire"
+          ]
+        },
+        {
+          "id": "ex02",
+          "niveau": 2,
+          "notion": "Les premières Bourses",
+          "format": "choix",
+          "question": "Quelle ville a accueilli la première Bourse de France, en 1540 ?",
+          "options": [
+            "Paris",
+            "Lyon",
+            "Marseille"
+          ],
+          "reponse": 1,
+          "retour_juste": "Exact ! Lyon, en 1540, avant Paris.",
+          "retour_faux": "C'était Lyon, en 1540. Paris a accueilli une « place commune des marchands » en 1563.",
+          "en_savoir_plus": "La Bourse de Paris n'a été instituée légalement, avec une réglementation, qu'en 1724 (economie.gouv.fr).",
+          "sources": [
+            "eco_bourse_histoire"
+          ]
+        },
+        {
+          "id": "ex04",
+          "niveau": 4,
+          "notion": "Bulles et krachs",
+          "format": "choix",
+          "question": "1882 : pourquoi la banque Union générale fait-elle faillite ?",
+          "options": [
+            "Des pertes sur des valeurs boursières surévaluées",
+            "Un vol spectaculaire",
+            "Une loi qui interdit les banques"
+          ],
+          "reponse": 0,
+          "retour_juste": "Exact ! Croissance trop rapide, placements risqués, valeurs boursières devenues excessives.",
+          "retour_faux": "Elle a grandi très vite, multiplié les investissements risqués, puis subi des pertes sur des valeurs boursières devenues excessives.",
+          "en_savoir_plus": "La Banque de France cite cette faillite parmi les grandes crises bancaires, aux côtés de 1720 (Law) et 2008 (subprimes). Les bulles finissent par se dégonfler, souvent brutalement.",
+          "sources": [
+            "bdf_crises"
+          ]
+        }
+      ]
+    },
+    {
+      "titre": "Indices, régulation, particuliers",
+      "cours": [
+        {
+          "titre": "Indices et régulation",
+          "texte": "Le principal indice de la Bourse de Paris est créé en 1987, avec une base de 1 000 points. Depuis 2003, l'Autorité des marchés financiers (AMF) surveille les marchés et protège l'épargne.",
+          "sources": [
+            "eco_indice_paris",
+            "amf_creation"
+          ]
+        },
+        {
+          "titre": "L'arrivée des particuliers",
+          "texte": "En 2020, près de 1,4 million de particuliers ont acheté ou vendu des actions, avec un âge médian qui passe de 58 à 46 ans. Le nombre de particuliers utilisant des ETF a doublé en 5 ans.",
+          "sources": [
+            "particuliers_actions_2020",
+            "etf_investisseurs_2023"
+          ]
+        }
+      ],
+      "exercices": [
+        {
+          "id": "ex05",
+          "niveau": 5,
+          "notion": "Les indices",
+          "format": "choix",
+          "question": "Le principal indice de Paris valait 1 000 points en 1987. Ça sert à…",
+          "options": [
+            "Mesurer l'évolution des grandes entreprises françaises",
+            "Garantir un rendement",
+            "Fixer le prix de l'euro"
+          ],
+          "reponse": 0,
+          "retour_juste": "Exact ! C'est un baromètre des grandes entreprises cotées à Paris.",
+          "retour_faux": "Un indice est un baromètre : il reflète la tendance des grandes entreprises cotées, il ne garantit rien.",
+          "en_savoir_plus": "Selon economie.gouv.fr, cet indice évolue par rapport à sa base de 1 000 points du 31 décembre 1987 et regroupe 40 valeurs parmi les 100 premières capitalisations françaises.",
+          "sources": [
+            "eco_indice_paris"
+          ]
+        },
+        {
+          "id": "ex06",
+          "niveau": 6,
+          "notion": "La régulation",
+          "format": "choix",
+          "question": "Qui surveille les marchés financiers en France depuis 2003 ?",
+          "options": [
+            "L'Autorité des marchés financiers (AMF)",
+            "La Banque centrale européenne seule",
+            "Personne"
+          ],
+          "reponse": 0,
+          "retour_juste": "Exact ! L'AMF, née en 2003 de la fusion de trois autorités.",
+          "retour_faux": "C'est l'AMF, créée par la loi de sécurité financière du 1er août 2003.",
+          "en_savoir_plus": "Selon economie.gouv.fr, l'AMF est née de la fusion de la Commission des opérations de bourse (COB), du Conseil des marchés financiers et du Conseil de discipline de la gestion financière.",
+          "sources": [
+            "amf_creation"
+          ]
+        },
+        {
+          "id": "ex03",
+          "niveau": 3,
+          "notion": "Les premières Bourses",
+          "format": "classement",
+          "question": "Bourse en France : classe ces étapes, de la plus ancienne à la plus récente.",
+          "elements": [
+            "Première Bourse à Lyon",
+            "Un édit institue la Bourse de Paris",
+            "Création du principal indice parisien",
+            "Fusion des Bourses de Paris, Amsterdam et Bruxelles"
+          ],
+          "ordre_correct": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "retour_juste": "Parfait ! 1540, 1724, 1987, 2000.",
+          "retour_faux": "Ordre : Lyon (1540), Bourse de Paris (1724), indice parisien (1987), fusion européenne (2000).",
+          "en_savoir_plus": "Dates d'economie.gouv.fr. L'indice créé en 1987 est parti de 1 000 points ; il regroupe 40 grandes valeurs françaises.",
+          "sources": [
+            "eco_bourse_histoire",
+            "eco_indice_paris"
+          ]
+        },
+        {
+          "id": "ex07",
+          "niveau": 7,
+          "notion": "Les particuliers",
+          "format": "fourchette",
+          "question": "En 2020, combien de particuliers ont acheté ou vendu des actions en France ?",
+          "options": [
+            "Environ 14 000",
+            "Environ 140 000",
+            "Environ 1,4 million",
+            "Environ 14 millions"
+          ],
+          "reponse": 2,
+          "retour_juste": "Bravo ! Près de 1,4 million, avec beaucoup de nouveaux venus.",
+          "retour_faux": "Réponse : près de 1,4 million. 2020 a vu arriver de nombreux nouveaux investisseurs.",
+          "en_savoir_plus": "Selon l'AMF, l'âge médian des acheteurs d'actions est passé de 58 ans (2018-2019) à 46 ans en 2020, avec l'arrivée de nouvelles applications de Bourse. L'AMF note aussi un excès de confiance chez certains nouveaux investisseurs.",
+          "sources": [
+            "particuliers_actions_2020"
+          ]
+        },
+        {
+          "id": "ex08",
+          "niveau": 8,
+          "notion": "Les fonds",
+          "format": "fourchette",
+          "question": "En 5 ans, le nombre de particuliers utilisant des ETF a…",
+          "options": [
+            "Baissé de moitié",
+            "Peu changé",
+            "Doublé",
+            "Été multiplié par 100"
+          ],
+          "reponse": 2,
+          "retour_juste": "Bravo ! Il a doublé, pour atteindre environ {{etf_investisseurs_2023}} en 2023.",
+          "retour_faux": "Il a doublé en 5 ans, pour atteindre environ {{etf_investisseurs_2023}} particuliers en 2023.",
+          "en_savoir_plus": "Chiffres de l'Observatoire de l'épargne de l'AMF (avril 2024). Les ETF, fonds qui suivent un indice, sont les héritiers des fonds indiciels : la popularité d'un produit ne dit rien de son risque.",
+          "sources": [
+            "etf_investisseurs_2023"
+          ]
+        }
+      ]
+    }
+  ]
+}

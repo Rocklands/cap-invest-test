@@ -1,0 +1,216 @@
+{
+  "id": "arnaques",
+  "titre": "Repérer les arnaques",
+  "version": "test-2",
+  "_note": "Les {{cle}} renvoient à donnees/chiffres.json.",
+  "lecons": [
+    {
+      "titre": "Les signaux d'alerte",
+      "cours": [
+        {
+          "titre": "Pourquoi un parcours sur les arnaques ?",
+          "texte": "Les escrocs suivent les modes (crypto, placements « verts », formations au trading) et imitent les acteurs sérieux. L'AMF publie des listes et des conseils pour les repérer. Ce parcours montre les signaux d'alerte les plus fréquents.",
+          "sources": [
+            "amf_arnaques"
+          ]
+        },
+        {
+          "titre": "Trop beau pour être vrai",
+          "texte": "Pas de rendement élevé sans risque élevé : une offre qui promet les deux à la fois est un signal d'alerte. Les escrocs imitent aussi l'épargne réputée sûre.",
+          "sources": [
+            "amf_rendement_risque"
+          ]
+        },
+        {
+          "titre": "Pression et faux conseillers",
+          "texte": "L'urgence (« décidez avant ce soir ») est un grand classique. Logos, sites et numéros de téléphone peuvent être copiés. Aucune autorité publique, AMF comprise, ne démarche pour proposer un placement.",
+          "sources": [
+            "amf_arnaques"
+          ]
+        }
+      ],
+      "exercices": [
+        {
+          "id": "ex01",
+          "niveau": 1,
+          "notion": "Promesses trop belles",
+          "format": "arnaque",
+          "question": "Trois offres d'épargne. Laquelle est une arnaque probable ?",
+          "options": [
+            "Livret réglementé à {{livret_taux}} %, disponible à tout moment.",
+            "« Livret garanti à 9 %, sans risque, ouverture en 2 minutes ! »",
+            "Fonds en actions, avec un risque de perte en capital."
+          ],
+          "reponse": 1,
+          "retour_juste": "Bien vu ! Un taux très élevé et « sans risque » : drapeau rouge.",
+          "retour_faux": "L'arnaque probable : le « livret garanti à 9 % ». Pas de rendement élevé sans risque élevé.",
+          "en_savoir_plus": "L'AMF le rappelle : il n'y a pas de rendement élevé sans risque élevé. Les escrocs imitent aussi l'épargne réputée sûre, comme les livrets.",
+          "sources": [
+            "amf_rendement_risque",
+            "livret_taux"
+          ]
+        },
+        {
+          "id": "ex02",
+          "niveau": 2,
+          "notion": "Faux conseillers",
+          "format": "choix",
+          "question": "Un appel « de l'AMF » te propose un placement. Ça signifie…",
+          "options": [
+            "C'est sûr : c'est l'autorité qui appelle",
+            "C'est un escroc : l'AMF ne démarche jamais",
+            "C'est normal pour les gros épargnants"
+          ],
+          "reponse": 1,
+          "retour_juste": "Exact ! Aucune autorité publique ne propose de placements par téléphone.",
+          "retour_faux": "C'est une usurpation : jamais une autorité publique, AMF comprise, ne contacte pour proposer un placement.",
+          "en_savoir_plus": "L'AMF précise qu'aucune autorité publique ne vous contactera pour proposer des placements, demander le paiement d'une taxe ou aider à récupérer des fonds perdus. Les escrocs peuvent même falsifier le numéro affiché.",
+          "sources": [
+            "amf_arnaques"
+          ]
+        },
+        {
+          "id": "ex05",
+          "niveau": 5,
+          "notion": "Usurpation d'identité",
+          "format": "choix",
+          "question": "Le site affiche le logo d'une grande banque. C'est une garantie ?",
+          "options": [
+            "Oui, un logo ne se copie pas",
+            "Non : logos et sites sont souvent copiés",
+            "Oui, si le site est en français"
+          ],
+          "reponse": 1,
+          "retour_juste": "Exact ! Les escrocs copient logos, sites et même documents officiels.",
+          "retour_faux": "Un logo ne prouve rien : les escrocs reproduisent logos, sites et documents de sociétés autorisées.",
+          "en_savoir_plus": "L'AMF signale que la différence entre un faux site et le vrai peut se jouer sur un détail, comme l'adresse. Ses listes noires recensent les usurpations déjà identifiées.",
+          "sources": [
+            "amf_arnaques"
+          ]
+        }
+      ]
+    },
+    {
+      "titre": "Pyramides et vérifications",
+      "cours": [
+        {
+          "titre": "Les pyramides",
+          "texte": "Dans une pyramide de Ponzi, l'argent des nouveaux paie les « gains » des anciens. Quand les nouveaux versements s'arrêtent, le fraudeur disparaît.",
+          "sources": [
+            "amf_arnaques"
+          ]
+        },
+        {
+          "titre": "Vérifier et réagir",
+          "texte": "Registres officiels (Orias, Regafi), listes blanches et listes noires de l'AMF permettent de vérifier un intermédiaire. Après une arnaque, la seule voie est la plainte : méfiance envers les faux « récupérateurs de fonds ».",
+          "sources": [
+            "amf_arnaques"
+          ]
+        }
+      ],
+      "exercices": [
+        {
+          "id": "ex03",
+          "niveau": 3,
+          "notion": "Promesses trop belles",
+          "format": "choix",
+          "question": "Pyramide de Ponzi : d'où viennent les « gains » des premiers investisseurs ?",
+          "options": [
+            "De placements très rentables",
+            "Des versements des nouveaux venus",
+            "D'une garantie de l'État"
+          ],
+          "reponse": 1,
+          "retour_juste": "Exact ! L'argent des nouveaux paie les anciens… jusqu'à l'effondrement.",
+          "retour_faux": "Les « gains » sont payés avec l'argent des nouveaux arrivants. Aucune richesse n'est créée.",
+          "en_savoir_plus": "Selon l'AMF, quand le fraudeur ne trouve plus de nouveaux versements, il disparaît, et il devient alors impossible de récupérer les fonds : la seule solution est de porter plainte.",
+          "sources": [
+            "amf_arnaques"
+          ]
+        },
+        {
+          "id": "ex04",
+          "niveau": 4,
+          "notion": "Promesses trop belles",
+          "format": "classement",
+          "question": "Remets dans l'ordre le scénario classique d'une pyramide frauduleuse.",
+          "elements": [
+            "Un faux conseiller obtient un premier versement",
+            "De faux rendements sont versés",
+            "Les victimes en parlent autour d'elles",
+            "Le fraudeur disparaît"
+          ],
+          "ordre_correct": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "retour_juste": "Scénario reconstitué ! Les faux gains servent d'appât pour recruter.",
+          "retour_faux": "Ordre : premier versement, faux rendements, bouche-à-oreille, puis disparition.",
+          "en_savoir_plus": "C'est le déroulé décrit par l'AMF. Les offres « réservées à quelques privilégiés » dont on entend parler par un proche font partie des signaux d'alerte.",
+          "sources": [
+            "amf_arnaques"
+          ]
+        },
+        {
+          "id": "ex06",
+          "niveau": 6,
+          "notion": "Vérifier un intermédiaire",
+          "format": "choix",
+          "question": "Où vérifier qu'un intermédiaire financier est autorisé ?",
+          "options": [
+            "Dans les registres officiels et les listes de l'AMF",
+            "Dans ses avis clients",
+            "Dans ses publicités"
+          ],
+          "reponse": 0,
+          "retour_juste": "Exact ! Registres officiels (Orias, Regafi) et listes blanches de l'AMF.",
+          "retour_faux": "Les avis et publicités se fabriquent. Les registres officiels (Orias, Regafi) et les listes de l'AMF, non.",
+          "en_savoir_plus": "L'AMF cite les registres Orias et Regafi, ses listes blanches pour les acteurs autorisés et ses listes noires pour les sites signalés.",
+          "sources": [
+            "amf_arnaques"
+          ]
+        },
+        {
+          "id": "ex07",
+          "niveau": 7,
+          "notion": "Placements atypiques",
+          "format": "choix",
+          "question": "Parkings, vin, diamants promettent un rendement. Que doit avoir l'offre ?",
+          "options": [
+            "Un enregistrement sur la liste blanche de l'AMF",
+            "Le logo d'une grande banque",
+            "Des avis cinq étoiles"
+          ],
+          "reponse": 0,
+          "retour_juste": "Exact ! Une promesse de rendement sur ces biens exige un enregistrement auprès de l'AMF.",
+          "retour_faux": "Quand un rendement est promis sur ce type de bien, l'offre doit être enregistrée sur la liste blanche de l'AMF.",
+          "en_savoir_plus": "L'AMF classe ces offres parmi les placements atypiques, souvent présentés avec des rendements élevés mais des risques pas toujours annoncés. Sans enregistrement, l'AMF conseille de passer son chemin.",
+          "sources": [
+            "amf_arnaques"
+          ]
+        },
+        {
+          "id": "ex08",
+          "niveau": 8,
+          "notion": "Après une arnaque",
+          "format": "arnaque",
+          "question": "Après une arnaque, trois messages. Lequel est un nouveau piège ?",
+          "options": [
+            "Porter plainte auprès des autorités judiciaires.",
+            "« Avocat mandaté : on récupère vos fonds contre des frais. »",
+            "Consulter les listes noires de l'AMF."
+          ],
+          "reponse": 1,
+          "retour_juste": "Bien vu ! Les faux récupérateurs de fonds visent les victimes une deuxième fois.",
+          "retour_faux": "Le piège : le faux avocat qui « récupère vos fonds » contre des frais. C'est une seconde arnaque.",
+          "en_savoir_plus": "L'AMF alerte sur ces usurpateurs qui se présentent comme avocats ou mandataires après une première escroquerie. Selon elle, la seule option pour une victime est de porter plainte.",
+          "sources": [
+            "amf_arnaques"
+          ]
+        }
+      ]
+    }
+  ]
+}

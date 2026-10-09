@@ -1,0 +1,533 @@
+{
+  "_meta": {
+    "description": "Chiffres utilisés dans le module « Pourquoi investir ». Les exercices y renvoient avec la syntaxe {{cle}}. Seules les sources officielles autorisées sont admises.",
+    "derniere_mise_a_jour": "2026-10-10",
+    "a_revoir": [
+      "inflation_1an : estimation provisoire, résultat définitif publié par l'Insee le 15 octobre 2026.",
+      "livret_taux : taux fixé du 1er août 2026 au 31 janvier 2027, révisable au 1er février 2027."
+    ]
+  },
+  "livret_taux": {
+    "valeur": 1.7,
+    "unite": "%",
+    "libelle": "Taux annuel du livret réglementé le plus répandu (non nommé dans l'application)",
+    "statut": "confirmé",
+    "source": "https://www.service-public.gouv.fr/particuliers/vosdroits/F2365",
+    "site": "service-public.gouv.fr",
+    "extrait": "Le taux d'intérêt annuel du livret A est de 1,7 %.",
+    "page_verifiee_le": "2026-08-01",
+    "consulte_le": "2026-10-09",
+    "validite": "Arrêté du 28 juillet 2026 : du 1er août 2026 au 31 janvier 2027"
+  },
+  "inflation_1an": {
+    "valeur": 3.0,
+    "unite": "%",
+    "libelle": "Hausse des prix à la consommation sur un an, septembre 2026",
+    "statut": "confirmé (estimation provisoire)",
+    "source": "https://www.insee.fr/fr/statistiques/9056956",
+    "site": "insee.fr",
+    "extrait": "En septembre 2026, les prix à la consommation augmenteraient de 3,0 % sur un an",
+    "publie_le": "2026-09-30",
+    "consulte_le": "2026-10-09",
+    "remarque": "Chiffre provisoire. Définitif le 15 octobre 2026 : vérifier et mettre à jour si besoin."
+  },
+  "definition_inflation": {
+    "valeur": null,
+    "libelle": "Définition de l'inflation : perte du pouvoir d'achat de la monnaie, qui se traduit par une hausse générale et durable des prix",
+    "statut": "confirmé",
+    "source": "https://www.insee.fr/fr/metadonnees/definition/c1473",
+    "site": "insee.fr",
+    "page_mise_a_jour_le": "2021-02-09",
+    "consulte_le": "2026-10-09"
+  },
+  "amf_rendement_risque": {
+    "valeur": null,
+    "libelle": "Principe rappelé par l'AMF : pas de rendement élevé sans risque élevé ; ne pas céder aux pressions à investir immédiatement",
+    "statut": "confirmé",
+    "source": "https://www.amf-france.org/sites/institutionnel/files/pdf/59187/fr/Quelles_sont_les_arnaques_les_plus_courantes_.pdf",
+    "site": "amf-france.org",
+    "extrait": "il n'y a pas de rendement élevé sans risque élevé",
+    "page_datee_du": "2025-02-21",
+    "consulte_le": "2026-10-09"
+  },
+  "vente_realise_plus_value": {
+    "valeur": null,
+    "libelle": "Une plus-value sur titre financier est le gain réalisé en vendant le titre (le gain ou la perte se constate à la vente)",
+    "statut": "confirmé indirectement",
+    "source": "https://www.service-public.gouv.fr/particuliers/vosdroits/F21618",
+    "site": "service-public.gouv.fr",
+    "page_verifiee_le": "2026-04-15",
+    "consulte_le": "2026-10-09",
+    "remarque": "La page parle des plus-values. Le terme « moins-value latente » n'y figure pas mot pour mot."
+  },
+  "amf_5pct_30ans": {
+    "valeur": 4.3,
+    "unite": "fois",
+    "libelle": "Capital rémunéré à 5 % par an : multiplié par 4,3 au bout de 30 ans",
+    "statut": "confirmé + recalculé (1,05^30 = 4,3219)",
+    "source": "https://www.amf-france.org/sites/institutionnel/files/private/2022-01/STIMULER%20LA%20DIVERSIFICATION%20DE%20L%E2%80%99%C3%89PARGNE%20DE%20LONG%20TERME%20EN%20ACTIONS_DECEMBRE%202021_3.pdf",
+    "site": "amf-france.org",
+    "document": "AMF, « Stimuler la diversification de l'épargne de long terme en actions », décembre 2021",
+    "consulte_le": "2026-10-09"
+  },
+  "actions_fr": {
+    "libelle": "Rendements réels annualisés des actions françaises 1950-2020, dividendes réinvestis, selon la durée de détention (premier centile, médiane, dernier centile)",
+    "statut": "confirmé (calculs Harvest publiés par l'AMF)",
+    "source": "https://www.amf-france.org/sites/institutionnel/files/private/2022-01/STIMULER%20LA%20DIVERSIFICATION%20DE%20L%E2%80%99%C3%89PARGNE%20DE%20LONG%20TERME%20EN%20ACTIONS_DECEMBRE%202021_3.pdf",
+    "site": "amf-france.org",
+    "document": "AMF, décembre 2021, p. 21 et annexe 3 (p. 53)",
+    "consulte_le": "2026-10-09",
+    "remarque": "Données passées d'un seul marché. L'AMF précise que 20 ans n'ont pas suffi à éliminer totalement le risque."
+  },
+  "actions_fr_1an_p1": {
+    "valeur": -40.5,
+    "unite": "%",
+    "ref": "actions_fr"
+  },
+  "actions_fr_1an_mediane": {
+    "valeur": 6.4,
+    "unite": "%",
+    "ref": "actions_fr"
+  },
+  "actions_fr_1an_p99": {
+    "valeur": 62.9,
+    "unite": "%",
+    "ref": "actions_fr"
+  },
+  "actions_fr_5ans_p1": {
+    "valeur": -13.0,
+    "unite": "%",
+    "ref": "actions_fr"
+  },
+  "actions_fr_10ans_p1": {
+    "valeur": -4.8,
+    "unite": "%",
+    "ref": "actions_fr"
+  },
+  "actions_fr_20ans_p1": {
+    "valeur": -3.0,
+    "unite": "%",
+    "ref": "actions_fr"
+  },
+  "actions_fr_30ans_p1": {
+    "valeur": 2.4,
+    "unite": "%",
+    "ref": "actions_fr"
+  },
+  "actions_vs_livret_20ans": {
+    "valeur": 6,
+    "sur": 168,
+    "libelle": "Placements de 20 ans en actions françaises lancés à partir de janvier 1988 ayant fait moins bien que le livret réglementé le plus répandu : 6 sur 168",
+    "statut": "confirmé",
+    "source": "https://www.amf-france.org/sites/institutionnel/files/private/2022-01/STIMULER%20LA%20DIVERSIFICATION%20DE%20L%E2%80%99%C3%89PARGNE%20DE%20LONG%20TERME%20EN%20ACTIONS_DECEMBRE%202021_3.pdf",
+    "site": "amf-france.org",
+    "document": "AMF, décembre 2021, p. 23",
+    "consulte_le": "2026-10-09"
+  },
+  "calculs": {
+    "_note": "Hypothèses fictives, taux constants, avant frais, impôts et inflation (sauf mention). Recalculés le 2026-10-09.",
+    "pouvoir_achat_livret": {
+      "valeur": -1.3,
+      "unite": "%",
+      "formule": "1,017 / 1,030 - 1 = -1,262 %",
+      "entrees": [
+        "livret_taux",
+        "inflation_1an"
+      ]
+    },
+    "ex4_a": {
+      "valeur": 2653,
+      "formule": "1 000 × 1,05^20 = 2 653,30"
+    },
+    "ex4_b": {
+      "valeur": 2438,
+      "formule": "2 000 × 1,02^10 = 2 437,99"
+    },
+    "ex4_c": {
+      "valeur": 2229,
+      "formule": "1 500 × 1,02^20 = 2 228,92"
+    },
+    "ex4_d": {
+      "valeur": 1629,
+      "formule": "1 000 × 1,05^10 = 1 628,89"
+    },
+    "ex5": {
+      "valeur": 4322,
+      "formule": "1 000 × 1,05^30 = 4 321,94"
+    },
+    "ex9": {
+      "valeur": 42.9,
+      "unite": "%",
+      "formule": "10 000 / 7 000 - 1 = 42,86 %"
+    },
+    "frais_30ans_a": {
+      "valeur": 51276,
+      "formule": "10 000 × 1,056^30 = 51 276 (6 % brut − 0,4 % de frais)"
+    },
+    "frais_30ans_b": {
+      "valeur": 38543,
+      "formule": "10 000 × 1,046^30 = 38 543 (6 % brut − 1,4 % de frais)"
+    },
+    "frais_30ans_ecart": {
+      "valeur": 12733,
+      "formule": "51 276 − 38 543 = 12 733 €"
+    }
+  },
+  "pea_plafond": {
+    "valeur": 150000,
+    "libelle": "Plafond de versements du PEA classique (les gains ne comptent pas)",
+    "statut": "confirmé",
+    "source": "https://www.service-public.gouv.fr/particuliers/vosdroits/F2385",
+    "site": "service-public.gouv.fr",
+    "consulte_le": "2026-10-09",
+    "page_verifiee_le": "2026-05-22",
+    "unite": "€"
+  },
+  "pea_jeune_plafond": {
+    "valeur": 20000,
+    "libelle": "Plafond du PEA d'un majeur rattaché au foyer fiscal de ses parents",
+    "statut": "confirmé",
+    "source": "https://www.service-public.gouv.fr/particuliers/vosdroits/F2385",
+    "site": "service-public.gouv.fr",
+    "consulte_le": "2026-10-09",
+    "page_verifiee_le": "2026-05-22",
+    "unite": "€"
+  },
+  "pea_pme_plafond": {
+    "valeur": 225000,
+    "libelle": "Plafond PEA-PME-ETI (cumul PEA + PEA-PME-ETI limité à 225 000 €)",
+    "statut": "confirmé",
+    "source": "https://www.service-public.gouv.fr/particuliers/vosdroits/F2385",
+    "site": "service-public.gouv.fr",
+    "consulte_le": "2026-10-09",
+    "page_verifiee_le": "2026-05-22",
+    "unite": "€"
+  },
+  "pea_regles": {
+    "valeur": null,
+    "libelle": "Un seul PEA classique par personne, pas de compte joint ; retrait avant 5 ans = clôture en principe ; après 5 ans retrait partiel sans clôture ; gains réinvestis non imposés",
+    "statut": "confirmé",
+    "source": "https://www.service-public.gouv.fr/particuliers/vosdroits/F2385",
+    "site": "service-public.gouv.fr",
+    "consulte_le": "2026-10-09",
+    "page_verifiee_le": "2026-05-22"
+  },
+  "ps_taux": {
+    "valeur": 18.6,
+    "libelle": "Prélèvements sociaux sur les revenus de placement (depuis le 1er janvier 2026)",
+    "statut": "confirmé",
+    "source": "https://www.impots.gouv.fr/particulier/questions/jai-un-plan-depargne-en-actions-pea-les-retraits-sont-ils-imposables",
+    "site": "impots.gouv.fr",
+    "consulte_le": "2026-10-09",
+    "page_modifiee_le": "2026-07-17",
+    "unite": "%",
+    "remarque": "La fiche NotebookLM indiquait 17,2 % : périmé."
+  },
+  "pfu_taux": {
+    "valeur": 31.4,
+    "libelle": "Prélèvement forfaitaire unique : 12,8 % d'impôt + 18,6 % de prélèvements sociaux",
+    "statut": "confirmé",
+    "source": "https://www.service-public.gouv.fr/particuliers/vosdroits/F21618",
+    "site": "service-public.gouv.fr",
+    "consulte_le": "2026-10-09",
+    "page_verifiee_le": "2026-04-15",
+    "unite": "%",
+    "remarque": "La fiche indiquait 30 % : périmé depuis 2026."
+  },
+  "pfu_ir": {
+    "valeur": 12.8,
+    "libelle": "Part impôt sur le revenu du PFU",
+    "statut": "confirmé",
+    "source": "https://www.service-public.gouv.fr/particuliers/vosdroits/F21618",
+    "site": "service-public.gouv.fr",
+    "consulte_le": "2026-10-09",
+    "unite": "%"
+  },
+  "mv_report_ans": {
+    "valeur": 10,
+    "libelle": "Report des moins-values sur valeurs mobilières : 10 années suivantes",
+    "statut": "confirmé",
+    "source": "https://www.service-public.gouv.fr/particuliers/vosdroits/F21618",
+    "site": "service-public.gouv.fr",
+    "consulte_le": "2026-10-09",
+    "page_verifiee_le": "2026-04-15",
+    "unite": "ans"
+  },
+  "pea_transfert_max": {
+    "valeur": 150,
+    "libelle": "Frais de transfert d'un PEA plafonnés ; le transfert conserve les avantages fiscaux",
+    "statut": "confirmé",
+    "source": "https://www.amf-france.org/sites/institutionnel/files/pdf/70770/fr/Reussir_le_transfert_de_votre_plan_d'epargne_en_actions_(PEA).pdf",
+    "site": "amf-france.org",
+    "consulte_le": "2026-10-09",
+    "page_datee_du": "2023-07-18",
+    "unite": "€"
+  },
+  "amf_pea_garantie": {
+    "valeur": null,
+    "libelle": "« Investir en actions, directement ou via des fonds en actions, n'offre aucune garantie de capital » ; CTO sans limite de versement",
+    "statut": "confirmé",
+    "source": "https://www.amf-france.org/fr/espace-epargnants/comprendre-les-produits-financiers/supports-dinvestissement/pea-tout-savoir-sur-le-plan-depargne-en-actions",
+    "site": "amf-france.org",
+    "consulte_le": "2026-10-09",
+    "page_datee_du": "2019-09-11"
+  },
+  "etf_frais": {
+    "valeur": 0.37,
+    "libelle": "Frais annuels moyens 2023 des ETF actions",
+    "statut": "confirmé",
+    "source": "https://www.amf-france.org/sites/institutionnel/files/private/2024-04/loe-56_2.pdf",
+    "site": "amf-france.org",
+    "consulte_le": "2026-10-09",
+    "unite": "%",
+    "document": "Lettre de l'Observatoire de l'épargne n° 56, avril 2024"
+  },
+  "fonds_indiciels_frais": {
+    "valeur": 0.84,
+    "libelle": "Frais annuels moyens 2023 des fonds actions indiciels non cotés",
+    "statut": "confirmé",
+    "source": "https://www.amf-france.org/sites/institutionnel/files/private/2024-04/loe-56_2.pdf",
+    "site": "amf-france.org",
+    "consulte_le": "2026-10-09",
+    "unite": "%"
+  },
+  "fonds_actifs_frais": {
+    "valeur": 1.47,
+    "libelle": "Frais totaux moyens 2023 des fonds actions gérés activement",
+    "statut": "confirmé",
+    "source": "https://www.amf-france.org/sites/institutionnel/files/private/2024-04/loe-56_2.pdf",
+    "site": "amf-france.org",
+    "consulte_le": "2026-10-09",
+    "unite": "%"
+  },
+  "etf_investisseurs_2023": {
+    "valeur": 296000,
+    "libelle": "Particuliers ayant acheté ou vendu des ETF en 2023 (nombre doublé en 5 ans)",
+    "statut": "confirmé",
+    "source": "https://www.amf-france.org/sites/institutionnel/files/private/2024-04/loe-56_2.pdf",
+    "site": "amf-france.org",
+    "consulte_le": "2026-10-09"
+  },
+  "etf_replication": {
+    "valeur": null,
+    "libelle": "Réplication physique (achat des titres) ou synthétique (contrat d'échange avec une contrepartie, exposant à son défaut)",
+    "statut": "confirmé",
+    "source": "https://www.amf-france.org/sites/institutionnel/files/contenu_simple/lettre_ou_cahier/risques_tendances/Les%20ETF%20%20caracteristiques,%20etat%20des%20lieux%20et%20analyse%20des%20risques%20-%20Le%20cas%20du%20marche%20francais.pdf",
+    "site": "amf-france.org",
+    "consulte_le": "2026-10-09",
+    "page_datee_du": "2017-02"
+  },
+  "precaution_mois": {
+    "valeur": null,
+    "libelle": "Épargne de précaution : 2 à 6 mois de revenus selon la situation ; placements disponibles et sûrs",
+    "statut": "confirmé",
+    "source": "https://www.amf-france.org/sites/institutionnel/files/private/2023-12/2023_se_constituer_une_epargne_de_precaution.pdf",
+    "site": "amf-france.org",
+    "consulte_le": "2026-10-09",
+    "page_datee_du": "2023-12"
+  },
+  "dic_echelle": {
+    "valeur": null,
+    "libelle": "Indicateur de risque du DIC : échelle de 1 à 7, avec durée de détention recommandée",
+    "statut": "confirmé",
+    "source": "https://www.amf-france.org/sites/institutionnel/files/contenu_simple/guide/guide_pedagogique/Comprendre%20le%20document%20d'informations%20cles%20(DIC).pdf",
+    "site": "amf-france.org",
+    "consulte_le": "2026-10-09"
+  },
+  "amf_investir_etapes": {
+    "valeur": null,
+    "libelle": "Court terme : placements disponibles sans risque de perte de valeur ; risque = somme qu'on serait prêt à perdre ; pas de rendement élevé sans risque important ; diversifier pour répartir le risque",
+    "statut": "confirmé",
+    "source": "https://www.amf-france.org/sites/institutionnel/files/private/2023-03/INVESTIR_VOTRE_EPARGNE_2023_DEF_0.pdf",
+    "site": "amf-france.org",
+    "consulte_le": "2026-10-09",
+    "page_datee_du": "2023-03"
+  },
+  "amf_arnaques": {
+    "valeur": null,
+    "libelle": "Ponzi : les versements des uns rémunèrent les autres ; logos et sites usurpés ; aucune autorité publique ne démarche ; faux récupérateurs de fonds ; offre avec promesse de rendement enregistrée sur la liste blanche AMF ; vérifier Orias et Regafi",
+    "statut": "confirmé",
+    "source": "https://www.amf-france.org/sites/institutionnel/files/pdf/59187/fr/Quelles_sont_les_arnaques_les_plus_courantes_.pdf",
+    "site": "amf-france.org",
+    "consulte_le": "2026-10-09",
+    "page_datee_du": "2025-02-21"
+  },
+  "bdf_monnaie": {
+    "valeur": null,
+    "libelle": "Premières pièces d'or sous Crésus, Lydie, VIe s. av. J.-C. ; 1360 franc à cheval ; 1800 Banque de France ; 1848 cours légal et monopole ; 1999 euro scriptural ; 2002 euro fiduciaire ; « les crédits font les dépôts »",
+    "statut": "confirmé",
+    "source": "https://www.banque-france.fr/system/files/2024-08/eeb_monnaie.pdf",
+    "site": "banque-france.fr",
+    "consulte_le": "2026-10-09",
+    "page_datee_du": "2023-10"
+  },
+  "monnaie_scripturale_part": {
+    "valeur": 91,
+    "libelle": "Part de la monnaie scripturale dans la monnaie en circulation en zone euro (2020)",
+    "statut": "confirmé",
+    "source": "https://www.banque-france.fr/system/files/2024-08/eeb_monnaie.pdf",
+    "site": "banque-france.fr",
+    "consulte_le": "2026-10-09",
+    "unite": "%"
+  },
+  "paiements_carte_part": {
+    "valeur": 57,
+    "libelle": "Part des paiements par carte en France (2021)",
+    "statut": "confirmé",
+    "source": "https://www.banque-france.fr/system/files/2024-08/eeb_monnaie.pdf",
+    "site": "banque-france.fr",
+    "consulte_le": "2026-10-09",
+    "unite": "%"
+  },
+  "bdf_banques_centrales": {
+    "valeur": null,
+    "libelle": "1694 Banque d'Angleterre ; 1800 Banque de France ; 1913 Réserve fédérale ; 1945 nationalisation BdF ; 1998 BCE ; 2002 billets en euros",
+    "statut": "confirmé",
+    "source": "https://publications.banque-france.fr/sites/default/files/medias/documents/240826-eco-bref-banque-centrale.pdf",
+    "site": "banque-france.fr",
+    "consulte_le": "2026-10-09",
+    "page_datee_du": "2024-09",
+    "remarque": "Le document date la Banque de Suède de 1688 ; un autre document BdF cite 1668 pour la banque de Stockholm : date non utilisée."
+  },
+  "bdf_crises": {
+    "valeur": null,
+    "libelle": "1720 faillite de la Banque générale de Law (retraits massifs) ; 1882 Union générale (pertes boursières) ; 1931 Kreditanstalt ; 2008 subprimes et Lehman Brothers ; garantie des dépôts 100 000 € par déposant",
+    "statut": "confirmé",
+    "source": "https://www.banque-france.fr/system/files/2024-12/Eco_Bref-Crises-bancaires.pdf",
+    "site": "banque-france.fr",
+    "consulte_le": "2026-10-09",
+    "page_datee_du": "2024-12"
+  },
+  "troc_debat": {
+    "valeur": null,
+    "libelle": "La validité historique du troc comme forme d'échange précédant la monnaie est « fortement contestée » ; certains travaux mettent en avant la dette",
+    "statut": "confirmé",
+    "source": "https://www.banque-france.fr/system/files/2023-02/livre-paiements-et-infrastructures-marche_chap-1_fr.pdf",
+    "site": "banque-france.fr",
+    "consulte_le": "2026-10-09",
+    "page_datee_du": "2022-05",
+    "remarque": "economie.gouv.fr (Faciléco) présente au contraire le récit classique du troc : désaccord signalé dans l'exercice."
+  },
+  "billet_18e": {
+    "valeur": null,
+    "libelle": "Le billet de banque, innovation financière apparue au XVIIIe siècle ; plus de cent types de billets en franc émis par la BdF",
+    "statut": "confirmé",
+    "source": "https://www.banque-france.fr/fr/banque-de-france/institution-ancree-histoire/collections",
+    "site": "banque-france.fr",
+    "consulte_le": "2026-10-09"
+  },
+  "eco_bourse_histoire": {
+    "valeur": null,
+    "libelle": "Le mot « bourse » vient de Bruges (XIVe s., famille Ter Beurse) ; première bourse française à Lyon en 1540 ; 1724 un édit institue la Bourse de Paris ; 2000 fusion Paris-Amsterdam-Bruxelles",
+    "statut": "confirmé",
+    "source": "https://www.economie.gouv.fr/facileco/historique",
+    "site": "economie.gouv.fr",
+    "consulte_le": "2026-10-09"
+  },
+  "eco_indice_paris": {
+    "valeur": null,
+    "libelle": "Principal indice de la Bourse de Paris créé en 1987, base 1 000 points au 31 décembre 1987, 40 valeurs parmi les 100 premières capitalisations",
+    "statut": "confirmé",
+    "source": "https://www.economie.gouv.fr/facileco/le-cac-40",
+    "site": "economie.gouv.fr",
+    "consulte_le": "2026-10-09",
+    "remarque": "Nom commercial de l'indice non cité dans l'application."
+  },
+  "eco_troc": {
+    "valeur": null,
+    "libelle": "Récit classique : troc au néolithique, puis coquillages et métaux, premières pièces en Lydie au VIe s. av. J.-C.",
+    "statut": "confirmé",
+    "source": "https://www.economie.gouv.fr/facileco/culture-economique/120-000-ans-dhistoire/du-troc-largent",
+    "site": "economie.gouv.fr",
+    "consulte_le": "2026-10-09"
+  },
+  "amf_creation": {
+    "valeur": 2003,
+    "libelle": "AMF créée par la loi de sécurité financière du 1er août 2003, fusion de la COB et de deux autres autorités",
+    "statut": "confirmé",
+    "source": "https://www.economie.gouv.fr/saef/autorite-des-marches-financiers",
+    "site": "economie.gouv.fr",
+    "consulte_le": "2026-10-09"
+  },
+  "particuliers_actions_2020": {
+    "valeur": 1.4,
+    "libelle": "Particuliers ayant réalisé au moins un achat ou une vente d'actions en 2020 (millions) ; âge médian des acheteurs passé de 58 ans (2018-2019) à 46 ans (2020)",
+    "statut": "confirmé",
+    "source": "https://www.amf-france.org/sites/institutionnel/files/private/2022-01/STIMULER%20LA%20DIVERSIFICATION%20DE%20L%E2%80%99%C3%89PARGNE%20DE%20LONG%20TERME%20EN%20ACTIONS_DECEMBRE%202021_3.pdf",
+    "site": "amf-france.org",
+    "consulte_le": "2026-10-09",
+    "unite": "millions"
+  },
+  "amf_actions": {
+    "valeur": null,
+    "libelle": "Une action rend propriétaire d'une partie du capital d'une société, avec droit aux dividendes (quote-part des bénéfices) ; les cours peuvent varier brusquement",
+    "statut": "confirmé",
+    "source": "https://www.amf-france.org/sites/institutionnel/files/contenu_simple/guide/guide_pedagogique/Pourquoi%20et%20comment%20investir%20en%20direct%20en%20actions%20cotees%20.pdf",
+    "site": "amf-france.org",
+    "consulte_le": "2026-10-10"
+  },
+  "amf_non_cote": {
+    "valeur": 10,
+    "libelle": "Capital-investissement = participation dans une société non cotée ; rachat des parts de fonds impossible pendant la durée de vie du fonds, qui peut aller jusqu'à 10 ans (sauf circonstances exceptionnelles)",
+    "statut": "confirmé",
+    "source": "https://www.amf-france.org/sites/institutionnel/files/contenu_simple/guide/guide_pedagogique/S'informer%20sur%20%20Les%20fonds%20de%20capital%20investissement%20(FCPR,%20FCPI,%20FIP).pdf",
+    "site": "amf-france.org",
+    "consulte_le": "2026-10-10",
+    "unite": "ans",
+    "page_datee_du": "2019-06"
+  },
+  "amf_obligations": {
+    "valeur": null,
+    "libelle": "Obligation = prêt à un État, une collectivité ou une entreprise, rémunéré par un coupon ; mise récupérée à l'échéance sauf faillite de l'émetteur ; à taux fixe, la valeur baisse quand les taux montent",
+    "statut": "confirmé",
+    "source": "https://www.amf-france.org/sites/institutionnel/files/pdf/59282/fr/Pourquoi_le_prix_des_obligations_baisse_lorsque_les_taux_montent_.pdf",
+    "site": "amf-france.org",
+    "consulte_le": "2026-10-10"
+  },
+  "amf_scpi": {
+    "valeur": null,
+    "libelle": "SCPI : capital non garanti (placement risqué), parts revendues en plusieurs semaines voire plusieurs mois",
+    "statut": "confirmé",
+    "source": "https://www.amf-france.org/sites/institutionnel/files/private/2023-12/2023_investir_dans_une_scpi.pdf",
+    "site": "amf-france.org",
+    "consulte_le": "2026-10-10",
+    "page_datee_du": "2023-12"
+  },
+  "amf_bitcoin_baisse": {
+    "valeur": -73,
+    "libelle": "Bitcoin : 56 301 € en novembre 2021, 15 421 € le 25 décembre 2022 (−73 %), puis record à 106 275 € le 6 octobre 2025 ; crypto-actifs non couverts par le fonds de garantie des dépôts",
+    "statut": "confirmé",
+    "source": "https://www.amf-france.org/sites/institutionnel/files/pdf/59191/fr/Investir_dans_le_bitcoin__prudence_!.pdf",
+    "site": "amf-france.org",
+    "consulte_le": "2026-10-10",
+    "unite": "%",
+    "remarque": "Recalculé : 15 421 / 56 301 − 1 = −72,6 %"
+  },
+  "amf_classement_risque": {
+    "valeur": null,
+    "libelle": "Classement AMF (Mon zoom épargne) : livrets garantis (court terme) ; supports monétaires modérément risqués (court terme) ; immobilier (SCPI, OPCI, SCI), obligations et actions risqués (long terme)",
+    "statut": "confirmé",
+    "source": "https://www.amf-france.org/sites/institutionnel/files/pdf/71303/fr/En_savoir_plus_sur_le_fonctionnement_de_Mon_zoom_epargne.pdf",
+    "site": "amf-france.org",
+    "consulte_le": "2026-10-10"
+  },
+  "bercy_cartes": {
+    "valeur": 16.5,
+    "unite": "millions $",
+    "libelle": "Carte Pikachu Illustrator vendue 16,5 millions $ en février 2026 ; la très grande majorité des cartes a peu de valeur ; revente d'un objet de collection > 5 000 € : taxe forfaitaire de 6 % du prix (option possible pour l'impôt sur la plus-value)",
+    "statut": "confirmé",
+    "source": "https://www.economie.gouv.fr/bercy-decode/les-cartes-pokemon-sont-elles-desormais-dans-le-viseur-du-fisc",
+    "site": "economie.gouv.fr",
+    "page_datee_du": "2026-04-26",
+    "consulte_le": "2026-10-10"
+  },
+  "amf_atypiques": {
+    "valeur": null,
+    "libelle": "Œuvres d'art, vin, manuscrits, voitures de collection… : « loin de constituer des valeurs refuges », placements généralement risqués aux rendements annoncés parfois irréalistes",
+    "statut": "confirmé",
+    "source": "https://www.amf-france.org/sites/institutionnel/files/2020-01/fiche_inc_2018_placements-atypiques.pdf",
+    "site": "amf-france.org",
+    "page_datee_du": "2018",
+    "consulte_le": "2026-10-10"
+  }
+}

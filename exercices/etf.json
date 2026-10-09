@@ -1,0 +1,218 @@
+{
+  "id": "etf",
+  "titre": "Les ETF",
+  "version": "test-2",
+  "_note": "Les {{cle}} renvoient à donnees/chiffres.json.",
+  "lecons": [
+    {
+      "titre": "Indice et ETF",
+      "cours": [
+        {
+          "titre": "Un ETF, en une phrase",
+          "texte": "Un ETF est un fonds qui cherche à reproduire un indice boursier et qui s'échange en Bourse comme une action. Pour le comprendre, on part de l'indice, puis on regarde les frais et les risques.",
+          "sources": [
+            "etf_replication"
+          ]
+        },
+        {
+          "titre": "L'indice",
+          "texte": "Un indice mesure l'évolution d'un panier d'actions, comme un thermomètre. Il ne s'achète pas directement.",
+          "sources": [
+            "eco_indice_paris"
+          ]
+        },
+        {
+          "titre": "L'ETF",
+          "texte": "Un ETF, ou fonds indiciel coté, cherche à reproduire la performance d'un indice. Il s'achète et se vend en Bourse. Il suit son indice à la hausse comme à la baisse.",
+          "sources": [
+            "etf_replication"
+          ]
+        }
+      ],
+      "exercices": [
+        {
+          "id": "ex01",
+          "niveau": 1,
+          "notion": "Indice boursier",
+          "format": "choix",
+          "question": "Un indice boursier, c'est quoi ?",
+          "options": [
+            "Un placement qu'on achète directement",
+            "Une mesure de l'évolution d'un panier d'actions",
+            "Une note de confiance donnée à une entreprise"
+          ],
+          "reponse": 1,
+          "retour_juste": "Exact ! Un indice est un thermomètre : il mesure, il ne s'achète pas.",
+          "retour_faux": "Un indice mesure l'évolution d'un groupe d'actions. On ne l'achète pas : on peut acheter un fonds qui le suit.",
+          "en_savoir_plus": "Exemple officiel : le principal indice de la Bourse de Paris, créé en 1987, regroupe 40 valeurs parmi les 100 premières capitalisations françaises, à partir d'une base de 1 000 points (economie.gouv.fr).",
+          "sources": [
+            "eco_indice_paris"
+          ]
+        },
+        {
+          "id": "ex02",
+          "niveau": 2,
+          "notion": "ETF",
+          "format": "choix",
+          "question": "Que cherche à faire un ETF ?",
+          "options": [
+            "Battre le marché grâce à un gérant vedette",
+            "Reproduire la performance d'un indice",
+            "Garantir le capital investi"
+          ],
+          "reponse": 1,
+          "retour_juste": "Bien vu ! Un ETF (fonds indiciel coté) suit un indice, sans chercher à le battre.",
+          "retour_faux": "Un ETF ne parie pas sur les meilleures actions : il cherche à reproduire un indice, à la hausse comme à la baisse.",
+          "en_savoir_plus": "L'AMF le résume ainsi : les ETF cotés en France sont des trackers, qui visent à répliquer au mieux la performance d'un indice de référence. Ils se négocient en Bourse pendant les heures de cotation.",
+          "sources": [
+            "etf_replication"
+          ]
+        },
+        {
+          "id": "ex03",
+          "niveau": 3,
+          "notion": "Risques",
+          "format": "choix",
+          "question": "L'indice suivi par ton ETF chute de 30 %. Et l'ETF ?",
+          "options": [
+            "Il baisse à peu près autant",
+            "Il est protégé : c'est un fonds",
+            "Il monte pour compenser"
+          ],
+          "reponse": 0,
+          "retour_juste": "Exact : l'ETF suit son indice, y compris dans les baisses.",
+          "retour_faux": "Un ETF n'amortit pas les chutes : il suit son indice, qui peut baisser fortement.",
+          "en_savoir_plus": "Être diversifié réduit le risque lié à une seule entreprise, pas celui de tout le marché. L'AMF rappelle qu'investir en actions, directement ou via des fonds, n'offre aucune garantie de capital.",
+          "sources": [
+            "amf_pea_garantie"
+          ]
+        }
+      ]
+    },
+    {
+      "titre": "Frais et risques",
+      "cours": [
+        {
+          "titre": "Les frais",
+          "texte": "En 2023, les ETF d'actions coûtaient en moyenne {{etf_frais}} % par an, contre {{fonds_actifs_frais}} % pour les fonds gérés activement (AMF). Sur des décennies, l'écart de frais pèse sur le capital final.",
+          "sources": [
+            "etf_frais",
+            "fonds_actifs_frais"
+          ]
+        },
+        {
+          "titre": "Les risques",
+          "texte": "Un ETF peut baisser autant que son indice. S'il contient des actions étrangères, les variations des monnaies jouent aussi. Un ETF « synthétique » dépend en plus d'un contrat avec une institution financière.",
+          "sources": [
+            "etf_replication",
+            "amf_pea_garantie"
+          ]
+        }
+      ],
+      "exercices": [
+        {
+          "id": "ex05",
+          "niveau": 5,
+          "notion": "Les frais",
+          "format": "classement",
+          "question": "Frais annuels moyens en 2023 : classe du moins cher au plus cher.",
+          "elements": [
+            "ETF d'actions",
+            "Fonds d'actions indiciels non cotés",
+            "Fonds d'actions gérés activement"
+          ],
+          "ordre_correct": [
+            0,
+            1,
+            2
+          ],
+          "retour_juste": "Parfait ! {{etf_frais}} %, {{fonds_indiciels_frais}} % puis {{fonds_actifs_frais}} % par an en moyenne.",
+          "retour_faux": "Ordre : ETF ({{etf_frais}} %), fonds indiciels non cotés ({{fonds_indiciels_frais}} %), fonds gérés activement ({{fonds_actifs_frais}} %).",
+          "en_savoir_plus": "Chiffres de l'Observatoire de l'épargne de l'AMF (avril 2024), moyennes 2023. Ce sont des moyennes : les frais réels de chaque fonds figurent dans son document d'informations clés.",
+          "sources": [
+            "etf_frais",
+            "fonds_indiciels_frais",
+            "fonds_actifs_frais"
+          ]
+        },
+        {
+          "id": "ex06",
+          "niveau": 6,
+          "notion": "Les frais",
+          "format": "fourchette",
+          "question": "10 000 € à 6 % brut, 30 ans. Coût d'un point de frais en plus ?",
+          "options": [
+            "Environ 300 €",
+            "Environ 3 000 €",
+            "Environ 13 000 €",
+            "Environ 50 000 €"
+          ],
+          "reponse": 2,
+          "retour_juste": "Bravo ! Environ 12 700 € d'écart : les frais aussi se capitalisent.",
+          "retour_faux": "Réponse : environ 12 700 €. 1 % par an semble petit, mais il s'applique chaque année au capital accumulé.",
+          "en_savoir_plus": "Calcul (hypothèse fictive) : 10 000 × 1,056^30 ≈ 51 276 € avec 0,4 % de frais, contre 10 000 × 1,046^30 ≈ 38 543 € avec 1,4 %. L'AMF fait le même constat : à 4 % par an sur 20 ans, le placement gagne 98 % avec 0,5 % de frais et 47 % avec 2 %.",
+          "sources": [
+            "calculs",
+            "amf_5pct_30ans"
+          ]
+        },
+        {
+          "id": "ex04",
+          "niveau": 4,
+          "notion": "Risques",
+          "format": "choix",
+          "question": "ETF d'actions américaines : le dollar baisse face à l'euro. Effet ?",
+          "options": [
+            "Aucun : l'ETF est coté en euros",
+            "La valeur en euros baisse, même si les actions ne bougent pas",
+            "La valeur monte forcément"
+          ],
+          "reponse": 1,
+          "retour_juste": "Bravo ! C'est le risque de change : la monnaie compte autant que les actions.",
+          "retour_faux": "Les actions sont en dollars : si le dollar perd de la valeur, leur prix converti en euros baisse aussi.",
+          "en_savoir_plus": "C'est un mécanisme de calcul, pas une prévision : le change peut jouer dans les deux sens. Un dollar qui monte face à l'euro ferait l'effet inverse.",
+          "sources": []
+        },
+        {
+          "id": "ex07",
+          "niveau": 7,
+          "notion": "Réplication",
+          "format": "choix",
+          "question": "ETF « synthétique » : comment obtient-il la performance de l'indice ?",
+          "options": [
+            "En achetant toutes les actions de l'indice",
+            "Par un contrat d'échange avec une institution financière",
+            "Grâce à une garantie de l'État"
+          ],
+          "reponse": 1,
+          "retour_juste": "Exact ! Un contrat d'échange lui verse la performance de l'indice.",
+          "retour_faux": "L'ETF synthétique passe un contrat d'échange avec une institution financière. L'ETF « physique », lui, achète les titres.",
+          "en_savoir_plus": "Selon l'AMF, la réplication synthétique expose au risque de défaut de la contrepartie du contrat ; la réplication physique, elle, recourt souvent au prêt de titres, avec aussi un risque de contrepartie. Aucune des deux méthodes ne protège contre la baisse de l'indice.",
+          "sources": [
+            "etf_replication"
+          ]
+        },
+        {
+          "id": "ex08",
+          "niveau": 8,
+          "notion": "Diversification",
+          "format": "arnaque",
+          "question": "Trois phrases sur les ETF. Laquelle est trompeuse ?",
+          "options": [
+            "Un ETF suit son indice, à la hausse comme à la baisse.",
+            "« Notre ETF ne peut pas perdre : il est diversifié ! »",
+            "Un ETF capitalisant réinvestit les dividendes dans le fonds."
+          ],
+          "reponse": 1,
+          "retour_juste": "Bien joué ! Diversifié ne veut pas dire sans risque.",
+          "retour_faux": "La phrase trompeuse : « ne peut pas perdre ». La diversification réduit un risque, elle ne supprime pas les baisses du marché.",
+          "en_savoir_plus": "En 2023, environ {{etf_investisseurs_2023}} particuliers ont acheté ou vendu des ETF, un nombre qui a doublé en 5 ans selon l'AMF. Plus ces fonds sont populaires, plus les promesses exagérées circulent.",
+          "sources": [
+            "etf_investisseurs_2023",
+            "amf_pea_garantie"
+          ]
+        }
+      ]
+    }
+  ]
+}
