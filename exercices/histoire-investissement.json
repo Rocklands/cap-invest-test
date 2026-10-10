@@ -9,19 +9,25 @@
       "cours": [
         {
           "titre": "Investir, depuis quand ?",
-          "texte": "Bien avant les applications, marchands et banquiers échangeaient déjà des créances et des titres. Ce parcours raconte la naissance des Bourses, des indices et de la régulation, puis l'arrivée des particuliers sur les marchés.",
+          "texte": "Avant les applis, la Bourse se faisait à voix haute, dans un bâtiment, entre initiés. Ce parcours raconte comment on est passé de la place du marché aux écrans : naissance des Bourses, des indices et de la régulation, puis arrivée des particuliers.",
           "sources": []
         },
         {
           "titre": "Les premières Bourses",
-          "texte": "Le mot « bourse » vient de Bruges, au XIVe siècle, où les banquiers échangeaient devant la maison des Ter Beurse. En France, la première Bourse ouvre à Lyon en 1540 ; un édit institue la Bourse de Paris en 1724.",
+          "texte": "Le mot « bourse » vient de Bruges : au XIVe siècle, les banquiers échangeaient devant la maison de la famille Ter Beurse. En France, la première Bourse ouvre à Lyon en 1540, et un édit royal institue la Bourse de Paris en 1724.",
           "sources": [
             "eco_bourse_histoire"
-          ]
+          ],
+          "anecdote": {
+            "texte": "Les agents de change de Paris formaient un club très fermé : chaque nouvel arrivant était coopté par un vote à boules blanches et noires. Seules deux femmes y ont été admises, en 1985 et 1987.",
+            "sources": [
+              "eco_bourse_histoire"
+            ]
+          }
         },
         {
           "titre": "Bulles et krachs",
-          "texte": "Les excès finissent souvent mal : faillite de la banque de Law en 1720, de l'Union générale en 1882 après des pertes sur des valeurs boursières surévaluées, crise des subprimes en 2008.",
+          "texte": "Une bulle, c'est un ballon gonflé à l'enthousiasme plutôt qu'à l'air : il grossit vite… et éclate d'un coup. En 1720, la banque de Law s'effondre ; en 1882, l'Union générale fait faillite après des pertes sur des valeurs boursières surévaluées ; en 2008, les subprimes déclenchent une crise mondiale.",
           "sources": [
             "bdf_crises"
           ]
@@ -92,19 +98,31 @@
       "cours": [
         {
           "titre": "Indices et régulation",
-          "texte": "Le principal indice de la Bourse de Paris est créé en 1987, avec une base de 1 000 points. Depuis 2003, l'Autorité des marchés financiers (AMF) surveille les marchés et protège l'épargne.",
+          "texte": "Un indice, c'est la météo de la Bourse : un seul chiffre pour dire s'il fait beau ou gris sur un groupe d'entreprises. Le principal indice parisien naît en 1987, avec une base de 1 000 points. Depuis 2003, l'AMF joue l'arbitre : elle surveille les marchés et protège l'épargne.",
           "sources": [
             "eco_indice_paris",
             "amf_creation"
-          ]
+          ],
+          "anecdote": {
+            "texte": "En septembre 2000, les Bourses de Paris, Amsterdam et Bruxelles ont fusionné pour former la première Bourse paneuropéenne intégrée.",
+            "sources": [
+              "eco_bourse_histoire"
+            ]
+          }
         },
         {
           "titre": "L'arrivée des particuliers",
-          "texte": "En 2020, près de 1,4 million de particuliers ont acheté ou vendu des actions, avec un âge médian qui passe de 58 à 46 ans. Le nombre de particuliers utilisant des ETF a doublé en 5 ans.",
+          "texte": "Hier réservée aux initiés, la Bourse tient aujourd'hui dans une poche. En 2020, près de 1,4 million de particuliers ont acheté ou vendu des actions, et l'âge médian des acheteurs est passé de 58 à 46 ans. Le nombre de particuliers utilisant des ETF a doublé en 5 ans.",
           "sources": [
             "particuliers_actions_2020",
             "etf_investisseurs_2023"
-          ]
+          ],
+          "anecdote": {
+            "texte": "En 2023, près de 100 000 personnes ont acheté un ETF pour la première fois, dont {{etf_nouveaux_2023}} % avaient moins de 35 ans.",
+            "sources": [
+              "etf_nouveaux_2023"
+            ]
+          }
         }
       ],
       "exercices": [

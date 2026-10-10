@@ -9,12 +9,12 @@
       "cours": [
         {
           "titre": "La finance, c'est quoi ?",
-          "texte": "La finance, c'est tout ce qui fait circuler l'argent : la monnaie, le crédit, les banques. Son histoire est d'abord celle de la confiance : dans une pièce, un billet, une banque. Ce parcours va d'avant la monnaie jusqu'à l'euro.",
+          "texte": "La finance, c'est la plomberie de l'argent : des tuyaux qu'on ne voit pas (monnaie, crédit, banques), mais sans lesquels plus rien ne circule. Son histoire est d'abord celle de la confiance : dans une pièce, un billet, une banque.",
           "sources": []
         },
         {
           "titre": "Avant la monnaie",
-          "texte": "Le récit classique raconte le troc, puis les coquillages et les métaux. La Banque de France souligne pourtant que ce récit est fortement contesté : des formes de dette ont pu jouer un grand rôle avant la monnaie.",
+          "texte": "Le troc, c'est échanger tes baskets contre un vélo… à condition de trouver quelqu'un qui a un vélo ET qui veut tes baskets. Le récit classique dit que la monnaie est née pour régler ce casse-tête. La Banque de France rappelle pourtant que ce récit est fortement contesté : des formes de dette, une sorte d'ardoise, ont pu jouer un grand rôle.",
           "sources": [
             "troc_debat",
             "eco_troc"
@@ -22,18 +22,30 @@
         },
         {
           "titre": "Pièces et billets",
-          "texte": "Les premières pièces apparaissent en Lydie, sous le roi Crésus, au VIe siècle avant J.-C. En France, le « franc à cheval » naît en 1360 pour payer la rançon de Jean le Bon. Le billet de banque, lui, se répand en Europe au XVIIIe siècle.",
+          "texte": "Les premières pièces apparaissent en Lydie, dans l'actuelle Turquie, sous le roi Crésus, au VIe siècle avant J.-C. En France, le « franc à cheval » naît en 1360 pour payer la rançon du roi Jean le Bon, prisonnier des Anglais. Le billet de banque se répand en Europe au XVIIIe siècle.",
           "sources": [
             "bdf_monnaie",
             "billet_18e"
-          ]
+          ],
+          "anecdote": {
+            "texte": "La monnaie a tant enrichi la Lydie qu'economie.gouv.fr présente Crésus comme « le premier homme le plus riche du monde ». Oui, le Crésus de « riche comme Crésus ».",
+            "sources": [
+              "eco_troc"
+            ]
+          }
         },
         {
           "titre": "Les banques centrales",
-          "texte": "La Banque d'Angleterre est créée en 1694, la Banque de France en 1800, la Réserve fédérale américaine en 1913 et la Banque centrale européenne en 1998. Leur mission principale : la stabilité des prix.",
+          "texte": "Une banque centrale, c'est l'arbitre du match de la monnaie : elle émet les billets et veille à ce que les prix restent stables. Banque d'Angleterre en 1694, Banque de France en 1800, Réserve fédérale américaine en 1913, Banque centrale européenne en 1998.",
           "sources": [
             "bdf_banques_centrales"
-          ]
+          ],
+          "anecdote": {
+            "texte": "Pendant la Seconde Guerre mondiale, devant l'avancée allemande, la Banque de France a fait partir son or avec la Marine nationale vers les États-Unis, le Canada, l'Afrique et la Martinique.",
+            "sources": [
+              "bdf_or"
+            ]
+          }
         }
       ],
       "exercices": [
@@ -128,11 +140,31 @@
       "cours": [
         {
           "titre": "La monnaie aujourd'hui",
-          "texte": "Plus de 90 % de la monnaie de la zone euro n'existe que sous forme d'écritures sur des comptes. Elle naît quand les banques accordent des crédits. Les crises bancaires (1720, 2008…) ont conduit à des protections comme la garantie des dépôts jusqu'à 100 000 €.",
+          "texte": "Aujourd'hui, la monnaie est surtout invisible : plus de 90 % n'existe que sous forme d'écritures sur des comptes. Elle naît quand une banque accorde un crédit, comme un tour de magie comptable : « les crédits font les dépôts », dit la Banque de France. En 2021, 57 % des paiements en France se faisaient par carte.",
           "sources": [
             "monnaie_scripturale_part",
+            "bdf_monnaie",
+            "paiements_carte_part"
+          ],
+          "anecdote": {
+            "texte": "Le billet de 500 € a toujours cours légal… mais il n'est plus émis : on peut encore payer avec, impossible d'en obtenir de nouveaux.",
+            "sources": [
+              "bdf_billets_euro"
+            ]
+          }
+        },
+        {
+          "titre": "Les crises",
+          "texte": "Une crise bancaire, c'est une ruée vers la sortie : si tout le monde veut récupérer son argent en même temps, la banque ne peut pas suivre. En 1720, les clients de la banque de Law retirent tout d'un coup, et elle s'effondre ; en 2008, c'est la crise des subprimes. D'où des protections comme la garantie des dépôts, jusqu'à 100 000 € par déposant.",
+          "sources": [
             "bdf_crises"
-          ]
+          ],
+          "anecdote": {
+            "texte": "Dès 1661, la banque de Stockholm de Johan Palmstruch émettait plus de billets qu'elle n'avait de métal en dépôt… Elle a fait banqueroute.",
+            "sources": [
+              "bdf_crises"
+            ]
+          }
         }
       ],
       "exercices": [

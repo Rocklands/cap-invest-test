@@ -171,6 +171,14 @@
     "frais_30ans_ecart": {
       "valeur": 12733,
       "formule": "51 276 − 38 543 = 12 733 €"
+    },
+    "etf_frais_1000": {
+      "valeur": 3.7,
+      "formule": "1 000 € × 0,37 % = 3,70 € par an"
+    },
+    "actifs_frais_1000": {
+      "valeur": 14.7,
+      "formule": "1 000 € × 1,47 % = 14,70 € par an"
     }
   },
   "pea_plafond": {
@@ -310,7 +318,7 @@
   },
   "etf_replication": {
     "valeur": null,
-    "libelle": "Réplication physique (achat des titres) ou synthétique (contrat d'échange avec une contrepartie, exposant à son défaut)",
+    "libelle": "ETF (fonds indiciels cotés) : parts négociées tout au long de la journée en Bourse ; réplication physique (achat des titres de l'indice dans les proportions adéquates) ou synthétique (contrat d'échange avec une contrepartie, exposant à son défaut)",
     "statut": "confirmé",
     "source": "https://www.amf-france.org/sites/institutionnel/files/contenu_simple/lettre_ou_cahier/risques_tendances/Les%20ETF%20%20caracteristiques,%20etat%20des%20lieux%20et%20analyse%20des%20risques%20-%20Le%20cas%20du%20marche%20francais.pdf",
     "site": "amf-france.org",
@@ -528,6 +536,48 @@
     "source": "https://www.amf-france.org/sites/institutionnel/files/2020-01/fiche_inc_2018_placements-atypiques.pdf",
     "site": "amf-france.org",
     "page_datee_du": "2018",
+    "consulte_le": "2026-10-10"
+  },
+  "bdf_or": {
+    "valeur": 47.5,
+    "unite": "%",
+    "libelle": "L'or : once troy (31,1 g) issue d'une mesure de la foire de Troyes ; en 1923 Keynes qualifie l'étalon-or de « relique barbare » ; pendant la Seconde Guerre mondiale, la Banque de France transfère ses réserves d'or avec la Marine nationale ; en 2020, 47,5 % de la demande mondiale vient des placements",
+    "statut": "confirmé",
+    "source": "https://www.banque-france.fr/system/files/2024-08/822073_eco-bref_or_publie.pdf",
+    "site": "banque-france.fr",
+    "consulte_le": "2026-10-10"
+  },
+  "bdf_billets_euro": {
+    "valeur": null,
+    "libelle": "Le billet de 500 € a toujours cours légal mais n'est plus émis ; méthode « TRI » (toucher, regarder, incliner) pour authentifier un billet",
+    "statut": "confirmé",
+    "source": "https://www.banque-france.fr/fr/a-votre-service/particuliers/mieux-connaitre-moyens-paiement/pieces-billets-en-euro",
+    "site": "banque-france.fr",
+    "consulte_le": "2026-10-10"
+  },
+  "etf_nouveaux_2023": {
+    "valeur": 52,
+    "unite": "%",
+    "libelle": "En 2023, près de 100 000 nouveaux investisseurs en ETF, dont 52 % de moins de 35 ans ; parmi les 10 ETF les plus détenus par les particuliers, 4 portent sur les actions américaines",
+    "statut": "confirmé",
+    "source": "https://www.amf-france.org/sites/institutionnel/files/private/2024-04/loe-56_2.pdf",
+    "site": "amf-france.org",
+    "consulte_le": "2026-10-10"
+  },
+  "insee_convertisseur": {
+    "valeur": 1901,
+    "libelle": "Convertisseur Insee : équivalent en pouvoir d'achat d'une somme à une autre époque (euro, franc, ancien franc), disponible à partir de 1901",
+    "statut": "confirmé",
+    "source": "https://www.insee.fr/fr/information/2417794",
+    "site": "insee.fr",
+    "consulte_le": "2026-10-10"
+  },
+  "amf_barometre_precaution": {
+    "valeur": null,
+    "libelle": "Baromètre AMF 2024 : les 2 tiers des Français disposent d'au moins un mois de revenus en épargne de précaution",
+    "statut": "confirmé",
+    "source": "https://www.amf-france.org/sites/institutionnel/files/private/2025-01/barometre-amf-2024-octobre-2024-version-publiable_0.pdf",
+    "site": "amf-france.org",
     "consulte_le": "2026-10-10"
   }
 }

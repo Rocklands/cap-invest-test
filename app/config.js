@@ -3,7 +3,7 @@
 window.CONFIG = {
   SUPABASE_URL: "https://mbciadojlekqxegjxgmt.supabase.co",
   SUPABASE_KEY: "sb_publishable_vZL50FWERUYZwY0oP3WFnA_cDjAG2Jl", // clé publique « publishable » (anon), jamais la clé secrète
-  VERSION: "test-10",
+  VERSION: "test-11",
   // Code d'accès désactivé : application publique.
   CODE_ACCES_SHA256: ""
 };

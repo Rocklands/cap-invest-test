@@ -153,6 +153,9 @@
   .cours-carte .num-cours{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--canard)}
   .cours-carte h2{font-size:26px;line-height:1.15;margin:6px 0 12px}
   .cours-carte p{font-size:18px;line-height:1.5;margin:0 0 12px}
+  .cours-carte .anecdote{background:#FFF6DB;border:2px dashed var(--moutarde);border-radius:14px;padding:10px 12px;margin:2px 0 12px}
+  .cours-carte .anecdote b{font-size:14px;text-transform:uppercase;letter-spacing:.04em}
+  .cours-carte .anecdote p{font-size:16px;margin:4px 0 0}
   .cours-carte .src{margin-top:auto;font-size:13px}
   .cours-carte .src a{color:var(--canard)}
   .points-cours{display:flex;gap:6px;justify-content:center;margin:14px 0}
@@ -479,7 +482,8 @@
         <span class="num-cours">${intro ? "Introduction" : `Carte ${rang} sur ${total}`}</span>
         <h2>${esc(remplit(c.titre))}</h2>
         <p>${esc(remplit(c.texte))}</p>
-        <div class="src">${sourcesCles(c.sources||[])}</div>
+        ${c.anecdote ? `<aside class="anecdote"><b>😄 Le saviez-vous&nbsp;?</b><p>${esc(remplit(c.anecdote.texte))}</p></aside>` : ""}
+        <div class="src">${sourcesCles([...(c.sources||[]), ...((c.anecdote||{}).sources||[])])}</div>
       </article>
       <div class="points-cours" aria-hidden="true">${cartes.map((_,j) => `<i class="${j<=k?"on":""}"></i>`).join("")}</div>
       <div class="ligne-boutons">

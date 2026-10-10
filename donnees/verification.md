@@ -127,3 +127,22 @@ Les cours des 7 autres parcours ne reprennent que des faits déjà confirmés pl
 | Une recherche web évoquait un taux de 36,2 % sur ces plus-values | **Non confirmé** (Bercy indique 6 % du prix, ou 19 % sur la plus-value sur option) | Non utilisé |
 | Art, vin, voitures de collection : « loin de constituer des valeurs refuges » | Confirmé | [AMF, placements atypiques](https://www.amf-france.org/sites/institutionnel/files/2020-01/fiche_inc_2018_placements-atypiques.pdf) |
 | Cartes d'introduction des 8 cours | Définitions générales, sans chiffre | — |
+
+## Cours imagés et anecdotes (10 octobre 2026)
+Les comparaisons (pizza, valise, boule de neige, montagnes russes…) sont des images pédagogiques, pas des faits. Chaque anecdote « Le saviez-vous ? » est sourcée :
+
+| Anecdote | Statut | Source |
+|---|---|---|
+| Once troy issue de la foire de Troyes ; Keynes : étalon-or « relique barbare » (1923) ; or de la BdF évacué avec la Marine nationale (1939-1945) ; 47,5 % de la demande d'or venant des placements (2020) | Confirmé | [BdF, « L'or »](https://www.banque-france.fr/system/files/2024-08/822073_eco-bref_or_publie.pdf) |
+| Crésus « le premier homme le plus riche du monde » | Confirmé | [economie.gouv.fr, Du troc à l'argent](https://www.economie.gouv.fr/facileco/culture-economique/120-000-ans-dhistoire/du-troc-largent) |
+| Agents de change cooptés par boules blanches et noires ; deux femmes admises en 1985 et 1987 ; fusion Paris-Amsterdam-Bruxelles en 2000 | Confirmé | [economie.gouv.fr, Historique](https://www.economie.gouv.fr/facileco/historique) |
+| Indice parisien recalculé toutes les 15 secondes | Confirmé | [economie.gouv.fr](https://www.economie.gouv.fr/facileco/le-cac-40) |
+| Banque de Stockholm (Palmstruch) : billets au-delà des métaux dès 1661, banqueroute | Confirmé | [BdF, crises bancaires](https://www.banque-france.fr/system/files/2024-12/Eco_Bref-Crises-bancaires.pdf) |
+| Billet de 500 € : cours légal mais plus émis | Confirmé | [BdF](https://www.banque-france.fr/fr/a-votre-service/particuliers/mieux-connaitre-moyens-paiement/pieces-billets-en-euro) |
+| « On ne devient pas trader en quelques heures ! » ; spoofing ; faux récupérateurs de fonds | Confirmé | [AMF, arnaques](https://www.amf-france.org/sites/institutionnel/files/pdf/59187/fr/Quelles_sont_les_arnaques_les_plus_courantes_.pdf) |
+| 2023 : ~100 000 nouveaux investisseurs en ETF, 52 % de moins de 35 ans ; 4 des 10 ETF préférés sur actions américaines | Confirmé | [AMF, LOE n° 56](https://www.amf-france.org/sites/institutionnel/files/private/2024-04/loe-56_2.pdf) |
+| Les 2 tiers des Français ont au moins 1 mois de revenus en épargne de précaution | Confirmé | [Baromètre AMF 2024](https://www.amf-france.org/sites/institutionnel/files/private/2025-01/barometre-amf-2024-octobre-2024-version-publiable_0.pdf) |
+| Convertisseur Insee disponible depuis 1901 | Confirmé | [insee.fr](https://www.insee.fr/fr/information/2417794) |
+| Rumeur « taxe Pokémon » démentie | Confirmé | [Bercy décode](https://www.economie.gouv.fr/bercy-decode/les-cartes-pokemon-sont-elles-desormais-dans-le-viseur-du-fisc) |
+| Billet de 500 F = sac de 2,5 kg de pièces | Non vérifié (page BdF introuvable) | Non utilisé |
+| Citation d'Einstein sur les intérêts composés | Sans source | Non utilisé |

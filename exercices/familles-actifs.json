@@ -9,28 +9,34 @@
       "cours": [
         {
           "titre": "C'est quoi, un actif ?",
-          "texte": "Un actif, c'est quelque chose qu'on possède et qui a une valeur : de l'argent sur un livret, une action, une obligation, un logement, de l'or… On regroupe les actifs en familles selon leur fonctionnement, leur risque et la facilité à les revendre. L'AMF les classe de « garanti » à « risqué ».",
+          "texte": "Un actif, c'est tout ce que tu possèdes et qui a une valeur : l'argent d'un livret, une action, un appartement, une pièce d'or… Pense à une équipe de foot : gardien, défenseurs et attaquants n'ont ni le même rôle ni les mêmes risques. Les familles d'actifs, c'est pareil. L'AMF les classe de « garanti » à « risqué ».",
           "sources": [
             "amf_classement_risque"
           ]
         },
         {
           "titre": "Les actions",
-          "texte": "Une action est une part du capital d'une entreprise. L'actionnaire peut recevoir des dividendes, une part des bénéfices. Son prix peut varier brusquement, à la hausse comme à la baisse.",
+          "texte": "Une action, c'est une part de la pizza d'une entreprise : tu en possèdes un morceau. Si l'entreprise fait des bénéfices, elle peut t'en servir une part : le dividende. Si elle va mal, la pizza rétrécit, et ta part avec. Son prix peut varier brusquement.",
           "sources": [
             "amf_actions"
-          ]
+          ],
+          "anecdote": {
+            "texte": "En 2020, l'âge médian des acheteurs d'actions en France est passé de 58 à 46 ans, avec l'arrivée de nombreux jeunes investisseurs.",
+            "sources": [
+              "particuliers_actions_2020"
+            ]
+          }
         },
         {
           "titre": "Coté ou non coté",
-          "texte": "Une action cotée s'échange en Bourse, avec un prix connu chaque jour. Une action non cotée ne s'y échange pas : la revendre peut prendre du temps et sa valeur est estimée. Dans un fonds de capital-investissement (non coté), les parts peuvent être bloquées jusqu'à {{amf_non_cote}} ans.",
+          "texte": "Une action cotée, c'est un objet en vitrine : son prix est affiché et change toute la journée. Une action non cotée, c'est un objet chez un collectionneur : pas d'étiquette, et la revendre suppose de trouver soi-même un acheteur. Dans un fonds de capital-investissement (non coté), les parts peuvent rester bloquées jusqu'à {{amf_non_cote}} ans.",
           "sources": [
             "amf_non_cote"
           ]
         },
         {
           "titre": "Les obligations",
-          "texte": "Acheter une obligation, c'est prêter à un État, une collectivité ou une entreprise, contre un intérêt appelé coupon. La mise est rendue à l'échéance, sauf faillite. Si les taux montent, une obligation à taux fixe perd de la valeur avant l'échéance.",
+          "texte": "Acheter une obligation, c'est jouer le rôle de la banque : tu prêtes à un État ou à une entreprise, qui te verse un intérêt (le coupon) puis te rembourse à l'échéance, sauf faillite. Petit piège : si les taux montent, ton ancienne obligation paraît moins attirante qu'une neuve et perd de la valeur si tu la revends avant la fin.",
           "sources": [
             "amf_obligations"
           ]
@@ -140,19 +146,44 @@
       "cours": [
         {
           "titre": "Livrets, monétaire, immobilier, crypto",
-          "texte": "Selon l'AMF : les livrets sont garantis ; les supports monétaires sont modérément risqués ; l'immobilier « papier » (SCPI…), les obligations et les actions sont risqués. Les crypto-actifs sont très volatils et ne sont pas couverts par la garantie des dépôts.",
+          "texte": "Selon l'AMF, le livret est le coffre-fort (garanti) et le monétaire la tirelire de court terme (modérément risqué). L'immobilier « papier » (SCPI…) ressemble à un appartement en copropriété dont on ne revend pas sa part en un clic : risqué. Les crypto-actifs sont des montagnes russes sans ceinture : très volatils et non couverts par la garantie des dépôts.",
           "sources": [
             "amf_classement_risque",
-            "amf_bitcoin_baisse"
-          ]
+            "amf_scpi"
+          ],
+          "anecdote": {
+            "texte": "Le bitcoin valait 56 301 € en novembre 2021, 15 421 € à Noël 2022 (−73 %)… puis a atteint un record de 106 275 € en octobre 2025. Même actif, montagnes russes en quatre ans.",
+            "sources": [
+              "amf_bitcoin_baisse"
+            ]
+          }
+        },
+        {
+          "titre": "Et l'or ?",
+          "texte": "L'or, c'est le doyen des placements : rare, inaltérable, utilisé depuis la fin de la Préhistoire. Son prix varie selon l'offre et la demande, comme sur n'importe quel marché. En 2020, près de la moitié de la demande mondiale ({{bdf_or}} %) venait des placements (pièces, lingots).",
+          "sources": [
+            "bdf_or"
+          ],
+          "anecdote": {
+            "texte": "L'once troy, l'unité de poids de l'or (31,1 g), vient… de la foire de Troyes, au Moyen Âge. Et en 1923, l'économiste Keynes qualifiait l'étalon-or de « relique barbare ».",
+            "sources": [
+              "bdf_or"
+            ]
+          }
         },
         {
           "titre": "Et les objets de collection ?",
-          "texte": "Art, vin, voitures de collection, cartes à collectionner : pour l'AMF, ces placements atypiques sont « loin de constituer des valeurs refuges ». En février 2026, une carte Pokémon (Pikachu Illustrator) s'est vendue {{bercy_cartes}} millions de dollars. Mais selon Bercy, la très grande majorité des cartes n'a que peu de valeur, et au-delà de 5 000 € la revente d'un objet de collection est taxée.",
+          "texte": "Les objets de collection, c'est la chasse au trésor : quelques pièces valent une fortune, la plupart presque rien. Pour l'AMF, art, vin ou voitures de collection sont « loin de constituer des valeurs refuges ». En février 2026, une carte Pokémon s'est vendue {{bercy_cartes}} millions de dollars, mais selon Bercy, la très grande majorité des cartes vaut peu.",
           "sources": [
             "amf_atypiques",
             "bercy_cartes"
-          ]
+          ],
+          "anecdote": {
+            "texte": "En mars 2026, une rumeur a fait le tour des réseaux : « les cartes Pokémon vont être taxées ! » Bercy a démenti : cette taxe sur les objets de collection existe depuis de nombreuses années.",
+            "sources": [
+              "bercy_cartes"
+            ]
+          }
         }
       ],
       "exercices": [

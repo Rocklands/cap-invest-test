@@ -9,23 +9,29 @@
       "cours": [
         {
           "titre": "Pourquoi parler d'enveloppes ?",
-          "texte": "Pour détenir des actions ou des fonds, on passe par un compte spécial : une enveloppe. En France, les deux plus courantes pour la Bourse sont le PEA et le compte-titres. Elles diffèrent par leurs plafonds, leurs règles de retrait et leur fiscalité.",
+          "texte": "Pour détenir des actions ou des fonds, on passe par un contenant, comme on range des vêtements dans une valise. En France, les deux valises les plus courantes pour la Bourse sont le PEA et le compte-titres : elles n'ont ni la même taille, ni les mêmes règles à la douane (la fiscalité).",
           "sources": []
         },
         {
           "titre": "Une enveloppe, pas un placement",
-          "texte": "Le PEA et le compte-titres sont des enveloppes : des comptes avec leurs propres règles. Le rendement et le risque dépendent de ce qu'on y place. Investir en actions n'offre aucune garantie de capital.",
+          "texte": "Dire « j'ai investi dans un PEA », c'est un peu comme dire « j'ai mangé une assiette » : ce qui compte, c'est ce qu'il y a dedans. Le rendement et le risque viennent des actions ou des fonds placés à l'intérieur. Investir en actions n'offre aucune garantie de capital.",
           "sources": [
             "amf_pea_garantie"
           ]
         },
         {
           "titre": "Le PEA",
-          "texte": "Réservé aux majeurs fiscalement domiciliés en France, un seul par personne. Versements plafonnés à {{pea_plafond}} € (les gains ne comptent pas). Il accueille des actions européennes et des fonds investis à au moins 75 % en actions. Un retrait avant 5 ans clôture en principe le plan.",
+          "texte": "Le PEA, c'est la valise cabine : pratique et avantageuse, mais limitée. Un seul par personne, versements plafonnés à {{pea_plafond}} € (les gains ne comptent pas), surtout des actions européennes et des fonds investis à au moins 75 % en actions. Retirer avant 5 ans clôture en principe le plan.",
           "sources": [
             "pea_plafond",
             "pea_regles"
-          ]
+          ],
+          "anecdote": {
+            "texte": "On peut changer de banque avec son PEA sans perdre ses avantages fiscaux. Mais l'AMF prévient : le transfert peut parfois prendre plusieurs mois.",
+            "sources": [
+              "pea_transfert_max"
+            ]
+          }
         }
       ],
       "exercices": [
@@ -114,18 +120,24 @@
       "cours": [
         {
           "titre": "Le compte-titres",
-          "texte": "Pas de plafond de versement, pas de restriction sur les titres, argent disponible à tout moment. On peut en détenir plusieurs.",
+          "texte": "Le compte-titres, c'est la grande valise sans limite de poids : pas de plafond de versement, presque tous les titres du monde, argent disponible à tout moment. En contrepartie, pas d'avantage fiscal particulier, et on peut en avoir plusieurs.",
           "sources": [
             "amf_pea_garantie"
           ]
         },
         {
           "titre": "La fiscalité en 2026",
-          "texte": "Compte-titres : prélèvement forfaitaire de {{pfu_taux}} % sur les gains ({{pfu_ir}} % d'impôt + {{ps_taux}} % de prélèvements sociaux). PEA après 5 ans : pas d'impôt sur le revenu, mais {{ps_taux}} % de prélèvements sociaux. Ces règles changent souvent.",
+          "texte": "C'est la douane de tes gains. Sur un compte-titres : prélèvement forfaitaire de {{pfu_taux}} % ({{pfu_ir}} % d'impôt + {{ps_taux}} % de prélèvements sociaux). Sur un PEA de plus de 5 ans : pas d'impôt sur le revenu, mais {{ps_taux}} % de prélèvements sociaux.",
           "sources": [
             "pfu_taux",
             "ps_taux"
-          ]
+          ],
+          "anecdote": {
+            "texte": "Les fiches de départ de ce projet indiquaient 30 % : c'était le taux d'avant 2026. Moralité : une info fiscale se vérifie toujours avec sa date.",
+            "sources": [
+              "pfu_taux"
+            ]
+          }
         }
       ],
       "exercices": [

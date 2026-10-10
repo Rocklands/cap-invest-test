@@ -9,21 +9,27 @@
       "cours": [
         {
           "titre": "Débuter, ça commence avant d'investir",
-          "texte": "Avant de choisir un placement, l'AMF décrit plusieurs questions : de quoi ai-je besoin, pour quand, et quel risque suis-je prêt à prendre ? Ce parcours les passe en revue, sans dire quoi faire : chaque situation est différente.",
+          "texte": "Débuter, c'est comme préparer une randonnée : avant de choisir le sommet, on vérifie la météo, l'eau dans le sac et le temps dont on dispose. L'AMF décrit ces questions d'avant-départ. Ce parcours les passe en revue, sans dire quoi faire : chaque situation est différente.",
           "sources": [
             "amf_investir_etapes"
           ]
         },
         {
           "titre": "L'épargne de précaution",
-          "texte": "L'AMF décrit une réserve pour les imprévus, de 2 à 6 mois de revenus selon la situation, placée sur des supports disponibles et sûrs comme les livrets réglementés.",
+          "texte": "C'est la roue de secours : elle ne fait pas aller plus vite, mais elle évite de rester planté au bord de la route. L'AMF évoque 2 à 6 mois de revenus selon la situation, sur des supports disponibles et sûrs, comme les livrets réglementés.",
           "sources": [
             "precaution_mois"
-          ]
+          ],
+          "anecdote": {
+            "texte": "Selon le baromètre 2024 de l'AMF, les deux tiers des Français disposent d'au moins un mois de revenus en épargne de précaution… donc un tiers n'en a pas.",
+            "sources": [
+              "amf_barometre_precaution"
+            ]
+          }
         },
         {
           "titre": "L'horizon",
-          "texte": "Vos projets déterminent votre horizon de placement : court, moyen ou long terme. Pour le court terme, l'AMF décrit des placements disponibles et sans risque de perte de valeur.",
+          "texte": "L'horizon, c'est la date de ton rendez-vous avec ton argent. Pour un rendez-vous dans six mois, on évite un trajet où un bouchon imprévu peut tout retarder. Pour le court terme, l'AMF décrit des placements disponibles et sans risque de perte de valeur.",
           "sources": [
             "amf_investir_etapes"
           ]
@@ -119,7 +125,7 @@
       "cours": [
         {
           "titre": "Le risque",
-          "texte": "Pour l'AMF, le risque accepté, c'est la somme qu'on serait prêt à perdre. Le document d'informations clés (DIC) note le risque d'un produit de 1 à 7 et indique la durée de détention recommandée.",
+          "texte": "Le profil de risque, c'est la tolérance aux montagnes russes : certains adorent, d'autres descendent au premier looping. Pour l'AMF, le risque accepté, c'est la somme qu'on serait prêt à perdre. Le document d'informations clés (DIC) note chaque produit de 1 (le plus calme) à 7 (le plus agité).",
           "sources": [
             "amf_investir_etapes",
             "dic_echelle"
@@ -127,7 +133,7 @@
         },
         {
           "titre": "Diversifier et regarder les frais",
-          "texte": "Répartir ses placements réduit le risque lié à un seul actif, sans supprimer celui du marché. Les frais, eux, se répètent chaque année et pèsent sur la durée.",
+          "texte": "Diversifier, c'est éviter de mettre tous ses œufs dans le même panier : si le panier tombe, tout n'est pas cassé. Mais si tout le marché baisse, tous les paniers sont secoués. Les frais, eux, reviennent chaque année, comme un abonnement oublié.",
           "sources": [
             "amf_investir_etapes",
             "etf_frais"

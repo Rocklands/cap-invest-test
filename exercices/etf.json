@@ -8,22 +8,35 @@
       "titre": "Indice et ETF",
       "cours": [
         {
-          "titre": "Un ETF, en une phrase",
-          "texte": "Un ETF est un fonds qui cherche à reproduire un indice boursier et qui s'échange en Bourse comme une action. Pour le comprendre, on part de l'indice, puis on regarde les frais et les risques.",
+          "titre": "ETF : trois lettres à décoder",
+          "texte": "ETF vient de l'anglais « Exchange Traded Fund » : fonds négocié en Bourse. Un fonds, c'est un pot commun où beaucoup de gens mettent leur argent, géré par une société spécialisée. « Négocié en Bourse », c'est qu'on achète et revend ses parts toute la journée, comme une action. Et la plupart des ETF suivent un indice : on les appelle aussi fonds indiciels cotés.",
           "sources": [
             "etf_replication"
           ]
         },
         {
-          "titre": "L'indice",
-          "texte": "Un indice mesure l'évolution d'un panier d'actions, comme un thermomètre. Il ne s'achète pas directement.",
+          "titre": "D'abord, l'indice",
+          "texte": "Un indice, c'est un classement qui résume la forme de tout un groupe d'entreprises en un seul chiffre, comme le classement général d'un championnat. Exemple : le principal indice parisien regroupe 40 grandes entreprises françaises depuis 1987. Un indice se consulte, il ne s'achète pas directement.",
           "sources": [
             "eco_indice_paris"
+          ],
+          "anecdote": {
+            "texte": "Pendant les heures de Bourse, cet indice est recalculé toutes les 15 secondes.",
+            "sources": [
+              "eco_indice_paris"
+            ]
+          }
+        },
+        {
+          "titre": "Ce que tu possèdes vraiment",
+          "texte": "Copier l'indice soi-même demanderait d'acheter les 40 actions une par une, dans les bonnes proportions : 40 achats, 40 frais, beaucoup de calculs. L'ETF le fait à ta place : avec une seule part, tu détiens indirectement un petit morceau de chacune des 40 entreprises. Si l'indice monte de 2 %, la part monte d'environ 2 % ; s'il baisse, elle baisse aussi.",
+          "sources": [
+            "etf_replication"
           ]
         },
         {
-          "titre": "L'ETF",
-          "texte": "Un ETF, ou fonds indiciel coté, cherche à reproduire la performance d'un indice. Il s'achète et se vend en Bourse. Il suit son indice à la hausse comme à la baisse.",
+          "titre": "Comment il copie",
+          "texte": "Deux recettes pour la même copie. Réplication physique : le fonds achète vraiment les actions de l'indice, dans les bonnes proportions. Réplication synthétique : il passe un contrat avec une institution financière qui lui verse la performance de l'indice ; il dépend alors de la solidité de ce partenaire.",
           "sources": [
             "etf_replication"
           ]
@@ -69,6 +82,25 @@
           ]
         },
         {
+          "id": "ex09",
+          "niveau": 2,
+          "notion": "Ce qu'on possède",
+          "format": "choix",
+          "question": "100 € dans un ETF qui suit 40 entreprises. Que possèdes-tu ?",
+          "options": [
+            "Une seule action choisie au hasard",
+            "Un petit morceau de chacune des 40 entreprises",
+            "Un prêt aux 40 entreprises"
+          ],
+          "reponse": 1,
+          "retour_juste": "Exact ! Une seule part, et un petit bout de tout le panier.",
+          "retour_faux": "Une part d'ETF contient indirectement un petit morceau de chacune des 40 entreprises. Un prêt, c'est l'obligation.",
+          "en_savoir_plus": "Le fonds détient les titres de l'indice dans les bonnes proportions (réplication physique) ou obtient leur performance par contrat (réplication synthétique). Tu ne choisis pas les entreprises : tu prends tout le panier, avec ses hausses et ses baisses.",
+          "sources": [
+            "etf_replication"
+          ]
+        },
+        {
           "id": "ex03",
           "niveau": 3,
           "notion": "Risques",
@@ -94,7 +126,7 @@
       "cours": [
         {
           "titre": "Les frais",
-          "texte": "En 2023, les ETF d'actions coûtaient en moyenne {{etf_frais}} % par an, contre {{fonds_actifs_frais}} % pour les fonds gérés activement (AMF). Sur des décennies, l'écart de frais pèse sur le capital final.",
+          "texte": "Les frais, c'est le petit trou au fond du seau : invisible au début, mais il laisse filer de l'eau chaque année. En 2023, les ETF d'actions coûtaient en moyenne {{etf_frais}} % par an, soit environ 3,70 € pour 1 000 € placés. Pour les fonds d'actions gérés activement : {{fonds_actifs_frais}} %, soit environ 14,70 €. Sur 30 ans, l'écart s'accumule.",
           "sources": [
             "etf_frais",
             "fonds_actifs_frais"
@@ -102,11 +134,17 @@
         },
         {
           "titre": "Les risques",
-          "texte": "Un ETF peut baisser autant que son indice. S'il contient des actions étrangères, les variations des monnaies jouent aussi. Un ETF « synthétique » dépend en plus d'un contrat avec une institution financière.",
+          "texte": "Un ETF diversifié, c'est un convoi de bateaux : si l'un coule, le convoi continue… mais une tempête secoue tout le monde. Il peut donc baisser autant que son indice. S'il contient des actions étrangères, les variations des monnaies jouent aussi.",
           "sources": [
             "etf_replication",
             "amf_pea_garantie"
-          ]
+          ],
+          "anecdote": {
+            "texte": "En 2023, parmi les 10 ETF les plus détenus par les particuliers français, 4 portaient sur les actions américaines.",
+            "sources": [
+              "etf_nouveaux_2023"
+            ]
+          }
         }
       ],
       "exercices": [

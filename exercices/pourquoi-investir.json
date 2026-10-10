@@ -9,22 +9,28 @@
       "cours": [
         {
           "titre": "Investir, c'est quoi ?",
-          "texte": "Épargner, c'est mettre de l'argent de côté. Investir, c'est placer cette épargne dans un actif (une entreprise, un prêt, de l'immobilier…) dans l'espoir qu'il rapporte, en acceptant qu'il puisse perdre de la valeur. Ce parcours explique pourquoi certains le font : inflation, intérêts composés et temps.",
+          "texte": "Imagine ton épargne comme des graines. Les garder dans un tiroir, c'est épargner : elles restent sous la main. Les planter, c'est investir : on espère qu'elles poussent, en acceptant qu'une partie ne lève pas. Ce parcours explique pourquoi certains choisissent de planter.",
           "sources": [
             "amf_rendement_risque"
           ]
         },
         {
           "titre": "L'inflation",
-          "texte": "Pour l'Insee, l'inflation est une perte du pouvoir d'achat de la monnaie : les prix montent de façon générale et durable. Sur un an, les prix ont augmenté de {{inflation_1an}} % en septembre 2026 (estimation provisoire). Un billet garde le même montant, mais il achète moins.",
+          "texte": "L'inflation, c'est une petite fuite dans ton porte-monnaie : le billet garde le même montant, mais il achète un peu moins chaque année. L'Insee la définit comme une perte du pouvoir d'achat de la monnaie. En septembre 2026, les prix ont augmenté de {{inflation_1an}} % sur un an (estimation provisoire).",
           "sources": [
             "definition_inflation",
             "inflation_1an"
-          ]
+          ],
+          "anecdote": {
+            "texte": "L'Insee propose un convertisseur qui traduit une somme d'une année en son équivalent d'aujourd'hui, en francs, anciens francs ou euros, depuis 1901. Pratique pour vérifier si « tout était moins cher avant ».",
+            "sources": [
+              "insee_convertisseur"
+            ]
+          }
         },
         {
           "titre": "Les intérêts composés",
-          "texte": "Quand les gains sont réinvestis, ils rapportent à leur tour : c'est l'effet boule de neige. L'AMF le chiffre ainsi : à 5 % par an, un capital est multiplié par 4,3 en 30 ans. Ce taux est une hypothèse de calcul, pas une promesse.",
+          "texte": "C'est l'effet boule de neige : plus la boule est grosse, plus elle ramasse de neige en roulant. Quand les gains sont réinvestis, ils rapportent à leur tour. L'AMF le chiffre : à 5 % par an, un capital est multiplié par 4,3 en 30 ans. Ce taux est une hypothèse de calcul, pas une promesse.",
           "sources": [
             "amf_5pct_30ans"
           ]
@@ -141,7 +147,7 @@
       "cours": [
         {
           "titre": "Rendement et risque",
-          "texte": "L'AMF le rappelle : il n'y a pas de rendement élevé sans risque élevé. Sur les actions françaises entre 1950 et 2020, une année a pu aller d'une chute pire que {{actions_fr_1an_p1}} % à une hausse de plus de +{{actions_fr_1an_p99}} %, après inflation.",
+          "texte": "Le rendement, c'est la récompense ; le risque, c'est le prix du ticket. Comme au manège : plus ça secoue, plus il y a de sensations… et de risques d'avoir mal au cœur. Entre 1950 et 2020, une année d'actions françaises a pu aller d'une chute pire que {{actions_fr_1an_p1}} % à une hausse de plus de +{{actions_fr_1an_p99}} %, après inflation.",
           "sources": [
             "amf_rendement_risque",
             "actions_fr"
@@ -149,7 +155,7 @@
         },
         {
           "titre": "Le temps",
-          "texte": "Sur ces mêmes données, plus la durée de détention était longue, moins les pires résultats étaient sévères. Mais l'AMF note que 20 ans n'ont pas suffi à effacer totalement le risque. C'est une observation du passé, pas une garantie.",
+          "texte": "Le temps agit comme un amortisseur : sur un trajet court, chaque nid-de-poule se sent ; sur un long trajet, ils se diluent dans la distance. Sur les actions françaises, plus la durée était longue, moins les pires résultats étaient sévères. Mais l'AMF note que 20 ans n'ont pas suffi à effacer tout risque : c'est le passé, pas une garantie.",
           "sources": [
             "actions_fr"
           ]

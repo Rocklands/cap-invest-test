@@ -9,24 +9,36 @@
       "cours": [
         {
           "titre": "Pourquoi un parcours sur les arnaques ?",
-          "texte": "Les escrocs suivent les modes (crypto, placements « verts », formations au trading) et imitent les acteurs sérieux. L'AMF publie des listes et des conseils pour les repérer. Ce parcours montre les signaux d'alerte les plus fréquents.",
+          "texte": "Les escrocs sont des caméléons : ils prennent la couleur de la mode du moment (crypto, placements « verts », formations au trading) et copient les acteurs sérieux. Ce parcours montre les signaux d'alerte décrits par l'AMF.",
           "sources": [
             "amf_arnaques"
           ]
         },
         {
           "titre": "Trop beau pour être vrai",
-          "texte": "Pas de rendement élevé sans risque élevé : une offre qui promet les deux à la fois est un signal d'alerte. Les escrocs imitent aussi l'épargne réputée sûre.",
+          "texte": "Une offre « gros rendement, zéro risque », c'est comme une pizza gratuite, livrée en 5 minutes et sans calories : ça n'existe pas. L'AMF le rappelle : pas de rendement élevé sans risque élevé.",
           "sources": [
             "amf_rendement_risque"
-          ]
+          ],
+          "anecdote": {
+            "texte": "L'AMF le dit sans détour : « On ne devient pas trader en quelques heures ! » Les formations miracles qui promettent le contraire sont un classique des escrocs.",
+            "sources": [
+              "amf_arnaques"
+            ]
+          }
         },
         {
           "titre": "Pression et faux conseillers",
-          "texte": "L'urgence (« décidez avant ce soir ») est un grand classique. Logos, sites et numéros de téléphone peuvent être copiés. Aucune autorité publique, AMF comprise, ne démarche pour proposer un placement.",
+          "texte": "« Décidez avant ce soir ! » : l'urgence est le levier préféré des escrocs, comme le vendeur qui jure qu'il ne reste qu'un exemplaire. Logos, sites et documents peuvent être copiés. Aucune autorité publique, AMF comprise, ne démarche pour proposer un placement.",
           "sources": [
             "amf_arnaques"
-          ]
+          ],
+          "anecdote": {
+            "texte": "Les escrocs peuvent même afficher le vrai numéro de ta banque ou de l'AMF sur ton téléphone : c'est le « spoofing ». Le réflexe décrit par l'AMF : raccrocher, puis rappeler soi-même ce numéro.",
+            "sources": [
+              "amf_arnaques"
+            ]
+          }
         }
       ],
       "exercices": [
@@ -95,17 +107,23 @@
       "cours": [
         {
           "titre": "Les pyramides",
-          "texte": "Dans une pyramide de Ponzi, l'argent des nouveaux paie les « gains » des anciens. Quand les nouveaux versements s'arrêtent, le fraudeur disparaît.",
+          "texte": "Une pyramide de Ponzi, c'est une chaîne de lettres avec de l'argent : les nouveaux venus paient les « gains » des anciens, jusqu'à ce que la chaîne casse. Quand les nouveaux versements s'arrêtent, le fraudeur disparaît.",
           "sources": [
             "amf_arnaques"
           ]
         },
         {
           "titre": "Vérifier et réagir",
-          "texte": "Registres officiels (Orias, Regafi), listes blanches et listes noires de l'AMF permettent de vérifier un intermédiaire. Après une arnaque, la seule voie est la plainte : méfiance envers les faux « récupérateurs de fonds ».",
+          "texte": "Vérifier un intermédiaire, c'est comme vérifier la licence d'un taxi avant de monter : registres officiels (Orias, Regafi), listes blanches et listes noires de l'AMF. Après une arnaque, la voie décrite par l'AMF est la plainte.",
           "sources": [
             "amf_arnaques"
-          ]
+          ],
+          "anecdote": {
+            "texte": "Après une première arnaque, de faux avocats rappellent parfois les victimes pour « récupérer leurs fonds »… contre des frais. C'est une deuxième arnaque.",
+            "sources": [
+              "amf_arnaques"
+            ]
+          }
         }
       ],
       "exercices": [
