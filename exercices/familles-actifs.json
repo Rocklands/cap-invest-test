@@ -256,7 +256,7 @@
             "Oui, et le prix est garanti"
           ],
           "reponse": 1,
-          "retour_juste": "Exact ! Il faut trouver un acheteur, et le capital n'est pas garanti.",
+          "retour_juste": "Exact ! La revente dépend de la présence d'un acheteur, et le capital n'est pas garanti.",
           "retour_faux": "Pas forcément : selon l'AMF, la revente peut prendre des semaines, voire des mois.",
           "en_savoir_plus": "L'AMF rappelle que le capital investi en SCPI n'est pas garanti : la valeur suit le marché de l'immobilier et les loyers peuvent baisser.",
           "sources": [
