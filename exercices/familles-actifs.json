@@ -5,7 +5,7 @@
   "_note": "Les {{cle}} renvoient à donnees/chiffres.json.",
   "lecons": [
     {
-      "titre": "Actions et obligations",
+      "titre": "Actions, coté et non coté",
       "cours": [
         {
           "titre": "C'est quoi, un actif ?",
@@ -16,7 +16,7 @@
         },
         {
           "titre": "Les actions",
-          "texte": "Une action, c'est une part de la pizza d'une entreprise : tu en possèdes un morceau. Si l'entreprise fait des bénéfices, elle peut t'en servir une part : le dividende. Si elle va mal, la pizza rétrécit, et ta part avec. Son prix peut varier brusquement.",
+          "texte": "Une action, c'est une part de la pizza d'une entreprise : si Mona achète une action, elle possède un petit morceau de l'entreprise. Si l'entreprise fait des bénéfices, elle peut lui en servir une part : le dividende. Si elle va mal, la pizza rétrécit, et la part de Mona avec. Le prix d'une action peut varier brusquement.",
           "sources": [
             "amf_actions"
           ],
@@ -29,16 +29,23 @@
         },
         {
           "titre": "Coté ou non coté",
-          "texte": "Une action cotée, c'est un objet en vitrine : son prix est affiché et change toute la journée. Une action non cotée, c'est un objet chez un collectionneur : pas d'étiquette, et la revendre suppose de trouver soi-même un acheteur. Dans un fonds de capital-investissement (non coté), les parts peuvent rester bloquées jusqu'à {{amf_non_cote}} ans.",
+          "texte": "Une société cotée, c'est un restaurant qui a ouvert son capital à tous : n'importe qui peut acheter une part de l'affaire en Bourse, et le prix s'affiche toute la journée. Une société non cotée, c'est un restaurant de famille : les parts restent entre les fondateurs, des proches ou des investisseurs choisis. Selon economie.gouv.fr, toutes les sociétés anonymes émettent des actions, mais seules les plus grandes ou les plus attractives sont cotées.",
           "sources": [
-            "amf_non_cote"
+            "eco_cotation"
           ]
         },
         {
-          "titre": "Les obligations",
-          "texte": "Acheter une obligation, c'est jouer le rôle de la banque : tu prêtes à un État ou à une entreprise, qui te verse un intérêt (le coupon) puis te rembourse à l'échéance, sauf faillite. Petit piège : si les taux montent, ton ancienne obligation paraît moins attirante qu'une neuve et perd de la valeur si tu la revends avant la fin.",
+          "titre": "Pourquoi rester hors de la Bourse ?",
+          "texte": "Rester non coté peut être un choix : garder la main sur qui entre au capital, plutôt que d'ouvrir la porte à tout le monde. Cela peut aussi être une question de moyens : en échange de l'argent levé en Bourse, une société cotée a des obligations de transparence (rapports annuels et semestriels, informations importantes publiées sans délai), et l'entrée en Bourse demande un prospectus visé par l'AMF. Plus d'actionnaires, c'est plus de comptes à rendre.",
           "sources": [
-            "amf_obligations"
+            "amf_obligations_cotees"
+          ]
+        },
+        {
+          "titre": "Et pour l'investisseur ?",
+          "texte": "Côté investisseur, une part de société non cotée n'a pas de prix affiché chaque jour : sa valeur est estimée, et la revendre suppose de trouver soi-même un acheteur. Dans un fonds de capital-investissement (qui achète des parts de sociétés non cotées), les parts peuvent rester bloquées jusqu'à {{amf_non_cote}} ans.",
+          "sources": [
+            "amf_non_cote"
           ]
         }
       ],
@@ -60,6 +67,26 @@
           "en_savoir_plus": "Selon l'AMF, l'actionnaire peut participer à la vie de l'entreprise et percevoir des dividendes, une quote-part des bénéfices. En contrepartie, le cours peut varier brusquement.",
           "sources": [
             "amf_actions"
+          ]
+        },
+        {
+          "id": "ex10",
+          "niveau": 2,
+          "notion": "Coté ou non coté",
+          "format": "choix",
+          "question": "Pourquoi une entreprise peut-elle choisir de ne pas entrer en Bourse ?",
+          "options": [
+            "Les PME n'ont pas le droit d'être cotées",
+            "Pour garder la main sur ses actionnaires et éviter de lourdes obligations",
+            "Parce que ses actions n'ont aucune valeur"
+          ],
+          "reponse": 1,
+          "retour_juste": "Exact ! Choisir ses actionnaires et s'éviter des obligations de transparence, ce sont deux raisons fréquentes.",
+          "retour_faux": "Une entreprise peut préférer choisir ses actionnaires, et s'éviter les obligations d'une société cotée. Ses actions ont bien une valeur, simplement pas affichée en Bourse.",
+          "en_savoir_plus": "Selon l'AMF, en contrepartie des fonds levés auprès des investisseurs, une société cotée publie des rapports annuels et semestriels et rend publiques sans délai les informations susceptibles d'influer sur son cours. Selon economie.gouv.fr, seules les plus grandes ou les plus attractives des sociétés anonymes sont cotées.",
+          "sources": [
+            "amf_obligations_cotees",
+            "eco_cotation"
           ]
         },
         {
@@ -100,50 +127,19 @@
           "sources": [
             "amf_non_cote"
           ]
-        },
-        {
-          "id": "ex02",
-          "niveau": 2,
-          "notion": "Les obligations",
-          "format": "choix",
-          "question": "Acheter une obligation, c'est…",
-          "options": [
-            "Prêter de l'argent à un État ou une entreprise",
-            "Acheter une part d'entreprise",
-            "Ouvrir un livret garanti"
-          ],
-          "reponse": 0,
-          "retour_juste": "Exact ! Tu prêtes, et tu reçois un intérêt appelé coupon.",
-          "retour_faux": "Une obligation est un prêt : à un État, une collectivité ou une entreprise.",
-          "en_savoir_plus": "L'AMF précise qu'on récupère sa mise à l'échéance, sauf en cas de faillite de l'émetteur. Le risque dépend donc de la solidité de l'emprunteur.",
-          "sources": [
-            "amf_obligations"
-          ]
-        },
-        {
-          "id": "ex06",
-          "niveau": 6,
-          "notion": "Les obligations",
-          "format": "choix",
-          "question": "Les taux montent. Ton obligation à taux fixe déjà achetée…",
-          "options": [
-            "Prend de la valeur",
-            "Perd de la valeur si on la revend avant l'échéance",
-            "Ne change jamais de valeur"
-          ],
-          "reponse": 1,
-          "retour_juste": "Exact ! Les nouvelles obligations rapportent plus, donc les anciennes valent moins.",
-          "retour_faux": "Elle perd de la valeur : les nouvelles obligations offrent de meilleurs coupons.",
-          "en_savoir_plus": "L'AMF l'explique ainsi : quand les taux montent, la valeur des obligations à taux fixe déjà émises baisse, et inversement. Garder l'obligation jusqu'à l'échéance évite cette perte, sauf faillite de l'émetteur.",
-          "sources": [
-            "amf_obligations"
-          ]
         }
       ]
     },
     {
-      "titre": "Les autres familles",
+      "titre": "Obligations et autres familles",
       "cours": [
+        {
+          "titre": "Les obligations",
+          "texte": "Acheter une obligation, c'est jouer le rôle de la banque : tu prêtes à un État ou à une entreprise, qui te verse un intérêt (le coupon) puis te rembourse à l'échéance, sauf faillite. Petit piège : si les taux montent, ton ancienne obligation paraît moins attirante qu'une neuve et perd de la valeur si tu la revends avant la fin.",
+          "sources": [
+            "amf_obligations"
+          ]
+        },
         {
           "titre": "Livrets, monétaire, immobilier, crypto",
           "texte": "Selon l'AMF, le livret est le coffre-fort (garanti) et le monétaire la tirelire de court terme (modérément risqué). L'immobilier « papier » (SCPI…) ressemble à un appartement en copropriété dont on ne revend pas sa part en un clic : risqué. Les crypto-actifs sont des montagnes russes sans ceinture : très volatils et non couverts par la garantie des dépôts.",
@@ -187,6 +183,44 @@
         }
       ],
       "exercices": [
+        {
+          "id": "ex02",
+          "niveau": 2,
+          "notion": "Les obligations",
+          "format": "choix",
+          "question": "Acheter une obligation, c'est…",
+          "options": [
+            "Prêter de l'argent à un État ou une entreprise",
+            "Acheter une part d'entreprise",
+            "Ouvrir un livret garanti"
+          ],
+          "reponse": 0,
+          "retour_juste": "Exact ! Tu prêtes, et tu reçois un intérêt appelé coupon.",
+          "retour_faux": "Une obligation est un prêt : à un État, une collectivité ou une entreprise.",
+          "en_savoir_plus": "L'AMF précise qu'on récupère sa mise à l'échéance, sauf en cas de faillite de l'émetteur. Le risque dépend donc de la solidité de l'emprunteur.",
+          "sources": [
+            "amf_obligations"
+          ]
+        },
+        {
+          "id": "ex06",
+          "niveau": 6,
+          "notion": "Les obligations",
+          "format": "choix",
+          "question": "Les taux montent. Ton obligation à taux fixe déjà achetée…",
+          "options": [
+            "Prend de la valeur",
+            "Perd de la valeur si on la revend avant l'échéance",
+            "Ne change jamais de valeur"
+          ],
+          "reponse": 1,
+          "retour_juste": "Exact ! Les nouvelles obligations rapportent plus, donc les anciennes valent moins.",
+          "retour_faux": "Elle perd de la valeur : les nouvelles obligations offrent de meilleurs coupons.",
+          "en_savoir_plus": "L'AMF l'explique ainsi : quand les taux montent, la valeur des obligations à taux fixe déjà émises baisse, et inversement. Garder l'obligation jusqu'à l'échéance évite cette perte, sauf faillite de l'émetteur.",
+          "sources": [
+            "amf_obligations"
+          ]
+        },
         {
           "id": "ex05",
           "niveau": 5,

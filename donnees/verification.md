@@ -146,3 +146,11 @@ Les comparaisons (pizza, valise, boule de neige, montagnes russes…) sont des i
 | Rumeur « taxe Pokémon » démentie | Confirmé | [Bercy décode](https://www.economie.gouv.fr/bercy-decode/les-cartes-pokemon-sont-elles-desormais-dans-le-viseur-du-fisc) |
 | Billet de 500 F = sac de 2,5 kg de pièces | Non vérifié (page BdF introuvable) | Non utilisé |
 | Citation d'Einstein sur les intérêts composés | Sans source | Non utilisé |
+
+## Non coté et mascotte (11 octobre 2026)
+| Fait | Statut | Source |
+|---|---|---|
+| Toutes les sociétés anonymes émettent des actions, seules les plus grandes ou les plus attractives sont cotées | Confirmé | [economie.gouv.fr, La Bourse à quoi ça sert ?](https://www.economie.gouv.fr/facileco/la-bourse-quoi-ca-sert) |
+| En contrepartie des fonds levés, obligations de transparence des sociétés cotées ; prospectus visé par l'AMF | Confirmé | [AMF, obligations d'information des sociétés cotées](https://www.amf-france.org/en/news-publications/depth/information-obligations-listed-companies) (21/02/2020) |
+| « Garder la main sur qui entre au capital » | Raisonnement pédagogique (proposé par l'équipe), pas un chiffre | — |
+| Exemples avec Mona (100 €, 1 000 € à 5 %) | Hypothèses fictives ; 1 000 × 1,05^30 = 4 321,94 € | Recalculé |

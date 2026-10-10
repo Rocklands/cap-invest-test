@@ -9,7 +9,7 @@
       "cours": [
         {
           "titre": "Investir, c'est quoi ?",
-          "texte": "Imagine ton épargne comme des graines. Les garder dans un tiroir, c'est épargner : elles restent sous la main. Les planter, c'est investir : on espère qu'elles poussent, en acceptant qu'une partie ne lève pas. Ce parcours explique pourquoi certains choisissent de planter.",
+          "texte": "Avant l'hiver, Mona la marmotte fait des réserves : c'est épargner, mettre de côté. Investir, c'est autre chose : placer ces réserves pour qu'elles travaillent, comme planter des graines qui peuvent pousser… ou ne pas lever. Ce parcours explique pourquoi certains choisissent de planter : inflation, intérêts composés et temps.",
           "sources": [
             "amf_rendement_risque"
           ]
@@ -30,7 +30,7 @@
         },
         {
           "titre": "Les intérêts composés",
-          "texte": "C'est l'effet boule de neige : plus la boule est grosse, plus elle ramasse de neige en roulant. Quand les gains sont réinvestis, ils rapportent à leur tour. L'AMF le chiffre : à 5 % par an, un capital est multiplié par 4,3 en 30 ans. Ce taux est une hypothèse de calcul, pas une promesse.",
+          "texte": "C'est l'effet boule de neige : plus la boule est grosse, plus elle ramasse de neige en roulant. Si Mona place 1 000 € à 5 % par an et réinvestit ses gains, ceux-ci rapportent à leur tour : au bout de 30 ans, cela ferait environ 4 320 €. L'AMF fait le même calcul (×4,3 en 30 ans). Ce taux de 5 % est une hypothèse, pas une promesse.",
           "sources": [
             "amf_5pct_30ans"
           ]

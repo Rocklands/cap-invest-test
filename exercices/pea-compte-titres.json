@@ -21,7 +21,7 @@
         },
         {
           "titre": "Le PEA",
-          "texte": "Le PEA, c'est la valise cabine : pratique et avantageuse, mais limitée. Un seul par personne, versements plafonnés à {{pea_plafond}} € (les gains ne comptent pas), surtout des actions européennes et des fonds investis à au moins 75 % en actions. Retirer avant 5 ans clôture en principe le plan.",
+          "texte": "Le PEA, c'est la valise cabine de Mona : pratique et avantageuse, mais limitée. Un seul par personne, versements plafonnés à {{pea_plafond}} € (les gains ne comptent pas), surtout des actions européennes et des fonds investis à au moins 75 % en actions. Si Mona retire de l'argent avant 5 ans, le plan est en principe clôturé.",
           "sources": [
             "pea_plafond",
             "pea_regles"

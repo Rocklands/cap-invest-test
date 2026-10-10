@@ -579,5 +579,22 @@
     "source": "https://www.amf-france.org/sites/institutionnel/files/private/2025-01/barometre-amf-2024-octobre-2024-version-publiable_0.pdf",
     "site": "amf-france.org",
     "consulte_le": "2026-10-10"
+  },
+  "eco_cotation": {
+    "valeur": null,
+    "libelle": "Toutes les sociétés anonymes émettent des actions mais toutes ne sont pas cotées : seules les plus grandes ou les plus attractives le sont ; marché primaire = « marché du neuf », secondaire = « marché d'occasion »",
+    "statut": "confirmé",
+    "source": "https://www.economie.gouv.fr/facileco/la-bourse-quoi-ca-sert",
+    "site": "economie.gouv.fr",
+    "consulte_le": "2026-10-11"
+  },
+  "amf_obligations_cotees": {
+    "valeur": null,
+    "libelle": "En contrepartie des fonds levés auprès des investisseurs, les sociétés cotées doivent respecter des obligations de transparence (rapports annuels et semestriels, publication sans délai des informations susceptibles d'influer sur le cours) ; une introduction en Bourse nécessite un prospectus visé par l'AMF",
+    "statut": "confirmé",
+    "source": "https://www.amf-france.org/en/news-publications/depth/information-obligations-listed-companies",
+    "site": "amf-france.org",
+    "page_datee_du": "2020-02-21",
+    "consulte_le": "2026-10-11"
   }
 }

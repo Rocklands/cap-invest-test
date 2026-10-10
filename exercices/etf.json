@@ -28,8 +28,8 @@
           }
         },
         {
-          "titre": "Ce que tu possèdes vraiment",
-          "texte": "Copier l'indice soi-même demanderait d'acheter les 40 actions une par une, dans les bonnes proportions : 40 achats, 40 frais, beaucoup de calculs. L'ETF le fait à ta place : avec une seule part, tu détiens indirectement un petit morceau de chacune des 40 entreprises. Si l'indice monte de 2 %, la part monte d'environ 2 % ; s'il baisse, elle baisse aussi.",
+          "titre": "Ce que Mona possède vraiment",
+          "texte": "Mona met 100 € dans un ETF qui suit un indice de 40 entreprises. Copier l'indice elle-même demanderait 40 achats, 40 frais et beaucoup de calculs. Avec une seule part, elle détient indirectement un petit morceau de chacune des 40 entreprises. Si l'indice monte de 2 %, sa part monte d'environ 2 % ; s'il baisse, elle baisse aussi.",
           "sources": [
             "etf_replication"
           ]
@@ -126,7 +126,7 @@
       "cours": [
         {
           "titre": "Les frais",
-          "texte": "Les frais, c'est le petit trou au fond du seau : invisible au début, mais il laisse filer de l'eau chaque année. En 2023, les ETF d'actions coûtaient en moyenne {{etf_frais}} % par an, soit environ 3,70 € pour 1 000 € placés. Pour les fonds d'actions gérés activement : {{fonds_actifs_frais}} %, soit environ 14,70 €. Sur 30 ans, l'écart s'accumule.",
+          "texte": "Les frais, c'est le petit trou au fond du seau : invisible au début, mais il laisse filer de l'eau chaque année. En 2023, les ETF d'actions coûtaient en moyenne {{etf_frais}} % par an : pour les 1 000 € de Mona, environ 3,70 € par an. Dans un fonds d'actions géré activement ({{fonds_actifs_frais}} % en moyenne), ce serait environ 14,70 €. Sur 30 ans, l'écart s'accumule.",
           "sources": [
             "etf_frais",
             "fonds_actifs_frais"
