@@ -44,6 +44,10 @@
   .connexion input{width:100%;padding:12px;border:2px solid var(--encre);border-radius:10px;margin:10px 0}
   .erreur{color:#B33A22;font-weight:700}
   .vide{color:var(--douce);font-style:italic}
+  .idee{padding:10px 0;border-bottom:1px solid var(--trait)}
+  .idee:last-child{border-bottom:0}
+  .idee p{margin:0}
+  .idee .texte{white-space:pre-wrap;overflow-wrap:anywhere;margin-top:4px}
 </style>
 </head>
 <body>
@@ -84,7 +88,15 @@
         method:"POST", headers:{ "apikey":CFG.SUPABASE_KEY, "Content-Type":"application/json" }, body: JSON.stringify({ cle })
       });
       if (!r.ok){ try { sessionStorage.removeItem("cle_tdb"); localStorage.removeItem("cle_tdb"); } catch(e){} return connexion("Clé refusée."); }
-      affiche(await r.json());
+      const d = await r.json();
+      // Boîte à idées : lue à part, le tableau reste utilisable si la table n'existe pas encore
+      try {
+        const s = await fetch(CFG.SUPABASE_URL.replace(/\/$/,"") + "/rest/v1/rpc/suggestions_privees", {
+          method:"POST", headers:{ "apikey":CFG.SUPABASE_KEY, "Content-Type":"application/json" }, body: JSON.stringify({ cle })
+        });
+        d.suggestions = s.ok ? await s.json() : null;
+      } catch(e){ d.suggestions = null; }
+      affiche(d);
     } catch(e){ connexion("Connexion impossible. Réessaie."); }
   }
 
@@ -123,6 +135,13 @@
         <section><h2>Visites par jour</h2><div class="carte">${(d.par_jour||[]).length ? barres((d.par_jour||[]).map(j => [new Date(j.jour).toLocaleDateString("fr-FR",{weekday:"short",day:"numeric",month:"short"}), j.visites])) : `<p class="vide">Pas encore de données.</p>`}</div></section>
       </div>
 
+      <h2>Boîte à idées ${d.suggestions && d.suggestions.length ? `<span class="sous">(${nb(d.suggestions.length)})</span>` : ""}</h2>
+      <div class="carte">${d.suggestions === null ? `<p class="vide">Boîte à idées pas encore activée côté base de données (script supabase/suggestions.sql).</p>`
+        : d.suggestions.length ? d.suggestions.map(s => `<div class="idee">
+            <p class="sous">${new Date(s.cree_le).toLocaleString("fr-FR",{dateStyle:"short",timeStyle:"short"})} · ${s.pseudo ? `<b>${esc(s.pseudo)}</b>` : `visiteur ${esc(s.visiteur)}`} · ${{carte:"depuis la carte",fin:"fin de parcours",fin_lecon:"fin de leçon"}[s.origine] || "—"}${s.parcours ? " · " + esc(nom(s.parcours)) : ""}</p>
+            <p class="texte">${esc(s.texte)}</p></div>`).join("")
+        : `<p class="vide">Aucune suggestion pour l'instant.</p>`}</div>
+
       <h2>Parcours</h2>
       <div class="carte defile"><table>
         <thead><tr><th>Parcours</th><th></th><th>Commencés</th><th>Terminés (2 leçons)</th><th>Taux de fin</th><th>% bonnes réponses</th><th>Cours lus</th><th>Cours passés</th><th>Lecture du cours</th><th>Suite : oui</th><th>Peut-être</th><th>Non</th></tr></thead>
@@ -151,7 +170,7 @@
       <h2>Personnages choisis</h2>
       <div class="carte">${Object.keys(pers).length ? barres(["cupide","sceptique","touriste","stratege"].map(k => [{cupide:"Cupide",sceptique:"Sceptique",touriste:"Touriste",stratege:"Stratège"}[k], pers[k]||0])) : `<p class="vide">Pas encore de données.</p>`}</div>
 
-      <p class="legende" style="margin-top:24px">Données anonymes : aucun nom, e-mail ni adresse IP n'est stocké dans les tables. Export détaillé possible depuis Supabase (tables <code>reponses</code> et <code>evenements</code>).</p>`;
+      <p class="legende" style="margin-top:24px">Données anonymes : aucun nom, e-mail ni adresse IP n'est stocké dans les tables. Export détaillé possible depuis Supabase (tables <code>reponses</code>, <code>evenements</code> et <code>suggestions</code>).</p>`;
     app.querySelector("#maj").onclick = () => charge(lireCle());
     app.querySelector("#quitter").onclick = () => { try { sessionStorage.removeItem("cle_tdb"); localStorage.removeItem("cle_tdb"); } catch(e){} connexion(); };
   }

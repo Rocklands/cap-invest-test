@@ -52,6 +52,11 @@
   .option[disabled]{cursor:default}
   .option .num{display:inline-grid;place-items:center;width:26px;height:26px;margin-right:10px;border-radius:50%;background:var(--moutarde);border:2px solid var(--encre);font-weight:700;font-size:14px;vertical-align:middle}
   .option .num:empty{background:var(--papier)}
+  .indice{margin:-4px 0 14px;font-size:15px}
+  .indice summary{display:inline-block;cursor:pointer;font-weight:700;color:var(--canard);text-decoration:underline;list-style:none}
+  .indice summary::-webkit-details-marker{display:none}
+  .indice p{margin:8px 0 0;padding:10px 12px;background:#FFF6DC;border:2px solid var(--moutarde);border-radius:12px}
+  .option .ton-rang{display:block;margin:4px 0 0 36px;font-size:13px;font-weight:700;color:#B33A22}
   .grille{display:grid;grid-template-columns:1fr 1fr;gap:10px}
   .grille .option{margin:0;text-align:center;min-height:76px;display:grid;place-items:center;font-weight:700}
 
@@ -183,6 +188,18 @@
   .suite .ligne-boutons{flex-wrap:wrap}
   .suite .bouton{flex:1 1 30%;font-size:16px;padding:13px 8px}
   .merci{font-family:Fraunces,serif;font-size:22px;margin-top:18px}
+
+  /* Boîte à idées */
+  .idee-entree{display:flex;align-items:center;gap:12px;width:100%;text-align:left;margin-top:18px;background:#FFF6DC;border-color:var(--moutarde)}
+  .idee-entree b{font-family:Fraunces,serif;font-size:18px;display:block;color:var(--encre)}
+  .idee-entree span{font-size:14px;color:var(--encre-douce)}
+  .idee-entree > span:first-child{font-size:28px;flex:none}
+  .idee-entree .etat{margin-left:auto;flex:none;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;padding:3px 8px;border-radius:999px;border:1.5px solid var(--encre);background:var(--moutarde);color:var(--encre)}
+  .lien-idee{display:block;margin:14px auto 0;border:0;background:none;color:var(--canard);font-weight:700;text-decoration:underline;font-size:15px}
+  .idees h1{font-size:28px;margin:14px 0 6px}
+  .idees textarea{display:block;width:100%;min-height:180px;margin:6px 0 4px;padding:12px;font:inherit;font-size:17px;border:2px solid var(--encre);border-radius:14px;background:var(--carte);color:var(--encre);resize:vertical}
+  .idees .compteur{font-size:12px;color:var(--encre-douce);text-align:right;margin:0 0 12px}
+  .idees .erreur{color:#B33A22;font-weight:700;font-size:15px}
 
   .toast{position:fixed;left:50%;bottom:calc(90px + env(safe-area-inset-bottom));transform:translateX(-50%);background:var(--encre);color:var(--papier);padding:10px 16px;border-radius:12px;font-size:15px;font-weight:700;z-index:20;max-width:calc(100% - 32px);text-align:center;animation:monte .25s ease}
 
@@ -421,8 +438,10 @@
             <span><b>${esc(x.titre)}</b><small>${esc(x.accroche)}</small></span>${pastille}</button>`;
         }).join("")}
       </nav>
+      <button class="carte idee-entree" id="idee"><span>💡</span><span><b>Une idée, un souci&nbsp;?</b><span>Dis-nous ce qui pourrait être mieux, même en vrac.</span></span><span class="etat neuf">Écrire</span></button>
       ${encartInstallation()}`;
     app.querySelector("#perso").onclick = accueil;
+    app.querySelector("#idee").onclick = () => idees("carte", carte);
     const rv = app.querySelector("#revision"); if (rv) rv.onclick = lanceRevision;
     app.querySelectorAll(".etape").forEach(b => b.onclick = () => {
       const x = PARCOURS.find(y => y.id === b.dataset.id);
@@ -553,6 +572,7 @@
     app.innerHTML = entete() + `
       <span class="etiquette ${ex.format==="arnaque"?"arnaque":""}">${esc(libelleLecon() ? libelleLecon() + " · " : "")}${ETIQUETTES[ex.format]||""} · ${etat.i+1}/${n}</span>
       <h1 class="question">${esc(remplit(ex.question))}</h1>
+      ${ex.indice ? `<details class="indice"><summary>💡 Un indice&nbsp;?</summary><p>${esc(remplit(ex.indice))}</p></details>` : ""}
       <div class="zone" id="zone"></div>
       <div id="retour"></div>`;
     app.querySelector("#quitter").onclick = carte;
@@ -595,8 +615,11 @@
       zone.querySelectorAll(".option").forEach(b => {
         b.disabled = true; const k = +b.dataset.k, bonRang = ex.ordre_correct.indexOf(k);
         b.querySelector(".num").textContent = bonRang + 1;
-        b.classList.add(choisi.indexOf(k) === bonRang ? "juste" : "faux");
+        const tonRang = choisi.indexOf(k);
+        b.classList.add(tonRang === bonRang ? "juste" : "faux");
+        if (tonRang !== bonRang) b.insertAdjacentHTML("beforeend", `<small class="ton-rang">Tu l'avais mis en ${tonRang + 1}<sup>${tonRang ? "e" : "er"}</sup></small>`);
       });
+      zone.querySelector(".note").innerHTML = "<b>Voici le bon classement.</b> En rose : les éléments que tu avais mal placés.";
       ex.ordre_correct.forEach(k => zone.insertBefore(zone.querySelector(`.option[data-k="${k}"]`), zone.querySelector(".ligne-boutons")));
       zone.querySelector(".ligne-boutons").classList.add("cache");
       resultat(ex, ok);
@@ -608,9 +631,15 @@
     if (etat.repondu) return;
     etat.repondu = true;
     enregistre({ ecran: ecranDe(ex), statut:"repondu", juste: ok, temps_ms: Date.now() - etat.debut });
-    // Mémorise les erreurs pour la révision ; une bonne réponse en révision les retire
+    // Mémorise les erreurs pour la révision ; une bonne réponse en révision les retire,
+    // deux échecs en révision aussi (pour ne pas tourner en boucle sur la même question)
     const p = ex._p || etat.parcours.id, cle = e => e.p === p && e.id === ex.id;
+    let retiree = false;
     if (!ok && !M.erreurs.some(cle)) M.erreurs.push({ p, id: ex.id });
+    if (!ok && etat.mode === "revision"){
+      const e = M.erreurs.find(cle); e.echecs = (e.echecs || 0) + 1;
+      if (e.echecs >= 2){ M.erreurs = M.erreurs.filter(x => !cle(x)); retiree = true; }
+    }
     if (ok && etat.mode === "revision") M.erreurs = M.erreurs.filter(e => !cle(e));
     sauve();
     let gain = 0, bonus = 0;
@@ -629,7 +658,7 @@
     r.innerHTML = `
       <div class="carte retour ${ok?"juste":"faux"}" role="status">
         <div class="titre-retour">${mona(ok ? "contente" : "pensive", 46)}<h2>${ok ? "Bien joué !" : "Pas tout à fait…"}</h2></div>
-        ${ok ? `<p class="gain">+${gain} pts${bonus ? ` · bonus de série +${bonus}` : ""}</p>` : `<p class="note" style="margin:0">Cette question reviendra dans ta révision.</p>`}
+        ${ok ? `<p class="gain">+${gain} pts${bonus ? ` · bonus de série +${bonus}` : ""}</p>` : `<p class="note" style="margin:0">${retiree ? "Cette question sort de ta révision : prends le temps de lire l'explication." : etat.mode === "revision" ? "Elle reviendra une dernière fois à la prochaine révision." : "Cette question reviendra dans ta révision."}</p>`}
         <p>${esc(remplit(ok ? ex.retour_juste : ex.retour_faux))}</p>
         <details><summary>En savoir plus</summary><p>${esc(remplit(ex.en_savoir_plus))}</p><p>${sourcesDe(ex)}</p></details>
         <button class="bouton" id="suite">${dernier ? "Voir mon résultat" : "Continuer"}</button>
@@ -704,10 +733,13 @@
           <p class="note">Les points servent juste à jouer : ils n'ont aucune valeur en argent.</p>
           <button class="bouton" id="suivante" style="margin-top:8px">Leçon suivante : ${esc(etat.lecons[etat.lecon+1].titre)}</button>
           <button class="bouton clair" id="carte" style="margin-top:12px">Retour aux parcours</button>
+          <button class="lien-idee" id="idee">💡 Une remarque sur cette leçon&nbsp;?</button>
         </section>`;
       confettis();
       app.querySelector("#suivante").onclick = () => demarreLecon(etat.parcours, etat.lecons, etat.lecon + 1);
       app.querySelector("#carte").onclick = carte;
+      const parcoursFini = etat.parcours;
+      app.querySelector("#idee").onclick = () => idees("fin_lecon", carte, parcoursFini.id);
       return window.scrollTo(0,0);
     }
 
@@ -734,8 +766,11 @@
           <p class="merci cache" id="merci">Merci, c'est noté&nbsp;!</p>
         </div>
         <button class="bouton clair" id="carte" style="margin-top:14px">Retour aux parcours</button>
+        <button class="lien-idee" id="idee">💡 Une idée pour améliorer ce parcours&nbsp;?</button>
       </section>`;
     confettis();
+    const parcoursFini = etat.parcours;
+    app.querySelector("#idee").onclick = () => idees("fin", carte, parcoursFini.id);
     app.querySelectorAll("#suite button").forEach(bt => bt.onclick = () => {
       if (etat.finRepondue) return;
       etat.finRepondue = true;
@@ -744,6 +779,51 @@
       app.querySelector("#merci").classList.remove("cache");
     });
     app.querySelector("#carte").onclick = carte;
+    window.scrollTo(0,0);
+  }
+
+  /* ---------- Boîte à idées : texte libre envoyé à l'organisateur du test ---------- */
+  function idees(origine, retour, parcours){
+    etat.parcours = null;
+    app.innerHTML = `
+      <header><button class="retour-carte" id="retour" aria-label="Retour">←</button><span class="espace"></span><span class="test">Version de test</span></header>
+      <section class="idees">
+        <h1>Une idée&nbsp;?</h1>
+        <div class="bulle-mona">${mona("contente", 64)}<p>Un truc pas clair, un bug, une envie, un avis… Écris comme ça vient, même en vrac&nbsp;: tout est lu.</p></div>
+        <textarea id="texte-idee" aria-label="Ta suggestion" maxlength="2000" placeholder="Ex. : la question sur le PEA est trop longue, j'aimerais un parcours sur l'immobilier, le bouton est dur à toucher…">${esc(M.idee || "")}</textarea>
+        <p class="compteur" id="compteur"></p>
+        <p class="note">Lu seulement par l'organisateur du test${M.pseudo ? `, avec ton pseudo (${esc(M.pseudo)})` : ""}. N'écris pas d'informations personnelles (nom, téléphone, situation financière).</p>
+        <p class="erreur cache" id="erreur">L'envoi n'a pas marché. Vérifie ta connexion et réessaie : ton texte est gardé.</p>
+        <button class="bouton" id="envoyer" disabled>Envoyer</button>
+      </section>`;
+    const zone = app.querySelector("#texte-idee"), bt = app.querySelector("#envoyer"), cpt = app.querySelector("#compteur");
+    const majZone = () => { bt.disabled = !zone.value.trim(); cpt.textContent = zone.value.length > 1500 ? `${zone.value.length} / 2000` : ""; };
+    zone.oninput = () => { M.idee = zone.value; sauve(); majZone(); };
+    majZone();
+    app.querySelector("#retour").onclick = retour;
+    bt.onclick = async () => {
+      const texte = zone.value.trim().slice(0, 2000);
+      if (!texte) return;
+      bt.disabled = true; bt.textContent = "Envoi…";
+      app.querySelector("#erreur").classList.add("cache");
+      const ligne = { visiteur: VISITEUR.id, session: etat.session, version: CFG.VERSION || "test", pseudo: M.pseudo || null, parcours: parcours || null, origine, texte };
+      let ok = false;
+      if (!CFG.SUPABASE_URL || !CFG.SUPABASE_KEY){ console.info("[non envoyé : suggestions]", ligne); ok = true; }
+      else try {
+        const r = await fetch(CFG.SUPABASE_URL.replace(/\/$/,"") + "/rest/v1/suggestions", {
+          method:"POST", headers:{ "apikey":CFG.SUPABASE_KEY, "Content-Type":"application/json", "Prefer":"return=minimal" }, body: JSON.stringify(ligne)
+        });
+        ok = r.ok;
+      } catch(e){}
+      if (!ok){ bt.disabled = false; bt.textContent = "Envoyer"; return app.querySelector("#erreur").classList.remove("cache"); }
+      M.idee = ""; sauve();
+      app.querySelector(".idees").innerHTML = `
+        <div class="bulle-mona" style="margin-top:24px">${mona("contente", 72)}<p><b>Merci&nbsp;!</b> C'est bien reçu. Chaque remarque aide à rendre l'appli plus claire.</p></div>
+        <button class="bouton" id="encore" style="margin-top:14px">Ajouter autre chose</button>
+        <button class="bouton clair" id="fini" style="margin-top:12px">Retour</button>`;
+      app.querySelector("#encore").onclick = () => idees(origine, retour, parcours);
+      app.querySelector("#fini").onclick = retour;
+    };
     window.scrollTo(0,0);
   }
 
