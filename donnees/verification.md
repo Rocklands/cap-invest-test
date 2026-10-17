@@ -10,7 +10,7 @@ Vérifié le 9 octobre 2026. Sources limitées aux sites officiels autorisés. L
 | « Pas de rendement élevé sans risque élevé » | ex02, ex08 | Confirmé | [amf-france.org](https://www.amf-france.org/sites/institutionnel/files/pdf/59187/fr/Quelles_sont_les_arnaques_les_plus_courantes_.pdf) (p. 8) |
 | Ne pas céder aux pressions à investir immédiatement ; documentation écrite | ex08 | Confirmé | idem (p. 8) |
 | Taux du livret réglementé le plus répandu : 1,7 % | ex03 | Confirmé (valable jusqu'au 31/01/2027) | [service-public.gouv.fr](https://www.service-public.gouv.fr/particuliers/vosdroits/F2365) |
-| Prix à la consommation : +3,0 % sur un an en septembre 2026 | ex03 | Confirmé, **provisoire** (définitif le 15/10/2026) | [insee.fr](https://www.insee.fr/fr/statistiques/9056956) |
+| Prix à la consommation : +3,1 % sur un an en septembre 2026 | ex01, ex03 | Confirmé, **définitif** (15/10/2026 ; l'estimation provisoire de 3,0 % a été révisée de +0,1 point) | [insee.fr](https://www.insee.fr/fr/statistiques/9080209) |
 | Gain ou perte constaté à la vente | ex06 | Confirmé indirectement (la page parle de plus-value) | [service-public.gouv.fr](https://www.service-public.gouv.fr/particuliers/vosdroits/F21618) |
 | À 5 %/an, capital × 4,3 en 30 ans | ex05 | Confirmé + recalculé | [amf-france.org](https://www.amf-france.org/sites/institutionnel/files/private/2022-01/STIMULER%20LA%20DIVERSIFICATION%20DE%20L%E2%80%99%C3%89PARGNE%20DE%20LONG%20TERME%20EN%20ACTIONS_DECEMBRE%202021_3.pdf) |
 | Actions françaises 1950-2020, rendements réels selon la durée (−40,5 % / −13 % / −4,8 % / −3 % / +2,4 %) | ex07, ex10 | Confirmé (calculs Harvest publiés par l'AMF) | idem, p. 21 et p. 53 |
@@ -21,7 +21,7 @@ Vérifié le 9 octobre 2026. Sources limitées aux sites officiels autorisés. L
 
 | Calcul | Résultat |
 |---|---|
-| 1,017 / 1,030 − 1 | −1,26 % (affiché « environ 1,3 % ») |
+| 1,017 / 1,031 − 1 | −1,36 % (affiché « environ 1,4 % ») |
 | 1 000 × 1,05^20 / 2 000 × 1,02^10 / 1 500 × 1,02^20 / 1 000 × 1,05^10 | 2 653 / 2 438 / 2 229 / 1 629 € |
 | 1 000 × 1,05^30 | 4 321,94 € |
 | 10 000 / 7 000 − 1 | +42,86 % |
@@ -40,7 +40,7 @@ Vérifié le 9 octobre 2026. Sources limitées aux sites officiels autorisés. L
 | Plafond du LEP 10 000 € | Non vérifié | Non utilisé |
 
 ## À refaire
-- **15 octobre 2026** : remplacer l'inflation provisoire par le chiffre définitif de l'Insee.
+- ~~15 octobre 2026 : remplacer l'inflation provisoire par le chiffre définitif de l'Insee.~~ Fait le 17 octobre 2026 (3,1 %).
 - **1er février 2027** : revérifier le taux du livret réglementé.
 
 ---
@@ -154,3 +154,25 @@ Les comparaisons (pizza, valise, boule de neige, montagnes russes…) sont des i
 | En contrepartie des fonds levés, obligations de transparence des sociétés cotées ; prospectus visé par l'AMF | Confirmé | [AMF, obligations d'information des sociétés cotées](https://www.amf-france.org/en/news-publications/depth/information-obligations-listed-companies) (21/02/2020) |
 | « Garder la main sur qui entre au capital » | Raisonnement pédagogique (proposé par l'équipe), pas un chiffre | — |
 | Exemples avec Mona (100 €, 1 000 € à 5 %) | Hypothèses fictives ; 1 000 × 1,05^30 = 4 321,94 € | Recalculé |
+
+---
+
+# Histoire de Mona, chapitre 1 « Le cadeau de l'oncle » (vérifié le 17 octobre 2026, relu le même jour)
+
+Scénario : 1 000 noisettes gardées 5 ans. Résultats en pouvoir d'achat, valeurs dans [chiffres.json](chiffres.json).
+
+| Fait | Statut | Source |
+|---|---|---|
+| Prix +3,1 % sur un an (septembre 2026, résultat définitif), utilisé comme hypothèse constante sur 5 ans | Confirmé ; l'hypothèse est signalée dans l'appli | [insee.fr](https://www.insee.fr/fr/statistiques/9080209) |
+| Livret réglementé à 1,7 % (du 1er août 2026 au 31 janvier 2027), utilisé comme hypothèse constante sur 5 ans | Confirmé ; l'hypothèse est signalée dans l'appli | [service-public.gouv.fr](https://www.service-public.gouv.fr/particuliers/vosdroits/F2365) |
+| Actions françaises gardées 5 ans (1950-2020, performances réelles annualisées, dividendes réinvestis) : « 1 % des performances étaient inférieures à -13 % » | Confirmé (p. 23 ; déjà utilisé, ex07) | [amf-france.org](https://www.amf-france.org/sites/institutionnel/files/private/2022-01/STIMULER%20LA%20DIVERSIFICATION%20DE%20L%E2%80%99%C3%89PARGNE%20DE%20LONG%20TERME%20EN%20ACTIONS_DECEMBRE%202021_3.pdf) |
+| Même étude, 5 ans : « la moitié des rendements constatés ont été supérieurs à 6 % » | Confirmé (p. 23) | idem |
+
+| Calcul | Résultat affiché |
+|---|---|
+| 1 000 / 1,031^5 = 858,43 | environ 858 |
+| 1 000 × (1,017 / 1,031)^5 = 933,92 | environ 934 |
+| 1 000 × 1,06^5 = 1 338,23 | plus de 1 338 (une fois sur deux) |
+| 1 000 × 0,87^5 = 498,42 | moins de 499 (une fois sur cent ; arrondi au-dessus pour que « moins de » reste vrai) |
+
+À noter : l'étude mesure des performances selon une durée de détention, ce qui correspond à une somme placée en une fois (déduit, le document ne le dit pas mot pour mot) ; le choix s'appelle donc « Les planter en actions » et non « planter un peu chaque mois » comme dans la conception.

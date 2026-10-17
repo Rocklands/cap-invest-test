@@ -113,6 +113,21 @@
   .tuile.defi{background:var(--jaune-clair);border-color:var(--moutarde)}
   .tuile.revision{background:var(--rose-clair);border-color:var(--corail);margin:0}
   .tuile.fait{box-shadow:none}
+  .tuile.chapitre{grid-column:1/-1;background:var(--canard-clair);border-color:var(--canard)}
+  .histoire .saison{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--canard);margin:14px 0 4px}
+  .histoire h1{font-size:28px;margin:0 0 10px}
+  .histoire > p{font-size:17px;line-height:1.45}
+  .histoire > p.note{font-size:14px;line-height:1.4;color:var(--encre-douce)}
+  .histoire .bulle-mona{margin:14px 0 18px}
+  .issue{position:relative;padding:12px 14px;margin:0 0 10px;box-shadow:none}
+  .issue.prise{border-color:var(--canard);border-width:3px;background:var(--canard-clair)}
+  .issue b{display:block;font-family:Fraunces,serif;font-size:18px;margin-bottom:4px}
+  .issue .chiffre{margin:2px 0;font-weight:700;font-size:16px}
+  .issue .detail{margin:6px 0 0;font-size:14px;color:var(--encre-douce)}
+  .badge-choix{position:absolute;top:-10px;right:12px;font-size:12px;font-weight:700;padding:2px 8px;border-radius:999px;background:var(--canard);color:var(--carte)}
+  .histoire .src{font-size:13px;margin:4px 0 14px}
+  .histoire .src a{color:var(--canard)}
+  .histoire .bouton + .bouton{margin-top:12px}
   .stat-defi{font-weight:700;color:var(--canard);margin:0 0 6px}
   .popup{position:fixed;inset:0;z-index:20;display:grid;place-items:center;padding:24px;background:rgba(20,26,46,.55);animation:monte .2s ease-out}
   .popup-carte{max-width:340px;width:100%;text-align:center;padding:22px 20px 20px}
@@ -447,13 +462,14 @@
     evt("carte");
     const p = persoActuel();
     const total = PARCOURS.reduce((s,x) => s + pointsParcours(x.id), 0), badges = PARCOURS.filter(x => (M.parcours[x.id]||{}).fini).length;
-    const defiFait = M.defi && M.defi.jour === auj();
+    const defiFait = M.defi && M.defi.jour === auj(), histoireFaite = !!(M.histoire && M.histoire["cadeau-oncle"]);
     app.innerHTML = `
       <header><span class="test">Version de test</span><span class="espace"></span><span class="points">${total} pts</span></header>
       <div class="salut"><svg viewBox="0 0 54 54" aria-hidden="true">${p.svg}</svg><div><h1>Choisis ton parcours</h1></div></div>
       <p class="total">${M.pseudo ? esc(M.pseudo) + " · " : ""}${p.nom} en route. <button class="lien" id="perso" style="border:0;background:none;padding:0;color:var(--canard);font-weight:700;text-decoration:underline">Personnage et pseudo</button></p>
       ${blocReserves()}
       <div class="actions-jour ${M.erreurs.length ? "" : "seule"}">
+        <button class="carte tuile chapitre" id="histoire">${histoireFaite ? `<b>Histoire de Mona ✓</b><span>Chapitre 1 joué · la suite arrive bientôt</span>` : `<b>Histoire de Mona</b><span>Chapitre 1 · Le cadeau de l'oncle</span>`}</button>
         ${defiFait
           ? `<div class="carte tuile defi fait"><b>Défi ${M.defi.ok ? "réussi ✓" : "tenté"}</b><span>Le prochain demain</span></div>`
           : `<button class="carte tuile defi" id="defi"><b>Défi du jour</b><span>1 question, 1 minute</span></button>`}
@@ -480,6 +496,7 @@
     app.querySelector("#idee").onclick = () => idees("carte", carte);
     const rv = app.querySelector("#revision"); if (rv) rv.onclick = lanceRevision;
     const df = app.querySelector("#defi"); if (df) df.onclick = lanceDefi;
+    app.querySelector("#histoire").onclick = lanceHistoire;
     app.querySelectorAll(".etape").forEach(b => b.onclick = () => {
       const x = PARCOURS.find(y => y.id === b.dataset.id);
       if (x.statut === "pret") return lanceParcours(x);
@@ -604,6 +621,91 @@
       });
       return r.ok ? await r.json() : null;
     } catch(e){ return null; }
+  }
+
+  /* ---------- Histoire de Mona : le joueur décide à la place de Mona ---------- */
+  // Le tempérament (prudent, équilibré, audacieux) se déduit des choix et reste sur le téléphone :
+  // seul le fait d'avoir joué le chapitre est enregistré, pas le choix.
+  let HISTOIRE = null;
+  async function lanceHistoire(){
+    try { HISTOIRE = HISTOIRE || await fetch(BASE + "exercices/scenarios.json").then(r => r.json()); }
+    catch(err){ return toast("Impossible de charger l'histoire."); }
+    const s = HISTOIRE.scenarios[0];
+    Object.assign(etat, { mode:"histoire", parcours:{ id:"histoire", titre:"Histoire de Mona" }, lecons:null, lecon:0, EX:[], i:0, points:0, serie:0, justes:0, repondu:true, finRepondue:true, debut:Date.now() });
+    evt("parcours_debut", { ecran: s.id });
+    sceneHistoire(s);
+  }
+  const enteteHistoire = s => `<header><button class="retour-carte" id="quitter" aria-label="Retour aux parcours">×</button><span class="espace"></span><span class="test">Chapitre ${s.chapitre} · ${esc(s.saison)}</span></header>`;
+  function sceneHistoire(s){
+    app.innerHTML = enteteHistoire(s) + `
+      <section class="histoire">
+        <p class="saison">${esc(s.saison)}</p>
+        <h1>${esc(s.titre)}</h1>
+        ${s.recit.map(t => `<p>${esc(remplit(t))}</p>`).join("")}
+        <div class="bulle-mona">${mona("pensive", 64)}<p>${esc(remplit(s.mona))}</p></div>
+        <button class="bouton" id="suite">Aider Mona</button>
+      </section>`;
+    app.querySelector("#quitter").onclick = carte;
+    app.querySelector("#suite").onclick = () => choixHistoire(s);
+    window.scrollTo(0,0);
+  }
+  function choixHistoire(s){
+    app.innerHTML = enteteHistoire(s) + `
+      <span class="etiquette">Ton choix</span>
+      <h1 class="question">${esc(remplit(s.question))}</h1>
+      <p class="note" style="margin-top:0">${esc(s.consigne)}</p>
+      <div class="zone">${s.choix.map(c => `<button class="option" data-id="${c.id}">${esc(c.label)}</button>`).join("")}</div>`;
+    app.querySelector("#quitter").onclick = carte;
+    app.querySelectorAll(".option").forEach(b => b.onclick = () => resultatHistoire(s, s.choix.find(c => c.id === b.dataset.id)));
+    window.scrollTo(0,0);
+  }
+  function resultatHistoire(s, pris){
+    M.histoire = M.histoire || {};
+    M.histoire[s.id] = { choix: pris.id, score: pris.score, jour: auj() };
+    sauve();
+    enregistre({ ecran: s.id, statut:"repondu", juste:null, temps_ms: Date.now() - etat.debut });
+    // Le choix du joueur en premier, puis les autres pour comparer
+    const ordre = [pris, ...s.choix.filter(c => c !== pris)];
+    app.innerHTML = enteteHistoire(s) + `
+      <section class="histoire">
+        <p class="saison">${esc(s.plus_tard)}</p>
+        <div class="bulle-mona">${mona("pensive", 56)}<p>${esc(remplit(pris.mona))}</p></div>
+        <p class="note">${esc(s.lecture)}</p>
+        ${ordre.map(c => `<div class="carte issue ${c === pris ? "prise" : ""}">
+          ${c === pris ? `<span class="badge-choix">Ton choix</span>` : ""}
+          <b>${esc(c.label)}</b>
+          ${c.resultats.map(r => `<p class="chiffre">${esc(remplit(r))}</p>`).join("")}
+          <p class="detail">${esc(remplit(c.detail))}</p>
+        </div>`).join("")}
+        <p class="note">${esc(remplit(s.avertissement))}</p>
+        <div class="src">${sourcesCles(s.sources)}</div>
+        <button class="bouton" id="suite">Et maintenant&nbsp;?</button>
+      </section>`;
+    app.querySelector("#quitter").onclick = carte;
+    app.querySelector("#suite").onclick = () => finHistoire();
+    window.scrollTo(0,0);
+  }
+  function temperament(){
+    const sc = Object.values(M.histoire || {}).map(h => h.score);
+    if (!sc.length) return null;
+    const m = sc.reduce((a, b) => a + b, 0) / sc.length;
+    return m < -0.33 ? "prudent" : m > 0.33 ? "audacieux" : "equilibre";
+  }
+  function finHistoire(){
+    const t = HISTOIRE.temperaments[temperament()], x = PARCOURS.find(p => p.id === t.quete);
+    etat.parcours = null;
+    app.innerHTML = `
+      <header><span class="test">Version de test</span></header>
+      <section class="histoire">
+        <p class="saison">Ton tempérament : ${esc(t.nom)}</p>
+        <div class="bulle-mona">${mona("contente", 64)}<p>${esc(t.mona)}</p></div>
+        <p class="note">Ton tempérament reste sur ton téléphone. Il peut changer avec les prochains chapitres.</p>
+        ${x ? `<button class="bouton" id="quete">${esc(t.habitant)} : ${esc(x.titre)}</button>` : ""}
+        <button class="bouton clair" id="carte">Retour aux parcours</button>
+      </section>`;
+    if (x) app.querySelector("#quete").onclick = () => lanceParcours(x);
+    app.querySelector("#carte").onclick = carte;
+    window.scrollTo(0,0);
   }
 
   /* ---------- Cours (cartes à lire avant le quiz) ---------- */

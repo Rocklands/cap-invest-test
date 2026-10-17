@@ -1,0 +1,68 @@
+{
+  "_note": "Histoire de Mona : scénarios où le joueur décide à la place de Mona. Les {{cle}} renvoient à donnees/chiffres.json. Aucune bonne réponse : chaque choix montre ses avantages et ses risques. Le tempérament reste sur le téléphone du joueur.",
+  "scenarios": [
+    {
+      "id": "cadeau-oncle",
+      "chapitre": 1,
+      "saison": "Printemps",
+      "titre": "Le cadeau de l'oncle",
+      "recit": [
+        "Mona se réveille de son long sommeil d'hiver.",
+        "Devant son terrier, un sac de 1 000 noisettes et un mot de son oncle : « Pour toi. Tu n'en auras pas besoin avant 5 ans. »"
+      ],
+      "mona": "1 000 noisettes ! Je ne sais pas quoi en faire… Tu m'aides à choisir ?",
+      "question": "Que fait Mona de ses 1 000 noisettes pendant 5 ans ?",
+      "consigne": "Il n'y a pas de bonne réponse : chaque choix a ses avantages et ses risques.",
+      "plus_tard": "5 ans plus tard…",
+      "lecture": "Voici ce que chaque choix aurait donné, en pouvoir d'achat (ce que les noisettes permettent d'acheter, une fois la hausse des prix déduite).",
+      "choix": [
+        {
+          "id": "terrier",
+          "label": "Tout garder au terrier",
+          "score": -1,
+          "mona": "Rien n'a bougé… mais le panier du marché a rapetissé.",
+          "resultats": ["Environ {{scenario_terrier}} noisettes de pouvoir d'achat"],
+          "detail": "Toujours 1 000 noisettes, mais si les prix montent de {{inflation_1an}} % par an, elles n'achètent plus qu'environ {{scenario_terrier}} noisettes d'aujourd'hui. Aucune perte possible en nombre."
+        },
+        {
+          "id": "livret",
+          "label": "Tout mettre sur un livret",
+          "score": 0,
+          "mona": "Mes noisettes ont un peu poussé, mais moins vite que les prix.",
+          "resultats": ["Environ {{scenario_livret}} noisettes de pouvoir d'achat"],
+          "detail": "Le livret rapporte {{livret_taux}} % par an, sans risque de perte. Si les prix montent de {{inflation_1an}} % par an, le pouvoir d'achat recule quand même un peu."
+        },
+        {
+          "id": "planter",
+          "label": "Les planter en actions",
+          "score": 1,
+          "mona": "Ça a secoué en chemin. Le résultat dépend beaucoup du moment où on plante.",
+          "resultats": ["Une fois sur deux : plus de {{scenario_actions_mediane}}", "Une fois sur cent : moins de {{scenario_actions_p1}}"],
+          "detail": "C'est ce qu'ont donné des actions françaises gardées 5 ans entre 1950 et 2020, après inflation, dividendes réinvestis. Le résultat peut être bien meilleur ou bien pire que le livret."
+        }
+      ],
+      "avertissement": "Hypothèses : prix en hausse de {{inflation_1an}} % par an (le rythme mesuré par l'Insee sur un an en septembre 2026) et livret à {{livret_taux}} % pendant 5 ans. Pour les actions, ce sont des résultats passés : ils ne prédisent pas l'avenir.",
+      "sources": ["inflation_1an", "livret_taux", "actions_fr"]
+    }
+  ],
+  "temperaments": {
+    "prudent": {
+      "nom": "Prudent",
+      "mona": "Toi, tu aimes garder tes noisettes à l'abri. Le vieux Hibou voudrait te montrer ce que le temps fait aux réserves qui dorment.",
+      "habitant": "Suivre le vieux Hibou",
+      "quete": "pourquoi-investir"
+    },
+    "equilibre": {
+      "nom": "Équilibré",
+      "mona": "Toi, tu cherches un abri qui rapporte un peu. L'Écureuil range ses noisettes dans deux cachettes aux règles différentes : il veut te les montrer.",
+      "habitant": "Suivre l'Écureuil",
+      "quete": "pea-compte-titres"
+    },
+    "audacieux": {
+      "nom": "Audacieux",
+      "mona": "Toi, tu aimes faire pousser. Le Castor connaît tous les matériaux, des plus solides aux plus fragiles : il veut te les présenter.",
+      "habitant": "Suivre le Castor",
+      "quete": "familles-actifs"
+    }
+  }
+}
