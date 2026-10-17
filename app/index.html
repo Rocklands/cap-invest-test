@@ -97,24 +97,22 @@
   .stat-jour b{display:block;font-family:Fraunces,serif;font-size:22px}
   .stat-jour span{font-size:13px;color:var(--encre-douce)}
   .stat-jour.atteint{background:var(--canard-clair);border-color:var(--canard)}
-  .reserves{margin:4px 0 12px;padding:12px 14px;box-shadow:none}
-  .res-haut{display:flex;align-items:center;gap:10px}
-  .res-haut b{display:block;font-family:Fraunces,serif;font-size:20px}
-  .res-haut span{font-size:14px;color:var(--encre-douce)}
-  .semaine{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;margin:10px 0 2px}
-  .semaine .jour{display:flex;flex-direction:column;align-items:center;gap:2px;font-size:12px;color:var(--encre-douce)}
-  .semaine .jour i{display:grid;place-items:center;width:34px;height:34px;border-radius:50%;border:2px solid var(--trait);font-style:normal;font-size:17px}
-  .semaine .jour.fait i{background:var(--jaune-clair);border-color:var(--moutarde)}
-  .semaine .jour.repos i{border-style:dashed}
-  .semaine .jour.auj i{border-color:var(--canard);border-style:dashed}
-  .semaine .jour.auj small{color:var(--canard);font-weight:700}
-  .reserves .note{margin:6px 0 0;font-size:13px}
-  .defi{display:flex;align-items:center;gap:10px;width:100%;text-align:left;margin-bottom:14px;background:var(--jaune-clair);border-color:var(--moutarde)}
-  .defi .rv-texte{display:flex;flex-direction:column}
-  .defi b{font-family:Fraunces,serif;font-size:18px}
-  .defi .rv-texte span{font-size:14px;color:var(--encre-douce)}
-  .defi .etat{margin-left:auto}
-  .defi.fait{box-shadow:none}
+  .reserves{display:flex;align-items:center;gap:10px;margin:4px 0 10px;padding:10px 12px;box-shadow:none}
+  .reserves svg.mona{flex:none}
+  .reserves b{display:block;font-family:Fraunces,serif;font-size:18px;margin-bottom:6px}
+  .semaine{display:flex;gap:5px}
+  .semaine .jour{display:grid;place-items:center;width:26px;height:26px;border-radius:50%;border:2px solid var(--trait);font-size:11px;font-weight:700;color:var(--encre-douce);font-style:normal}
+  .semaine .jour.fait{background:var(--jaune-clair);border-color:var(--moutarde);font-size:13px}
+  .semaine .jour.repos{border-style:dashed;font-size:12px}
+  .semaine .jour.auj{border-color:var(--canard);border-style:dashed;color:var(--canard)}
+  .actions-jour{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px}
+  .actions-jour.seule{grid-template-columns:1fr}
+  .tuile{display:flex;flex-direction:column;align-items:flex-start;text-align:left;padding:10px 12px;width:100%}
+  .tuile b{font-family:Fraunces,serif;font-size:17px}
+  .tuile span{font-size:13px;color:var(--encre-douce)}
+  .tuile.defi{background:var(--jaune-clair);border-color:var(--moutarde)}
+  .tuile.revision{background:var(--rose-clair);border-color:var(--corail);margin:0}
+  .tuile.fait{box-shadow:none}
   .stat-defi{font-weight:700;color:var(--canard);margin:0 0 6px}
   .popup{position:fixed;inset:0;z-index:20;display:grid;place-items:center;padding:24px;background:rgba(20,26,46,.55);animation:monte .2s ease-out}
   .popup-carte{max-width:340px;width:100%;text-align:center;padding:22px 20px 20px}
@@ -126,11 +124,6 @@
   .badges-liste{display:flex;gap:8px;flex-wrap:wrap}
   .mini-badge .pastille{border:2px solid var(--encre);border-radius:50%;display:grid;place-items:center}
   .mini-badge.verrou{filter:grayscale(1);opacity:.3}
-  .revision{display:flex;align-items:center;gap:10px;width:100%;text-align:left;margin-bottom:14px;background:var(--rose-clair);border-color:var(--corail)}
-  .revision .rv-texte{display:flex;flex-direction:column}
-  .revision b{font-family:Fraunces,serif;font-size:18px}
-  .revision .rv-texte span{font-size:14px;color:var(--encre-douce)}
-  .revision .etat{margin-left:auto}
   .objectif{display:flex;flex-direction:column;gap:2px;margin:6px 0 4px;background:var(--canard-clair);border-color:var(--canard);box-shadow:none}
   .objectif.discret{background:var(--carte);border-color:var(--trait)}
   .objectif span{font-size:14px;color:var(--encre-douce)}
@@ -460,14 +453,12 @@
       <div class="salut"><svg viewBox="0 0 54 54" aria-hidden="true">${p.svg}</svg><div><h1>Choisis ton parcours</h1></div></div>
       <p class="total">${M.pseudo ? esc(M.pseudo) + " · " : ""}${p.nom} en route. <button class="lien" id="perso" style="border:0;background:none;padding:0;color:var(--canard);font-weight:700;text-decoration:underline">Personnage et pseudo</button></p>
       ${blocReserves()}
-      ${defiFait
-        ? `<div class="carte defi fait"><span class="rv-texte"><b>Défi du jour ${M.defi.ok ? "réussi ✓" : "tenté"}</b><span>Un nouveau défi t'attend demain.</span></span></div>`
-        : `<button class="carte defi" id="defi"><span class="rv-texte"><b>Défi du jour</b><span>1 question, 1 minute. Compare-toi aux autres joueurs.</span></span><span class="etat neuf">Go</span></button>`}
-      <div class="carte badges-ligne">
-        <div class="badges-titre"><b>Mes badges</b><span>${badges}/${PARCOURS.length}</span></div>
-        <div class="badges-liste">${PARCOURS.map(x => `<span class="mini-badge ${(M.parcours[x.id]||{}).fini?"":"verrou"}" title="${esc(x.titre)}">${badgeParcours(x, 40)}</span>`).join("")}</div>
+      <div class="actions-jour ${M.erreurs.length ? "" : "seule"}">
+        ${defiFait
+          ? `<div class="carte tuile defi fait"><b>Défi ${M.defi.ok ? "réussi ✓" : "tenté"}</b><span>Le prochain demain</span></div>`
+          : `<button class="carte tuile defi" id="defi"><b>Défi du jour</b><span>1 question, 1 minute</span></button>`}
+        ${M.erreurs.length ? `<button class="carte tuile revision" id="revision"><b>Révision</b><span>${M.erreurs.length} question${M.erreurs.length>1?"s":""} à revoir</span></button>` : ""}
       </div>
-      ${M.erreurs.length ? `<button class="carte revision" id="revision"><span class="rv-texte"><b>Révision</b><span>${M.erreurs.length} question${M.erreurs.length>1?"s":""} ratée${M.erreurs.length>1?"s":""} à revoir${M.erreurs.length>5?" · 5 par session":""}</span></span><span class="etat neuf">Go</span></button>` : ""}
       <nav class="chemin" aria-label="Parcours">
         ${PARCOURS.map((x, n) => {
           const titreSection = x.section && (n === 0 || PARCOURS[n-1].section !== x.section) ? `<h2 class="section-carte">${esc(x.section)}</h2>` : "";
@@ -479,6 +470,10 @@
             <span><b>${esc(x.titre)}</b><small>${esc(x.accroche)}</small></span>${pastille}</button>`;
         }).join("")}
       </nav>
+      <div class="carte badges-ligne">
+        <div class="badges-titre"><b>Mes badges</b><span>${badges}/${PARCOURS.length}</span></div>
+        <div class="badges-liste">${PARCOURS.map(x => `<span class="mini-badge ${(M.parcours[x.id]||{}).fini?"":"verrou"}" title="${esc(x.titre)}">${badgeParcours(x, 40)}</span>`).join("")}</div>
+      </div>
       <button class="carte idee-entree" id="idee"><span>💡</span><span><b>Une idée, un souci&nbsp;?</b><span>Dis-nous ce qui pourrait être mieux, même en vrac.</span></span><span class="etat neuf">Écrire</span></button>
       ${encartInstallation()}`;
     app.querySelector("#perso").onclick = accueil;
@@ -540,13 +535,12 @@
     const { n, repos } = reserves(), j = new Set(M.jours), a = auj(), l = lundi(a);
     const cases = ["L","M","M","J","V","S","D"].map((nom, k) => {
       const d = decale(l, k), c = j.has(d) ? "fait" : repos.has(d) ? "repos" : d === a ? "auj" : "";
-      return `<span class="jour ${c}"><i>${c === "fait" ? "🌰" : c === "repos" ? "💤" : ""}</i><small>${nom}</small></span>`;
+      return `<i class="jour ${c}" title="${c === "repos" ? "Jour de repos : ta série continue" : ""}">${c === "fait" ? "🌰" : c === "repos" ? "💤" : nom}</i>`;
     }).join("");
-    return `<div class="carte reserves">
-      <div class="res-haut">${mona(n ? "contente" : "pensive", 46)}<div><b>${n} jour${n>1?"s":""} de réserves</b><span>${objectifFait() ? "Noisette du jour rangée ✓" : "Une leçon ou le défi du jour ajoute une noisette."}</span></div></div>
-      <div class="semaine" aria-label="Jours joués cette semaine">${cases}</div>
-      <p class="note">Un jour de repos par semaine ne casse pas ta série.</p>
-    </div>`;
+    return `<div class="carte reserves">${mona(n ? "contente" : "pensive", 44)}<div>
+      <b>${n ? `🌰 ${n} jour${n>1?"s":""} de réserves` : "Commence tes réserves"}</b>
+      <div class="semaine" aria-label="Jours joués cette semaine. Un jour de repos par semaine ne casse pas la série.">${cases}</div>
+    </div></div>`;
   }
   const objectifFait = () => M.jours.includes(auj());
   const leconsFaites = id => Object.keys((M.parcours[id]||{}).lecons || {}).length;
