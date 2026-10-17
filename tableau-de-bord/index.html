@@ -152,13 +152,13 @@
 
       <h2>Exercices</h2>
       <div class="carte defile"><table>
-        <thead><tr><th>Parcours</th><th>Écran</th><th>Répondus</th><th>Abandons</th><th>% justes</th><th>Temps de réponse</th><th>Lecture explication</th><th>« En savoir plus »</th></tr></thead>
+        <thead><tr><th>Parcours</th><th>Écran</th><th>Répondus</th><th>Abandons</th><th>% justes</th><th>Temps de réponse</th><th>Lecture explication</th><th>« En savoir plus »</th><th>Indices ouverts</th><th>% justes après indice</th></tr></thead>
         <tbody>${(d.exercices||[]).map(x => {
           const ab = x.repondus + x.abandons ? x.abandons / (x.repondus + x.abandons) : 0;
           return `<tr><td>${esc(nom(x.parcours))}</td><td>${esc(x.ecran)}</td><td>${nb(x.repondus)}</td><td class="${ab>=.2?"alerte":""}">${nb(x.abandons)}</td>
             <td class="${x.pct_justes!==null && x.pct_justes<40?"alerte":x.pct_justes>=90?"bien":""}">${x.pct_justes===null?"—":x.pct_justes+" %"}</td>
-            <td>${duree(x.reponse_s)}</td><td>${duree(x.explication_s)}</td><td>${nb(x.en_savoir_plus)}</td></tr>`;
-        }).join("") || `<tr><td colspan="8" class="vide">Pas encore de données.</td></tr>`}</tbody></table>
+            <td>${duree(x.reponse_s)}</td><td>${duree(x.explication_s)}</td><td>${nb(x.en_savoir_plus)}</td><td>${nb(x.indices)}</td><td>${x.pct_justes_indice==null?"—":x.pct_justes_indice+" %"}</td></tr>`;
+        }).join("") || `<tr><td colspan="10" class="vide">Pas encore de données.</td></tr>`}</tbody></table>
         <p class="legende">En rose : moins de 40 % de bonnes réponses (question peut-être trop dure ou ambiguë) ou au moins 20 % d'abandons. En vert : 90 % ou plus de bonnes réponses (peut-être trop facile).</p></div>
 
       <h2>Joueurs par pseudo</h2>

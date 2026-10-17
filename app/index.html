@@ -576,6 +576,8 @@
       <div class="zone" id="zone"></div>
       <div id="retour"></div>`;
     app.querySelector("#quitter").onclick = carte;
+    const indice = app.querySelector(".indice");
+    if (indice) indice.addEventListener("toggle", () => { if (indice.open && !indice.dataset.vu){ indice.dataset.vu = 1; evt("indice", { ecran: ecranDe(ex) }); } });
     requestAnimationFrame(() => requestAnimationFrame(() => { const b = app.querySelector(".progression i"); if (b) b.style.width = Math.round((etat.i+1)/n*100)+"%"; }));
     const zone = app.querySelector("#zone");
     if (ex.format === "classement") classement(ex, zone); else choix(ex, zone);
