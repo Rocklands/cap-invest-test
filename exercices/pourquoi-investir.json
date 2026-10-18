@@ -16,7 +16,7 @@
         },
         {
           "titre": "L'inflation",
-          "texte": "L'inflation, c'est une petite fuite dans ton porte-monnaie : le billet garde le même montant, mais il achète un peu moins chaque année. L'Insee la définit comme une perte du pouvoir d'achat de la monnaie. En septembre 2026, les prix ont augmenté de {{inflation_1an}} % sur un an (estimation provisoire).",
+          "texte": "L'inflation, c'est une petite fuite dans ton porte-monnaie : le billet garde le même montant, mais il achète un peu moins chaque année. L'Insee la définit comme une perte du pouvoir d'achat de la monnaie. En septembre 2026, les prix ont augmenté de {{inflation_1an}} % sur un an.",
           "sources": [
             "definition_inflation",
             "inflation_1an"
@@ -135,7 +135,7 @@
           "reponse": 2,
           "retour_juste": "Bien joué ! Les intérêts sont bien là, mais les prix courent plus vite qu'eux.",
           "retour_faux": "Le solde affiché monte, mais les prix montent davantage. Bilan : environ {{pouvoir_achat_livret|abs}} % de pouvoir d'achat en moins.",
-          "en_savoir_plus": "Chiffres officiels : le livret réglementé le plus répandu rapporte {{livret_taux}} % par an (service-public.gouv.fr) et l'Insee estime la hausse des prix sur un an à {{inflation_1an}} % en septembre 2026 (estimation provisoire). Calcul : 1,017 / 1,030 ≈ 0,987, soit environ −1,3 %. Ces deux taux changent avec le temps, la situation peut donc s'inverser.",
+          "en_savoir_plus": "Chiffres officiels : le livret réglementé le plus répandu rapporte {{livret_taux}} % par an (service-public.gouv.fr) et l'Insee mesure une hausse des prix de {{inflation_1an}} % sur un an en septembre 2026. Calcul : 1,017 / 1,031 ≈ 0,986, soit environ −1,4 %. Ces deux taux changent avec le temps, la situation peut donc s'inverser.",
           "sources": [
             "livret_taux",
             "inflation_1an"

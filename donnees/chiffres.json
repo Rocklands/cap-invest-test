@@ -1,9 +1,8 @@
 {
   "_meta": {
     "description": "Chiffres utilisés dans le module « Pourquoi investir ». Les exercices y renvoient avec la syntaxe {{cle}}. Seules les sources officielles autorisées sont admises.",
-    "derniere_mise_a_jour": "2026-10-10",
+    "derniere_mise_a_jour": "2026-10-17",
     "a_revoir": [
-      "inflation_1an : estimation provisoire, résultat définitif publié par l'Insee le 15 octobre 2026.",
       "livret_taux : taux fixé du 1er août 2026 au 31 janvier 2027, révisable au 1er février 2027."
     ]
   },
@@ -20,16 +19,16 @@
     "validite": "Arrêté du 28 juillet 2026 : du 1er août 2026 au 31 janvier 2027"
   },
   "inflation_1an": {
-    "valeur": 3.0,
+    "valeur": 3.1,
     "unite": "%",
     "libelle": "Hausse des prix à la consommation sur un an, septembre 2026",
-    "statut": "confirmé (estimation provisoire)",
-    "source": "https://www.insee.fr/fr/statistiques/9056956",
+    "statut": "confirmé (résultat définitif)",
+    "source": "https://www.insee.fr/fr/statistiques/9080209",
     "site": "insee.fr",
-    "extrait": "En septembre 2026, les prix à la consommation augmenteraient de 3,0 % sur un an",
-    "publie_le": "2026-09-30",
-    "consulte_le": "2026-10-09",
-    "remarque": "Chiffre provisoire. Définitif le 15 octobre 2026 : vérifier et mettre à jour si besoin."
+    "extrait": "Sur un an, les prix à la consommation augmentent de 3,1 % en septembre 2026, après +2,4 % en août.",
+    "publie_le": "2026-10-15",
+    "consulte_le": "2026-10-17",
+    "remarque": "Résultat définitif. L'estimation provisoire du 30 septembre 2026 (3,0 %) a été révisée de +0,1 point."
   },
   "definition_inflation": {
     "valeur": null,
@@ -99,6 +98,13 @@
     "unite": "%",
     "ref": "actions_fr"
   },
+  "actions_fr_5ans_mediane": {
+    "valeur": 6.0,
+    "unite": "%",
+    "ref": "actions_fr",
+    "extrait": "Sur 5 ans, « la moitié des rendements constatés ont été supérieurs à 6 % »",
+    "remarque": "Seuil bas de la médiane (le document dit « supérieurs à 6 % ») ; consulté le 2026-10-17"
+  },
   "actions_fr_10ans_p1": {
     "valeur": -4.8,
     "unite": "%",
@@ -127,9 +133,9 @@
   "calculs": {
     "_note": "Hypothèses fictives, taux constants, avant frais, impôts et inflation (sauf mention). Recalculés le 2026-10-09.",
     "pouvoir_achat_livret": {
-      "valeur": -1.3,
+      "valeur": -1.4,
       "unite": "%",
-      "formule": "1,017 / 1,030 - 1 = -1,262 %",
+      "formule": "1,017 / 1,031 - 1 = -1,358 %",
       "entrees": [
         "livret_taux",
         "inflation_1an"
@@ -179,6 +185,49 @@
     "actifs_frais_1000": {
       "valeur": 14.7,
       "formule": "1 000 € × 1,47 % = 14,70 € par an"
+    },
+    "scenario_terrier": {
+      "valeur": 858,
+      "formule": "1 000 / 1,031^5 = 858,43 (pouvoir d'achat après 5 ans de prix en hausse de 3,1 % par an)",
+      "entrees": [
+        "inflation_1an"
+      ]
+    },
+    "scenario_livret": {
+      "valeur": 934,
+      "formule": "1 000 × (1,017 / 1,031)^5 = 933,92 (livret à 1,7 %, prix +3,1 % par an, 5 ans)",
+      "entrees": [
+        "livret_taux",
+        "inflation_1an"
+      ]
+    },
+    "scenario_actions_mediane": {
+      "valeur": 1338,
+      "formule": "1 000 × 1,06^5 = 1 338,23 (6 % réel par an pendant 5 ans)",
+      "entrees": [
+        "actions_fr_5ans_mediane"
+      ]
+    },
+    "scenario_actions_p1": {
+      "valeur": 499,
+      "formule": "1 000 × 0,87^5 = 498,42, arrondi au-dessus car affiché « moins de » (−13 % réel par an pendant 5 ans)",
+      "entrees": [
+        "actions_fr_5ans_p1"
+      ]
+    },
+    "terrier_frais_fourmis_5ans": {
+      "valeur": 982,
+      "formule": "1 000 × (1 − 0,0037)^5 = 981,64 (frais des ETF actions prélevés 5 ans, résultat avant frais supposé nul)",
+      "entrees": [
+        "etf_frais"
+      ]
+    },
+    "terrier_frais_geai_5ans": {
+      "valeur": 929,
+      "formule": "1 000 × (1 − 0,0147)^5 = 928,63 (frais des fonds actions gérés activement prélevés 5 ans, résultat avant frais supposé nul)",
+      "entrees": [
+        "fonds_actifs_frais"
+      ]
     }
   },
   "pea_plafond": {

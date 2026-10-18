@@ -39,6 +39,7 @@
   td.bien{background:var(--canard-clair)}
   .legende{font-size:13px;color:var(--douce);margin-top:8px}
   .deux{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .deux > *{min-width:0}
   @media (max-width:720px){ .deux{grid-template-columns:1fr} .barres .ligne{grid-template-columns:110px 1fr 46px} }
   .connexion{max-width:420px;margin:12vh auto}
   .connexion input{width:100%;padding:12px;border:2px solid var(--encre);border-radius:10px;margin:10px 0}
@@ -96,6 +97,13 @@
         });
         d.suggestions = s.ok ? await s.json() : null;
       } catch(e){ d.suggestions = null; }
+      // Métriques de rétention et questionnaire (script supabase/metriques.sql), même principe
+      try {
+        const m = await fetch(CFG.SUPABASE_URL.replace(/\/$/,"") + "/rest/v1/rpc/metriques", {
+          method:"POST", headers:{ "apikey":CFG.SUPABASE_KEY, "Content-Type":"application/json" }, body: JSON.stringify({ cle })
+        });
+        d.metriques = m.ok ? await m.json() : null;
+      } catch(e){ d.metriques = null; }
       affiche(d);
     } catch(e){ connexion("Connexion impossible. Réessaie."); }
   }
@@ -104,6 +112,61 @@
     max = max || Math.max(1, ...lignes.map(l => l[1] || 0));
     return `<div class="barres">${lignes.map(([lib, v, suffixe]) =>
       `<div class="ligne"><span>${esc(lib)}</span><span class="piste"><i style="width:${Math.round((v||0)/max*100)}%"></i></span><span class="val">${nb(v)}${suffixe||""}</span></div>`).join("")}</div>`;
+  }
+
+  // Pourcentage avec sa base : « 33 % (1/3) », ou « — » si personne n'est encore éligible
+  const pct = (n, base) => base ? `${Math.round(n / base * 100)} %<span class="sous"> (${nb(n)}/${nb(base)})</span>` : "—";
+  const semaineDe = j => "sem. du " + new Date(j).toLocaleDateString("fr-FR", { day:"numeric", month:"short" });
+  const LIBELLES = {
+    deception:["Si l'appli disparaissait…", { tres:"Très déçu·e", un_peu:"Un peu déçu·e", pas:"Pas déçu·e", plus:"Ne l'utilise déjà plus" }],
+    experience:["Avait déjà investi", { jamais:"Jamais", un_peu:"Un peu", regulier:"Régulièrement" }],
+    niveau:["Niveau des questions", { facile:"Trop facile", adapte:"Adapté", difficile:"Trop difficile" }],
+    motivation:["Ce qui motive le plus", { points:"Les points", serie:"La série de jours", badges:"Les badges", mona:"Mona et son histoire", defi:"Le défi du jour", contenu:"Le contenu" }],
+    rappel:["Envie d'un rappel", { quotidien:"Oui, chaque jour", parfois:"Oui, pas tous les jours", non:"Non" }],
+    sujet:["Sujet souhaité ensuite", { budget:"Budget et épargne", assurance_vie:"Assurance vie", credit:"Crédit et taux", marches:"Ce qui fait bouger les marchés", autre:"Autre" }]
+  };
+  const SOURCES = { tiktok:"TikTok", instagram:"Instagram", ami:"Lien d'un ami", autre:"Autre lien", direct:"Direct / inconnu" };
+
+  function blocMetriques(m){
+    if (m === null) return `<h2>Rétention et activation</h2><div class="carte"><p class="vide">Pas encore activé côté base de données (script supabase/metriques.sql).</p></div>`;
+    const g = m.global || {}, se = m.series || {}, q = m.questionnaire || {};
+    const tresDecus = (q.deception || {}).tres || 0;
+    return `
+      <h2>Rétention et activation</h2>
+      <div class="kpis" style="margin-top:0">
+        <div class="carte kpi"><b>${pct(g.actives, g.nouveaux)}</b><span>activation : 1re leçon terminée le jour de la 1re visite (objectif > 60 %)</span></div>
+        <div class="carte kpi"><b>${pct(g.j1, g.j1_base)}</b><span>rétention J1 : revenus le lendemain (repère ≈ 30 %)</span></div>
+        <div class="carte kpi"><b>${pct(g.j7, g.j7_base)}</b><span>rétention J7 : revenus 7 jours après (repère ≈ 12 %)</span></div>
+        <div class="carte kpi"><b>${pct(g.j30, g.j30_base)}</b><span>rétention J30 : revenus 30 jours après (repère ≈ 5 %)</span></div>
+        <div class="carte kpi"><b>${pct(se.serie3, se.joueurs)}</b><span>joueurs avec une série d'au moins 3 jours (7 jours : ${nb(se.serie7)})</span></div>
+        <div class="carte kpi"><b>${pct(tresDecus, q.reponses)}</b><span>« très déçu·e » si l'appli disparaissait (seuil 40 %, fiable dès ~40 réponses)</span></div>
+      </div>
+      <p class="legende">Entre parenthèses : nombre concerné / base. La rétention ne compte que les visiteurs arrivés depuis assez longtemps (un visiteur arrivé hier n'entre pas encore dans J1).</p>
+
+      <div class="deux">
+        <section><h2>Par semaine d'arrivée</h2><div class="carte defile"><table style="min-width:420px">
+          <thead><tr><th>Semaine</th><th>Nouveaux</th><th>Activation</th><th>J1</th><th>J7</th><th>J30</th></tr></thead>
+          <tbody>${(m.cohortes||[]).map(c => `<tr><td>${semaineDe(c.semaine)}</td><td>${nb(c.nouveaux)}</td><td>${pct(c.actives, c.nouveaux)}</td><td>${pct(c.j1, c.j1_base)}</td><td>${pct(c.j7, c.j7_base)}</td><td>${pct(c.j30, c.j30_base)}</td></tr>`).join("") || `<tr><td colspan="6" class="vide">Pas encore de données.</td></tr>`}</tbody></table></div></section>
+        <section><h2>Leçons terminées par semaine</h2><div class="carte defile"><table style="min-width:320px">
+          <thead><tr><th>Semaine</th><th>Leçons</th><th>Joueurs actifs</th><th>Leçons / actif</th></tr></thead>
+          <tbody>${(m.semaines||[]).map(w => `<tr><td>${semaineDe(w.semaine)}</td><td><b>${nb(w.lecons)}</b></td><td>${nb(w.actifs)}</td><td class="${w.actifs && w.lecons / w.actifs >= 3 ? "bien" : ""}">${w.actifs ? (w.lecons / w.actifs).toLocaleString("fr-FR", { maximumFractionDigits:1 }) : "—"}</td></tr>`).join("") || `<tr><td colspan="4" class="vide">Pas encore de données.</td></tr>`}</tbody></table>
+          <p class="legende">Métrique principale : leçons terminées par semaine. Joueur actif = au moins une leçon terminée dans la semaine. Objectif : plus de 3 leçons par actif.</p></div></section>
+      </div>
+
+      <h2>Sources des visiteurs</h2>
+      <div class="carte defile"><table style="min-width:420px">
+        <thead><tr><th>Source</th><th></th><th>Nouveaux</th><th>Activation</th><th>J7</th></tr></thead>
+        <tbody>${(m.sources||[]).map(x => `<tr><td>${esc(SOURCES[x.source] || x.source)}</td><td></td><td>${nb(x.nouveaux)}</td><td>${pct(x.actives, x.nouveaux)}</td><td>${pct(x.j7, x.j7_base)}</td></tr>`).join("") || `<tr><td colspan="5" class="vide">Pas encore de données.</td></tr>`}</tbody></table>
+        <p class="legende">Source lue dans le lien, par exemple <code>?src=tiktok</code>, <code>?src=instagram</code> ou <code>?src=ami</code>. La première source connue d'un visiteur est gardée.</p></div>
+
+      <h2>Questionnaire ${q.reponses ? `<span class="sous">(${nb(q.reponses)} réponse${q.reponses > 1 ? "s" : ""})</span>` : ""}</h2>
+      ${q.reponses ? `<div class="deux">${Object.entries(LIBELLES).map(([k, [titre, choix]]) =>
+          `<div class="carte"><b>${esc(titre)}</b>${barres(Object.entries(choix).map(([v, l]) => [l, (q[k] || {})[v] || 0]), q.reponses)}</div>`).join("")}</div>
+        <div class="carte" style="margin-top:16px"><b>« Si tu devais retenir une chose… »</b>${(q.retenu||[]).length ? q.retenu.map(t => `<div class="idee">
+          <p class="sous">${new Date(t.cree_le).toLocaleString("fr-FR",{dateStyle:"short",timeStyle:"short"})}${t.pseudo ? ` · <b>${esc(t.pseudo)}</b>` : ""} · ${esc(LIBELLES.deception[1][t.deception] || "")}</p>
+          <p class="texte">${esc(t.texte)}</p></div>`).join("") : `<p class="vide">Aucune réponse libre pour l'instant.</p>`}</div>
+        <p class="legende">Proposé en fin de leçon à partir du 2e jour de jeu. Avec peu de réponses, lire les réponses une par une plutôt que les pourcentages.</p>`
+      : `<div class="carte"><p class="vide">Aucune réponse pour l'instant. Le questionnaire est proposé en fin de leçon à partir du 2e jour de jeu.</p></div>`}`;
   }
 
   function affiche(d){
@@ -126,6 +189,8 @@
         <div class="carte kpi"><b>${nb(r.mobiles)}</b><span>visiteurs sur mobile</span></div>
         <div class="carte kpi"><b>${nb(r.installes)}</b><span>avec l'appli installée</span></div>
       </div>
+
+      ${blocMetriques(d.metriques)}
 
       <div class="deux">
         <section><h2>Entonnoir des visites</h2><div class="carte">${barres([
@@ -152,13 +217,13 @@
 
       <h2>Exercices</h2>
       <div class="carte defile"><table>
-        <thead><tr><th>Parcours</th><th>Écran</th><th>Répondus</th><th>Abandons</th><th>% justes</th><th>Temps de réponse</th><th>Lecture explication</th><th>« En savoir plus »</th></tr></thead>
+        <thead><tr><th>Parcours</th><th>Écran</th><th>Répondus</th><th>Abandons</th><th>% justes</th><th>Temps de réponse</th><th>Lecture explication</th><th>« En savoir plus »</th><th>Indices ouverts</th><th>% justes après indice</th></tr></thead>
         <tbody>${(d.exercices||[]).map(x => {
           const ab = x.repondus + x.abandons ? x.abandons / (x.repondus + x.abandons) : 0;
           return `<tr><td>${esc(nom(x.parcours))}</td><td>${esc(x.ecran)}</td><td>${nb(x.repondus)}</td><td class="${ab>=.2?"alerte":""}">${nb(x.abandons)}</td>
             <td class="${x.pct_justes!==null && x.pct_justes<40?"alerte":x.pct_justes>=90?"bien":""}">${x.pct_justes===null?"—":x.pct_justes+" %"}</td>
-            <td>${duree(x.reponse_s)}</td><td>${duree(x.explication_s)}</td><td>${nb(x.en_savoir_plus)}</td></tr>`;
-        }).join("") || `<tr><td colspan="8" class="vide">Pas encore de données.</td></tr>`}</tbody></table>
+            <td>${duree(x.reponse_s)}</td><td>${duree(x.explication_s)}</td><td>${nb(x.en_savoir_plus)}</td><td>${nb(x.indices)}</td><td>${x.pct_justes_indice==null?"—":x.pct_justes_indice+" %"}</td></tr>`;
+        }).join("") || `<tr><td colspan="10" class="vide">Pas encore de données.</td></tr>`}</tbody></table>
         <p class="legende">En rose : moins de 40 % de bonnes réponses (question peut-être trop dure ou ambiguë) ou au moins 20 % d'abandons. En vert : 90 % ou plus de bonnes réponses (peut-être trop facile).</p></div>
 
       <h2>Joueurs par pseudo</h2>
@@ -170,7 +235,7 @@
       <h2>Personnages choisis</h2>
       <div class="carte">${Object.keys(pers).length ? barres(["cupide","sceptique","touriste","stratege"].map(k => [{cupide:"Cupide",sceptique:"Sceptique",touriste:"Touriste",stratege:"Stratège"}[k], pers[k]||0])) : `<p class="vide">Pas encore de données.</p>`}</div>
 
-      <p class="legende" style="margin-top:24px">Données anonymes : aucun nom, e-mail ni adresse IP n'est stocké dans les tables. Export détaillé possible depuis Supabase (tables <code>reponses</code>, <code>evenements</code> et <code>suggestions</code>).</p>`;
+      <p class="legende" style="margin-top:24px">Données anonymes : aucun nom, e-mail ni adresse IP n'est stocké dans les tables. Export détaillé possible depuis Supabase (tables <code>reponses</code>, <code>evenements</code>, <code>suggestions</code> et <code>questionnaire</code>).</p>`;
     app.querySelector("#maj").onclick = () => charge(lireCle());
     app.querySelector("#quitter").onclick = () => { try { sessionStorage.removeItem("cle_tdb"); localStorage.removeItem("cle_tdb"); } catch(e){} connexion(); };
   }
