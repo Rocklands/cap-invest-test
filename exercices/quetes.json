@@ -1,0 +1,222 @@
+{
+  "_note": "Quêtes du village : chaque parcours est donné par un habitant. Le vieux Hibou fait les leçons de tous les parcours. Intro au premier lancement, scène de fin quand le parcours est terminé. Textes éducatifs : on décrit, on ne prescrit pas, aucun chiffre. Chaque quête terminée laisse un souvenir dans le terrier de Mona.",
+  "professeur": "hibou",
+  "quetes": {
+    "pourquoi-investir": {
+      "habitant": "hibou",
+      "intro": [
+        [
+          "hibou",
+          "Hou hou… Tes noisettes de l'an dernier achètent moins de choses au marché, n'est-ce pas ? Viens, je vais t'expliquer pourquoi."
+        ],
+        [
+          "mona",
+          "Le marché m'a joué un tour ?"
+        ]
+      ],
+      "fin": [
+        [
+          "hibou",
+          "Tu sais maintenant pourquoi l'argent qui dort perd de sa valeur, et ce que le temps peut changer."
+        ],
+        [
+          "mona",
+          "Je ne regarderai plus mes réserves de la même façon !"
+        ]
+      ],
+      "objet": {
+        "id": "sablier",
+        "nom": "Le sablier du Hibou"
+      }
+    },
+    "familles-actifs": {
+      "habitant": "castor",
+      "intro": [
+        [
+          "castor",
+          "Pour bâtir un barrage, il faut connaître ses matériaux : la pierre, le bois, les branches. Pour tes noisettes, c'est pareil !"
+        ],
+        [
+          "mona",
+          "Il existe plusieurs sortes de placements ?"
+        ]
+      ],
+      "fin": [
+        [
+          "castor",
+          "Tu reconnais maintenant les grandes familles, des plus solides aux plus fragiles."
+        ],
+        [
+          "mona",
+          "Chaque matériau a son rôle… et ses risques."
+        ]
+      ],
+      "objet": {
+        "id": "planche",
+        "nom": "Une planche du barrage"
+      }
+    },
+    "debuter": {
+      "habitant": "herisson",
+      "intro": [
+        [
+          "herisson",
+          "Avant de planter quoi que ce soit, on prépare sa réserve d'hiver. C'est la base !"
+        ],
+        [
+          "mona",
+          "Ma réserve d'hiver ? Pour quoi faire ?"
+        ]
+      ],
+      "fin": [
+        [
+          "herisson",
+          "Réserve d'hiver, objectifs, durée : tu connais les questions à se poser avant de commencer."
+        ],
+        [
+          "mona",
+          "Rien ne presse : d'abord, on se prépare."
+        ]
+      ],
+      "objet": {
+        "id": "pot",
+        "nom": "Le pot de la réserve d'hiver"
+      }
+    },
+    "pea-compte-titres": {
+      "habitant": "ecureuil",
+      "intro": [
+        [
+          "ecureuil",
+          "Moi, je range mes noisettes dans deux cachettes. Elles n'ont pas du tout les mêmes règles !"
+        ],
+        [
+          "mona",
+          "Pourquoi deux cachettes différentes ?"
+        ]
+      ],
+      "fin": [
+        [
+          "ecureuil",
+          "Chaque cachette a ses règles, ses avantages et ses limites. Tu sais maintenant les comparer."
+        ],
+        [
+          "mona",
+          "Je comprends mieux pourquoi tu en as deux."
+        ]
+      ],
+      "objet": {
+        "id": "cle",
+        "nom": "La clé des deux cachettes"
+      }
+    },
+    "etf": {
+      "habitant": "fourmis",
+      "intro": [
+        [
+          "fourmis",
+          "Seule, une fourmi porte une graine. Ensemble, on en range des centaines dans un seul panier !"
+        ],
+        [
+          "mona",
+          "Un seul panier pour beaucoup de graines ?"
+        ]
+      ],
+      "fin": [
+        [
+          "fourmis",
+          "Tu sais maintenant comment fonctionne un panier, et ce qu'il faut regarder avant d'en choisir un."
+        ],
+        [
+          "mona",
+          "Je ne regarderai plus un panier de la même façon."
+        ]
+      ],
+      "objet": {
+        "id": "panier",
+        "nom": "Le panier des Fourmis"
+      }
+    },
+    "arnaques": {
+      "habitant": "pie",
+      "intro": [
+        [
+          "pie",
+          "Le Renard raconte partout qu'il a des noisettes magiques qui doublent en une nuit. Ça ne te paraît pas louche ?"
+        ],
+        [
+          "mona",
+          "Des noisettes magiques… Ce serait trop beau !"
+        ]
+      ],
+      "fin": [
+        [
+          "pie",
+          "Promesses trop belles, pression pour décider vite, faux amis : tu repères les ruses du Renard."
+        ],
+        [
+          "mona",
+          "Le Renard peut toujours courir !"
+        ]
+      ],
+      "objet": {
+        "id": "loupe",
+        "nom": "La loupe de la Pie"
+      }
+    },
+    "histoire-finance": {
+      "habitant": "tortue",
+      "intro": [
+        [
+          "tortue",
+          "Assieds-toi, petite. Je vais te raconter comment on est passé du troc à la monnaie d'aujourd'hui."
+        ],
+        [
+          "mona",
+          "Du troc ? Comme échanger des noisettes contre des glands ?"
+        ]
+      ],
+      "fin": [
+        [
+          "tortue",
+          "Te voilà au courant : la monnaie a une longue histoire, avec ses inventions et ses crises."
+        ],
+        [
+          "mona",
+          "Je ne regarderai plus mes pièces de la même façon !"
+        ]
+      ],
+      "objet": {
+        "id": "piece",
+        "nom": "Une pièce ancienne"
+      }
+    },
+    "histoire-investissement": {
+      "habitant": "blaireau",
+      "intro": [
+        [
+          "blaireau",
+          "Les Bourses existent depuis des siècles, et les bulles aussi ! Tu veux savoir comment tout a commencé ?"
+        ],
+        [
+          "mona",
+          "Des bulles ? Raconte !"
+        ]
+      ],
+      "fin": [
+        [
+          "blaireau",
+          "Premières Bourses, premières bulles : tu sais maintenant que les marchés ont toujours eu leurs emballements."
+        ],
+        [
+          "mona",
+          "Les bulles, ça brille… jusqu'au moment où ça éclate."
+        ]
+      ],
+      "objet": {
+        "id": "carnet",
+        "nom": "Le carnet de Grand-mère Blaireau"
+      }
+    }
+  }
+}

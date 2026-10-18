@@ -25,6 +25,8 @@ Vérifié le 9 octobre 2026. Sources limitées aux sites officiels autorisés. L
 | 1 000 × 1,05^20 / 2 000 × 1,02^10 / 1 500 × 1,02^20 / 1 000 × 1,05^10 | 2 653 / 2 438 / 2 229 / 1 629 € |
 | 1 000 × 1,05^30 | 4 321,94 € |
 | 10 000 / 7 000 − 1 | +42,86 % |
+| Terrier, scène du geai : 1 000 × (1 − 0,0037)^5 / 1 000 × (1 − 0,0147)^5 | 981,64 / 928,63 noisettes (écart ≈ 53) |
+| Terrier, une saison : (1,031)^(1/4) et (1,017)^(1/4), calculés dans l'appli à partir de `inflation_1an` et `livret_taux` | +0,77 % de prix / +0,42 % au garde-manger par saison |
 
 ## Retiré des fiches (non utilisé)
 

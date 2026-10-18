@@ -214,6 +214,20 @@
       "entrees": [
         "actions_fr_5ans_p1"
       ]
+    },
+    "terrier_frais_fourmis_5ans": {
+      "valeur": 982,
+      "formule": "1 000 × (1 − 0,0037)^5 = 981,64 (frais des ETF actions prélevés 5 ans, résultat avant frais supposé nul)",
+      "entrees": [
+        "etf_frais"
+      ]
+    },
+    "terrier_frais_geai_5ans": {
+      "valeur": 929,
+      "formule": "1 000 × (1 − 0,0147)^5 = 928,63 (frais des fonds actions gérés activement prélevés 5 ans, résultat avant frais supposé nul)",
+      "entrees": [
+        "fonds_actifs_frais"
+      ]
     }
   },
   "pea_plafond": {
