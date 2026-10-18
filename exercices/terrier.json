@@ -1,9 +1,28 @@
 {
-  "_note": "Terrier de Mona (onglet Histoire). Le joueur aide Mona à ranger ses noisettes. Chaque scène se joue un jour différent ; un chapitre terminé fait passer une saison. Les {{cle}} renvoient à donnees/chiffres.json. Aucune bonne réponse : chaque choix montre ses avantages et ses limites. Les noisettes n'ont aucune valeur en argent. Chapitre 2 : il y a un piège, ce que Mona confie au renard est perdu (jamais pris dans la réserve d'hiver). Versions lisibles : fiches/terrier-chapitre-1.md et fiches/terrier-chapitre-2.md.",
+  "_note": "Terrier de Mona (onglet Histoire). Le joueur aide Mona à ranger ses noisettes. Les scènes s'enchaînent sans limite par jour ; un chapitre terminé fait passer une saison. Les {{cle}} renvoient à donnees/chiffres.json. Aucune bonne réponse : chaque choix montre ses avantages et ses limites. Les noisettes n'ont aucune valeur en argent. Chapitre 2 : il y a un piège, ce que Mona confie au renard est perdu (jamais pris dans la réserve d'hiver). Versions lisibles : fiches/terrier-chapitre-1.md et fiches/terrier-chapitre-2.md.",
   "regles": {
     "depart": 1000,
     "repas_par_mois": 50,
     "perte_absence": 0.1
+  },
+  "coffre": {
+    "_note": "Un coffre s'ouvre à la fin de chaque chapitre. On tire d'abord une rareté (selon « chances », en %), puis un lot au hasard dans cette rareté. Une tenue déjà gagnée est échangée contre « doublon » noisettes. Les noisettes gagnées vont au terrier.",
+    "chances": { "commun": 55, "rare": 28, "epique": 13, "legendaire": 4 },
+    "doublon": { "commun": 30, "rare": 80, "epique": 150, "legendaire": 300 },
+    "lots": [
+      { "id": "noisettes-25", "rarete": "commun", "noisettes": 25, "nom": "Une poignée de noisettes" },
+      { "id": "noisettes-50", "rarete": "commun", "noisettes": 50, "nom": "Un sachet de noisettes" },
+      { "id": "echarpe", "rarete": "commun", "tenue": "cou", "nom": "Écharpe d'automne", "mona": "Elle tient chaud, et elle est assortie à mes joues !" },
+      { "id": "noisettes-100", "rarete": "rare", "noisettes": 100, "nom": "Un panier de noisettes" },
+      { "id": "chapeau-paille", "rarete": "rare", "tenue": "tete", "nom": "Chapeau de paille", "mona": "Parfait pour les longues journées d'été au soleil." },
+      { "id": "lunettes", "rarete": "rare", "tenue": "yeux", "nom": "Lunettes rondes", "mona": "Avec ça, je lis les petites lignes des contrats du renard !" },
+      { "id": "noisette-givree", "rarete": "rare", "tenue": "noisette", "nom": "Noisette givrée", "mona": "Elle brille comme le premier matin d'hiver." },
+      { "id": "noisettes-200", "rarete": "epique", "noisettes": 200, "nom": "Une brouette de noisettes" },
+      { "id": "beret", "rarete": "epique", "tenue": "tete", "nom": "Béret de peintre", "mona": "Je me sens l'âme d'une artiste… ou d'une gérante de fonds ?" },
+      { "id": "noisette-rubis", "rarete": "epique", "tenue": "noisette", "nom": "Noisette rubis", "mona": "Rouge et luisante. Je n'ose même pas la croquer." },
+      { "id": "couronne", "rarete": "legendaire", "tenue": "tete", "nom": "Couronne de la reine des marmottes", "mona": "Reine des marmottes ! Mais une reine qui compte toujours ses noisettes." },
+      { "id": "noisette-or", "rarete": "legendaire", "tenue": "noisette", "nom": "Noisette en or", "mona": "Une noisette en or ! Bon… elle ne se mange pas. Elle reste jolie dans la patte." }
+    ]
   },
   "chapitres": [
     {
