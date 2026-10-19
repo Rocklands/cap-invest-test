@@ -98,9 +98,6 @@
   .stat-jour b{display:block;font-family:Fraunces,serif;font-size:22px}
   .stat-jour span{font-size:13px;color:var(--encre-douce)}
   .stat-jour.atteint{background:var(--canard-clair);border-color:var(--canard)}
-  .reserves{display:flex;align-items:center;gap:10px;margin:4px 0 10px;padding:10px 12px;box-shadow:none}
-  .reserves svg.mona{flex:none}
-  .reserves b{display:block;font-family:Fraunces,serif;font-size:18px;margin-bottom:6px}
   .semaine{display:flex;gap:5px}
   .semaine .jour{display:grid;place-items:center;width:26px;height:26px;border-radius:50%;border:2px solid var(--trait);font-size:11px;font-weight:700;color:var(--encre-douce);font-style:normal}
   .semaine .jour.fait{background:var(--jaune-clair);border-color:var(--moutarde);font-size:13px}
@@ -453,12 +450,6 @@
   .vole-noisette{position:fixed;z-index:15;width:18px;height:18px;border-radius:50% 50% 45% 45%;background:#B07A4A;border:2px solid #1E2440;pointer-events:none;animation:vers-cachette .8s cubic-bezier(.4,0,.3,1) forwards}
   @keyframes vers-cachette{to{transform:translate(var(--x),var(--y)) scale(.6);opacity:.2}}
   /* Jauge et cachettes */
-  .jauge{display:flex;align-items:center;gap:10px;margin:0 0 10px;padding:10px 12px;box-shadow:none}
-  .jauge b{font-size:15px;white-space:nowrap}
-  .jauge .barre{flex:1;height:14px;border:2px solid var(--encre);border-radius:999px;background:var(--papier);overflow:hidden}
-  .jauge .barre i{display:block;height:100%;background:var(--canard);transition:width .8s ease}
-  .jauge .barre i.bas{background:var(--corail)}
-  .jauge span{font-size:13px;color:var(--encre-douce);white-space:nowrap}
   .cachettes{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:0 0 8px}
   .cachette{padding:10px 12px;box-shadow:none;display:flex;flex-direction:column;gap:2px}
   .cachette .ico{font-size:22px;line-height:1}
@@ -903,7 +894,8 @@
   }
 
   /* ---------- Carte des parcours ---------- */
-  function carte(){
+  function carte(apres){
+    apres = apres && apres.repas ? apres : null;
     abandonEnCours(false);
     etat.parcours = null;
     M.onglet = "principal"; sauve();
@@ -915,7 +907,7 @@
       ${onglets("principal")}
       <div class="salut"><svg viewBox="0 0 54 54" aria-hidden="true">${p.svg}</svg><div><h1>Choisis ton parcours</h1></div></div>
       <p class="total">${M.pseudo ? esc(M.pseudo) + " · " : ""}${p.nom} en route. <button class="lien" id="perso" style="border:0;background:none;padding:0;color:var(--canard);font-weight:700;text-decoration:underline">Personnage et pseudo</button></p>
-      ${carteRepas()}
+      ${carteRepas(apres)}
       <nav class="chemin" aria-label="Parcours">
         ${PARCOURS.map((x, n) => {
           const titreSection = x.section && (n === 0 || PARCOURS[n-1].section !== x.section) ? `<h2 class="section-carte">${esc(x.section)}</h2>` : "";
@@ -949,6 +941,13 @@
     });
     brancheInstallation();
     window.scrollTo(0,0);
+    // Après un repas : Mona mange, puis saute de joie, puis la fenêtre du jour validé
+    if (apres) setTimeout(() => {
+      const m = app.querySelector("#mona-repas"); if (!m) return;
+      m.innerHTML = mona("contente", 52, "saut");
+      if (apres.juste) confettis();
+      if (apres.nouveauJour && !document.querySelector(".popup")) setTimeout(popupNoisette, 900);
+    }, 1800);
   }
 
   /* ---------- Installation sur l'écran d'accueil ---------- */
@@ -1000,14 +999,8 @@
     }).join("");
     return `<div class="semaine" aria-label="Jours joués cette semaine. Un jour de repos par semaine ne casse pas la série.">${cases}</div>`;
   }
-  // Rappel des repas dans l'onglet Histoire
-  function blocReserves(){
-    const n = serieJours();
-    return `<div class="carte reserves">${mona(n ? "contente" : "pensive", 44)}<div>
-      <b>${n ? `🍽️ ${n} jour${n>1?"s":""} de repas` : "Nourris Mona aujourd'hui"}</b>${semaineRepas()}</div></div>`;
-  }
   // Onglet Principal : le repas du jour de Mona (remplace le défi du jour) et la révision
-  function carteRepas(){
+  function carteRepas(apres){
     const n = serieJours(), hm = humeurMona();
     const titre = M.terrier && M.terrier.malade ? "Mona est malade" : objectifFait() ? "Mona est rassasiée" : joursManques() ? "Mona a faim" : "Mona attend son repas";
     const action = M.terrier && M.terrier.malade
@@ -1016,8 +1009,8 @@
         ? `<div class="carte tuile fait"><b>Repas servi</b><span>Prochain repas demain</span></div>`
         : `<button class="carte tuile repas" id="nourrir"><b>🍽️ Nourrir Mona</b><span>1 question · 30 secondes</span></button>`;
     return `<section class="carte repas-jour" aria-label="Repas de Mona">
-      <div class="repas-haut">${mona(hm.h, 52)}<div><b>${titre}</b><span>${n ? `${n} jour${n>1?"s":""} de repas d'affilée` : "Un repas par jour pour lancer ta série"}</span></div>
-        <button class="vers-terrier" id="terrier">Terrier ›</button></div>
+      <div class="repas-haut"><span id="mona-repas">${mona(apres ? "mange" : hm.h, 52)}</span><div><b>${titre}</b><span>${n ? `${n} jour${n>1?"s":""} de repas d'affilée` : "Un repas par jour pour lancer ta série"}</span></div>
+        <button class="vers-terrier" id="terrier">Histoire ›</button></div>
       ${semaineRepas()}
       <div class="actions-jour ${M.erreurs.length ? "" : "seule"}">${action}
         ${M.erreurs.length ? `<button class="carte tuile revision" id="revision"><b>Révision</b><span>${M.erreurs.length} question${M.erreurs.length>1?"s":""} à revoir</span></button>` : ""}</div>
@@ -1365,8 +1358,8 @@
     if (objectifFait()) return { h:"contente", jauge:100, txt:"Rassasiée", dit:"Merci pour le repas ! Je suis en pleine forme." };
     const n = joursManques();
     if (n >= 2) return { h:"faible", jauge:15, txt:"Très faim", dit:"Je n'ai presque plus de forces… J'ai dû piocher dans mes réserves." };
-    if (n === 1) return { h:"affamee", jauge:35, txt:"Affamée", dit:"Mon ventre gargouille ! Tu m'apportes une noisette ?" };
-    return { h:"contente", jauge:65, txt:"Petit creux", dit:"J'ai un petit creux… On joue ensemble aujourd'hui ?" };
+    if (n === 1) return { h:"affamee", jauge:35, txt:"Affamée", dit:"Mon ventre gargouille ! Tu me nourris dans l'onglet Principal ?" };
+    return { h:"contente", jauge:65, txt:"Petit creux", dit:"J'ai un petit creux… Mon repas est dans l'onglet Principal !" };
   }
   function prochaineScene(){
     if (!TERRIER) return null;
@@ -1376,7 +1369,7 @@
   }
   // Chapitre dont toutes les scènes sont jouées mais dont la saison n'est pas encore passée
   const chapitreAFinir = () => TERRIER && M.terrier && TERRIER.chapitres.find(c => c.numero > M.terrier.saisons && c.scenes.every(x => M.terrier.scenes[x.id]));
-  const alerteHistoire = () => !objectifFait() || (TERRIER && (!prologueJoue() || chapitreAFinir() || coffreAOuvrir() || prochaineScene()));
+  const alerteHistoire = () => !!(TERRIER && (!prologueJoue() || chapitreAFinir() || coffreAOuvrir() || prochaineScene()));
   const nb = n => Math.round(n).toLocaleString("fr-FR");
 
   function cachettes(T, cible){
@@ -1428,12 +1421,6 @@
     delete T.annonce; sauve();
     const p = prochaineScene(), aFinir = chapitreAFinir(), aOuvrir = coffreAOuvrir();
     let dit = prologueJoue() ? hm.dit : "Mon oncle m'a laissé un drôle de cadeau devant le terrier… Viens voir !";
-    if (apres && apres.repas) dit = apres.juste ? "Miam ! Et en plus tu as trouvé la bonne réponse !" : "Miam, merci ! Pas grave pour la réponse : l'explication compte aussi.";
-    const repas = T.malade
-      ? `<button class="carte tuile revision" id="soigner"><b>🩹 Soigner Mona</b><span>Termine une leçon dans l'onglet Principal</span></button>`
-      : objectifFait()
-        ? `<div class="carte tuile fait"><b>Mona a mangé ✓</b><span>Prochain repas demain</span></div>`
-        : `<button class="carte tuile repas" id="nourrir"><b>🍽️ Nourrir Mona</b><span>1 question · 30 secondes</span></button>`;
     let histoire;
     if (!prologueJoue()) histoire = `<button class="carte tuile chapitre" id="prologue"><b>Prologue · Le cadeau de l'oncle</b><span>Le début de l'histoire de Mona</span></button>`;
     else if (aFinir) histoire = `<button class="carte tuile chapitre" id="fin-chapitre"><b>${esc(aFinir.fin.titre)}</b><span>La saison se termine : découvre tes cachettes</span></button>`;
@@ -1441,22 +1428,20 @@
     else if (!p) histoire = `<div class="carte tuile fait"><b>${esc(TERRIER.chapitres[TERRIER.chapitres.length - 1].fin.suite)}</b><span>En attendant, prends soin de Mona</span></div>`;
     else {
       const rang = `Chapitre ${p.c.numero} · ${esc(p.c.saison)} · scène ${p.c.scenes.indexOf(p.s) + 1}/${p.c.scenes.length}`;
-      histoire = T.malade ? `<div class="carte tuile fait"><b>${rang}</b><span>Mona est trop faible pour l'aventure</span></div>`
+      histoire = T.malade ? `<div class="carte tuile fait"><b>${rang}</b><span>Mona est trop faible : soigne-la dans l'onglet Principal</span></div>`
         : `<button class="carte tuile chapitre" id="scene"><b>${esc(p.s.titre)}</b><span>${rang}</span></button>`;
     }
     const pouvoir = T.prix > 1.0001 ? `<p class="note" style="margin:0 0 8px">Les prix ont monté depuis le début : hors panier, tes noisettes achètent autant que <b>${nb((T.reserve + T.terrier + T.chouette) / T.prix)}</b> noisettes du premier printemps.</p>` : "";
     app.innerHTML = `
       <header><span class="test">Version de test</span><span class="espace"></span><span class="points">${NOMS_SAISONS[saison]} · an ${Math.floor(T.saisons / 4) + 1}</span></header>
       ${onglets("histoire")}
-      ${decor(saison, `<p class="bulle-scene" id="bulle">${esc(dit)}</p><button class="scene-mona" id="mona" aria-label="Toucher Mona">${mona(apres && apres.repas ? "mange" : hm.h, 120, "noisette")}</button>`)}
-      <div class="carte jauge"><b>🍽️ Repas</b><span class="barre"><i class="${hm.jauge < 40 ? "bas" : ""}" style="width:${apres && apres.repas ? 35 : hm.jauge}%"></i></span><span>${hm.txt}</span></div>
+      ${decor(saison, `<p class="bulle-scene" id="bulle">${esc(dit)}</p><button class="scene-mona" id="mona" aria-label="Toucher Mona">${mona(hm.h, 120, "noisette")}</button>`)}
       ${annonce ? `<div class="carte annonce">Pendant ton absence, Mona a mangé ${annonce.mange ? `<b>${nb(annonce.mange)}</b> noisettes de sa réserve d'hiver` : ""}${annonce.mange && annonce.pioche ? " et " : ""}${annonce.pioche ? `<b>${nb(annonce.pioche)}</b> noisettes du terrier (sa réserve était vide)` : ""}.</div>` : ""}
-      <div class="actions-jour seule">${repas}${histoire}</div>
+      <div class="actions-jour seule">${histoire}</div>
       <h2 class="section-carte" style="margin:6px 0 10px">Mes cachettes</h2>
       ${cachettes(T)}
       ${pouvoir}
       <p class="note" style="margin-top:0">Simulation simplifiée, pas une prévision. Les noisettes n'ont aucune valeur en argent.</p>
-      ${blocReserves()}
       ${garderobe(T)}
       ${souvenirs()}
       ${prologueJoue() ? `<button class="lien-idee" id="prologue">Rejouer le prologue</button>` : ""}`;
@@ -1465,21 +1450,11 @@
       || ["Hi hi, ça chatouille !", "Tu as vu mes cachettes ?", "Je compte mes noisettes… 1, 2, 3…", "Chaque saison, je recompte mes réserves."];
     brancheMona(phrases);
     const on = (id, f) => { const b = app.querySelector("#" + id); if (b) b.onclick = f; };
-    on("nourrir", nourrir);
-    on("soigner", carte);
     on("prologue", lanceHistoire);
     on("scene", () => lanceScene(p.c, p.s));
     on("fin-chapitre", () => finChapitre(aFinir));
     on("coffre", () => coffre(aOuvrir));
     app.querySelectorAll("[data-tenue]").forEach(b => b.onclick = () => { porte(b.dataset.tenue); terrier({}); });
-    if (apres && apres.repas){
-      setTimeout(() => {
-        const b = app.querySelector("#mona"); if (!b) return;
-        b.innerHTML = mona("contente", 120, "noisette"); b.classList.add("saute");
-        const j = app.querySelector(".jauge .barre i"); if (j){ j.classList.remove("bas"); j.style.width = "100%"; }
-        if (apres.juste) confettis();
-      }, 2200);
-    }
     window.scrollTo(0,0);
   }
 
@@ -1942,10 +1917,7 @@
     if (etat.mode === "nourrir"){
       enregistre({ ecran:"fin_nourrir", statut:"repondu", juste:null, temps_ms:0, score: etat.points });
       sauve();
-      terrier({ repas:true, juste: etat.justes === n });
-      // La fenêtre du jour validé arrive une fois que Mona a mangé
-      if (nouveauJour) setTimeout(() => { if (app.querySelector(".cachettes") && !document.querySelector(".popup")) popupNoisette(); }, 2600);
-      return;
+      return carte({ repas:true, juste: etat.justes === n, nouveauJour });
     }
 
     if (etat.mode === "revision"){
