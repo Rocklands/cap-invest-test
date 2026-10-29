@@ -104,19 +104,17 @@
           "indice": "Commence par regarder la durée et le taux : avec les intérêts composés, ils pèsent souvent plus lourd que la mise de départ.",
           "elements": [
             "1 000 € placés 20 ans à 5 %",
-            "2 000 € placés 10 ans à 2 %",
-            "1 500 € placés 20 ans à 2 %",
+            "2 000 € placés 5 ans à 2 %",
             "1 000 € placés 10 ans à 5 %"
           ],
           "ordre_correct": [
             0,
             1,
-            2,
-            3
+            2
           ],
           "retour_juste": "Classement parfait ! La durée et le taux pèsent souvent plus lourd que la mise de départ.",
-          "retour_faux": "Bon ordre : 1 000 € sur 20 ans à 5 % (2 653 €), puis 2 000 € sur 10 ans à 2 % (2 438 €), puis 1 500 € sur 20 ans à 2 % (2 229 €), enfin 1 000 € sur 10 ans à 5 % (1 629 €). La mise de départ ne fait pas tout.",
-          "en_savoir_plus": "Calculs : 1 000 × 1,05^20 ≈ 2 653 € ; 2 000 × 1,02^10 ≈ 2 438 € ; 1 500 × 1,02^20 ≈ 2 229 € ; 1 000 × 1,05^10 ≈ 1 629 €. Taux fictifs et constants, avant frais, impôts et inflation. Dans la réalité, les rendements varient et peuvent être négatifs.",
+          "retour_faux": "Bon ordre : 1 000 € sur 20 ans à 5 % (2 653 €), puis 2 000 € sur 5 ans à 2 % (2 208 €), enfin 1 000 € sur 10 ans à 5 % (1 629 €). Avec deux fois moins au départ, le placement le plus long finit en tête.",
+          "en_savoir_plus": "Calculs : 1 000 × 1,05^20 ≈ 2 653 € ; 2 000 × 1,02^5 ≈ 2 208 € ; 1 000 × 1,05^10 ≈ 1 629 €. Taux fictifs et constants, avant frais, impôts et inflation. Dans la réalité, les rendements varient et peuvent être négatifs.",
           "sources": [
             "calculs"
           ]

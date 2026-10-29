@@ -33,10 +33,10 @@
       --ombre:0 3px 0 #06080F; --rouge:#FF8F75; --jaune-clair:#3A3218; --rose-pale:#3A2320; --bientot:#192036;
     }
     .bouton{box-shadow:0 3px 0 #06080F}
+    .idee-flottante{box-shadow:0 4px 0 #06080F}
     /* Texte foncé sur les aplats jaune moutarde */
-    .test,.perso[aria-pressed="true"],.perso[aria-pressed="true"] b,.perso[aria-pressed="true"] span,.option .num,.etape .etat.neuf,.idee-entree .etat{color:var(--sur-couleur)}
-    .perso[aria-pressed="true"]{border-color:var(--moutarde)}
-    svg.mona,svg.habitant,.perso svg,.salut svg,.popup-carte svg,.souvenir svg,.souvenir-gagne svg,.coffre-svg,.lot-apercu svg{filter:drop-shadow(0 0 1.5px rgba(243,236,223,.55))}
+    .test,.option .num,.etape .etat.neuf,.idee-flottante{color:var(--sur-couleur)}
+    svg.mona,svg.habitant,.salut svg,.popup-carte svg,.souvenir svg,.souvenir-gagne svg,.coffre-svg,.lot-apercu svg{filter:drop-shadow(0 0 1.5px rgba(243,236,223,.55))}
   }
   *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
   html,body{margin:0;background:var(--papier);color:var(--encre)}
@@ -80,13 +80,6 @@
   /* Accueil */
   .accueil h1{font-size:34px;line-height:1.05;margin:18px 0 6px}
   .accueil p.chapo{color:var(--encre-douce);margin:0 0 18px}
-  .persos{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-  .perso{text-align:left;padding:14px 12px;border:2px solid var(--encre);border-radius:var(--rayon);background:var(--carte);box-shadow:var(--ombre);display:flex;flex-direction:column;gap:6px;min-height:170px}
-  .perso[aria-pressed="true"]{background:var(--moutarde)}
-  .perso svg{width:54px;height:54px}
-  .perso b{font-family:Fraunces,serif;font-size:20px}
-  .perso span{font-size:14px;color:var(--encre-douce);line-height:1.3}
-  .perso[aria-pressed="true"] span{color:var(--encre)}
   .note{font-size:13px;color:var(--encre-douce);margin:12px 0}
   .pseudo{display:block;margin:4px 0 12px;box-shadow:none}
   .pseudo span{color:var(--encre-douce);font-size:14px}
@@ -338,11 +331,11 @@
   .merci{font-family:Fraunces,serif;font-size:22px;margin-top:18px}
 
   /* Boîte à idées */
-  .idee-entree{display:flex;align-items:center;gap:12px;width:100%;text-align:left;margin-top:18px;background:var(--jaune-clair);border-color:var(--moutarde)}
-  .idee-entree b{font-family:Fraunces,serif;font-size:18px;display:block;color:var(--encre)}
-  .idee-entree span{font-size:14px;color:var(--encre-douce)}
-  .idee-entree > span:first-child{font-size:28px;flex:none}
-  .idee-entree .etat{margin-left:auto;flex:none;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;padding:3px 8px;border-radius:999px;border:1.5px solid var(--encre);background:var(--moutarde);color:var(--encre)}
+  .idee-flottante{position:sticky;bottom:calc(14px + env(safe-area-inset-bottom));align-self:flex-end;z-index:5;margin-top:18px;display:inline-flex;align-items:center;gap:6px;padding:10px 16px;border:2px solid var(--encre);border-radius:999px;background:var(--moutarde);color:var(--encre);font:inherit;font-weight:700;font-size:16px;box-shadow:0 4px 0 var(--encre)}
+  .idee-flottante:active{transform:translateY(3px);box-shadow:0 1px 0 var(--encre)}
+  .idee-flottante.coucou{animation:coucou-idee .9s ease-in-out 2}
+  @keyframes coucou-idee{0%,100%{transform:rotate(0)}20%{transform:rotate(-8deg) scale(1.06)}40%{transform:rotate(7deg) scale(1.06)}60%{transform:rotate(-4deg)}80%{transform:rotate(2deg)}}
+  @media (prefers-reduced-motion: reduce){.idee-flottante.coucou{animation:none}}
   .lien-idee{display:block;margin:14px auto 0;border:0;background:none;color:var(--canard);font-weight:700;text-decoration:underline;font-size:15px}
   .idees h1{font-size:28px;margin:14px 0 6px}
   .idees textarea{display:block;width:100%;min-height:180px;margin:6px 0 4px;padding:12px;font:inherit;font-size:17px;border:2px solid var(--encre);border-radius:14px;background:var(--carte);color:var(--encre);resize:vertical}
@@ -490,17 +483,6 @@
   const app = document.getElementById("app");
   const BASE = "../"; // dossiers exercices/ et donnees/
 
-  /* ---------- Personnages (décoratifs) ---------- */
-  const PERSOS = [
-    { id:"cupide", nom:"Cupide", phrase:"« Je veux tout, tout de suite. Et si possible avec les intérêts. »",
-      svg:'<circle cx="27" cy="27" r="24" fill="#F4B42A" stroke="#1E2440" stroke-width="3"/><path d="M15 22c2-3 6-3 8 0M31 22c2-3 6-3 8 0" stroke="#1E2440" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M17 32c4 7 16 7 20 0" stroke="#1E2440" stroke-width="3" fill="#fff" stroke-linejoin="round"/><text x="27" y="15" font-size="11" font-weight="700" text-anchor="middle" fill="#1E2440">€</text>' },
-    { id:"sceptique", nom:"Sceptique", phrase:"« Je crois aux chiffres. Après les avoir recomptés deux fois. »",
-      svg:'<circle cx="27" cy="27" r="24" fill="#D8F0EE" stroke="#1E2440" stroke-width="3"/><path d="M14 19l9 2M40 17l-9 4" stroke="#1E2440" stroke-width="3" stroke-linecap="round"/><circle cx="19" cy="25" r="2.5" fill="#1E2440"/><circle cx="35" cy="25" r="5" fill="none" stroke="#1E2440" stroke-width="2.5"/><circle cx="35" cy="25" r="2" fill="#1E2440"/><path d="M19 37h16" stroke="#1E2440" stroke-width="3" stroke-linecap="round"/>' },
-    { id:"touriste", nom:"Touriste", phrase:"« Je passais juste par là. Il y a un buffet ? »",
-      svg:'<circle cx="27" cy="29" r="22" fill="#FFE4DC" stroke="#1E2440" stroke-width="3"/><path d="M8 17h38l-6-9H14z" fill="#FF6A4D" stroke="#1E2440" stroke-width="3" stroke-linejoin="round"/><circle cx="20" cy="28" r="2.5" fill="#1E2440"/><circle cx="34" cy="28" r="2.5" fill="#1E2440"/><ellipse cx="27" cy="38" rx="5" ry="4" fill="#1E2440"/>' },
-    { id:"stratege", nom:"Stratège", phrase:"« J'ai un plan. Il a même un plan B, C et D. »",
-      svg:'<circle cx="27" cy="27" r="24" fill="#1E2440" stroke="#1E2440" stroke-width="3"/><rect x="12" y="20" width="12" height="7" rx="2" fill="#FBF5EA"/><rect x="30" y="20" width="12" height="7" rx="2" fill="#FBF5EA"/><path d="M24 23h6" stroke="#FBF5EA" stroke-width="2.5"/><path d="M19 37c5 3 11 3 16-1" stroke="#F4B42A" stroke-width="3" fill="none" stroke-linecap="round"/>' }
-  ];
 
   /* ---------- Mascotte : Mona la marmotte ---------- */
   // Humeurs : contente, pensive (parcours) ; affamee, faible, malade, mange (Terrier de Mona).
@@ -858,14 +840,13 @@
     return [...liens].map(([url,site]) => `<a href="${url}" target="_blank" rel="noopener">Source : ${site || url}</a>`).join("<br>");
   }
   const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-  const persoActuel = () => PERSOS.find(p => p.id === M.perso) || PERSOS[0];
 
   function toast(txt){
     const t = document.createElement("div"); t.className = "toast"; t.textContent = txt;
     document.body.appendChild(t); setTimeout(() => t.remove(), 2200);
   }
 
-  /* ---------- Écran d'accueil : choix du personnage ---------- */
+  /* ---------- Écran d'accueil : juste un pseudo ---------- */
   function accueil(){
     etat.parcours = null;
     app.innerHTML = `
@@ -873,26 +854,17 @@
       <section class="accueil">
         <h1>Cap Invest</h1>
         <div class="bulle-mona">${mona("contente", 72, "coucou")}<p>Salut, moi c'est <b>Mona</b>&nbsp;! Je fais des réserves avant l'hiver… et je t'explique comment fonctionne l'argent, sans jargon.</p></div>
-        <p class="chapo">Des parcours courts pour comprendre l'investissement, en jouant. Choisis ton personnage pour la route.</p>
-        <div class="persos" role="group" aria-label="Choix du personnage">
-          ${PERSOS.map(p => `<button class="perso" aria-pressed="${p.id===M.perso}" data-id="${p.id}"><svg viewBox="0 0 54 54" aria-hidden="true">${p.svg}</svg><b>${p.nom}</b><span>${p.phrase}</span></button>`).join("")}
-        </div>
-        <p class="note">Ton personnage ne change rien au contenu : c'est juste pour le style.</p>
+        <p class="chapo">Des parcours courts pour comprendre l'investissement, en jouant.</p>
         <label class="carte pseudo" for="pseudo"><b>Ton pseudo</b> <span>(facultatif)</span>
           <input id="pseudo" maxlength="24" autocomplete="nickname" placeholder="Ex. : Léa, Max_92…" value="${esc(M.pseudo||"")}">
           <small>Visible seulement par l'organisateur du test, pour savoir qui a joué. Évite ton nom de famille.</small>
         </label>
         <p class="note">Pas de compte. Pour améliorer l'appli, des statistiques d'usage sont mesurées : un identifiant aléatoire (renouvelé après 13 mois) et, si tu le donnes, ton pseudo. Ni e-mail, ni adresse.</p>
-        <button class="bouton" id="go" ${M.perso ? "" : "disabled"}>C'est parti</button>
+        <button class="bouton" id="go">C'est parti</button>
       </section>`;
-    const go = app.querySelector("#go");
-    app.querySelectorAll(".perso").forEach(b => b.onclick = () => {
-      app.querySelectorAll(".perso").forEach(x => x.setAttribute("aria-pressed","false"));
-      b.setAttribute("aria-pressed","true"); M.perso = b.dataset.id; sauve(); go.disabled = false; evt("perso");
-    });
-    go.onclick = () => {
+    app.querySelector("#go").onclick = () => {
       const v = app.querySelector("#pseudo").value.replace(/[<>"]/g, "").trim().slice(0, 24);
-      M.pseudo = v || null; sauve(); carte();
+      M.pseudo = v || null; M.accueilFait = true; sauve(); retour();
     };
   }
 
@@ -902,21 +874,13 @@
     etat.parcours = null;
     M.onglet = "principal"; sauve();
     evt("carte");
-    const p = persoActuel();
     const total = PARCOURS.reduce((s,x) => s + pointsParcours(x.id), 0), badges = PARCOURS.filter(x => (M.parcours[x.id]||{}).fini).length;
-    const defiFait = M.defi && M.defi.jour === auj();
     app.innerHTML = `
       <header><span class="test">Version de test</span><span class="espace"></span><span class="points">${total} pts</span></header>
       ${onglets("principal")}
-      <div class="salut"><svg viewBox="0 0 54 54" aria-hidden="true">${p.svg}</svg><div><h1>Choisis ton parcours</h1></div></div>
-      <p class="total">${M.pseudo ? esc(M.pseudo) + " · " : ""}${p.nom} en route. <button class="lien" id="perso" style="border:0;background:none;padding:0;color:var(--canard);font-weight:700;text-decoration:underline">Personnage et pseudo</button></p>
-      ${blocReserves()}
-      <div class="actions-jour ${M.erreurs.length ? "" : "seule"}">
-        ${defiFait
-          ? `<div class="carte tuile defi fait"><b>Défi ${M.defi.ok ? "réussi ✓" : "tenté"}</b><span>Le prochain demain</span></div>`
-          : `<button class="carte tuile defi" id="defi"><b>Défi du jour</b><span>1 question, 1 minute</span></button>`}
-        ${M.erreurs.length ? `<button class="carte tuile revision" id="revision"><b>Révision</b><span>${M.erreurs.length} question${M.erreurs.length>1?"s":""} à revoir</span></button>` : ""}
-      </div>
+      <div class="salut">${mona("contente", 54)}<div><h1>Choisis ton parcours</h1></div></div>
+      <p class="total">${M.pseudo ? esc(M.pseudo) + " en route. " : ""}<button class="lien" id="perso" style="border:0;background:none;padding:0;color:var(--canard);font-weight:700;text-decoration:underline">${M.pseudo ? "Changer de pseudo" : "Choisir un pseudo"}</button></p>
+      ${M.erreurs.length ? `<div class="actions-jour seule"><button class="carte tuile revision" id="revision"><b>Révision</b><span>${M.erreurs.length} question${M.erreurs.length>1?"s":""} à revoir</span></button></div>` : ""}
       <nav class="chemin" aria-label="Parcours">
         ${PARCOURS.map((x, n) => {
           const titreSection = x.section && (n === 0 || PARCOURS[n-1].section !== x.section) ? `<h2 class="section-carte">${esc(x.section)}</h2>` : "";
@@ -932,12 +896,12 @@
         <div class="badges-titre"><b>Mes badges</b><span>${badges}/${PARCOURS.length}</span></div>
         <div class="badges-liste">${PARCOURS.map(x => `<span class="mini-badge ${(M.parcours[x.id]||{}).fini?"":"verrou"}" title="${esc(x.titre)}">${badgeParcours(x, 40)}</span>`).join("")}</div>
       </div>
-      <button class="carte idee-entree" id="idee"><span>💡</span><span><b>Une idée, un souci&nbsp;?</b><span>Dis-nous ce qui pourrait être mieux, même en vrac.</span></span><span class="etat neuf">Écrire</span></button>
-      ${encartInstallation()}`;
+      ${blocReserves()}
+      ${encartInstallation()}
+      ${boutonIdee()}`;
     app.querySelector("#perso").onclick = accueil;
-    app.querySelector("#idee").onclick = () => idees("carte", carte);
+    brancheIdee("carte", carte);
     const rv = app.querySelector("#revision"); if (rv) rv.onclick = lanceRevision;
-    const df = app.querySelector("#defi"); if (df) df.onclick = lanceDefi;
     brancheOnglets();
     app.querySelector("#terrier").onclick = () => terrier();
     app.querySelectorAll(".etape").forEach(b => b.onclick = () => {
@@ -949,6 +913,15 @@
     });
     brancheInstallation();
     window.scrollTo(0,0);
+  }
+
+  /* ---------- Bouton « Une idée ? » flottant en bas des onglets ---------- */
+  const boutonIdee = () => `<button class="idee-flottante" id="idee" aria-label="Une idée, un souci ? Écris-nous"><span aria-hidden="true">💡</span> Une idée&nbsp;?</button>`;
+  function brancheIdee(origine, retour){
+    const b = app.querySelector("#idee"); if (!b) return;
+    b.onclick = () => idees(origine, retour);
+    // Le bouton s'agite une fois par jour pour se faire remarquer
+    if (M.ideeVue !== auj()){ M.ideeVue = auj(); sauve(); setTimeout(() => b.classList.add("coucou"), 1800); }
   }
 
   /* ---------- Installation sur l'écran d'accueil ---------- */
@@ -1085,7 +1058,7 @@
     const c = lecons[k].cours || [];
     c.length ? cours(c, 0, Date.now()) : exercice();
   }
-  const libelleLecon = () => etat.mode === "revision" ? "Révision" : etat.mode === "defi" ? "Défi du jour" : etat.mode === "nourrir" ? "Repas de Mona" : (etat.lecons && etat.lecons.length > 1 ? `Leçon ${etat.lecon+1}/${etat.lecons.length}` : "");
+  const libelleLecon = () => etat.mode === "revision" ? "Révision" : etat.mode === "defi" ? "Défi du jour" : (etat.lecons && etat.lecons.length > 1 ? `Leçon ${etat.lecon+1}/${etat.lecons.length}` : "");
 
   /* ---------- Révision des erreurs ---------- */
   async function lanceRevision(){
@@ -1219,16 +1192,16 @@
   function onglets(actif){
     const alerte = actif !== "histoire" && alerteHistoire();
     return `<nav class="onglets" role="tablist" aria-label="Sections">
-      <button role="tab" aria-selected="${actif === "principal"}" data-onglet="principal">Principal</button>
       <button role="tab" aria-selected="${actif === "histoire"}" data-onglet="histoire">Histoire${alerte ? `<i class="alerte" aria-label="Mona t'attend"></i>` : ""}</button>
+      <button role="tab" aria-selected="${actif === "principal"}" data-onglet="principal">Principal</button>
       <button role="tab" aria-selected="${actif === "classement"}" data-onglet="classement">Classement</button>
     </nav>`;
   }
   function brancheOnglets(){
     app.querySelectorAll("[data-onglet]").forEach(b => b.onclick = () => b.dataset.onglet === "histoire" ? terrier() : b.dataset.onglet === "classement" ? ongletClassement() : carte());
   }
-  // Retour à l'onglet d'où le joueur est parti
-  const retour = () => M.onglet === "histoire" ? terrier() : carte();
+  // Retour à l'onglet d'où le joueur est parti (Histoire par défaut)
+  const retour = () => M.onglet === "principal" ? carte() : terrier();
 
   /* ---------- Classement de la semaine : inscription volontaire avec pseudo ---------- */
   // Les noisettes du classement sont calculées par la base (supabase/classement.sql) à partir des leçons :
@@ -1430,11 +1403,11 @@
     const p = prochaineScene(), aFinir = chapitreAFinir(), aOuvrir = coffreAOuvrir();
     let dit = prologueJoue() ? hm.dit : "Mon oncle m'a laissé un drôle de cadeau devant le terrier… Viens voir !";
     if (apres && apres.repas) dit = apres.juste ? "Miam ! Et en plus tu as trouvé la bonne réponse !" : "Miam, merci ! Pas grave pour la réponse : l'explication compte aussi.";
-    const repas = T.malade
-      ? `<button class="carte tuile revision" id="soigner"><b>🩹 Soigner Mona</b><span>Termine une leçon dans l'onglet Principal</span></button>`
-      : objectifFait()
-        ? `<div class="carte tuile fait"><b>Mona a mangé ✓</b><span>Prochain repas demain</span></div>`
-        : `<button class="carte tuile defi" id="nourrir"><b>🍽️ Nourrir Mona</b><span>1 question · 30 secondes</span></button>`;
+    const defiFait = M.defi && M.defi.jour === auj();
+    const repas = (T.malade ? `<button class="carte tuile revision" id="soigner"><b>🩹 Soigner Mona</b><span>Termine une leçon dans l'onglet Principal</span></button>` : "")
+      + (defiFait
+        ? `<div class="carte tuile fait"><b>Défi du jour ${M.defi.ok ? "réussi ✓" : "tenté"}</b><span>Mona a mangé · prochain défi demain</span></div>`
+        : `<button class="carte tuile defi" id="defi"><b>🍽️ Défi du jour</b><span>${objectifFait() ? "1 question · Mona a déjà mangé, c'est pour le dessert" : "1 question pour nourrir Mona"}</span></button>`);
     let histoire;
     if (!prologueJoue()) histoire = `<button class="carte tuile chapitre" id="prologue"><b>Prologue · Le cadeau de l'oncle</b><span>Le début de l'histoire de Mona</span></button>`;
     else if (aFinir) histoire = `<button class="carte tuile chapitre" id="fin-chapitre"><b>${esc(aFinir.fin.titre)}</b><span>La saison se termine : découvre tes cachettes</span></button>`;
@@ -1442,8 +1415,7 @@
     else if (!p) histoire = `<div class="carte tuile fait"><b>${esc(TERRIER.chapitres[TERRIER.chapitres.length - 1].fin.suite)}</b><span>En attendant, prends soin de Mona</span></div>`;
     else {
       const rang = `Chapitre ${p.c.numero} · ${esc(p.c.saison)} · scène ${p.c.scenes.indexOf(p.s) + 1}/${p.c.scenes.length}`;
-      histoire = T.malade ? `<div class="carte tuile fait"><b>${rang}</b><span>Mona est trop faible pour l'aventure</span></div>`
-        : `<button class="carte tuile chapitre" id="scene"><b>${esc(p.s.titre)}</b><span>${rang}</span></button>`;
+      histoire = `<button class="carte tuile chapitre" id="scene"><b>${esc(p.s.titre)}</b><span>${rang}</span></button>`;
     }
     const pouvoir = T.prix > 1.0001 ? `<p class="note" style="margin:0 0 8px">Les prix ont monté depuis le début : hors panier, tes noisettes achètent autant que <b>${nb((T.reserve + T.terrier + T.chouette) / T.prix)}</b> noisettes du premier printemps.</p>` : "";
     app.innerHTML = `
@@ -1460,13 +1432,15 @@
       ${blocReserves(true)}
       ${garderobe(T)}
       ${souvenirs()}
-      ${prologueJoue() ? `<button class="lien-idee" id="prologue">Rejouer le prologue</button>` : ""}`;
+      ${prologueJoue() ? `<button class="lien-idee" id="prologue">Rejouer le prologue</button>` : ""}
+      ${boutonIdee()}`;
     brancheOnglets();
+    brancheIdee("terrier", () => terrier());
     const phrases = { malade:["Atchoum…", "Une leçon et je me sens mieux, promis."], faible:["J'ai les pattes qui tremblent…", "Une petite question et je reprends des forces !"], affamee:["Grrr… c'est mon ventre, pas moi !", "Une noisette ? Juste une ?"] }[hm.h]
       || ["Hi hi, ça chatouille !", "Tu as vu mes cachettes ?", "Je compte mes noisettes… 1, 2, 3…", "Chaque saison, je recompte mes réserves."];
     brancheMona(phrases);
     const on = (id, f) => { const b = app.querySelector("#" + id); if (b) b.onclick = f; };
-    on("nourrir", nourrir);
+    on("defi", lanceDefi);
     on("soigner", carte);
     on("prologue", lanceHistoire);
     on("scene", () => lanceScene(p.c, p.s));
@@ -1482,16 +1456,6 @@
       }, 2200);
     }
     window.scrollTo(0,0);
-  }
-
-  // Repas : une question au hasard parmi tous les parcours
-  async function nourrir(){
-    let tous;
-    try { tous = await toutesQuestions(); } catch(err){ return toast("Impossible de charger la question."); }
-    if (!tous.length) return;
-    Object.assign(etat, { mode:"nourrir", parcours:{ id:"terrier", titre:"Repas de Mona" }, lecons:null, lecon:0, EX:[tous[Math.floor(Math.random() * tous.length)]], i:0, points:0, serie:0, justes:0, repondu:true, finRepondue:true });
-    evt("parcours_debut", { ecran:"nourrir" });
-    exercice();
   }
 
   /* ---------- Scènes du Terrier : dialogue, choix, conséquence ---------- */
@@ -1844,25 +1808,30 @@
       zone.querySelector(".note").innerHTML = "<b>Voici le bon classement.</b> En rose : les éléments que tu avais mal placés.";
       ex.ordre_correct.forEach(k => zone.insertBefore(zone.querySelector(`.option[data-k="${k}"]`), zone.querySelector(".ligne-boutons")));
       zone.querySelector(".ligne-boutons").classList.add("cache");
-      resultat(ex, ok);
+      // Points partiels : part des paires d'éléments rangées dans le bon ordre
+      let paires = 0, bonnes = 0;
+      ex.ordre_correct.forEach((a, i) => ex.ordre_correct.slice(i + 1).forEach(b => { paires++; if (choisi.indexOf(a) < choisi.indexOf(b)) bonnes++; }));
+      resultat(ex, ok, bonnes / paires);
     };
   }
 
   /* ---------- Résultat, points, série ---------- */
-  function resultat(ex, ok){
+  function resultat(ex, ok, part){
     if (etat.repondu) return;
     etat.repondu = true;
+    // Classement presque juste (une inversion sur trois éléments, par exemple) : points partiels, pas de révision
+    const presque = !ok && part >= 0.6;
     enregistre({ ecran: ecranDe(ex), statut:"repondu", juste: ok, temps_ms: Date.now() - etat.debut });
     // Mémorise les erreurs pour la révision ; une bonne réponse en révision les retire,
     // deux échecs en révision aussi (pour ne pas tourner en boucle sur la même question)
     const p = ex._p || etat.parcours.id, cle = e => e.p === p && e.id === ex.id;
     let retiree = false;
-    if (!ok && !M.erreurs.some(cle)) M.erreurs.push({ p, id: ex.id });
-    if (!ok && etat.mode === "revision"){
+    if (!ok && !presque && !M.erreurs.some(cle)) M.erreurs.push({ p, id: ex.id });
+    if (!ok && !presque && etat.mode === "revision"){
       const e = M.erreurs.find(cle); e.echecs = (e.echecs || 0) + 1;
       if (e.echecs >= 2){ M.erreurs = M.erreurs.filter(x => !cle(x)); retiree = true; }
     }
-    if (ok && etat.mode === "revision") M.erreurs = M.erreurs.filter(e => !cle(e));
+    if ((ok || presque) && etat.mode === "revision") M.erreurs = M.erreurs.filter(e => !cle(e));
     sauve();
     let gain = 0, bonus = 0;
     if (ok){
@@ -1870,6 +1839,9 @@
       gain = 10; bonus = etat.serie >= 2 ? 5 * Math.min(etat.serie - 1, 3) : 0;
       etat.points += gain + bonus;
       confettis();
+    } else if (presque){
+      gain = Math.round(10 * part);
+      etat.points += gain;
     } else etat.serie = 0;
 
     const pts = app.querySelector(".points"); if (pts) pts.textContent = etat.points + " pts";
@@ -1878,9 +1850,9 @@
     const dernier = etat.i === etat.EX.length - 1;
     const r = app.querySelector("#retour");
     r.innerHTML = `
-      <div class="carte retour ${ok?"juste":"faux"}" role="status">
-        <div class="titre-retour">${mona(ok ? "contente" : "pensive", 46, ok ? "saut" : "penche")}<h2>${ok ? "Bien joué !" : "Pas tout à fait…"}</h2></div>
-        ${ok ? `<p class="gain">+${gain} pts${bonus ? ` · bonus de série +${bonus}` : ""}</p>` : `<p class="note" style="margin:0">${retiree ? "Cette question sort de ta révision : prends le temps de lire l'explication." : etat.mode === "revision" ? "Elle reviendra une dernière fois à la prochaine révision." : "Cette question reviendra dans ta révision."}</p>`}
+      <div class="carte retour ${ok || presque ? "juste" : "faux"}" role="status">
+        <div class="titre-retour">${mona(ok || presque ? "contente" : "pensive", 46, ok ? "saut" : "penche")}<h2>${ok ? "Bien joué !" : presque ? "Presque !" : "Pas tout à fait…"}</h2></div>
+        ${ok ? `<p class="gain">+${gain} pts${bonus ? ` · bonus de série +${bonus}` : ""}</p>` : presque ? `<p class="gain">+${gain} pts · classement presque juste</p>` : `<p class="note" style="margin:0">${retiree ? "Cette question sort de ta révision : prends le temps de lire l'explication." : etat.mode === "revision" ? "Elle reviendra une dernière fois à la prochaine révision." : "Cette question reviendra dans ta révision."}</p>`}
         <p>${esc(remplit(ok ? ex.retour_juste : ex.retour_faux))}</p>
         <details><summary>En savoir plus</summary><p>${esc(remplit(ex.en_savoir_plus))}</p><p>${sourcesDe(ex)}</p></details>
         <button class="bouton" id="suite">${dernier ? "Voir mon résultat" : "Continuer"}</button>
@@ -1945,32 +1917,16 @@
     const nouveauJour = !objectifFait();
     if (etat.mode !== "revision" && nouveauJour){ M.jours.push(auj()); M.jours = M.jours.slice(-120); }
 
-    if (etat.mode === "nourrir"){
-      enregistre({ ecran:"fin_nourrir", statut:"repondu", juste:null, temps_ms:0, score: etat.points });
-      sauve();
-      terrier({ repas:true, juste: etat.justes === n });
-      // La fenêtre du jour validé arrive une fois que Mona a mangé
-      if (nouveauJour) setTimeout(() => { if (app.querySelector(".cachettes") && !document.querySelector(".popup")) popupNoisette(); }, 2600);
-      return;
-    }
-
+    // Défi du jour : la question sert de repas à Mona, retour au terrier
     if (etat.mode === "defi"){
       M.defi = { jour: auj(), ok: etat.justes === n };
       enregistre({ ecran:"fin_defi", statut:"repondu", juste:null, temps_ms:0, score: etat.points });
       sauve();
-      app.innerHTML = `
-        <header><span class="test">Version de test</span></header>
-        <section class="fin">
-          <p class="note" style="margin:10px 0 0">Défi du jour</p>
-          <h2 style="margin-top:10px">${M.defi.ok ? "Défi réussi&nbsp;!" : "Défi tenté"}</h2>
-          <p>${M.defi.ok ? "Bien vu. Reviens demain pour le prochain." : "Cette question reviendra dans ta révision. Un nouveau défi t'attend demain."}</p>
-          ${blocObjectif(nouveauJour)}
-          <button class="bouton" id="carte" style="margin-top:14px">Retour aux parcours</button>
-        </section>`;
+      terrier({ repas:true, juste: M.defi.ok });
       if (M.defi.ok) confettis();
-      if (nouveauJour) popupNoisette();
-      app.querySelector("#carte").onclick = carte;
-      return window.scrollTo(0,0);
+      // La fenêtre du jour validé arrive une fois que Mona a mangé
+      if (nouveauJour) setTimeout(() => { if (app.querySelector(".cachettes") && !document.querySelector(".popup")) popupNoisette(); }, 2600);
+      return;
     }
 
     if (etat.mode === "revision"){
@@ -2231,7 +2187,7 @@
     fetch(BASE + "exercices/parcours.json").then(r => r.json()),
     fetch(BASE + "donnees/chiffres.json").then(r => r.json()),
     fetch(BASE + "exercices/terrier.json").then(r => r.json()).catch(() => null)
-  ]).then(([p, c, t]) => { PARCOURS = p.parcours; CH = c; TERRIER = t; appliqueAbsence(); codeAcces(() => M.perso ? retour() : accueil()); })
+  ]).then(([p, c, t]) => { PARCOURS = p.parcours; CH = c; TERRIER = t; appliqueAbsence(); codeAcces(() => M.perso || M.accueilFait ? retour() : accueil()); })
     .catch(e => { app.innerHTML = "<p>Impossible de charger l'application. Vérifie ta connexion.</p>"; console.error(e); });
 })();
 </script>
