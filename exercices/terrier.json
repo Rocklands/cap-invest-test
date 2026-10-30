@@ -24,6 +24,20 @@
       { "id": "noisette-or", "rarete": "legendaire", "tenue": "noisette", "nom": "Noisette en or", "mona": "Une noisette en or ! Bon… elle ne se mange pas. Elle reste jolie dans la patte." }
     ]
   },
+  "cadeau_prologue": "echarpe",
+  "tenues": {
+    "_note": "Tenues gagnées en terminant un parcours de l'onglet Principal (retour bêta T4, RETOURS-BETA.md R10). Une par parcours, gagnée à coup sûr. Elles n'ont aucune valeur en argent et ne s'achètent pas. L'écharpe (lot du coffre) est offerte par l'oncle à la fin du prologue.",
+    "lots": [
+      { "id": "noeud-papillon", "parcours": "pourquoi-investir", "rarete": "rare", "tenue": "cou", "nom": "Nœud papillon", "mona": "Très chic ! Comprendre pourquoi investir, ça se fête." },
+      { "id": "casquette", "parcours": "familles-actifs", "rarete": "rare", "tenue": "tete", "nom": "Casquette", "mona": "Actions, obligations, immobilier… je connais toute la famille maintenant !" },
+      { "id": "fleur", "parcours": "debuter", "rarete": "rare", "tenue": "tete", "nom": "Fleur des champs", "mona": "Une fleur pour un premier pas. Tout commence comme ça." },
+      { "id": "monocle", "parcours": "pea-compte-titres", "rarete": "rare", "tenue": "yeux", "nom": "Monocle", "mona": "Avec ça, je lis les règles de chaque enveloppe de très près." },
+      { "id": "bonnet", "parcours": "etf", "rarete": "rare", "tenue": "tete", "nom": "Bonnet à pompon", "mona": "Bien au chaud, comme mes noisettes réparties dans plein de paniers." },
+      { "id": "lunettes-noires", "parcours": "arnaques", "rarete": "rare", "tenue": "yeux", "nom": "Lunettes d'enquêtrice", "mona": "Le renard n'a qu'à bien se tenir. Je le vois venir de loin !" },
+      { "id": "haut-de-forme", "parcours": "histoire-finance", "rarete": "epique", "tenue": "tete", "nom": "Haut-de-forme", "mona": "Comme les banquiers d'autrefois. Mais moi, je connais l'histoire des krachs !" },
+      { "id": "collier-perles", "parcours": "histoire-investissement", "rarete": "epique", "tenue": "cou", "nom": "Collier de perles", "mona": "Chaque perle, une époque de l'investissement. Je les porte toutes." }
+    ]
+  },
   "chapitres": [
     {
       "numero": 1,
@@ -36,7 +50,7 @@
           "invite": null,
           "dialogue": [
             { "qui": "mona", "humeur": "pensive", "texte": "Brrr… L'hiver dernier, j'ai failli manquer de noisettes. Cette fois, je veux une réserve à portée de patte." },
-            { "qui": "mona", "humeur": "pensive", "texte": "Je mange environ 50 noisettes par mois. Si le toit fuit ou si je tombe malade, il me faut de quoi tenir." },
+            { "qui": "mona", "humeur": "pensive", "texte": "Je mange environ 50 noisettes par mois. Si le toit fuit ou si je tombe malade, je dois tenir." },
             { "qui": "mona", "humeur": "contente", "texte": "Tu m'aides à choisir combien j'en garde de côté ?" }
           ],
           "question": "Combien de noisettes Mona garde-t-elle en réserve d'hiver ?",
@@ -67,7 +81,8 @@
             { "id": "moitie", "label": "La moitié", "effet": { "vers": "chouette", "part": 0.5 }, "mona": "Moitié à l'abri chez le Hibou, moitié au terrier." },
             { "id": "tout", "label": "Tout ce qui reste", "effet": { "vers": "chouette", "part": 1 }, "mona": "Tout au garde-manger : à l'abri, et je peux les reprendre quand je veux." }
           ],
-          "lecon": "Le garde-manger ressemble au livret réglementé : {{livret_taux}} % par an, pas de perte possible en nombre, retrait à tout moment. Avec des prix en hausse de {{inflation_1an}} % par an, le pouvoir d'achat recule quand même d'environ {{pouvoir_achat_livret|abs}} % par an. Au terrier, il recule de toute la hausse des prix.",
+          "lecon": "Le garde-manger ressemble au livret réglementé : {{livret_taux}} % par an, pas de perte possible en nombre, retrait à tout moment. Mais quand les prix montent plus vite, le pouvoir d'achat recule.",
+          "lecon_plus": "Avec des prix en hausse de {{inflation_1an}} % par an, le pouvoir d'achat sur le livret recule d'environ {{pouvoir_achat_livret|abs}} % par an. Au terrier, il recule de toute la hausse des prix.",
           "parcours": "pourquoi-investir",
           "sources": ["livret_taux", "inflation_1an"]
         },
@@ -76,12 +91,10 @@
           "titre": "Le panier des fourmis",
           "invite": "fourmis",
           "dialogue": [
-            { "qui": "fourmis", "texte": "Bonjour Mona ! Nous, les fourmis, on vend des paniers un peu spéciaux." },
-            { "qui": "fourmis", "texte": "Dans chaque panier, il y a un petit bout de 100 noisetiers de toute la forêt." },
+            { "qui": "fourmis", "texte": "Bonjour Mona ! Dans nos paniers, il y a un petit bout de 100 noisetiers." },
             { "qui": "mona", "humeur": "pensive", "texte": "Pourquoi pas un seul bel arbre ?" },
-            { "qui": "fourmis", "texte": "Si ton arbre gèle, tu perds tout. Avec un bout de 100 arbres, si l'un gèle, les autres continuent de pousser." },
-            { "qui": "fourmis", "texte": "Attention : quand une tempête touche toute la forêt, le panier entier peut perdre beaucoup. Rien n'est garanti." },
-            { "qui": "mona", "humeur": "pensive", "texte": "Mon oncle a dit que je n'aurai pas besoin de ces noisettes avant 5 ans…" }
+            { "qui": "fourmis", "texte": "S'il gèle, tu perds tout. Avec 100 arbres, les autres poussent encore. Mais une tempête peut tous les secouer." },
+            { "qui": "mona", "humeur": "pensive", "texte": "Ces noisettes-là, je n'en aurai pas besoin avant 5 ans…" }
           ],
           "question": "Combien de noisettes Mona met-elle dans un panier des fourmis ?",
           "consigne": "S'il n'y en a plus assez au terrier, Mona reprend la différence chez le Hibou.",
@@ -90,7 +103,8 @@
             { "id": "p200", "label": "Un petit panier : 200 noisettes", "effet": { "vers": "panier", "n": 200 }, "mona": "Un petit panier pour voir comment ça pousse." },
             { "id": "p400", "label": "Un gros panier : 400 noisettes", "effet": { "vers": "panier", "n": 400 }, "mona": "Un gros panier : j'ai 5 ans devant moi… mais ça peut secouer." }
           ],
-          "lecon": "Le panier ressemble à un ETF (fonds indiciel coté) : un seul achat pour détenir un petit bout de nombreuses entreprises. Pour donner un ordre d'idée, des actions françaises gardées 5 ans entre 1950 et 2020 ont rapporté, après inflation, plus de {{actions_fr_5ans_mediane}} % par an une fois sur deux, mais moins de {{actions_fr_5ans_p1}} % par an une fois sur cent. Ce sont des résultats passés : ils ne prédisent pas l'avenir.",
+          "lecon": "Le panier ressemble à un ETF (fonds indiciel coté) : un seul achat pour détenir un petit bout de nombreuses entreprises. Sa valeur peut monter ou baisser.",
+          "lecon_plus": "Pour donner un ordre d'idée, des actions françaises gardées 5 ans entre 1950 et 2020 ont rapporté, après inflation, plus de {{actions_fr_5ans_mediane}} % par an une fois sur deux, mais moins de {{actions_fr_5ans_p1}} % par an une fois sur cent. Ce sont des résultats passés : ils ne prédisent pas l'avenir.",
           "parcours": "etf",
           "sources": ["etf_replication", "actions_fr"]
         },
@@ -99,7 +113,7 @@
           "titre": "Le geai et ses frais",
           "invite": "geai",
           "dialogue": [
-            { "qui": "geai", "texte": "Psst, Mona ! Moi aussi je vends des paniers de noisetiers. Mais moi, je choisis les arbres un par un !" },
+            { "qui": "geai", "texte": "Psst, Mona ! Moi aussi je vends des paniers. Mais moi, je choisis les arbres un par un !" },
             { "qui": "geai", "texte": "Pour ma peine, je prends juste une petite part chaque année." },
             { "qui": "mona", "humeur": "pensive", "texte": "Une petite part… c'est combien ?" },
             { "qui": "geai", "texte": "Oh, à peine {{fonds_actifs_frais}} noisettes pour 100 par an. Les fourmis en prennent {{etf_frais}}. Presque pareil, non ?" }
@@ -110,7 +124,8 @@
             { "id": "fourmis", "label": "Chez les fourmis ({{etf_frais}} % par an)", "effet": { "frais": "fourmis" }, "mona": "Je reste avec les fourmis : il en reste plus pour moi." },
             { "id": "geai", "label": "Chez le geai ({{fonds_actifs_frais}} % par an)", "effet": { "frais": "geai" }, "mona": "Le geai a l'air sûr de lui… Ses arbres devront pousser plus vite pour compenser ses frais." }
           ],
-          "lecon": "Sur 1 000 noisettes, à résultat égal avant frais, il en reste environ {{terrier_frais_fourmis_5ans}} au bout de 5 ans avec les fourmis et {{terrier_frais_geai_5ans}} avec le geai : une cinquantaine d'écart. En 2023, selon l'AMF, les frais annuels moyens étaient de {{etf_frais}} % pour les ETF actions et de {{fonds_actifs_frais}} % pour les fonds actions gérés activement.",
+          "lecon": "Sur 1 000 noisettes, à résultat égal avant frais, il en reste environ {{terrier_frais_fourmis_5ans}} au bout de 5 ans avec les fourmis et {{terrier_frais_geai_5ans}} avec le geai. De petits frais pèsent avec le temps.",
+          "lecon_plus": "En 2023, selon l'AMF, les frais annuels moyens étaient de {{etf_frais}} % pour les ETF actions et de {{fonds_actifs_frais}} % pour les fonds actions gérés activement.",
           "parcours": "etf",
           "sources": ["etf_frais", "fonds_actifs_frais"]
         }
@@ -133,8 +148,7 @@
           "titre": "La promesse trop belle",
           "invite": "renard",
           "dialogue": [
-            { "qui": "renard", "texte": "Bel été, Mona ! Tu as l'air d'une marmotte qui sait compter." },
-            { "qui": "renard", "texte": "Confie-moi 100 noisettes, je t'en rends 200 à la fin de l'été." },
+            { "qui": "renard", "texte": "Bel été, Mona ! Confie-moi 100 noisettes, je t'en rends 200 à la fin de l'été." },
             { "qui": "mona", "humeur": "pensive", "texte": "Le double ? Et si ça tourne mal ?" },
             { "qui": "renard", "texte": "Rien ne peut mal tourner. C'est garanti, sans aucun risque." },
             { "qui": "mona", "humeur": "pensive", "texte": "Les fourmis m'ont dit que rien n'était garanti avec leurs paniers…" }
@@ -165,7 +179,8 @@
             { "id": "verifie", "label": "Elle va d'abord voir le Hibou dans son arbre habituel", "effet": { "vers": "renard", "n": 0 }, "qui": "hibou", "mona": "Hou hou ! Je n'ai jamais déménagé. Et je ne viens jamais chercher les noisettes de personne." },
             { "id": "r200", "label": "Elle lui apporte 200 noisettes", "effet": { "vers": "renard", "n": 200 }, "humeur": "pensive", "mona": "La plume tombe, une queue rousse dépasse… Attends. Ce n'était pas le Hibou !" }
           ],
-          "lecon": "L'AMF décrit des escrocs qui copient le nom, le logo ou le site d'acteurs connus, et rappelle qu'aucune autorité publique ne démarche les particuliers. Pour vérifier, on passe par un moyen qu'on connaît déjà, pas par celui que propose le message.",
+          "lecon": "L'AMF décrit des escrocs qui copient le nom, le logo ou le site d'acteurs connus. Pour vérifier, on passe par un moyen qu'on connaît déjà, pas par celui que propose le message.",
+          "lecon_plus": "L'AMF rappelle aussi qu'aucune autorité publique ne démarche les particuliers.",
           "parcours": "arnaques",
           "sources": ["amf_arnaques"]
         },
@@ -198,7 +213,7 @@
           "dialogue": [
             { "qui": "mona", "humeur": "pensive", "si": "perte", "texte": "La cachette du renard est vide ! Et mes noisettes ?" },
             { "qui": "mona", "humeur": "pensive", "si": "sans_perte", "texte": "La cachette du renard est vide… Heureusement, je n'y avais rien mis." },
-            { "qui": "pie", "texte": "Je l'avais à l'œil, ce renard. Il ne faisait rien pousser : les noisettes des nouveaux servaient à payer les premiers, jusqu'au jour où il n'y a plus eu de nouveaux." },
+            { "qui": "pie", "texte": "Je l'avais à l'œil, ce renard. Il ne faisait rien pousser : les noisettes des nouveaux payaient les premiers." },
             { "qui": "faux-lievre", "si": "perte", "texte": "Bonjour ! Je récupère les noisettes volées. Donne-moi 50 noisettes de frais, et je te rends tout." },
             { "qui": "faux-lievre", "si": "sans_perte", "texte": "Bonjour ! Je récupère les noisettes volées de tes voisins. Donne-moi 50 noisettes de frais, je m'occupe de tout." }
           ],
@@ -209,7 +224,8 @@
             { "id": "paie", "label": "Elle paie 50 noisettes", "effet": { "vers": "perdu", "n": 50 }, "humeur": "pensive", "mona": "Le chapeau tombe, et les grandes oreilles avec : c'est encore le renard ! Deux fois…" }
           ],
           "conclusion_perte": "Je ne reverrai pas ces noisettes. Mais je saurai reconnaître le renard la prochaine fois.",
-          "lecon": "L'AMF décrit la « pyramide » (dite de Ponzi) : les versements des uns servent à payer les autres, sans vrai placement derrière. Elle signale aussi les faux récupérateurs de fonds, qui visent les personnes déjà piégées. Une offre qui promet un rendement doit figurer sur la liste blanche de l'AMF.",
+          "lecon": "L'AMF décrit la « pyramide » (dite de Ponzi) : les versements des uns servent à payer les autres, sans vrai placement derrière. Elle signale aussi les faux récupérateurs de fonds, qui visent les personnes déjà piégées.",
+          "lecon_plus": "Une offre qui promet un rendement doit figurer sur la liste blanche de l'AMF.",
           "parcours": "arnaques",
           "sources": ["amf_arnaques"]
         }

@@ -234,6 +234,13 @@
   .coffre-ecran .bulle-mona{text-align:left}
   .souvenir.objet{font:inherit;font-size:11.5px;color:var(--encre);border-color:var(--rar)}
   .souvenir.objet[aria-pressed="true"]{background:var(--canard-clair);box-shadow:inset 0 0 0 2px var(--rar)}
+  .tenue-gagnee{display:flex;align-items:center;gap:12px;text-align:left;margin:12px 0;border-color:var(--canard)}
+  .tenue-gagnee svg{flex:none}
+  .tenue-gagnee b{display:block;font-family:Fraunces,serif;font-size:18px}
+  .tenue-gagnee span{display:block;font-size:14px;margin-top:2px}
+  .tenue-gagnee .note{margin:4px 0 0;font-size:13px}
+  .souvenir.objet.a-gagner{border-style:dashed;border-color:var(--trait);color:var(--encre-douce)}
+  .souvenir.objet.a-gagner svg{filter:grayscale(1);opacity:.5}
   .souvenir.objet small{font-size:10.5px;font-weight:700;color:var(--canard)}
   .tuile.coffre-tuile{background:var(--jaune-clair);border-color:var(--moutarde)}
   .souvenir-gagne{display:flex;align-items:center;gap:10px;justify-content:center;margin:8px 0 2px;font-weight:700}
@@ -460,6 +467,12 @@
   @keyframes pulse{50%{transform:scale(1.05)}}
   .annonce{margin:0 0 10px;padding:10px 12px;background:var(--rose-pale);border-color:var(--corail);box-shadow:none;font-size:15px}
   .scene-dialogue .bulle-mona{animation:monte .3s ease}
+  .scene-dialogue{cursor:pointer;-webkit-tap-highlight-color:transparent}
+  .scene-dialogue .astuce-touche{text-align:center;margin:8px 0 0}
+  .scene-dialogue .scene-mona.parle{animation:parle-mona .45s ease-out}
+  .scene-dialogue .scene-invite.parle{animation:parle .45s ease-out}
+  @keyframes parle-mona{40%{transform:translateX(-50%) translateY(-10px)}}
+  @keyframes parle{40%{transform:translateY(-10px)}}
   .scene-dialogue .bulle-mona svg{flex:none}
   .scene-dialogue .bulle-mona p{flex:1;min-height:72px}
   .scene-dialogue .qui{display:block;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--canard);margin-bottom:2px}
@@ -496,6 +509,16 @@
     beret: `<g transform="rotate(-8 60 20)"><path d="M28 25q2-17 32-17t32 13q-4 9-32 9t-32-5z" fill="#14808A" ${E_}/><path d="M60 8V2" stroke="#1E2440" stroke-width="3.5" stroke-linecap="round"/></g>`,
     couronne: `<path d="M40 25l-3-18 11 8 12-13 12 13 11-8-3 18z" fill="#F4B42A" ${E_}/><circle cx="60" cy="18" r="3" fill="#FF6A4D" stroke="#1E2440" stroke-width="1.5"/><circle cx="47" cy="20" r="2.2" fill="#14808A"/><circle cx="73" cy="20" r="2.2" fill="#14808A"/>`
   };
+  Object.assign(TENUES, {
+    "noeud-papillon": `<path d="M60 81l-15-8v16zM60 81l15-8v16z" fill="#14808A" ${E_}/><circle cx="60" cy="81" r="4" fill="#14808A" ${E_}/>`,
+    casquette: `<path d="M36 26q0-22 24-22t24 22z" fill="#FF6A4D" ${E_}/><path d="M80 24q17-1 25 5q-12 3-26 0z" fill="#FF6A4D" ${E_}/><circle cx="60" cy="5" r="2.5" fill="#1E2440"/>`,
+    fleur: `<g fill="#fff" stroke="#1E2440" stroke-width="2"><circle cx="86" cy="13" r="5.5"/><circle cx="94" cy="20" r="5.5"/><circle cx="91" cy="29" r="5.5"/><circle cx="81" cy="29" r="5.5"/><circle cx="78" cy="20" r="5.5"/></g><circle cx="86" cy="22" r="4.5" fill="#F4B42A" stroke="#1E2440" stroke-width="2"/>`,
+    monocle: `<circle cx="75" cy="48" r="10.5" fill="#fff" fill-opacity=".25" ${E_}/><path d="M84 54q5 14-2 30" stroke="#F4B42A" stroke-width="2.5" fill="none" stroke-linecap="round"/>`,
+    bonnet: `<path d="M34 28q0-24 26-24t26 24z" fill="#8A4FD8" ${E_}/><rect x="31" y="22" width="58" height="9" rx="4.5" fill="#C9B3EE" ${E_}/><circle cx="60" cy="3" r="5.5" fill="#C9B3EE" ${E_}/>`,
+    "lunettes-noires": `<g fill="#2B3157" ${E_}><rect x="34" y="41" width="22" height="14" rx="6"/><rect x="64" y="41" width="22" height="14" rx="6"/></g><path d="M56 46q4-3 8 0M34 45l-8-3M86 45l8-3" ${E_} fill="none" stroke-linecap="round"/><path d="M39 45l5-2M69 45l5-2" stroke="#fff" stroke-width="2" stroke-linecap="round" opacity=".7"/>`,
+    "haut-de-forme": `<ellipse cx="60" cy="24" rx="31" ry="6" fill="#3A2F4F" ${E_}/><rect x="44" y="0" width="32" height="23" rx="2" fill="#3A2F4F" ${E_}/><rect x="45.5" y="15" width="29" height="5" fill="#FF6A4D"/>`,
+    "collier-perles": `<path d="M36 79q24 13 49 0" stroke="#1E2440" stroke-width="1.5" fill="none"/><g fill="#FBF5EA" stroke="#1E2440" stroke-width="2"><circle cx="36" cy="78.8" r="3.6"/><circle cx="43" cy="81.8" r="3.6"/><circle cx="50" cy="83.9" r="3.6"/><circle cx="57" cy="84.9" r="3.6"/><circle cx="64" cy="84.9" r="3.6"/><circle cx="71" cy="83.9" r="3.6"/><circle cx="78" cy="81.8" r="3.6"/><circle cx="85" cy="78.8" r="3.6"/></g>`
+  });
   const NOIX = { "noisette-givree":["#CFEFFA","#7FC8F0"], "noisette-rubis":["#E0455A","#9E1F36"], "noisette-or":["#F7C843","#C98A10"] };
   // Noisette seule, pour montrer une noisette gagnée en grand
   const noisetteSeule = (id, t) => { const [c, h] = NOIX[id] || ["#B07A4A", "#7A4E2A"]; return `<svg viewBox="0 0 40 40" width="${t}" height="${t}" aria-hidden="true"><ellipse cx="20" cy="23" rx="12" ry="13" fill="${c}" ${E_}/><path d="M8 17q12-10 24 0" fill="${h}" ${E_}/><path d="M20 10V4" stroke="#1E2440" stroke-width="3" stroke-linecap="round"/></svg>`; };
@@ -1174,11 +1197,14 @@
   function finHistoire(){
     const t = HISTOIRE.temperaments[temperament()], x = PARCOURS.find(p => p.id === t.quete);
     etat.parcours = null;
+    const cadeau = donneTenues().find(l => TERRIER && l.id === TERRIER.cadeau_prologue);
+    if (cadeau){ const T = etatTerrier(); T.tenue = T.tenue || {}; if (!T.tenue[cadeau.tenue]){ T.tenue[cadeau.tenue] = cadeau.id; sauve(); } }
     app.innerHTML = `
       <header><span class="test">Version de test</span></header>
       <section class="histoire">
         <p class="saison">Ton tempérament : ${esc(t.nom)}</p>
         <div class="bulle-mona">${mona("contente", 64)}<p>${esc(t.mona)}</p></div>
+        ${cadeau ? `<div class="bulle-mona">${mona("contente", 64, "noisette")}<p>Et regarde : mon oncle m'a aussi laissé son ${esc(cadeau.nom.toLowerCase())} ! Elle est dans ma garde-robe, avec toutes les tenues à gagner.</p></div>` : ""}
         <p class="note">Ton tempérament reste sur ton téléphone. Il peut changer avec les prochains chapitres.</p>
         ${x ? `<button class="bouton" id="quete">${esc(t.habitant)} : ${esc(x.titre)}</button>` : ""}
         <button class="bouton clair" id="carte">${M.onglet === "histoire" ? "Retour au terrier" : "Retour aux parcours"}</button>
@@ -1318,7 +1344,7 @@
     return Math.max(0, ecart(der, auj()) - 1);
   }
   // 1er jour manqué : Mona a faim. Dès le 2e : elle mange 10 % de sa réserve d'hiver par jour
-  // (dans le terrier si la réserve est vide). Dès le 3e : elle tombe malade jusqu'à la prochaine leçon terminée.
+  // (dans le terrier si la réserve est vide). Dès le 3e : elle tombe malade jusqu'au prochain défi du jour ou leçon terminée.
   function appliqueAbsence(){
     const T = M.terrier; if (!T) return;
     const n = joursManques(), der = M.jours[M.jours.length - 1], taux = TERRIER ? TERRIER.regles.perte_absence : 0.1;
@@ -1335,7 +1361,7 @@
     sauve();
   }
   function humeurMona(){
-    if (M.terrier && M.terrier.malade) return { h:"malade", jauge:5, txt:"Malade", dit:"Je suis malade… Une leçon complète dans l'onglet Principal me remettrait sur pattes." };
+    if (M.terrier && M.terrier.malade) return { h:"malade", jauge:5, txt:"Malade", dit: M.defi && M.defi.jour === auj() ? "Je suis malade… Une leçon complète dans l'onglet Principal me remettrait sur pattes." : "Je suis malade… Le défi du jour me remettrait sur pattes." };
     if (objectifFait()) return { h:"contente", jauge:100, txt:"Rassasiée", dit:"Merci pour le repas ! Je suis en pleine forme." };
     const n = joursManques();
     if (n >= 2) return { h:"faible", jauge:15, txt:"Très faim", dit:"Je n'ai presque plus de forces… J'ai dû piocher dans mes réserves." };
@@ -1397,17 +1423,25 @@
     try { TERRIER = TERRIER || await fetch(BASE + "exercices/terrier.json").then(r => r.json()); await chargeQuetes(); }
     catch(err){ M.onglet = "principal"; sauve(); return toast("Impossible de charger le terrier."); }
     const T = etatTerrier(); appliqueAbsence();
+    const neuves = donneTenues(), grandi = (T.palier || 0) < palierMona();
+    if (grandi){ T.palier = palierMona(); sauve(); }
     if (!apres) evt("carte", { ecran:"terrier" });
     const hm = humeurMona(), saison = SAISONS[T.saisons % 4], annonce = T.annonce;
     delete T.annonce; sauve();
     const p = prochaineScene(), aFinir = chapitreAFinir(), aOuvrir = coffreAOuvrir();
     let dit = prologueJoue() ? hm.dit : "Mon oncle m'a laissé un drôle de cadeau devant le terrier… Viens voir !";
-    if (apres && apres.repas) dit = apres.juste ? "Miam ! Et en plus tu as trouvé la bonne réponse !" : "Miam, merci ! Pas grave pour la réponse : l'explication compte aussi.";
+    const nouveautes = neuves.length ? `Nouveau dans ma garde-robe : ${neuves.map(l => l.nom.toLowerCase()).join(", ")} !` : "";
+    if (grandi) dit = (T.palier === 1 ? "J'ai grandi ! Une saison de plus, et je vois plus loin dans la forêt." : "J'ai encore grandi ! Me voilà une vraie marmotte adulte.") + (nouveautes ? " " + nouveautes : "");
+    else if (nouveautes) dit = nouveautes + " Viens me les essayer, en bas.";
+    if (apres && apres.gueri) dit = "Ça va mieux ! Merci de m'avoir soignée.";
+    else if (apres && apres.repas) dit = apres.juste ? "Miam ! Et en plus tu as trouvé la bonne réponse !" : "Miam, merci ! Pas grave pour la réponse : l'explication compte aussi.";
     const defiFait = M.defi && M.defi.jour === auj();
-    const repas = (T.malade ? `<button class="carte tuile revision" id="soigner"><b>🩹 Soigner Mona</b><span>Termine une leçon dans l'onglet Principal</span></button>` : "")
-      + (defiFait
-        ? `<div class="carte tuile fait"><b>Défi du jour ${M.defi.ok ? "réussi ✓" : "tenté"}</b><span>Mona a mangé · prochain défi demain</span></div>`
-        : `<button class="carte tuile defi" id="defi"><b>🍽️ Défi du jour</b><span>${objectifFait() ? "1 question · Mona a déjà mangé, c'est pour le dessert" : "1 question pour nourrir Mona"}</span></button>`);
+    // Une seule tuile : le défi du jour nourrit Mona, et la soigne si elle est malade
+    const repas = !defiFait
+      ? `<button class="carte tuile ${T.malade ? "revision" : "defi"}" id="defi"><b>${T.malade ? "🩹" : "🍽️"} Défi du jour</b><span>${T.malade ? "1 question pour soigner Mona" : objectifFait() ? "1 question · Mona a déjà mangé, c'est pour le dessert" : "1 question pour nourrir Mona"}</span></button>`
+      : T.malade
+        ? `<button class="carte tuile revision" id="soigner"><b>🩹 Soigner Mona</b><span>Défi fait : termine une leçon dans l'onglet Principal</span></button>`
+        : `<div class="carte tuile fait"><b>Défi du jour ${M.defi.ok ? "réussi ✓" : "tenté"}</b><span>Mona a mangé · prochain défi demain</span></div>`;
     let histoire;
     if (!prologueJoue()) histoire = `<button class="carte tuile chapitre" id="prologue"><b>Prologue · Le cadeau de l'oncle</b><span>Le début de l'histoire de Mona</span></button>`;
     else if (aFinir) histoire = `<button class="carte tuile chapitre" id="fin-chapitre"><b>${esc(aFinir.fin.titre)}</b><span>La saison se termine : découvre tes cachettes</span></button>`;
@@ -1421,7 +1455,7 @@
     app.innerHTML = `
       <header><span class="test">Version de test</span><span class="espace"></span><span class="points">${NOMS_SAISONS[saison]} · an ${Math.floor(T.saisons / 4) + 1}</span></header>
       ${onglets("histoire")}
-      ${decor(saison, `<p class="bulle-scene" id="bulle">${esc(dit)}</p><button class="scene-mona" id="mona" aria-label="Toucher Mona">${mona(apres && apres.repas ? "mange" : hm.h, 120, "noisette")}</button>`)}
+      ${decor(saison, `<p class="bulle-scene" id="bulle">${esc(dit)}</p><button class="scene-mona" id="mona" aria-label="Toucher Mona">${mona(apres && apres.repas ? "mange" : hm.h, tailleMona(120), "noisette")}</button>`)}
       <div class="carte jauge"><b>🍽️ Repas</b><span class="barre"><i class="${hm.jauge < 40 ? "bas" : ""}" style="width:${apres && apres.repas ? 35 : hm.jauge}%"></i></span><span>${hm.txt}</span></div>
       ${annonce ? `<div class="carte annonce">Pendant ton absence, Mona a mangé ${annonce.mange ? `<b>${nb(annonce.mange)}</b> noisettes de sa réserve d'hiver` : ""}${annonce.mange && annonce.pioche ? " et " : ""}${annonce.pioche ? `<b>${nb(annonce.pioche)}</b> noisettes du terrier (sa réserve était vide)` : ""}.</div>` : ""}
       <div class="actions-jour seule">${repas}${histoire}</div>
@@ -1436,7 +1470,7 @@
       ${boutonIdee()}`;
     brancheOnglets();
     brancheIdee("terrier", () => terrier());
-    const phrases = { malade:["Atchoum…", "Une leçon et je me sens mieux, promis."], faible:["J'ai les pattes qui tremblent…", "Une petite question et je reprends des forces !"], affamee:["Grrr… c'est mon ventre, pas moi !", "Une noisette ? Juste une ?"] }[hm.h]
+    const phrases = { malade:["Atchoum…", "Un peu de soin et je me sens mieux, promis."], faible:["J'ai les pattes qui tremblent…", "Une petite question et je reprends des forces !"], affamee:["Grrr… c'est mon ventre, pas moi !", "Une noisette ? Juste une ?"] }[hm.h]
       || ["Hi hi, ça chatouille !", "Tu as vu mes cachettes ?", "Je compte mes noisettes… 1, 2, 3…", "Chaque saison, je recompte mes réserves."];
     brancheMona(phrases);
     const on = (id, f) => { const b = app.querySelector("#" + id); if (b) b.onclick = f; };
@@ -1447,10 +1481,12 @@
     on("fin-chapitre", () => finChapitre(aFinir));
     on("coffre", () => coffre(aOuvrir));
     app.querySelectorAll("[data-tenue]").forEach(b => b.onclick = () => { porte(b.dataset.tenue); terrier({}); });
+    app.querySelectorAll("[data-gagner]").forEach(b => b.onclick = () => { const x = PARCOURS.find(y => y.id === b.dataset.gagner); if (x && x.statut === "pret") lanceParcours(x); });
+    if (grandi) setTimeout(() => { const b = app.querySelector("#mona"); if (b) b.classList.add("saute"); }, 300);
     if (apres && apres.repas){
       setTimeout(() => {
         const b = app.querySelector("#mona"); if (!b) return;
-        b.innerHTML = mona("contente", 120, "noisette"); b.classList.add("saute");
+        b.innerHTML = mona("contente", tailleMona(120), "noisette"); b.classList.add("saute");
         const j = app.querySelector(".jauge .barre i"); if (j){ j.classList.remove("bas"); j.style.width = "100%"; }
         if (apres.juste) confettis();
       }, 2200);
@@ -1463,7 +1499,7 @@
     let fini = false, id = null;
     const termine = () => { clearInterval(id); el.textContent = texte; fini = true; };
     if (matchMedia("(prefers-reduced-motion: reduce)").matches) termine();
-    else { let i = 0; id = setInterval(() => { el.textContent = texte.slice(0, ++i); if (i >= texte.length) termine(); }, 22); }
+    else { let i = 0; id = setInterval(() => { el.textContent = texte.slice(0, ++i); if (i >= texte.length) termine(); }, 13); }
     return { fini: () => fini, termine };
   }
   // Répliques de la scène : « si » garde celles qui correspondent à la situation (Mona a perdu des noisettes ou non)
@@ -1484,19 +1520,24 @@
   }
   const enteteScene = (c, s) => `<header><button class="retour-carte" id="quitter" aria-label="Retour au terrier">×</button><span class="espace"></span><span class="test">Chapitre ${c.numero} · ${esc(c.saison)} · ${c.scenes.indexOf(s) + 1}/${c.scenes.length}</span></header>`;
   const decorScene = (c, s, humeur, entree, invite) => { invite = invite === undefined ? s.invite : invite; return decor(SAISONS[(c.numero - 1) % 4],
-    `<span class="scene-mona ${invite ? "decale" : ""}" id="mona">${mona(humeur, 104, "noisette")}</span>${invite ? `<span class="scene-invite ${entree ? "entre" : ""}">${habitant(invite, 92, "vivant")}</span>` : ""}`, "petit"); };
+    `<span class="scene-mona ${invite ? "decale" : ""}" id="mona">${mona(humeur, tailleMona(104), "noisette")}</span>${invite ? `<span class="scene-invite ${entree ? "entre" : ""}">${habitant(invite, 92, "vivant")}</span>` : ""}`, "petit"); };
   function dialogueScene(c, s, k){
-    const d = repliques(s), l = d[k], dernier = k === d.length - 1, invite = inviteA(s, k);
+    const d = repliques(s), l = d[k], dernier = k === d.length - 1, invite = inviteA(s, k), entree = k === 0 || invite !== inviteA(s, k - 1);
     app.innerHTML = enteteScene(c, s) + `
       <section class="histoire scene-dialogue">
-        ${decorScene(c, s, l.qui === "mona" ? (l.humeur || "contente") : "contente", k === 0 || invite !== inviteA(s, k - 1), invite)}
+        ${decorScene(c, s, l.qui === "mona" ? (l.humeur || "contente") : "contente", entree, invite)}
         <h1>${esc(s.titre)}</h1>
         <div class="bulle-mona">${avatar(l.qui, 52, l.humeur)}<p><span class="qui">${l.qui === "mona" ? "Mona" : Maj(HABITANTS[l.qui].nom)}</span><span id="texte"></span></p></div>
         <button class="bouton" id="suite">${dernier ? "Aider Mona" : "Suite"}</button>
+        ${k === 0 ? `<p class="note astuce-touche">Touche l'écran pour avancer</p>` : ""}
       </section>`;
     const t = ecrit(app.querySelector("#texte"), remplit(l.texte));
+    // Celui qui parle fait un petit bond (sauf l'invité qui vient d'entrer en scène)
+    const parle = l.qui === "mona" ? app.querySelector(".scene-dialogue .scene-mona") : !entree && app.querySelector(".scene-dialogue .scene-invite");
+    if (parle) parle.classList.add("parle");
     app.querySelector("#quitter").onclick = () => terrier();
-    app.querySelector("#suite").onclick = () => !t.fini() ? t.termine() : dernier ? choixScene(c, s) : dialogueScene(c, s, k + 1);
+    // Toucher n'importe où dans la scène fait comme « Suite » : affiche tout, puis passe à la réplique suivante
+    app.querySelector(".scene-dialogue").onclick = () => !t.fini() ? t.termine() : dernier ? choixScene(c, s) : dialogueScene(c, s, k + 1);
     window.scrollTo(0,0);
   }
   function choixScene(c, s){
@@ -1551,7 +1592,7 @@
         ${s.conclusion_perte && T.perdu ? `<div class="bulle-mona">${mona("pensive", 52, "noisette")}<p>${esc(s.conclusion_perte)}</p></div>` : ""}
         ${d.n ? `<p class="saison">${nb(d.n)} noisettes ${d.vers === "renard" ? "confiées au renard" : d.vers === "perdu" ? "perdues" : "déplacées"}</p>` : ""}
         ${cachettes(T, d.n ? d.vers : null)}
-        <div class="carte bilan"><b>Dans la vraie vie</b><p>${esc(remplit(s.lecon))}</p></div>
+        <div class="carte bilan"><b>Dans la vraie vie</b><p>${esc(remplit(s.lecon))}</p>${s.lecon_plus ? `<details><summary>En savoir plus</summary><p>${esc(remplit(s.lecon_plus))}</p></details>` : ""}</div>
         <div class="src">${sourcesCles(s.sources)}</div>
         ${x ? `<button class="bouton clair" id="parcours">Comprendre en 5 min : ${esc(x.titre)}</button>` : ""}
         <button class="bouton" id="suite">${dernier ? esc(c.fin.titre) : "Retour au terrier"}</button>
@@ -1580,7 +1621,7 @@
     app.innerHTML = `
       <header><button class="retour-carte" id="quitter" aria-label="Retour au terrier">×</button><span class="espace"></span><span class="test">Chapitre ${c.numero} · ${esc(c.saison)}</span></header>
       <section class="histoire">
-        ${decor(SAISONS[T.saisons % 4], `<span class="scene-mona ${triste ? "" : "saute"}" id="mona">${mona(triste ? "pensive" : "contente", 110, "noisette")}</span>`, "petit")}
+        ${decor(SAISONS[T.saisons % 4], `<span class="scene-mona ${triste ? "" : "saute"}" id="mona">${mona(triste ? "pensive" : "contente", tailleMona(110), "noisette")}</span>`, "petit")}
         <h1>${esc(c.fin.titre)}</h1>
         <div class="bulle-mona">${mona(triste ? "pensive" : "contente", 52, "noisette")}<p>${esc(c.fin.mona)}</p></div>
         <p class="note">Une saison a passé. Les prix du marché ont monté d'environ ${nombre(Math.round(hausse * 100) / 100)} % (au rythme de ${nombre(CH.inflation_1an.valeur)} % par an) et le Hibou a ajouté sa part (${nombre(CH.livret_taux.valeur)} % par an).</p>
@@ -1605,7 +1646,22 @@
   const coffreFerme = c => !!(TERRIER && TERRIER.coffre && M.terrier && M.terrier.saisons >= c.numero && !(M.terrier.coffres || {})[c.numero]);
   // Chapitre terminé dont le coffre n'est pas encore ouvert
   const coffreAOuvrir = () => TERRIER && TERRIER.chapitres.find(coffreFerme);
-  const lotDe = id => TERRIER.coffre.lots.find(l => l.id === id);
+  const lotDe = id => [...TERRIER.coffre.lots, ...((TERRIER.tenues || {}).lots || [])].find(l => l.id === id);
+  // Tenues dues : l'écharpe de l'oncle après le prologue, puis une par parcours terminé. Renvoie les nouvelles.
+  function donneTenues(){
+    if (!TERRIER) return [];
+    const T = etatTerrier(), dues = [];
+    T.objets = T.objets || [];
+    if (TERRIER.cadeau_prologue && prologueJoue() && !T.cadeau){ T.cadeau = true; dues.push(TERRIER.cadeau_prologue); }
+    for (const l of (TERRIER.tenues || {}).lots || []) if ((M.parcours[l.parcours] || {}).fini) dues.push(l.id);
+    const neuves = dues.filter(id => !T.objets.includes(id));
+    T.objets.push(...neuves);
+    if (neuves.length) sauve();
+    return neuves.map(lotDe).filter(Boolean);
+  }
+  // Mona grandit avec l'histoire : petite au chapitre 1, jeune après, adulte après le chapitre 2
+  const palierMona = () => Math.min(2, (M.terrier && M.terrier.saisons) || 0);
+  const tailleMona = base => Math.round(base * [0.75, 0.87, 1][palierMona()]);
   // Tirage : une rareté selon les chances (en %), puis un lot au hasard dans cette rareté
   function tireLot(){
     const C = TERRIER.coffre;
@@ -1694,16 +1750,24 @@
     app.querySelector("#suite").onclick = () => terrier();
     window.scrollTo(0,0);
   }
-  // Garde-robe du terrier : objets gagnés dans les coffres, à mettre ou retirer
+  // Garde-robe du terrier : visible dès le début, avec les tenues à gagner en gris et d'où elles viennent
   function garderobe(T){
-    if (!TERRIER || !TERRIER.coffre || !(T.objets || []).length) return "";
-    const total = TERRIER.coffre.lots.filter(l => l.tenue).length;
-    return `<h2 class="section-carte" style="margin:14px 0 10px">Garde-robe <span class="compte-souvenirs">${T.objets.length}/${total}</span></h2>
-      <p class="note" style="margin:0 0 10px">Touche un objet pour le mettre ou le retirer à Mona.</p>
-      <div class="etageres">${T.objets.map(lotDe).filter(Boolean).map(l => {
+    if (!TERRIER || !TERRIER.coffre) return "";
+    const objets = T.objets || [], deParcours = (TERRIER.tenues || {}).lots || [];
+    const toutes = [TERRIER.cadeau_prologue, ...deParcours.map(l => l.id), ...TERRIER.coffre.lots.filter(l => l.tenue && l.id !== TERRIER.cadeau_prologue).map(l => l.id)].filter(Boolean).map(lotDe).filter(Boolean);
+    const apercu = l => l.tenue === "noisette" ? noisetteSeule(l.id, 44) : mona("contente", 44, "noisette", { [l.tenue]: l.id });
+    const origine = l => l.id === TERRIER.cadeau_prologue ? "Cadeau de l'oncle"
+      : l.parcours ? `Parcours « ${(PARCOURS.find(x => x.id === l.parcours) || {}).titre || l.parcours} »` : "Coffre de chapitre";
+    const cases = toutes.map(l => {
+      if (objets.includes(l.id)){
         const on = (T.tenue || {})[l.tenue] === l.id;
-        return `<button class="souvenir objet r-${l.rarete}" data-tenue="${l.id}" aria-pressed="${on}">${l.tenue === "noisette" ? noisetteSeule(l.id, 44) : mona("contente", 44, "noisette", { [l.tenue]: l.id })}<span>${esc(l.nom)}</span>${on ? "<small>Porté</small>" : ""}</button>`;
-      }).join("")}</div>`;
+        return `<button class="souvenir objet r-${l.rarete}" data-tenue="${l.id}" aria-pressed="${on}">${apercu(l)}<span>${esc(l.nom)}</span>${on ? "<small>Porté</small>" : ""}</button>`;
+      }
+      return `<button class="souvenir objet a-gagner" ${l.parcours ? `data-gagner="${l.parcours}"` : "disabled"} aria-label="${esc(l.nom)}, à gagner : ${esc(origine(l))}">${apercu(l)}<span>${esc(origine(l))}</span></button>`;
+    }).join("");
+    return `<h2 class="section-carte" style="margin:14px 0 10px">Garde-robe <span class="compte-souvenirs">${toutes.filter(l => objets.includes(l.id)).length}/${toutes.length}</span></h2>
+      <p class="note" style="margin:0 0 10px">Touche un objet pour le mettre ou le retirer à Mona. Les tenues en gris se gagnent en terminant un parcours ou dans les coffres.</p>
+      <div class="etageres">${cases}</div>`;
   }
 
   /* ---------- Cours (cartes à lire avant le quiz) ---------- */
@@ -1921,8 +1985,11 @@
     if (etat.mode === "defi"){
       M.defi = { jour: auj(), ok: etat.justes === n };
       enregistre({ ecran:"fin_defi", statut:"repondu", juste:null, temps_ms:0, score: etat.points });
+      // Le défi soigne aussi Mona si elle est tombée malade pendant une absence
+      const gueri = !!(M.terrier && M.terrier.malade);
+      if (gueri) M.terrier.malade = false;
       sauve();
-      terrier({ repas:true, juste: M.defi.ok });
+      terrier({ repas:true, juste: M.defi.ok, gueri });
       if (M.defi.ok) confettis();
       // La fenêtre du jour validé arrive une fois que Mona a mangé
       if (nouveauJour) setTimeout(() => { if (app.querySelector(".cachettes") && !document.querySelector(".popup")) popupNoisette(); }, 2600);
@@ -1986,6 +2053,7 @@
 
     etat.finRepondue = false;
     const nouveauBadge = toutes && !dejaFini;
+    const tenue = toutes ? donneTenues().find(l => l.parcours === id) : null;
     app.innerHTML = `
       <header><span class="test">Version de test</span></header>
       <section class="fin">
@@ -1997,6 +2065,7 @@
         <p>${toutes ? `Badge « ${esc(etat.parcours.titre)} » ajouté à ta collection.` : "Termine aussi la leçon précédente pour obtenir le badge."}</p>
         ${toutes && queteDe(etat.parcours.id) ? `<div class="scene-quete">${bulles(queteDe(etat.parcours.id).fin)}</div>
           ${queteDe(etat.parcours.id).objet ? `<p class="souvenir-gagne">${souvenir(queteDe(etat.parcours.id).objet.id, 36)}<span>Souvenir rangé dans le terrier : ${esc(queteDe(etat.parcours.id).objet.nom.replace(/^./, c => c.toLowerCase()))}</span></p>` : ""}` : ""}
+        ${tenue ? `<div class="carte tenue-gagnee">${mona("contente", 72, "noisette", { [tenue.tenue]: tenue.id })}<div><b>Nouvelle tenue pour Mona&nbsp;: ${esc(tenue.nom)}</b><span>${esc(tenue.mona)}</span><span class="note">Mets-la à Mona dans la garde-robe de l'onglet Histoire.</span></div></div>` : ""}
         ${blocObjectif(nouveauJour)}
         <p class="note">Les points servent juste à jouer : ils n'ont aucune valeur en argent.</p>
         <div class="suite carte">
