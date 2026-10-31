@@ -7,8 +7,8 @@ Vérifié le 9 octobre 2026. Sources limitées aux sites officiels autorisés. L
 | Fait | Exercice | Statut | Source |
 |---|---|---|---|
 | Inflation = perte du pouvoir d'achat de la monnaie, hausse générale et durable des prix | ex01 | Confirmé | [insee.fr](https://www.insee.fr/fr/metadonnees/definition/c1473) |
-| « Pas de rendement élevé sans risque élevé » | ex02, ex08 | Confirmé | [amf-france.org](https://www.amf-france.org/sites/institutionnel/files/pdf/59187/fr/Quelles_sont_les_arnaques_les_plus_courantes_.pdf) (p. 8) |
-| Ne pas céder aux pressions à investir immédiatement ; documentation écrite | ex08 | Confirmé | idem (p. 8) |
+| « Pas de rendement élevé sans risque élevé » | ex02 (ex08 retiré du jeu le 31 oct. 2026) | Confirmé | [amf-france.org](https://www.amf-france.org/sites/institutionnel/files/pdf/59187/fr/Quelles_sont_les_arnaques_les_plus_courantes_.pdf) (p. 8) |
+| Ne pas céder aux pressions à investir immédiatement ; documentation écrite | ex08 (retiré du jeu le 31 oct. 2026) | Confirmé | idem (p. 8) |
 | Taux du livret réglementé le plus répandu : 1,7 % | ex03 | Confirmé (valable jusqu'au 31/01/2027) | [service-public.gouv.fr](https://www.service-public.gouv.fr/particuliers/vosdroits/F2365) |
 | Prix à la consommation : +3,1 % sur un an en septembre 2026 | ex01, ex03 | Confirmé, **définitif** (15/10/2026 ; l'estimation provisoire de 3,0 % a été révisée de +0,1 point) | [insee.fr](https://www.insee.fr/fr/statistiques/9080209) |
 | Gain ou perte constaté à la vente | ex06 | Confirmé indirectement (la page parle de plus-value) | [service-public.gouv.fr](https://www.service-public.gouv.fr/particuliers/vosdroits/F21618) |

@@ -131,6 +131,8 @@
     if (m === null) return `<h2>Rétention et activation</h2><div class="carte"><p class="vide">Pas encore activé côté base de données (script supabase/metriques.sql).</p></div>`;
     const g = m.global || {}, se = m.series || {}, q = m.questionnaire || {};
     const tresDecus = (q.deception || {}).tres || 0;
+    // Questions posées une par une : chaque question a sa propre base de réponses
+    const baseDe = k => Object.values(q[k] || {}).reduce((a, b) => a + b, 0);
     return `
       <h2>Rétention et activation</h2>
       <div class="kpis" style="margin-top:0">
@@ -139,7 +141,7 @@
         <div class="carte kpi"><b>${pct(g.j7, g.j7_base)}</b><span>rétention J7 : revenus 7 jours après (repère ≈ 12 %)</span></div>
         <div class="carte kpi"><b>${pct(g.j30, g.j30_base)}</b><span>rétention J30 : revenus 30 jours après (repère ≈ 5 %)</span></div>
         <div class="carte kpi"><b>${pct(se.serie3, se.joueurs)}</b><span>joueurs avec une série d'au moins 3 jours (7 jours : ${nb(se.serie7)})</span></div>
-        <div class="carte kpi"><b>${pct(tresDecus, q.reponses)}</b><span>« très déçu·e » si l'appli disparaissait (seuil 40 %, fiable dès ~40 réponses)</span></div>
+        <div class="carte kpi"><b>${pct(tresDecus, baseDe("deception"))}</b><span>« très déçu·e » si l'appli disparaissait (seuil 40 %, fiable dès ~40 réponses)</span></div>
       </div>
       <p class="legende">Entre parenthèses : nombre concerné / base. La rétention ne compte que les visiteurs arrivés depuis assez longtemps (un visiteur arrivé hier n'entre pas encore dans J1).</p>
 
@@ -159,14 +161,14 @@
         <tbody>${(m.sources||[]).map(x => `<tr><td>${esc(SOURCES[x.source] || x.source)}</td><td></td><td>${nb(x.nouveaux)}</td><td>${pct(x.actives, x.nouveaux)}</td><td>${pct(x.j7, x.j7_base)}</td></tr>`).join("") || `<tr><td colspan="5" class="vide">Pas encore de données.</td></tr>`}</tbody></table>
         <p class="legende">Source lue dans le lien, par exemple <code>?src=tiktok</code>, <code>?src=instagram</code> ou <code>?src=ami</code>. La première source connue d'un visiteur est gardée.</p></div>
 
-      <h2>Questionnaire ${q.reponses ? `<span class="sous">(${nb(q.reponses)} réponse${q.reponses > 1 ? "s" : ""})</span>` : ""}</h2>
+      <h2>Questionnaire ${q.reponses ? `<span class="sous">(${nb(q.reponses)} personne${q.reponses > 1 ? "s" : ""})</span>` : ""}</h2>
       ${q.reponses ? `<div class="deux">${Object.entries(LIBELLES).map(([k, [titre, choix]]) =>
-          `<div class="carte"><b>${esc(titre)}</b>${barres(Object.entries(choix).map(([v, l]) => [l, (q[k] || {})[v] || 0]), q.reponses)}</div>`).join("")}</div>
+          `<div class="carte"><b>${esc(titre)}</b>${barres(Object.entries(choix).map(([v, l]) => [l, (q[k] || {})[v] || 0]), baseDe(k))}</div>`).join("")}</div>
         <div class="carte" style="margin-top:16px"><b>« Si tu devais retenir une chose… »</b>${(q.retenu||[]).length ? q.retenu.map(t => `<div class="idee">
           <p class="sous">${new Date(t.cree_le).toLocaleString("fr-FR",{dateStyle:"short",timeStyle:"short"})}${t.pseudo ? ` · <b>${esc(t.pseudo)}</b>` : ""} · ${esc(LIBELLES.deception[1][t.deception] || "")}</p>
           <p class="texte">${esc(t.texte)}</p></div>`).join("") : `<p class="vide">Aucune réponse libre pour l'instant.</p>`}</div>
-        <p class="legende">Proposé en fin de leçon à partir du 2e jour de jeu. Avec peu de réponses, lire les réponses une par une plutôt que les pourcentages.</p>`
-      : `<div class="carte"><p class="vide">Aucune réponse pour l'instant. Le questionnaire est proposé en fin de leçon à partir du 2e jour de jeu.</p></div>`}`;
+        <p class="legende">Une question par fin de leçon, dès la première leçon terminée : chaque question a donc son propre nombre de réponses. Avec peu de réponses, les lire une par une plutôt que les pourcentages.</p>`
+      : `<div class="carte"><p class="vide">Aucune réponse pour l'instant. Une question est proposée à chaque fin de leçon, dès la première leçon terminée.</p></div>`}`;
   }
 
   function affiche(d){
@@ -203,7 +205,7 @@
       <h2>Boîte à idées ${d.suggestions && d.suggestions.length ? `<span class="sous">(${nb(d.suggestions.length)})</span>` : ""}</h2>
       <div class="carte">${d.suggestions === null ? `<p class="vide">Boîte à idées pas encore activée côté base de données (script supabase/suggestions.sql).</p>`
         : d.suggestions.length ? d.suggestions.map(s => `<div class="idee">
-            <p class="sous">${new Date(s.cree_le).toLocaleString("fr-FR",{dateStyle:"short",timeStyle:"short"})} · ${s.pseudo ? `<b>${esc(s.pseudo)}</b>` : `visiteur ${esc(s.visiteur)}`} · ${{carte:"depuis la carte",fin:"fin de parcours",fin_lecon:"fin de leçon"}[s.origine] || "—"}${s.parcours ? " · " + esc(nom(s.parcours)) : ""}</p>
+            <p class="sous">${new Date(s.cree_le).toLocaleString("fr-FR",{dateStyle:"short",timeStyle:"short"})} · ${s.pseudo ? `<b>${esc(s.pseudo)}</b>` : `visiteur ${esc(s.visiteur)}`} · ${{carte:"depuis la carte",fin:"fin de parcours",fin_lecon:"fin de leçon",terrier:"onglet Histoire",scene:"fin de scène"}[s.origine] || "—"}${s.parcours ? " · " + esc(nom(s.parcours)) : ""}</p>
             <p class="texte">${esc(s.texte)}</p></div>`).join("")
         : `<p class="vide">Aucune suggestion pour l'instant.</p>`}</div>
 

@@ -8,13 +8,6 @@
       "titre": "L'argent qui dort",
       "cours": [
         {
-          "titre": "Investir, c'est quoi ?",
-          "texte": "Avant l'hiver, Mona la marmotte fait des réserves : c'est épargner, mettre de côté. Investir, c'est autre chose : placer ces réserves pour qu'elles travaillent, comme planter des graines qui peuvent pousser… ou ne pas lever. Ce parcours explique pourquoi certains choisissent de planter : inflation, intérêts composés et temps.",
-          "sources": [
-            "amf_rendement_risque"
-          ]
-        },
-        {
           "titre": "L'inflation",
           "texte": "L'inflation, c'est une petite fuite dans ton porte-monnaie : le billet garde le même montant, mais il achète un peu moins chaque année. L'Insee la définit comme une perte du pouvoir d'achat de la monnaie. En septembre 2026, les prix ont augmenté de {{inflation_1an}} % sur un an.",
           "sources": [
@@ -94,6 +87,48 @@
           "sources": [
             "amf_5pct_30ans"
           ]
+        }
+      ]
+    },
+    {
+      "titre": "Risque et temps",
+      "cours": [
+        {
+          "titre": "Rendement et risque",
+          "texte": "Le rendement, c'est la récompense ; le risque, c'est le prix du ticket. Comme au manège : plus ça secoue, plus il y a de sensations… et de risques d'avoir mal au cœur. Entre 1950 et 2020, une année d'actions françaises a pu aller d'une chute pire que {{actions_fr_1an_p1}} % à une hausse de plus de +{{actions_fr_1an_p99}} %, après inflation.",
+          "sources": [
+            "amf_rendement_risque",
+            "actions_fr"
+          ]
+        },
+        {
+          "titre": "Le temps",
+          "texte": "Le temps agit comme un amortisseur : sur un trajet court, chaque nid-de-poule se sent ; sur un long trajet, ils se diluent dans la distance. Sur les actions françaises, plus la durée était longue, moins les pires résultats étaient sévères. Mais l'AMF note que 20 ans n'ont pas suffi à effacer tout risque : c'est le passé, pas une garantie.",
+          "sources": [
+            "actions_fr"
+          ]
+        }
+      ],
+      "exercices": [
+        {
+          "id": "ex03",
+          "niveau": 3,
+          "notion": "L'inflation grignote l'argent qui dort",
+          "format": "choix",
+          "question": "Livret réglementé à {{livret_taux}} %, prix +{{inflation_1an}} % sur un an. Ton pouvoir d'achat ?",
+          "options": [
+            "Il monte de {{livret_taux}} % : les intérêts sont garantis",
+            "Il ne bouge pas : le capital est garanti",
+            "Il baisse d'environ {{pouvoir_achat_livret|abs}} %"
+          ],
+          "reponse": 2,
+          "retour_juste": "Bien joué ! Les intérêts sont bien là, mais les prix courent plus vite qu'eux.",
+          "retour_faux": "Le solde affiché monte, mais les prix montent davantage. Bilan : environ {{pouvoir_achat_livret|abs}} % de pouvoir d'achat en moins.",
+          "en_savoir_plus": "Chiffres officiels : le livret réglementé le plus répandu rapporte {{livret_taux}} % par an (service-public.gouv.fr) et l'Insee mesure une hausse des prix de {{inflation_1an}} % sur un an en septembre 2026. Calcul : 1,017 / 1,031 ≈ 0,986, soit environ −1,4 %. Ces deux taux changent avec le temps, la situation peut donc s'inverser.",
+          "sources": [
+            "livret_taux",
+            "inflation_1an"
+          ]
         },
         {
           "id": "ex04",
@@ -120,48 +155,6 @@
           ]
         },
         {
-          "id": "ex03",
-          "niveau": 3,
-          "notion": "L'inflation grignote l'argent qui dort",
-          "format": "choix",
-          "question": "Livret réglementé à {{livret_taux}} %, prix +{{inflation_1an}} % sur un an. Ton pouvoir d'achat ?",
-          "options": [
-            "Il monte de {{livret_taux}} % : les intérêts sont garantis",
-            "Il ne bouge pas : le capital est garanti",
-            "Il baisse d'environ {{pouvoir_achat_livret|abs}} %"
-          ],
-          "reponse": 2,
-          "retour_juste": "Bien joué ! Les intérêts sont bien là, mais les prix courent plus vite qu'eux.",
-          "retour_faux": "Le solde affiché monte, mais les prix montent davantage. Bilan : environ {{pouvoir_achat_livret|abs}} % de pouvoir d'achat en moins.",
-          "en_savoir_plus": "Chiffres officiels : le livret réglementé le plus répandu rapporte {{livret_taux}} % par an (service-public.gouv.fr) et l'Insee mesure une hausse des prix de {{inflation_1an}} % sur un an en septembre 2026. Calcul : 1,017 / 1,031 ≈ 0,986, soit environ −1,4 %. Ces deux taux changent avec le temps, la situation peut donc s'inverser.",
-          "sources": [
-            "livret_taux",
-            "inflation_1an"
-          ]
-        }
-      ]
-    },
-    {
-      "titre": "Risque et temps",
-      "cours": [
-        {
-          "titre": "Rendement et risque",
-          "texte": "Le rendement, c'est la récompense ; le risque, c'est le prix du ticket. Comme au manège : plus ça secoue, plus il y a de sensations… et de risques d'avoir mal au cœur. Entre 1950 et 2020, une année d'actions françaises a pu aller d'une chute pire que {{actions_fr_1an_p1}} % à une hausse de plus de +{{actions_fr_1an_p99}} %, après inflation.",
-          "sources": [
-            "amf_rendement_risque",
-            "actions_fr"
-          ]
-        },
-        {
-          "titre": "Le temps",
-          "texte": "Le temps agit comme un amortisseur : sur un trajet court, chaque nid-de-poule se sent ; sur un long trajet, ils se diluent dans la distance. Sur les actions françaises, plus la durée était longue, moins les pires résultats étaient sévères. Mais l'AMF note que 20 ans n'ont pas suffi à effacer tout risque : c'est le passé, pas une garantie.",
-          "sources": [
-            "actions_fr"
-          ]
-        }
-      ],
-      "exercices": [
-        {
           "id": "ex06",
           "niveau": 6,
           "notion": "Investir, c'est accepter de pouvoir perdre",
@@ -187,57 +180,17 @@
           "format": "fourchette",
           "question": "Actions françaises depuis 1950 : jusqu'où a chuté une très mauvaise année ?",
           "options": [
-            "Jusqu'à −10 %",
-            "Autour de −20 %",
+            "Autour de −10 %",
             "Autour de −40 %",
             "Autour de −80 %"
           ],
-          "reponse": 2,
+          "reponse": 1,
           "retour_juste": "Oui, autour de {{actions_fr_1an_p1}} % après inflation pour les pires années. Ça bouge fort, dans les deux sens.",
           "retour_faux": "Plutôt autour de {{actions_fr_1an_p1}} % après inflation pour les pires années. Les meilleures ont dépassé +{{actions_fr_1an_p99}} % : ça secoue dans les deux sens.",
           "en_savoir_plus": "Étude AMF (2021, calculs Harvest), actions françaises 1950-2020, dividendes réinvestis, après inflation : sur un an, 1 % des résultats étaient pires que {{actions_fr_1an_p1}} %, le résultat médian était de +{{actions_fr_1an_mediane}} % et 1 % dépassaient +{{actions_fr_1an_p99}} %. Sur 168 placements de 20 ans lancés à partir de 1988, {{actions_vs_livret_20ans}} ont fait moins bien que le livret réglementé le plus répandu. C'est le passé d'un seul marché, pas une promesse.",
           "sources": [
             "actions_fr",
             "actions_vs_livret_20ans"
-          ]
-        },
-        {
-          "id": "ex08",
-          "niveau": 8,
-          "notion": "Pas de rendement élevé sans risque",
-          "format": "arnaque",
-          "question": "Trois messages d'un « conseiller ». Lequel est le plus louche ?",
-          "options": [
-            "Ce placement peut baisser. Voici la documentation écrite et les frais.",
-            "Prenez le temps de réfléchir avant de vous engager.",
-            "Notre méthode anticipe chaque baisse : décidez avant ce soir !"
-          ],
-          "reponse": 2,
-          "retour_juste": "Démasqué ! Prédire chaque baisse est impossible, et l'urgence est un grand classique des escrocs.",
-          "retour_faux": "Le message louche : « notre méthode anticipe chaque baisse, décidez avant ce soir ». Promesse impossible et pression : double drapeau rouge.",
-          "en_savoir_plus": "Dans ses conseils contre les arnaques, l'AMF invite à ne pas céder aux pressions de qui pousse à investir immédiatement, et à exiger une documentation écrite. Personne ne sait prévoir à coup sûr les hausses et les baisses des marchés.",
-          "sources": [
-            "amf_rendement_risque"
-          ]
-        },
-        {
-          "id": "ex09",
-          "niveau": 9,
-          "notion": "Investir, c'est accepter de pouvoir perdre",
-          "format": "fourchette",
-          "question": "10 000 € tombent à 7 000 €. Quelle hausse pour revenir à 10 000 € ?",
-          "options": [
-            "Entre +25 et +30 %",
-            "Entre +40 et +45 %",
-            "Entre +55 et +60 %",
-            "Environ +100 %"
-          ],
-          "reponse": 1,
-          "retour_juste": "Pile ! Une baisse de 30 % demande environ +43 % pour être effacée.",
-          "retour_faux": "Réponse : environ +43 %, pas +30 %. La remontée part d'une base plus petite (7 000 €), donc le pourcentage nécessaire est plus grand.",
-          "en_savoir_plus": "Calcul : 10 000 / 7 000 ≈ 1,429, soit +42,9 %. Plus la baisse est forte, plus la hausse nécessaire grimpe : après −50 %, c'est +100 %. Et rien ne garantit que cette remontée arrive.",
-          "sources": [
-            "calculs"
           ]
         },
         {

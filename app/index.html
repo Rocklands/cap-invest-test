@@ -345,18 +345,16 @@
   @media (prefers-reduced-motion: reduce){.idee-flottante.coucou{animation:none}}
   .lien-idee{display:block;margin:14px auto 0;border:0;background:none;color:var(--canard);font-weight:700;text-decoration:underline;font-size:15px}
   .idees h1{font-size:28px;margin:14px 0 6px}
-  .idees textarea{display:block;width:100%;min-height:180px;margin:6px 0 4px;padding:12px;font:inherit;font-size:17px;border:2px solid var(--encre);border-radius:14px;background:var(--carte);color:var(--encre);resize:vertical}
+  .idees textarea,.invite-q textarea{display:block;width:100%;min-height:180px;margin:6px 0 4px;padding:12px;font:inherit;font-size:17px;border:2px solid var(--encre);border-radius:14px;background:var(--carte);color:var(--encre);resize:vertical}
   .idees .compteur{font-size:12px;color:var(--encre-douce);text-align:right;margin:0 0 12px}
-  .idees .erreur{color:var(--rouge);font-weight:700;font-size:15px}
+  .idees .erreur,.invite-q .erreur{color:var(--rouge);font-weight:700;font-size:15px}
   .invite-q{margin-top:14px;text-align:left}
-  .invite-q .ligne-boutons{margin-top:10px}
-  .questionnaire fieldset{border:0;margin:0 0 20px;padding:0;min-width:0}
-  .questionnaire legend{font-weight:700;font-size:17px;line-height:1.3;margin:0 0 8px;padding:0}
+  .invite-q .bouton{margin-top:8px}
   .choix-liste{display:flex;flex-wrap:wrap;gap:8px}
   .choix{padding:10px 14px;border:2px solid var(--encre);border-radius:999px;background:var(--carte);color:var(--encre);font:inherit;font-size:15px;cursor:pointer}
   .choix[aria-pressed="true"]{background:var(--canard-clair);border-color:var(--canard);font-weight:700}
   .choix[aria-pressed="true"]::before{content:"✓ "}
-  .questionnaire textarea{min-height:110px}
+  .invite-q textarea{min-height:110px}
 
   .toast{position:fixed;left:50%;bottom:calc(90px + env(safe-area-inset-bottom));transform:translateX(-50%);background:var(--encre);color:var(--papier);padding:10px 16px;border-radius:12px;font-size:15px;font-weight:700;z-index:20;max-width:calc(100% - 32px);text-align:center;animation:monte .25s ease}
 
@@ -960,6 +958,12 @@
       ${ios ? "" : `<button class="bouton clair ${invite ? "" : "cache"}" id="installer">Installer</button><p class="${invite ? "cache" : ""}" style="margin:0">Sinon : menu du navigateur ⋮ puis « Ajouter à l'écran d'accueil ».</p>`}
     </div>`;
   }
+  // Proposée une seule fois sur téléphone, après la première leçon terminée
+  const proposeInstallation = () => {
+    if (M.installProposee || installee() || !/android|iphone|ipad|ipod/i.test(navigator.userAgent)) return "";
+    M.installProposee = true; sauve();
+    return encartInstallation();
+  };
   function brancheInstallation(){
     const b = document.getElementById("installer");
     if (b) b.onclick = async () => { if (!invite) return; invite.prompt(); const c = await invite.userChoice; if (c && c.outcome === "accepted") evt("installation"); invite = null; b.classList.add("cache"); };
@@ -1596,8 +1600,10 @@
         <div class="src">${sourcesCles(s.sources)}</div>
         ${x ? `<button class="bouton clair" id="parcours">Comprendre en 5 min : ${esc(x.titre)}</button>` : ""}
         <button class="bouton" id="suite">${dernier ? esc(c.fin.titre) : "Retour au terrier"}</button>
+        <button class="lien-idee" id="idee">💡 Un avis sur cette scène&nbsp;?</button>
       </section>`;
     app.querySelector("#quitter").onclick = () => terrier();
+    app.querySelector("#idee").onclick = () => idees("scene", () => terrier(), s.id);
     if (x) app.querySelector("#parcours").onclick = () => lanceParcours(x);
     app.querySelector("#suite").onclick = () => dernier ? finChapitre(c) : terrier();
     if (d.n) setTimeout(() => voleNoisettes(app.querySelector("#mona"), app.querySelector(`[data-cachette="${d.vers}"]`), d.n), 400);
@@ -2036,6 +2042,7 @@
           <p style="margin:2px 0 12px">points · ${etat.justes}/${n} bonnes réponses</p>
           ${blocObjectif(nouveauJour)}
           ${inviteQuestionnaire()}
+          ${proposeInstallation()}
           <p class="note">Les points servent juste à jouer : ils n'ont aucune valeur en argent.</p>
           <button class="bouton" id="suivante" style="margin-top:8px">Leçon suivante : ${esc(etat.lecons[etat.lecon+1].titre)}</button>
           <button class="bouton clair" id="carte" style="margin-top:12px">Retour aux parcours</button>
@@ -2048,6 +2055,7 @@
       const parcoursFini = etat.parcours;
       app.querySelector("#idee").onclick = () => idees("fin_lecon", carte, parcoursFini.id);
       brancheInvite();
+      brancheInstallation();
       return window.scrollTo(0,0);
     }
 
@@ -2078,6 +2086,7 @@
           <p class="merci cache" id="merci">Merci, c'est noté&nbsp;!</p>
         </div>
         ${inviteQuestionnaire()}
+        ${proposeInstallation()}
         <button class="bouton clair" id="carte" style="margin-top:14px">Retour aux parcours</button>
         <button class="lien-idee" id="idee">💡 Une idée pour améliorer ce parcours&nbsp;?</button>
       </section>`;
@@ -2086,6 +2095,7 @@
     const parcoursFini = etat.parcours;
     app.querySelector("#idee").onclick = () => idees("fin", carte, parcoursFini.id);
     brancheInvite();
+    brancheInstallation();
     app.querySelectorAll("#suite button").forEach(bt => bt.onclick = () => {
       if (etat.finRepondue) return;
       etat.finRepondue = true;
@@ -2097,64 +2107,41 @@
     window.scrollTo(0,0);
   }
 
-  /* ---------- Questionnaire de retours : proposé en fin de leçon à partir du 2e jour de jeu ---------- */
+  /* ---------- Questionnaire de retours : une question par fin de leçon, dès la première leçon terminée ---------- */
+  // Du plus simple à répondre après une leçon jusqu'à l'avis sur l'appli, qui demande d'avoir un peu joué
   const QUESTIONS = [
-    { id:"deception", q:"Comment te sentirais-tu si tu ne pouvais plus utiliser Cap Invest ?", r:[["tres","Très déçu·e"],["un_peu","Un peu déçu·e"],["pas","Pas déçu·e"],["plus","Je ne l'utilise déjà plus"]] },
-    { id:"experience", q:"Avant Cap Invest, tu avais déjà investi ?", r:[["jamais","Jamais"],["un_peu","Un peu"],["regulier","Régulièrement"]] },
     { id:"niveau", q:"Le niveau des questions était…", r:[["facile","Trop facile"],["adapte","Adapté"],["difficile","Trop difficile"]] },
+    { id:"experience", q:"Avant Cap Invest, tu avais déjà investi ?", r:[["jamais","Jamais"],["un_peu","Un peu"],["regulier","Régulièrement"]] },
     { id:"motivation", q:"Qu'est-ce qui t'a le plus motivé·e à continuer ?", r:[["points","Les points"],["serie","La série de jours"],["badges","Les badges"],["mona","Mona et son histoire"],["defi","Le défi du jour"],["contenu","Rien de tout ça, c'est le contenu"]] },
+    { id:"sujet", q:"Quel sujet aimerais-tu découvrir ensuite ?", r:[["budget","Budget et épargne"],["assurance_vie","Assurance vie"],["credit","Crédit et taux d'intérêt"],["marches","Ce qui fait bouger les marchés"],["autre","Autre"]] },
     { id:"rappel", q:"Aimerais-tu un rappel pour garder ta série ?", r:[["quotidien","Oui, chaque jour"],["parfois","Oui, mais pas tous les jours"],["non","Non"]] },
-    { id:"sujet", q:"Quel sujet aimerais-tu découvrir ensuite ?", r:[["budget","Budget et épargne"],["assurance_vie","Assurance vie"],["credit","Crédit et taux d'intérêt"],["marches","Ce qui fait bouger les marchés"],["autre","Autre"]] }
+    { id:"deception", q:"Comment te sentirais-tu si tu ne pouvais plus utiliser Cap Invest ?", r:[["tres","Très déçu·e"],["un_peu","Un peu déçu·e"],["pas","Pas déçu·e"],["plus","Je ne l'utilise déjà plus"]] },
+    { id:"retenu", q:"Si tu devais retenir une chose de Cap Invest, ce serait quoi ?" }
   ];
-  // Proposé tant qu'il n'est pas rempli : au plus une fois par jour, trois jours différents en tout
-  const questionnaireAProposer = () => !M.questionnaire && new Set(M.jours).size >= 2 && M.questionnaireVu !== auj() && (M.questionnaireReports || 0) < 3;
+  // Une question revient tant qu'on n'y a pas répondu ; après 3 fins de leçon sans réponse, on n'insiste plus
+  const prochaineQuestion = () => M.questionnaire || (M.qSansReponse || 0) >= 3 ? null : QUESTIONS.find(x => !(M.qReponses || {})[x.id]);
   function inviteQuestionnaire(){
-    if (!questionnaireAProposer()) return "";
+    const x = prochaineQuestion();
+    if (!x) return "";
     return `<div class="carte invite-q" id="invite-q">
-      <div class="bulle-mona">${mona("contente", 56)}<p><b>1 minute pour nous aider&nbsp;?</b> 7 questions sur ton expérience. Les réponses honnêtes, même négatives, nous aident le plus.</p></div>
-      <div class="ligne-boutons"><button class="bouton" id="q-oui">Répondre</button><button class="bouton clair" id="q-tard">Plus tard</button></div>
+      <div class="bulle-mona">${mona("contente", 56)}<p><b>Ton avis, question ${QUESTIONS.indexOf(x) + 1}/${QUESTIONS.length}&nbsp;:</b> ${esc(x.q)}</p></div>
+      ${x.r ? `<div class="choix-liste">${x.r.map(([v, l]) => `<button type="button" class="choix" aria-pressed="false" data-v="${v}">${esc(l)}</button>`).join("")}</div>`
+        : `<textarea id="q-texte" aria-label="Ta réponse" maxlength="1000" placeholder="Une notion, un moment, une impression…"></textarea>
+           <p class="note">N'écris pas d'informations personnelles (nom, téléphone, situation financière).</p>
+           <button class="bouton" id="q-envoyer" disabled>Envoyer</button>`}
+      <p class="note">Lu seulement par l'équipe du test${M.pseudo ? `, avec ton pseudo (${esc(M.pseudo)})` : ""}.</p>
+      <p class="erreur cache" id="q-erreur">L'envoi n'a pas marché. Vérifie ta connexion et réessaie.</p>
+      <button class="lien-idee" id="q-tard">${x.r ? "Plus tard" : "Passer"}</button>
     </div>`;
   }
   function brancheInvite(){
-    const oui = app.querySelector("#q-oui");
-    if (!oui) return;
-    M.questionnaireVu = auj(); M.questionnaireReports = (M.questionnaireReports || 0) + 1; sauve();
-    oui.onclick = () => questionnaire(carte);
-    app.querySelector("#q-tard").onclick = () => app.querySelector("#invite-q").remove();
-  }
-  function questionnaire(retour){
-    etat.parcours = null;
-    const rep = {};
-    app.innerHTML = `
-      <header><button class="retour-carte" id="retour" aria-label="Retour">←</button><span class="espace"></span><span class="test">Version de test</span></header>
-      <section class="idees questionnaire">
-        <h1>Ton avis</h1>
-        <p class="note">Moins d'une minute. Lu seulement par l'équipe du test${M.pseudo ? `, avec ton pseudo (${esc(M.pseudo)})` : ""}.</p>
-        ${QUESTIONS.map((x, i) => `<fieldset><legend>${i+1}. ${esc(x.q)}</legend><div class="choix-liste">${x.r.map(([v, l]) =>
-          `<button type="button" class="choix" aria-pressed="false" data-q="${x.id}" data-v="${v}">${esc(l)}</button>`).join("")}</div></fieldset>`).join("")}
-        <fieldset><legend><label for="retenu">7. Si tu devais retenir une chose de Cap Invest, ce serait quoi&nbsp;? <span class="note">(facultatif)</span></label></legend>
-          <textarea id="retenu" maxlength="1000" placeholder="Une notion, un moment, une impression…"></textarea></fieldset>
-        <p class="note">N'écris pas d'informations personnelles (nom, téléphone, situation financière).</p>
-        <p class="erreur cache" id="erreur">L'envoi n'a pas marché. Vérifie ta connexion et réessaie : tes réponses sont gardées.</p>
-        <button class="bouton" id="envoyer" disabled>Réponds aux 6 premières questions</button>
-      </section>`;
-    const bt = app.querySelector("#envoyer");
-    const maj = () => {
-      const n = QUESTIONS.filter(x => rep[x.id]).length;
-      bt.disabled = n < QUESTIONS.length;
-      bt.textContent = bt.disabled ? `Réponds aux 6 premières questions (${n}/6)` : "Envoyer";
-    };
-    app.querySelectorAll(".choix").forEach(b => b.onclick = () => {
-      app.querySelectorAll(`.choix[data-q="${b.dataset.q}"]`).forEach(x => x.setAttribute("aria-pressed", "false"));
-      b.setAttribute("aria-pressed", "true"); rep[b.dataset.q] = b.dataset.v; maj();
-    });
-    maj();
-    app.querySelector("#retour").onclick = retour;
-    bt.onclick = async () => {
-      bt.disabled = true; bt.textContent = "Envoi…";
-      app.querySelector("#erreur").classList.add("cache");
-      const retenu = app.querySelector("#retenu").value.trim().slice(0, 1000);
-      const ligne = Object.assign({ visiteur: VISITEUR.id, session: etat.session, version: CFG.VERSION || "test", pseudo: M.pseudo || null, retenu: retenu || null }, rep);
+    const bloc = app.querySelector("#invite-q");
+    if (!bloc) return;
+    const x = prochaineQuestion(), erreur = bloc.querySelector("#q-erreur");
+    M.qSansReponse = (M.qSansReponse || 0) + 1; sauve();
+    const envoie = async valeur => {
+      erreur.classList.add("cache");
+      const ligne = { visiteur: VISITEUR.id, session: etat.session, version: CFG.VERSION || "test", pseudo: M.pseudo || null, [x.id]: valeur };
       let ok = false;
       if (!CFG.SUPABASE_URL || !CFG.SUPABASE_KEY){ console.info("[non envoyé : questionnaire]", ligne); ok = true; }
       else try {
@@ -2163,15 +2150,31 @@
         });
         ok = r.ok;
       } catch(e){}
-      if (!ok){ maj(); return app.querySelector("#erreur").classList.remove("cache"); }
-      M.questionnaire = "fait"; sauve();
-      app.querySelector(".questionnaire").innerHTML = `
-        <div class="bulle-mona" style="margin-top:24px">${mona("contente", 72)}<p><b>Merci&nbsp;!</b> Tes réponses sont bien reçues. Elles vont guider les prochaines versions de l'appli.</p></div>
-        <button class="bouton" id="fini" style="margin-top:14px">Retour aux parcours</button>`;
-      app.querySelector("#fini").onclick = retour;
-      window.scrollTo(0,0);
+      if (!ok){ erreur.classList.remove("cache"); return false; }
+      M.qReponses = Object.assign(M.qReponses || {}, { [x.id]: true }); M.qSansReponse = 0;
+      if (!QUESTIONS.some(y => !M.qReponses[y.id])) M.questionnaire = "fait";
+      sauve();
+      bloc.innerHTML = `<div class="bulle-mona">${mona("contente", 56)}<p><b>Merci&nbsp;!</b> ${M.questionnaire ? "C'était la dernière question : tes réponses vont guider les prochaines versions de l'appli." : "Une autre petite question à la fin de ta prochaine leçon."}</p></div>`;
+      return true;
     };
-    window.scrollTo(0,0);
+    bloc.querySelector("#q-tard").onclick = () => {
+      if (!x.r){ M.questionnaire = "fait"; sauve(); }
+      bloc.remove();
+    };
+    if (x.r) bloc.querySelectorAll(".choix").forEach(b => b.onclick = async () => {
+      const choix = [...bloc.querySelectorAll(".choix")];
+      choix.forEach(y => y.disabled = true);
+      b.setAttribute("aria-pressed", "true");
+      if (!await envoie(b.dataset.v)){ choix.forEach(y => y.disabled = false); b.setAttribute("aria-pressed", "false"); }
+    });
+    else {
+      const zone = bloc.querySelector("#q-texte"), bt = bloc.querySelector("#q-envoyer");
+      zone.oninput = () => { bt.disabled = !zone.value.trim(); };
+      bt.onclick = async () => {
+        bt.disabled = true; bt.textContent = "Envoi…";
+        if (!await envoie(zone.value.trim().slice(0, 1000))){ bt.disabled = false; bt.textContent = "Envoyer"; }
+      };
+    }
   }
 
   /* ---------- Boîte à idées : texte libre envoyé à l'organisateur du test ---------- */

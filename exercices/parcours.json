@@ -4,7 +4,7 @@
     {
       "id": "pourquoi-investir",
       "titre": "Pourquoi investir ?",
-      "accroche": "Inflation, intérêts composés, risque : les bases.",
+      "accroche": "Investir, c'est placer de l'argent pour qu'il travaille, avec un risque de perte.",
       "icone": "graine",
       "couleur": "#14808A",
       "statut": "pret",
@@ -31,7 +31,7 @@
     {
       "id": "pea-compte-titres",
       "titre": "PEA ou compte-titres ?",
-      "accroche": "Deux enveloppes, deux jeux de règles.",
+      "accroche": "PEA = plan d'épargne en actions. Deux comptes pour détenir des actions, aux règles différentes.",
       "icone": "enveloppe",
       "couleur": "#7A5CC4",
       "statut": "pret",
